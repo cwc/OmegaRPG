@@ -22,7 +22,7 @@ void signalsave(int);
 
 /* abyss.c functions */
 
-#ifdef MSDOS_SUPPORTED_ANTIQUE
+#ifdef MSDOS
 void check_memory( void );
 void kill_all_levels( void );
 void kill_levels( char * );

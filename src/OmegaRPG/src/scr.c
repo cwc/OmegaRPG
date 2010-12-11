@@ -4,20 +4,11 @@
 /* plus a few file i/o stuff */
 /* also some in file.c */
 
-#ifdef MSDOS_SUPPORTED_ANTIQUE
-# include "curses.h"
-#else
-# ifdef AMIGA
-#  include <curses210.h>
-# elif defined(USE_OPCURSES)
-#  include "../opcurses/curses.h"
-# else
-#  include <curses.h>
-# endif
+#ifndef MSDOS
 # include <sys/types.h>
 #endif
 
-#if defined(MSDOS_SUPPORTED_ANTIQUE) || defined(AMIGA)
+#if defined(MSDOS) || defined(AMIGA) || defined(WIN32)
 # define CHARATTR(c)	((c) >> 8)
 #else
 # define CHARATTR(c)	((c) & ~0xff)
@@ -25,7 +16,10 @@
 
 #include "glob.h"
 #include <ctype.h>
+
+#ifndef WIN32 || MSDOS
 #include <unistd.h>
+#endif
 
 #ifdef EXCESSIVE_REDRAW
 #undef wclear
@@ -203,7 +197,7 @@ int mcigetc(void)
 {
   int c;
 
-#ifdef MSDOS_SUPPORTED_ANTIQUE
+#ifdef MSDOS
 #ifndef DJGPP
   keypad(Msgw,TRUE);
 #endif
@@ -499,7 +493,7 @@ void initgraf(void)
 #endif
 
   initscr();
-#if !defined(MSDOS_SUPPORTED_ANTIQUE)
+#if !defined(MSDOS) && !defined(WIN32)
   start_color();
 # ifndef AMIGA
   clrgen_init();
@@ -2202,7 +2196,7 @@ void bufferprint(void)
 {
   int i = bufferpos - 1, c, finished = 0;
   clearmsg();
-#ifndef MSDOS_SUPPORTED_ANTIQUE
+#ifndef MSDOS
   wprintw(Msg1w,"^p for previous message, ^n for next, anything else to quit.");
 #else
   wprintw(Msg1w,"^o for last message, ^n for next, anything else to quit.");
@@ -2215,7 +2209,7 @@ void bufferprint(void)
     wprintw(Msg2w,Stringbuffer[i]);
     wrefresh(Msg2w);
     c = mgetc();
-#ifndef MSDOS_SUPPORTED_ANTIQUE
+#ifndef MSDOS
     if (c == 16)	/* ^p */
 #else
     if (c == 15)	/* ^o */

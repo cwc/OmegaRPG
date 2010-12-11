@@ -4,7 +4,7 @@
 /* This file contains some more top level command functions
    called from command1.c */
 
-#ifndef MSDOS_SUPPORTED_ANTIQUE
+#if !defined(MSDOS) && !defined(WIN32)
 #include <pwd.h>
 #include <unistd.h>
 #endif
@@ -206,15 +206,10 @@ void help(void)
   xredraw();
 }
 
-extern const char * LAST_OMEGA_BUILD_TIME;
-
 void version(void)
 {
   setgamestatus(SKIP_MONSTERS);
   print3(VERSIONSTRING);
-  nprint3(":");
-  nprint3(" build date: ");
-  nprint3((char *)LAST_OMEGA_BUILD_TIME);
 }
 
 void fire(void)
@@ -505,7 +500,7 @@ void charid(void)
 void wizard(void)
 {
   char *lname;
-#ifndef MSDOS_SUPPORTED_ANTIQUE
+#ifndef MSDOS
   struct passwd *dastuff;
 #endif
 
@@ -515,13 +510,15 @@ void wizard(void)
     clearmsg();
     if (cinema_confirm("You just asked to enter wizard mode.")=='y') {
        lname = getlogin();
-#ifndef MSDOS_SUPPORTED_ANTIQUE
+
+#if !defined(MSDOS) && !defined(WIN32)
        if (!lname || strlen(lname) == 0)
        {
 	    dastuff = getpwuid(getuid());
 	    lname = dastuff->pw_name;
        }
 #endif
+
        if (strcmp(lname,WIZARD)==0) {
 	 setgamestatus(CHEATED);
 	 mprint("Wizard mode set.");

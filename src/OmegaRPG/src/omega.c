@@ -5,7 +5,7 @@
 
 #include "glob.h"
 
-#if !defined(MSDOS_SUPPORTED_ANTIQUE)
+#if !defined(MSDOS) && !defined(WIN32)
 #include <signal.h>
 #include <fcntl.h>
 #include <time.h>
@@ -33,14 +33,14 @@ char SaveFileName[80];
 /* Objects and Monsters are allocated and initialized in init.c */
 
 /* one of each spell */
-#ifndef MSDOS_SUPPORTED_ANTIQUE
+#ifndef MSDOS
 struct spell Spells[NUMSPELLS+1];
 #else
 struct spell Spells[NUMSPELLS+1] = {0};
 #endif
 
 /* locations of city sites [0] - found, [1] - x, [2] - y */
-#ifndef MSDOS_SUPPORTED_ANTIQUE
+#ifndef MSDOS
 int CitySiteList[NUMCITYSITES][3];
 #else
 int CitySiteList[NUMCITYSITES][3] = {0};
@@ -53,12 +53,12 @@ int WIDTH=MAXWIDTH;
 long GameStatus=0L;                   /* Game Status bit vector */
 int ScreenLength = 0;                 /* How large is level window */
 int ScreenWidth = 0;                 /* How large is level window */
-#ifndef MSDOS_SUPPORTED_ANTIQUE
+#ifndef MSDOS
 struct player Player;                 /* the player */
 #else
 struct player Player = {0};           /* the player */
 #endif
-#ifndef MSDOS_SUPPORTED_ANTIQUE
+#ifndef MSDOS
 struct terrain Country[COUNTRY_WIDTH][COUNTRY_LENGTH];/* The countryside */
 #else
 struct terrain Country[COUNTRY_WIDTH][COUNTRY_LENGTH] = {0};/* The countryside */
@@ -77,7 +77,7 @@ int MaxDungeonLevels = 0;             /* Deepest level allowed in dungeon */
 int Current_Dungeon= -1;              /* What is Dungeon now */
 int Current_Environment= E_CITY;      /* Which environment are we in */
 int Last_Environment= E_COUNTRYSIDE;  /* Which environment were we in */
-#ifndef MSDOS_SUPPORTED_ANTIQUE
+#ifndef MSDOS
 int Dirs[2][9];                       /* 9 xy directions */
 #else
 int Dirs[2][9]=                       /* 9 xy directions */
@@ -141,13 +141,13 @@ int LastTownLocY=0;            /* previous position in village or city */
 int LastCountryLocX=0;            /* previous position in countryside */
 int LastCountryLocY=0;            /* previous position in countryside */
 #ifndef NEW_BANK
-#ifndef MSDOS_SUPPORTED_ANTIQUE
+#ifndef MSDOS
 char Password[64];                    /* autoteller password */
 #else
 char Password[64] = {0};              /* autoteller password */
 #endif
 #endif
-#ifndef MSDOS_SUPPORTED_ANTIQUE
+#ifndef MSDOS
 char Str1[STRING_LEN],Str2[STRING_LEN],Str3[STRING_LEN],Str4[STRING_LEN];
 #else
 char Str1[STRING_LEN] = {0},Str2[STRING_LEN] = {0},Str3[STRING_LEN] = {0},Str4[STRING_LEN] = {0};
@@ -158,7 +158,7 @@ pol Condoitems=NULL;                        /* Items in condo */
 pol Bagitems=NULL;                          /* Items in bag of holding */
 
 /* high score names, levels, behavior */
-#ifndef MSDOS_SUPPORTED_ANTIQUE
+#ifndef MSDOS
 int Shadowlordbehavior,Archmagebehavior,Primebehavior,Commandantbehavior;
 int Championbehavior,Priestbehavior[7],Hibehavior,Dukebehavior;
 int Chaoslordbehavior,Lawlordbehavior,Justiciarbehavior;
@@ -182,7 +182,7 @@ char Champion[80] = {0},Priest[7][80] = {0},Hiscorer[80] = {0},Hidescrip[80] = {
 char Chaoslord[80] = {0},Lawlord[80] = {0},Justiciar[80] = {0};
 int Shadowlordlevel = 0,Archmagelevel = 0,Primelevel = 0,Commandantlevel = 0,Dukelevel = 0;
 #endif
-#ifndef MSDOS_SUPPORTED_ANTIQUE
+#ifndef MSDOS
 int Championlevel,Priestlevel[7],Hilevel,Justiciarlevel;
 #else
 int Championlevel = 0,Priestlevel[7] = {0},Hilevel = 0,Justiciarlevel = 0;
@@ -322,7 +322,7 @@ int main(int argc, char *argv[])
   signal(SIGHUP,signalsave);
 #endif
 
-#ifndef MSDOS
+#if !defined(MSDOS) && !defined(WIN32)
   if (CATCH_SIGNALS) {
     signal(SIGQUIT,signalexit);
     signal(SIGILL,signalexit);
@@ -364,7 +364,7 @@ int main(int argc, char *argv[])
   /* all kinds of initialization */
   init_perms();
   initgraf();
-#ifndef MSDOS_SUPPORTED_ANTIQUE
+#ifndef MSDOS
   initdirs();
 #endif
   initrand(E_RANDOM, 0);

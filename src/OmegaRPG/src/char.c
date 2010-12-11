@@ -2,7 +2,7 @@
 /* char.c */
 /* Player generation */
 
-#ifndef MSDOS_SUPPORTED_ANTIQUE
+#if !defined(MSDOS) && !defined(WIN32)
 #include <sys/types.h>
 #include <unistd.h>
 #include <pwd.h>
@@ -18,18 +18,21 @@ int initplayer(void)
   FILE *fd;
   char *lname;
   int ret_value = FALSE;
-#ifndef MSDOS
+
+#ifndef MSDOS || WIN32
   struct passwd *dastuff;
 #endif
 
   lname = getlogin();
-#ifndef MSDOS
+  
+#if !defined(MSDOS) && !defined(WIN32)
   if (!lname || strlen(lname) == 0)
     {
       dastuff = getpwuid(getuid());
       lname = dastuff->pw_name;
     }
 #endif
+
   strcpy(Player.name,lname);
   if (Player.name[0] >= 'a' && Player.name[0] <= 'z')
     Player.name[0] += 'A'-'a'; /* capitalise 1st letter */

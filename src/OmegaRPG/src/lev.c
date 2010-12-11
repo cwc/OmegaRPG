@@ -464,7 +464,7 @@ void make_specific_treasure(int i, int j, int itemid)
 
 
 
-#ifndef MSDOS_SUPPORTED_ANTIQUE
+#ifndef MSDOS
 /* returns a "level of difficulty" based on current environment
    and depth in dungeon. Is somewhat arbitrary. value between 1 and 10.
    May not actually represent real difficulty, but instead level

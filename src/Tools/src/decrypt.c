@@ -23,7 +23,7 @@ void error(char *explanation, ...)
   va_start (ap, explanation);
   vfprintf (stderr, explanation, ap);
   va_end (ap);
-  abort();
+  exit(-1);
 }
 
 int fgetint(FILE *f)
@@ -94,7 +94,7 @@ void decode(char **data, int *length, int expectedLength)
   *data = result;
 }
 
-int main(int num_args, char *args[])
+int unpack(int num_args, char *args[])
 {
   char *code;
   FILE *out, *in;

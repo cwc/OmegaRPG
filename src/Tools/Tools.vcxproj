@@ -75,9 +75,13 @@
     <ClCompile Include="src\crypt.c" />
     <ClCompile Include="src\decrypt.c" />
     <ClCompile Include="src\genclr.c" />
+    <ClCompile Include="src\OmegaTool.cpp" />
+    <ClCompile Include="src\PackTool.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\bwt.h" />
+    <ClInclude Include="src\OmegaTool.h" />
+    <ClInclude Include="src\PackTool.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

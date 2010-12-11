@@ -1,7 +1,7 @@
 /* omega copyright (c) 1987,1988,1989 by Laurence Raphael Brothers */
 /* save.c */
 
-#ifndef MSDOS_SUPPORTED_ANTIQUE
+#if !defined(MSDOS) && !defined(WIN32)
 #include <unistd.h>
 #include <stdlib.h>
 #endif
@@ -17,7 +17,7 @@
 /*The game remembers various player information, the city level,
 the country level, and the last or current dungeon level */
 
-#if defined(MSDOS_SUPPORTED_ANTIQUE) || defined(AMIGA)
+#if defined(MSDOS) || defined(WIN32) || defined(AMIGA)
 void do_compression(int, char *);
 #endif
 
@@ -41,7 +41,7 @@ int save_game(int compress, char *savestr)
   char temp[200];
 #endif
 
-#ifndef MSDOS_SUPPORTED_ANTIQUE
+#if !defined(MSDOS) && !defined(WIN32)
   if (access(savestr, R_OK) == 0)
     if (access(savestr, W_OK) == 0)
     {
@@ -541,7 +541,7 @@ int restore_game(char *savestr)
 #endif
   FILE *fd;
 
-#ifndef MSDOS_SUPPORTED_ANTIQUE
+#if !defined(MSDOS) && !defined(WIN32)
   if (access(savestr, F_OK|R_OK|W_OK) == -1) /* access uses real uid */
   {
     print1("Unable to access save file: ");
@@ -781,8 +781,6 @@ void restore_player(FILE *fd, int version)
       fread((char *)&(Objects[i].uniqueness),sizeof(Objects[i].uniqueness),1,fd);
   }
 }
-
-
 
 /* Restore an item, the first byte tells us if it's NULL, and what strings */
 /* have been saved as different from the typical */

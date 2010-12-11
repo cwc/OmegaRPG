@@ -39,7 +39,7 @@ void p_process(void)
     case 9: display_pack(); morewait(); xredraw(); break; /* ^i */
     case 11: if (gamestatusp(CHEATED)) frobgamestatus();
     case 12: xredraw(); setgamestatus(SKIP_MONSTERS); break; /* ^l */
-#ifndef MSDOS_SUPPORTED_ANTIQUE
+#ifndef MSDOS
     case 16: bufferprint(); setgamestatus(SKIP_MONSTERS); break; /* ^p */ 
 #else
     case 15: bufferprint(); setgamestatus(SKIP_MONSTERS); break; /* ^o */ 
@@ -130,7 +130,7 @@ void p_process(void)
       Command_Duration = 10;
       break;
     case 'O': setoptions();
-#if defined(AMIGA) || defined(MSDOS_SUPPORTED_ANTIQUE)
+#if defined(AMIGA) || defined(MSDOS)
       show_screen();
       xredraw();
 #endif
@@ -148,7 +148,7 @@ void p_process(void)
       break;
     case 'V': version(); 
       break;
-#ifdef MSDOS_SUPPORTED_ANTIQUE
+#ifdef MSDOS
     case 'X': check_memory(); break;
 #endif
     case 'Z': bash_item();
@@ -268,7 +268,7 @@ void p_country_process(void)
     case 13: no_op = TRUE; break;
     case 7: wizard(); break; /* ^g */
     case 12: xredraw(); no_op = TRUE; break; /* ^l */
-#ifndef MSDOS_SUPPORTED_ANTIQUE
+#ifndef MSDOS
     case 16: bufferprint(); no_op = TRUE; break; /* ^p */ 
 #else
     case 15: bufferprint(); no_op = TRUE; break; /* ^o */ 
@@ -300,7 +300,7 @@ void p_country_process(void)
     case 'R': rename_player(); break;
     case 'S': save(optionp(COMPRESS_OPTION), FALSE); break;
     case 'V': version(); break;
-#ifdef MSDOS_SUPPORTED_ANTIQUE
+#ifdef MSDOS
     case 'X': check_memory(); break;
 #endif
     case '>': 

@@ -3,7 +3,7 @@
 
 /* Random utility functions called from all over */
 
-#ifndef MSDOS_SUPPORTED_ANTIQUE
+#if !defined(MSDOS) && !defined(WIN32)
 #include <sys/types.h>
 #include <sys/time.h>
 #include <sys/wait.h>
@@ -206,7 +206,7 @@ int view_unblocked(int x, int y)
 }
 
 
-#ifndef MSDOS_SUPPORTED_ANTIQUE
+#ifndef MSDOS
 /* 8 moves in Dirs */
 void initdirs(void)
 {
@@ -455,7 +455,7 @@ int view_los_p(int x1, int y1, int x2, int y2)
   return((x1==x2) && (y1==y2));
 }
 
-#ifndef MSDOS_SUPPORTED_ANTIQUE
+#ifndef MSDOS
 /* returns the command direction from the index into Dirs */
 char inversedir(int dirindex)
 {
@@ -1041,7 +1041,7 @@ void filescanstring(FILE *fd, char *fstr)
 }
 #endif
 
-#ifdef MSDOS_SUPPORTED_ANTIQUE
+#ifdef MSDOS
 /* ****Moved here from another file**** */
 /* returns a "level of difficulty" based on current environment
    and depth in dungeon. Is somewhat arbitrary. value between 1 and 10.

@@ -226,7 +226,7 @@ static void emitclose (FILE *fp, char *file)
     exit (1);    
 }
 
-int main (int argc, char **argv)
+int genColor(int argc, char **argv)
 {
     char line[1024], *p;
     unsigned int i, j, nopairs = 0, ncpairs, opairslen = 80, one;

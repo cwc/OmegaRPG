@@ -2,23 +2,10 @@
 /* inv.c */
 /* functions having to do with player item inventory */
 
-#ifdef MSDOS_SUPPORTED_ANTIQUE
-# include "curses.h"
-#else
-# ifdef AMIGA
-#  include <curses210.h>
-# elif defined(USE_OPCURSES)
-#  include "../opcurses/curses.h"
-# else
-#  include <curses.h>
-# endif
-#endif
-
 #include "glob.h"
 
 static void inv_display_munge(void);
 static void inv_display_refresh(void);
-
 
 /* drops money, heh heh */
 void drop_money(void)
@@ -658,7 +645,7 @@ int badobject(char slotchar)
 }
 
 
-#ifndef MSDOS_SUPPORTED_ANTIQUE
+#ifndef MSDOS
 /* this takes the numerical index directly for the same effect as badobject*/
 int baditem(int slotnum)
 {
@@ -931,7 +918,7 @@ int take_from_pack(int slot, int display)
 }
 
 
-#ifndef MSDOS_SUPPORTED_ANTIQUE
+#ifndef MSDOS
 /* General interface to inventory */
 void item_inventory(int topline)
 {
@@ -963,7 +950,7 @@ void inventory_control(void)
   int slot = O_UP_IN_AIR,done=FALSE;
   int response;
   char letter;
-#ifdef MSDOS_SUPPORTED_ANTIQUE
+#ifdef MSDOS
   int simple = 0;
 #endif
   /* Start out assuming that we'll need to redraw. */

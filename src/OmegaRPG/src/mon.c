@@ -1150,7 +1150,7 @@ void strengthen_death(pmt m)
 {
   pol ol = ((pol)checkmalloc(sizeof(oltype)));
   pob scythe = ((pob)checkmalloc(sizeof(objtype)));
-#ifdef MSDOS_SUPPORTED_ANTIQUE
+#ifdef MSDOS
   unsigned tmp;
 #endif
   m->xpv += min(10000,m->xpv+1000);
@@ -1159,7 +1159,7 @@ void strengthen_death(pmt m)
   m->ac += min(1000,m->ac+10);
   m->speed = max(m->speed-1,1);
   m->movef = M_MOVE_SMART;
-#ifndef MSDOS_SUPPORTED_ANTIQUE
+#ifndef MSDOS
   m->hp = min(100000,100+m->dmg*10);
 #else
   /* In order not to have to make the hp's into longs or unsigned,

@@ -4,11 +4,15 @@
 
 #include <ctype.h>
 #include <limits.h>
+
+#ifndef WIN32 || MSDOS
 #include <unistd.h>
+#endif
+
 #include "glob.h"
 
 /* swiped from scr.c */
-#if defined(MSDOS_SUPPORTED_ANTIQUE) || defined(AMIGA)
+#if defined(MSDOS) || defined(AMIGA)
 # define CHARATTR(c) ((c) >> 8)
 #else
 # define CHARATTR(c) ((c) & ~0xff)

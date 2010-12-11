@@ -1,19 +1,15 @@
                                     *******
                                  *****   *****
                               *****         *****
-                             ****   welcome   ****
+                             ****   WELCOME   ****
                             ***       t o       ***
-                             ***     omega     ***
+                             ***     Omega     ***
                               ****           ****
                                  ****    ****
-                              *    **    **    *
-                               *****      *****
+                             ***   **    **   ***
+                              ******      ******
 
-            omega version 0.90-pa8 is copyright (C) 1987,1988,1989 by:
+             Omega version 0.91 is copyright (C) 1987,1988,1989 by:
                              Laurence R. Brothers
                        and is licensed under the LGPL.
-             Maintained by: William Tanksley (wtanksley@bigfoot.com).
-             Send suggestions and complaints about this prealpha to
-                         William Tanksley, or visit
-                     http://dolphin.openprojects.net/Omega/.
-
+              Maintained by: Cameron Currie <http://github.com/cwc>

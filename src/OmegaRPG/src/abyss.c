@@ -2,16 +2,20 @@
 /* abyss.c */
 /* some functions to make the abyss level and run the final challenge */
 
-#ifdef MSDOS_SUPPORTED_ANTIQUE
+#include "glob.h"
+
+#ifdef MSDOS
 #include <sys/types.h>
 #include <malloc.h>
 #ifdef SAVE_LEVELS
 #include <sys/timeb.h>
-#include <dos.h>
+#ifdef WIN32
+# include <io.h>
+#else
+# include <dos.h>
 #endif
 #endif
-
-#include "glob.h"
+#endif
 
 /* loads the abyss level into Level*/
 void load_abyss(void)
@@ -115,18 +119,30 @@ void kill_all_levels(void)
     kill_levels("om*.lev");
 }
 
+/* Remove old level files laying around */
 void kill_levels(char *str)
 {
     int i;
+
+#ifndef WIN32 // Must be MSDOS
     struct find_t buf;
 
-    /* Remove old level files laying around */
     sprintf(Str1,"%s%s",Omegalib,str);
     for (i = _dos_findfirst(Str1,_A_NORMAL,&buf); !i; i = _dos_findnext(&buf))
     {
     	sprintf(Str2,"%s%s",Omegalib,buf.name);
-	remove(Str2);
+		remove(Str2);
     }
+#else // Windows
+	struct _finddata_t buf;
+
+    sprintf(Str1, "%s%s", Omegalib, str);
+	for (i = _findfirst(Str1, &buf); !i; i = _findnext(NULL, &buf))
+    {
+    	sprintf(Str2, "%s%s", Omegalib, buf.name);
+		remove(Str2);
+    }
+#endif
 }
 
 #define MEM_CHECK_AMOUNT 0xf000
@@ -187,7 +203,8 @@ plv msdos_changelevel(plv oldlevel, int newenv, int newdepth)
     {
     	if ((fp = open_levfile(newenv,newdepth,0)) == NULL)
 	    return(NULL);
-	restore_level(fp);
+
+		restore_level(fp, VERSION);
 	fclose(fp);
 	return(Level);
     }

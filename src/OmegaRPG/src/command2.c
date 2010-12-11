@@ -3,7 +3,7 @@
 
 /* This file contains toplevel commands called from command1.c */
 
-#ifndef MSDOS_SUPPORTED_ANTIQUE
+#if !defined(MSDOS) && !defined(WIN32)
 #include <unistd.h>
 #include <ctype.h>
 #endif
@@ -183,7 +183,7 @@ void search(int *searchval)
  }
 
 
-#ifndef MSDOS_SUPPORTED_ANTIQUE
+#ifndef MSDOS
 /* floor inventory */
 void floor_inv(void)
 {
@@ -636,7 +636,7 @@ void setoptions(void)
     colour_on();
   else
     colour_off();
-#if !defined(MSDOS_SUPPORTED_ANTIQUE) && !defined(AMIGA)
+#if !defined(MSDOS) && !defined(AMIGA)
   xredraw();
 #endif
 }

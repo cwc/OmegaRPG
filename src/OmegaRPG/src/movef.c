@@ -193,7 +193,7 @@ void m_movefunction(pmt m, int movef)
     }
 }
 
-#ifdef MSDOS_SUPPORTED_ANTIQUE
+#ifdef MSDOS
 /* ****Moved here from another file**** */
 /* if signp is true, always print message, otherwise do so only sometimes */
 void sign_print(int x, int y, int signp)
@@ -350,12 +350,6 @@ void sign_print(int x, int y, int signp)
     print1("You notice a sign:");
     print2("The Oracle of the Cyan Flames");
     morewait();
-    break;
-  case L_PAWN_SHOP:
-    if (signp) {
-      print1("You notice a sign:");
-      print2("Knight's Pawn Shop.");
-    }
     break;
   }
 }

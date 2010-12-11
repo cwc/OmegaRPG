@@ -20,15 +20,18 @@
 static char *fileName;
 static int lineNumber;
 
-void error(char *explanation, ...)
+void packError(char *explanation, ...)
 {
   va_list ap;
   
   va_start (ap, explanation);
-  fprintf  (stderr, "%s:%d: ", fileName, lineNumber);
+	if (fileName[0] != NULL)
+	{
+		fprintf  (stderr, "%s:%d: ", fileName, lineNumber);
+	}
   vfprintf (stderr, explanation, ap);
   va_end (ap);
-  abort();
+  exit(-1);
 }
 
 int unique(int mapnumber)
@@ -118,7 +121,7 @@ void encode(char **data, int *length)
   *data = result;
 }
 
-int main(int num_args, char *args[])
+int pack(int num_args, char *args[])
 {
   char *code;
   int c, i, x,y,scanned, depth;
@@ -128,7 +131,7 @@ int main(int num_args, char *args[])
   
   fileName = ""; lineNumber = 0;
   if ( num_args < 3 || num_args > 258 )
-    error("Usage: %s <output-filename> <input-filename>"
+    packError("Usage: %s <output-filename> <input-filename>"
 	  " [more input filenames, max 256...]\n",
 	  args[0]);
   
@@ -137,11 +140,11 @@ int main(int num_args, char *args[])
    * build the header portion of the file easily. */
   data = tmpfile();
   if ( data == NULL )
-    error("Unable to open temporary file.\n");
+    packError("Unable to open temporary file.\n");
   /* The final output. */
   out = fopen(args[1],"wb");
   if ( out == NULL )
-    error("Unable to open output file '%s'.\n", args[1]);
+    packError("Unable to open output file '%s'.\n", args[1]);
   
   fputc(VERSION,out); /* The file version */
   fputshort(num_args-2,out); /* The number of files it's supposed to contain */
@@ -151,37 +154,37 @@ int main(int num_args, char *args[])
       fileName = args[i]; lineNumber = 0;
       in = fopen(args[i],"r");
       if (!in)
-	error("Unable to open map file '%s'.\n", args[i]);
+	packError("Unable to open map file '%s'.\n", args[i]);
       
       lineNumber++;
       scanned = fscanf(in,"v%d\n",&c);
       if (scanned != 1)
-	error("File %s missing version header.\n", args[i]);
+	packError("File %s missing version header.\n", args[i]);
       if (c != VERSION)
-	error("Unable to convert file %s: bad version, %d (expected %d).\n",
+	packError("Unable to convert file %s: bad version, %d (expected %d).\n",
 	      args[i], c, VERSION);
       
       lineNumber++;
       scanned = fscanf(in,"map %d\n",&c);
       if (scanned != 1)
-	error("File %s missing map number header.\n", args[i]);
+	packError("File %s missing map number header.\n", args[i]);
       if (!unique(c))
-	error("Map header number %d is not unique in map file %s.\n",
+	packError("Map header number %d is not unique in map file %s.\n",
 	      c, args[i]);
       fputshort(c, out);
       
       lineNumber++;
       scanned = fscanf(in,"%d %d,%d\n", &depth, &x, &y);
       if (scanned != 3)
-	error("%s:3: missing dimensions header.\n", args[i]);
+	packError("%s:3: missing dimensions header.\n", args[i]);
       if ( (unsigned)x > 256 || (unsigned)y > 256 || !x || !y )
 	{
-	  error("Unable to convert file: bad size, %dx%d.\n",
+	  packError("Unable to convert file: bad size, %dx%d.\n",
 		  x, y);
 	}
       if ( (unsigned)depth > 255 || !depth )
 	{
-	  error("Unable to convert file: impossible number of maps, %d.\n",
+	  packError("Unable to convert file: impossible number of maps, %d.\n",
 		  depth);
 	}
       
@@ -197,7 +200,7 @@ int main(int num_args, char *args[])
 	  while (lines--) {
 	    fgets(code+size, x+2, in);
 	    if ( strlen(code+size) != x+1 && code[size+x] != '\n' )
-	      error("Map line %d wrong size: was %d, expected %d\n",
+	      packError("Map line %d wrong size: was %d, expected %d\n",
 		   y, strlen(code+size)-1, x );
 	    lineNumber++;
 	    size += x;
@@ -214,7 +217,7 @@ int main(int num_args, char *args[])
 	   */
 	  c = fgetc(in);
 	  if ( c != '=' )
-	    error("level %d missing seperator line\n", levels-depth);
+	    packError("level %d missing separator line\n", levels-depth);
 	  else
 	    {
 	      lineNumber++;

@@ -57,7 +57,7 @@ extern int ScreenWidth;
 extern struct terrain Country[COUNTRY_WIDTH][COUNTRY_LENGTH];
 /* The countryside */
 
-#ifdef MSDOS_SUPPORTED_ANTIQUE
+#ifdef MSDOS
 extern struct level TheLevel;
 #endif
 

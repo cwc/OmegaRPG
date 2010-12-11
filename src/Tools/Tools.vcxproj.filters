@@ -27,9 +27,21 @@
     <ClCompile Include="src\genclr.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\OmegaTool.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PackTool.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\bwt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\OmegaTool.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PackTool.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

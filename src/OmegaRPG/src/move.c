@@ -4,7 +4,9 @@
 
 #include "glob.h"
 
+#ifndef WIN32 || MSDOS
 #include <unistd.h> /* usleep */
+#endif
 
 /* various miscellaneous location functions */
 void l_water(void)
@@ -458,7 +460,7 @@ void l_raise_portcullis(void)
 void l_arena_exit(void)
 {
   resetgamestatus(ARENA_MODE);
-#ifndef MSDOS_SUPPORTED_ANTIQUE
+#ifndef MSDOS
   free_level(Level);
 #endif
   Level = NULL;
@@ -473,7 +475,7 @@ void l_house_exit(void)
     if (cinema_confirm("You're about to step out of this abode.") != 'y')
       return;
   }
-#ifndef MSDOS_SUPPORTED_ANTIQUE
+#ifndef MSDOS
   free_level(Level);
 #endif
   Level = NULL;

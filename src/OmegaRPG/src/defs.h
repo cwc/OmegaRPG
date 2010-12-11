@@ -7,12 +7,30 @@ definitions in the following section. */
 
 /*--------------------------USER DEFINITIONS--------------------------*/
 
+#ifndef USE_SYSTEM_CURSES
+# include "curses.h"
+#else
+# ifdef AMIGA
+#  include <curses210.h>
+# else
+#  include <curses.h>
+# endif
+#endif
+
+#ifdef WIN32
+#include <windows.h>
+#define sleep(x) Sleep(x * 1000)
+#define usleep(x) sleep(1)
+#endif
+
 /* Some minor quote changes...  This #define should be removed after some
  * public review, and the acceptable changes made permanent. */
 #define NEW_QUOTES
+
 /* A few parody quotes...  These have to be checked to make sure that they
  * make sense even if you don't know what they're parodying. */
 #define TRADEMARK_VIOLATION
+
 /* Include the Monk guild. */
 #define INCLUDE_MONKS
 
@@ -71,7 +89,7 @@ on save and restore. */
    This might usually be "/usr/games/lib/omegalib/", for unix,
    or something like "c:\\games\\omega\\omegalib\\" for msdos */
 
-#define OMEGALIB "./lib/"
+#define OMEGALIB "data/"
 
 /* TILEFILE is the name of the file you want to use for graphics tiles. You */
 /* aren't really free to use any file you want here. It should be the Omega */
@@ -105,13 +123,15 @@ on save and restore. */
 
 /* Don't change anything from here on (unless you know what you're doing) */
 #define VERSION 9002
-#define VERSIONSTRING "omega version 0.90"
+#define VERSIONSTRING "Omega version 0.91"
 
+#ifndef WIN32
 #ifndef AMIGA
 #ifndef MSDOS
 #ifndef BSD
 #ifndef SYSV
     ERROR! - One of these should be set - edit the makefile appropriately
+#endif
 #endif
 #endif
 #endif
@@ -123,7 +143,7 @@ on save and restore. */
  * this doesn't break too many things. */
 /*#define __USE_POSIX2*/
 
-#if defined(MSDOS_SUPPORTED_ANTIQUE)
+#ifdef MSDOS
 #define SAVE_LEVELS
 #endif
 
@@ -152,7 +172,6 @@ on save and restore. */
 # endif
 #endif
 
-
 #define VACANT 0
 #define ABORT -1
 #define CASHVALUE -2
@@ -166,8 +185,6 @@ on save and restore. */
 
 #define STANDARD_LENGTH 64
 #define STANDARD_WIDTH 64
-
-
 
 #define ARENA_WIDTH SMALLSCREEN_WIDTH
 #define ARENA_LENGTH SMALLSCREEN_LENGTH
@@ -674,12 +691,12 @@ on save and restore. */
 #define RS_PENTAGRAM ROOMBASE+28
 #define RS_OMEGA_DAIS ROOMBASE+29
 
-#if defined(MSDOS_SUPPORTED_ANTIQUE) || defined(AMIGA)
+#if defined(MSDOS) || defined(WIN32) || defined(AMIGA)
 #define CLR(fg)		COL_##fg
 #define CLRS(fg,bg)	COL_##fg|COL_BG_##bg
 #endif
 
-#if defined(MSDOS_SUPPORTED_ANTIQUE)
+#if defined(MSDOS) || defined(WIN32)
 
 #define COL_BLACK 0x0000
 #define COL_BLUE 0x0100
@@ -741,13 +758,7 @@ on save and restore. */
 #define COL_FG_BLINK 0x0000	/* not implemented :( */
 /* WDT: thank goodness for that lack of implementation. */
 
-#else /* !MSDOS_ANTIQUE && !AMIGA */
-
-# ifdef USE_OPCURSES
-#  include "../opcurses/curses.h"
-# else
-#  include <curses.h>
-# endif
+#else /* !MSDOS && !AMIGA */
 
 # define COL_FG_BLINK A_BLINK
 
@@ -1688,7 +1699,7 @@ enum map_identifier {
 struct map_type;
 typedef struct map_type map;
 
-#if defined(MSDOS_SUPPORTED_ANTIQUE) || defined(AMIGA)
+#if defined(MSDOS) || defined(AMIGA)
 typedef short Symbol;
 #else
 typedef chtype Symbol;
@@ -1860,12 +1871,10 @@ typedef oltype *pol;
 /* The assert macro (for ANSI/ISO C).  Hopefully this will always work! */
 #include <assert.h>
 
-/*
-#ifdef MSDOS
+#if defined(MSDOS) || defined(WIN32)
 #include <time.h>
 #define getlogin() "pcuser"
 #endif
- */
 
 #undef sign
 #undef max

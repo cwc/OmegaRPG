@@ -3,16 +3,7 @@
 /* functions with file access in them. Also some direct calls to
    curses functions */
 
-#ifdef MSDOS_SUPPORTED_ANTIQUE
-# include "curses.h"
-#else
-# ifdef AMIGA
-#  include <curses210.h>
-# elif defined(USE_OPCURSES)
-#  include "../opcurses/curses.h"
-# else
-#  include <curses.h>
-# endif
+#if !defined(MSDOS) && !defined(WIN32)
 # include <sys/types.h>
 # include <unistd.h>
 # include <sys/file.h>
@@ -152,7 +143,7 @@ void showmotd(void)
 
 void lock_score_file(void)
 {
-#ifndef MSDOS
+#if !defined(MSDOS) && !defined(WIN32)
   int lock;
   int thispid;
   int lastpid = 0;
@@ -378,7 +369,7 @@ void save_hiscore_npc(int npc)
   fclose(infile);
   fclose(outfile);
   unlink(Str1);
-#if defined(MSDOS) || defined(AMIGA)
+#if defined(MSDOS) || defined(AMIGA) || defined(WIN32)
   rename(Str2, Str1);
 #else
   link(Str2, Str1);
@@ -464,7 +455,7 @@ void filescanstring(FILE *fd, char *fstr)
 }
 #endif
 
-#ifdef MSDOS
+#if defined(MSDOS) || defined(WIN32)
 int test_file_access(char *file_name, char mode)
 {
     FILE *fd;
