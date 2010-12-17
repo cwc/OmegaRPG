@@ -500,7 +500,7 @@ void charid(void)
 void wizard(void)
 {
   char *lname;
-#ifndef MSDOS
+#if !defined(MSDOS) && !defined(WIN32)
   struct passwd *dastuff;
 #endif
 

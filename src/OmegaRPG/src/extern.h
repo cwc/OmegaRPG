@@ -22,7 +22,7 @@ void signalsave(int);
 
 /* abyss.c functions */
 
-#ifdef MSDOS
+#if defined(MSDOS) || defined(WIN32)
 void check_memory( void );
 void kill_all_levels( void );
 void kill_levels( char * );
@@ -302,7 +302,7 @@ void learnclericalspells( int,int );
 
 /* file.c functions */
 
-#ifndef MSDOS
+#if !defined(MSDOS) && !defined(WIN32)
 void lock_score_file( void );
 void unlock_score_file( void );
 #endif

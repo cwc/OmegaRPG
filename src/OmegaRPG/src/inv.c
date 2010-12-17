@@ -645,7 +645,7 @@ int badobject(char slotchar)
 }
 
 
-#ifndef MSDOS
+#if !defined(MSDOS) && !defined(WIN32)
 /* this takes the numerical index directly for the same effect as badobject*/
 int baditem(int slotnum)
 {
@@ -918,7 +918,7 @@ int take_from_pack(int slot, int display)
 }
 
 
-#ifndef MSDOS
+#if !defined(MSDOS) && !defined(WIN32)
 /* General interface to inventory */
 void item_inventory(int topline)
 {
@@ -950,7 +950,7 @@ void inventory_control(void)
   int slot = O_UP_IN_AIR,done=FALSE;
   int response;
   char letter;
-#ifdef MSDOS
+#if defined(MSDOS) || defined(WIN32)
   int simple = 0;
 #endif
   /* Start out assuming that we'll need to redraw. */

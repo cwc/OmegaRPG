@@ -31,7 +31,6 @@ void rest(void)
   }
 }
 
-
 /* read a scroll, book, tome, etc. */
 void peruse(void)
 {
@@ -113,7 +112,6 @@ void activate(void)
   else setgamestatus(SKIP_MONSTERS);
 }
 
-
 void eat (void)
 {
   int index;
@@ -151,7 +149,6 @@ void eat (void)
   foodcheck();
 }
 
-
 /* search all adjacent spots for secrecy */
 void search(int *searchval)
 {
@@ -169,8 +166,6 @@ void search(int *searchval)
   }
 }
 
-
-
 /* pick up a thing where the player is */
  void pickup(void)
  {
@@ -182,8 +177,7 @@ void search(int *searchval)
      pickup_at(Player.x,Player.y);
  }
 
-
-#ifndef MSDOS
+#if !defined(MSDOS) && !defined(WIN32)
 /* floor inventory */
 void floor_inv(void)
 {
@@ -203,7 +197,6 @@ void floor_inv(void)
   xredraw();
 }
 #endif
-
 
 void drop(void)
 {
@@ -235,7 +228,6 @@ void drop(void)
   }
   calc_melee();
 }
-
 
 /* talk to the animals -- learn their languages.... */
 void talk(void)
@@ -427,7 +419,6 @@ void give(void)
   }
 }
 
-
 /* zap a wand, of course */
 void zapwand(void)
 {
@@ -489,7 +480,6 @@ void magic(void)
   dataprint();
 }
 
-
 /* go upstairs ('<' command) */
 void upstairs(void)
 {
@@ -511,8 +501,6 @@ void upstairs(void)
   }
   setgamestatus(SKIP_MONSTERS);
 }
-
-
 
 /* go downstairs ('>' command) */
 void downstairs(void)
@@ -538,9 +526,6 @@ void downstairs(void)
   }
   setgamestatus(SKIP_MONSTERS);
 }
-
-
-
 
 /* set various player options */
 /* have to redefine in odefs for next full recompile */
@@ -641,8 +626,6 @@ void setoptions(void)
 #endif
 }
 
-
-
 /* name an item */
 void callitem(void)
 {
@@ -668,7 +651,6 @@ void callitem(void)
     }
   }
 }
-
 
 /* open a door */
 void opendoor(void)
@@ -713,7 +695,6 @@ void opendoor(void)
     }
   }
 }
-
 
 /* Try to destroy some location */
 void bash_location(void)
@@ -859,7 +840,6 @@ void bash_location(void)
   }
 }
 
-
 /* attempt destroy an item */
 void bash_item(void)
 {
@@ -941,7 +921,6 @@ void bash_item(void)
   }
 }
 
-
 /* guess what this does */
 /* if force is true, exiting due to some problem - don't bomb out */
 void save(int compress, int force)
@@ -980,18 +959,21 @@ void save(int compress, int force)
       ok = FALSE;
     }
   }
+
   if (!force && ok) {
     ok = (cinema_confirm("You're about to save and exit.") == 'y');
   }
+
   if (force || ok) {
-    sprintf(Str1, "Enter savefile name [default %s]: ", SaveFileName );
+    sprintf(Str1, "Enter savefile name [default %s]: ", g_saveFileName);
     print1(Str1);
     strcpy(fname,msgscanstring());
     if (fname[0] == '\0') {
       /* no file name entered, use default.  DAG */
-      strcpy( fname, SaveFileName );
+      strcpy(fname, g_saveFileName);
     }
-#ifdef MSDOS
+
+#if defined(MSDOS) || defined(WIN32)
     for (pos = 0; fname[pos] && isalnum(fname[pos]); pos++)
       ;
 #else
@@ -999,12 +981,14 @@ void save(int compress, int force)
       pos++)
       ;
 #endif
+
     if (fname[pos]) {
       sprintf(Str1, "Illegal character '%c' in filename - Save aborted.", fname[pos]);
       print1(Str1);
       ok = FALSE;
     }
-#ifdef MSDOS
+
+#if defined(MSDOS) || defined(WIN32)
     if (strlen(fname) > FNAME_MAX_LEN)
     {
       /* WDT -- copied from SYSV block below. */

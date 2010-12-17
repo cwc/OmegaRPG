@@ -4,7 +4,7 @@
 /* plus a few file i/o stuff */
 /* also some in file.c */
 
-#ifndef MSDOS
+#if !defined(MSDOS) && !defined(WIN32)
 # include <sys/types.h>
 #endif
 
@@ -17,7 +17,7 @@
 #include "glob.h"
 #include <ctype.h>
 
-#ifndef WIN32 || MSDOS
+#if !defined(MSDOS) && !defined(WIN32)
 #include <unistd.h>
 #endif
 
@@ -197,7 +197,7 @@ int mcigetc(void)
 {
   int c;
 
-#ifdef MSDOS
+#if defined(MSDOS) || defined(WIN32)
 #ifndef DJGPP
   keypad(Msgw,TRUE);
 #endif
@@ -1371,7 +1371,7 @@ int getnumber(int range)
     clearmsg();
     wprintw(Msg1w,"How many? Change with < or >, ESCAPE to select:");
     mnumprint(value);
-#ifndef MSDOS
+#if !defined(MSDOS) && !defined(WIN32)
     do atom=mcigetc();
     while ((atom != '<')&&(atom != '>')&&(atom!=ESCAPE));
     if ((atom=='>') && (value < range)) value++;
@@ -2196,7 +2196,7 @@ void bufferprint(void)
 {
   int i = bufferpos - 1, c, finished = 0;
   clearmsg();
-#ifndef MSDOS
+#if !defined(MSDOS) && !defined(WIN32)
   wprintw(Msg1w,"^p for previous message, ^n for next, anything else to quit.");
 #else
   wprintw(Msg1w,"^o for last message, ^n for next, anything else to quit.");
@@ -2209,7 +2209,7 @@ void bufferprint(void)
     wprintw(Msg2w,Stringbuffer[i]);
     wrefresh(Msg2w);
     c = mgetc();
-#ifndef MSDOS
+#if !defined(MSDOS) && !defined(WIN32)
     if (c == 16)	/* ^p */
 #else
     if (c == 15)	/* ^o */

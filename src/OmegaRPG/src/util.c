@@ -206,7 +206,7 @@ int view_unblocked(int x, int y)
 }
 
 
-#ifndef MSDOS
+#if !defined(MSDOS) && !defined(WIN32)
 /* 8 moves in Dirs */
 void initdirs(void)
 {
@@ -455,7 +455,7 @@ int view_los_p(int x1, int y1, int x2, int y2)
   return((x1==x2) && (y1==y2));
 }
 
-#ifndef MSDOS
+#if !defined(MSDOS) && !defined(WIN32)
 /* returns the command direction from the index into Dirs */
 char inversedir(int dirindex)
 {
@@ -1021,7 +1021,7 @@ char *salloc(char *str)
   return(s);
 }
 
-#ifdef MSDOS
+#if defined(MSDOS) || defined(WIN32)
 /* ****Moved here from another file**** */
 /* reads a string from a file. If it is a line with more than 80 char's,
    then remainder of line to \n is consumed */
@@ -1041,7 +1041,7 @@ void filescanstring(FILE *fd, char *fstr)
 }
 #endif
 
-#ifdef MSDOS
+#if defined(MSDOS) || defined(WIN32)
 /* ****Moved here from another file**** */
 /* returns a "level of difficulty" based on current environment
    and depth in dungeon. Is somewhat arbitrary. value between 1 and 10.

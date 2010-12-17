@@ -757,7 +757,7 @@ void foodcheck(void)
 void roomcheck(void)
 {
   static int oldroomno = -1;
-#ifdef MSDOS
+#if defined(MSDOS) || defined(WIN32)
   static int oldlevel = -1;
 #else
   static plv oldlevel = NULL;
@@ -780,14 +780,14 @@ void roomcheck(void)
       levelrefresh();
     }
   if ((oldroomno != roomno) ||
-#ifdef MSDOS
+#if defined(MSDOS) || defined(WIN32)
       (oldlevel != Level->depth)) {
 #else
       (oldlevel != Level)) {
 #endif
     showroom(roomno);
     oldroomno = roomno;
-#ifdef MSDOS
+#if defined(MSDOS) || defined(WIN32)
     oldlevel = Level->depth;
 #else
     oldlevel = Level;

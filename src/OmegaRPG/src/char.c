@@ -19,7 +19,7 @@ int initplayer(void)
   char *lname;
   int ret_value = FALSE;
 
-#ifndef MSDOS || WIN32
+#if !defined(MSDOS) && !defined(WIN32)
   struct passwd *dastuff;
 #endif
 

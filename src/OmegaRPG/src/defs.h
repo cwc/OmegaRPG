@@ -23,6 +23,8 @@ definitions in the following section. */
 #define usleep(x) sleep(1)
 #endif
 
+#define null 0
+
 /* Some minor quote changes...  This #define should be removed after some
  * public review, and the acceptable changes made permanent. */
 #define NEW_QUOTES
@@ -143,7 +145,7 @@ on save and restore. */
  * this doesn't break too many things. */
 /*#define __USE_POSIX2*/
 
-#ifdef MSDOS
+#if defined(MSDOS) || defined(WIN32)
 #define SAVE_LEVELS
 #endif
 
@@ -1932,8 +1934,4 @@ typedef oltype *pol;
 #ifndef TRUE
 #define TRUE 1
 #define FALSE 0
-#endif
-
-#ifdef SAVE_LEVELS
-plv msdos_changelevel();
 #endif

@@ -14,14 +14,13 @@
 
 #include "extern.h"
 
+extern char* g_saveFileName;
+
 #ifdef DEBUG /* Added by DG, naturally. */
 /* Debug log file */
 extern FILE *DG_debug_log;
 extern int DG_debug_flag;
 #endif
-
-extern char SaveFileName[80];
-/* stash save-file away; for emergency saves, default for planned saves */
 
 /* This string holds the path to the library files */
 extern char *Omegalib;
@@ -57,7 +56,7 @@ extern int ScreenWidth;
 extern struct terrain Country[COUNTRY_WIDTH][COUNTRY_LENGTH];
 /* The countryside */
 
-#ifdef MSDOS
+#if defined(MSDOS) || defined(WIN32)
 extern struct level TheLevel;
 #endif
 

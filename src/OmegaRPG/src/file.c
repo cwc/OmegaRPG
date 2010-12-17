@@ -196,7 +196,7 @@ void lock_score_file(void)
 
 void unlock_score_file(void)
 {
-#ifndef MSDOS
+#if !defined(MSDOS) && !defined(WIN32)
     strcpy(Str1,Omegalib);
     strcat(Str1,"omega.hi.lock");
     unlink(Str1);
@@ -436,7 +436,7 @@ void extendlog(char *descrip, int lifestatus)
 
 
 
-#ifndef MSDOS
+#if !defined(MSDOS) && !defined(WIN32)
 /* reads a string from a file. If it is a line with more than 80 char's,
    then remainder of line to \n is consumed */
 void filescanstring(FILE *fd, char *fstr)

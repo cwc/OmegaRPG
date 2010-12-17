@@ -3,16 +3,7 @@
 #include "OmegaTool.h"
 #include "PackTool.h"
 
-namespace OmegaTool
-{
-	OmegaTool::OmegaTool(void)
-	{
-	}
-
-	OmegaTool::~OmegaTool(void)
-	{
-	}
-}
+using namespace OmegaTool;
 
 int main(int argc, char* args[])
 {
@@ -21,17 +12,17 @@ int main(int argc, char* args[])
 
 	if (argc > 0)
 	{
-		if (!std::strcmp((const char*)args[0], OmegaTool::OmegaTool::PACK))
+		if (!std::strcmp((const char*)args[0], CMD_PACK))
 		{
-			return OmegaTool::PackTool::Pack(argc, args);
+			return PackTool::Pack(argc, args);
 		} 
 	
-		if (!std::strcmp((const char*)args[0], OmegaTool::OmegaTool::UNPACK))
+		if (!std::strcmp((const char*)args[0], CMD_UNPACK))
 		{
-			return OmegaTool::PackTool::UnPack(argc, args);
+			return PackTool::UnPack(argc, args);
 		} 
 	
-		if (!std::strcmp((const char*)args[0], OmegaTool::OmegaTool::GENCOLORS))
+		if (!std::strcmp((const char*)args[0], CMD_GENCOLORS))
 		{
 			// TODO Call color generation tool
 		}

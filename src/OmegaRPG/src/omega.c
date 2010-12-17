@@ -21,26 +21,24 @@
 
 /* most globals originate in omega.c */
 
-char *Omegalib;		/* contains the path to the library files */
+char* Omegalib;		/* contains the path to the library files */
 
 #ifdef DEBUG
 FILE *DG_debug_log; /* debug log file pointer */
 int DG_debug_flag = 0; /* debug flag -- set by -d commandline option */
 #endif
 
-char SaveFileName[80];
-
 /* Objects and Monsters are allocated and initialized in init.c */
 
 /* one of each spell */
-#ifndef MSDOS
+#if !defined(MSDOS) && !defined(WIN32)
 struct spell Spells[NUMSPELLS+1];
 #else
 struct spell Spells[NUMSPELLS+1] = {0};
 #endif
 
 /* locations of city sites [0] - found, [1] - x, [2] - y */
-#ifndef MSDOS
+#if !defined(MSDOS) && !defined(WIN32)
 int CitySiteList[NUMCITYSITES][3];
 #else
 int CitySiteList[NUMCITYSITES][3] = {0};
@@ -53,12 +51,12 @@ int WIDTH=MAXWIDTH;
 long GameStatus=0L;                   /* Game Status bit vector */
 int ScreenLength = 0;                 /* How large is level window */
 int ScreenWidth = 0;                 /* How large is level window */
-#ifndef MSDOS
+#if !defined(MSDOS) && !defined(WIN32)
 struct player Player;                 /* the player */
 #else
 struct player Player = {0};           /* the player */
 #endif
-#ifndef MSDOS
+#if !defined(MSDOS) && !defined(WIN32)
 struct terrain Country[COUNTRY_WIDTH][COUNTRY_LENGTH];/* The countryside */
 #else
 struct terrain Country[COUNTRY_WIDTH][COUNTRY_LENGTH] = {0};/* The countryside */
@@ -77,7 +75,7 @@ int MaxDungeonLevels = 0;             /* Deepest level allowed in dungeon */
 int Current_Dungeon= -1;              /* What is Dungeon now */
 int Current_Environment= E_CITY;      /* Which environment are we in */
 int Last_Environment= E_COUNTRYSIDE;  /* Which environment were we in */
-#ifndef MSDOS
+#if !defined(MSDOS) && !defined(WIN32)
 int Dirs[2][9];                       /* 9 xy directions */
 #else
 int Dirs[2][9]=                       /* 9 xy directions */
@@ -141,13 +139,13 @@ int LastTownLocY=0;            /* previous position in village or city */
 int LastCountryLocX=0;            /* previous position in countryside */
 int LastCountryLocY=0;            /* previous position in countryside */
 #ifndef NEW_BANK
-#ifndef MSDOS
+#if !defined(MSDOS) && !defined(WIN32)
 char Password[64];                    /* autoteller password */
 #else
 char Password[64] = {0};              /* autoteller password */
 #endif
 #endif
-#ifndef MSDOS
+#if !defined(MSDOS) && !defined(WIN32)
 char Str1[STRING_LEN],Str2[STRING_LEN],Str3[STRING_LEN],Str4[STRING_LEN];
 #else
 char Str1[STRING_LEN] = {0},Str2[STRING_LEN] = {0},Str3[STRING_LEN] = {0},Str4[STRING_LEN] = {0};
@@ -158,7 +156,7 @@ pol Condoitems=NULL;                        /* Items in condo */
 pol Bagitems=NULL;                          /* Items in bag of holding */
 
 /* high score names, levels, behavior */
-#ifndef MSDOS
+#if !defined(MSDOS) && !defined(WIN32)
 int Shadowlordbehavior,Archmagebehavior,Primebehavior,Commandantbehavior;
 int Championbehavior,Priestbehavior[7],Hibehavior,Dukebehavior;
 int Chaoslordbehavior,Lawlordbehavior,Justiciarbehavior;
@@ -182,7 +180,7 @@ char Champion[80] = {0},Priest[7][80] = {0},Hiscorer[80] = {0},Hidescrip[80] = {
 char Chaoslord[80] = {0},Lawlord[80] = {0},Justiciar[80] = {0};
 int Shadowlordlevel = 0,Archmagelevel = 0,Primelevel = 0,Commandantlevel = 0,Dukelevel = 0;
 #endif
-#ifndef MSDOS
+#if !defined(MSDOS) && !defined(WIN32)
 int Championlevel,Priestlevel[7],Hilevel,Justiciarlevel;
 #else
 int Championlevel = 0,Priestlevel[7] = {0},Hilevel = 0,Justiciarlevel = 0;
@@ -249,201 +247,7 @@ void signalquit(int ignore)
   quit();
 }
 
-int main(int argc, char *argv[])
-{
-  int continuing = 0;
-  int count;
-  int scores_only = 0;
-  int i;
-
-#ifndef NOGETOPT
-  while(( i= getopt( argc, argv, "dsh")) != -1)
-  {
-     switch (i)
-     {
-       case 'd':
-#ifdef DEBUG
-         DG_debug_flag++;
-#endif
-         break;
-       case 's':
-         scores_only = 1;
-         break;
-       case 'h':
-#ifdef DEBUG
-         printf("Usage: omega [-shd] [savefile]\n");
-#else
-         printf("Usage: omega [-sh] [savefile]\n");
-#endif
-         printf("Options:\n");
-         printf("  -s  Display high score list\n");
-         printf("  -h  Display this message\n");
-#ifdef DEBUG
-         printf("  -d  Enable debug mode\n");
-#endif
-         exit(0);
-         break;
-       case '?':
-         /* error parsing args... ignore? */
-         printf("'%c' is an invalid option, ignoring\n", optopt );
-         break;
-     }
-  }
-
-  if (optind >= argc ) {
-    /* no save file given */
-#if defined( BSD ) || defined( SYSV )
-    sprintf( SaveFileName, "Omega%d", getuid() );
-#else
-    strcpy( SaveFileName,"Omega");
-#endif
-  } else {
-    /* savefile given */
-    continuing = 1;
-    strcpy(SaveFileName,argv[optind]);
-  }
-
-#else 
-  /* alternate code for people who don't support getopt() -- no enhancement */
-  if (argc ==2) {
-    strcpy( SaveFileName, argv[1]);
-    continuing = 1;
-  } else {
-    strcpy( SaveFileName,"Omega");
-  }
-#endif
-
-  /* always catch ^c and hang-up signals */
-
-#ifdef SIGINT
-  signal(SIGINT,signalquit);
-#endif
-#ifdef SIGHUP
-  signal(SIGHUP,signalsave);
-#endif
-
 #if !defined(MSDOS) && !defined(WIN32)
-  if (CATCH_SIGNALS) {
-    signal(SIGQUIT,signalexit);
-    signal(SIGILL,signalexit);
-#ifdef DEBUG
-    if( DG_debug_flag ) {
-#endif
-    signal(SIGTRAP,signalexit);
-    signal(SIGFPE,signalexit);
-    signal(SIGSEGV,signalexit);
-#ifdef DEBUG
-    }
-#endif
-#ifdef SIGIOT
-    signal(SIGIOT,signalexit);
-#endif
-#ifdef SIGABRT
-    signal(SIGABRT,signalexit);
-#endif
-#ifdef SIGEMT
-    signal(SIGEMT,signalexit);
-#endif
-#ifdef SIGBUS
-    signal(SIGBUS,signalexit);
-#endif
-#ifdef SIGSYS
-    signal(SIGSYS,signalexit);
-#endif
-    }
-#endif
-
-#ifndef FIXED_OMEGALIB
-  if (!(Omegalib = getenv("OMEGALIB")))
-#endif
-    Omegalib = OMEGALIB;
-
-  /* if filecheck is 0, some necessary data files are missing */
-  if (filecheck() == 0) exit(0);
-
-  /* all kinds of initialization */
-  init_perms();
-  initgraf();
-#ifndef MSDOS
-  initdirs();
-#endif
-  initrand(E_RANDOM, 0);
-  initspells();
-
-#ifdef DEBUG
-  /* initialize debug log file */
-  DG_debug_log = fopen( "/tmp/omega_dbg_log", "a" );
-  assert( DG_debug_log ); /* WDT :) */
-  setvbuf( DG_debug_log, NULL, _IOLBF, 0);
-  fprintf(DG_debug_log, "##############  new game started ##############\n");
-#endif
-
-  for (count = 0; count < STRING_BUFFER_SIZE; count++)
-    strcpy(Stringbuffer[count],"<nothing>");
-
-#ifdef SAVE_LEVELS
-  msdos_init();
-#endif
-
-  omega_title();
-  showscores();
-
-  if (scores_only ) {
-    endgraf();
-    exit(0);
-  }
-
-  /* game restore attempts to restore game if there is an argument */
-  if (continuing) 
-  {
-     game_restore(SaveFileName);
-     mprint("Your adventure continues....");
-  }
-  else
-  {
-    /* monsters initialized in game_restore if game is being restored */  
-    /* items initialized in game_restore if game is being restored */
-    inititem(TRUE);
-    Date = random_range(360);
-    Phase = random_range(24);
-#ifdef NEW_BANK
-    bank_init();
-#else
-    strcpy(Password,"");
-#endif
-    continuing = initplayer(); /* RM: 04-19-2000 loading patch */
-  }
-  if (!continuing)
-  {
-    init_world();  /* RM: 04-19-2000 loading patch */
-    mprint("'?' for help or commandlist, 'Q' to quit.");
-  }
-
-  timeprint();
-  calc_melee();
-  if (Current_Environment != E_COUNTRYSIDE)
-    showroom(Level->site[Player.x][Player.y].roomnumber);
-  else
-    terrain_check(FALSE);
-  
-  if (optionp(SHOW_COLOUR))
-    colour_on();
-  else
-    colour_off();
-
-  screencheck(Player.x,Player.y);
-
- /* game cycle */
-  if (!continuing)
-    time_clock(TRUE);
-  while (TRUE) {
-    if (Current_Environment == E_COUNTRYSIDE)
-      p_country_process();
-    else time_clock(FALSE);
-  }
-}
-
-#ifndef MSDOS
 void signalexit(int ignored)
 {
   clearmsg();
