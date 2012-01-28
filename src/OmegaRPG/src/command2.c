@@ -661,8 +661,10 @@ void opendoor(void)
   clearmsg();
   print1("Open --");
   dir = getdir();
-  if (dir == ABORT)
+  if (dir == ABORT) {
     setgamestatus(SKIP_MONSTERS);
+	clearmsg();
+  }
   else {
     ox = Player.x + Dirs[0][dir];
     oy = Player.y + Dirs[1][dir];
