@@ -78,7 +78,7 @@ void pickup_at (int x, int y)
   while (ol != 0)
     {
       clearmsg1();
-      response = cinema_ynq(strjoin("Pick up: ", itemid(ol->thing)));
+      response = cinema_ynq(strjoin("Pick up? [ynq]: ", itemid(ol->thing)));
       if ('q' == response)
         break;
 
