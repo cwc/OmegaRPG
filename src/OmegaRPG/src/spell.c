@@ -805,7 +805,7 @@ int spellparse(void)
   print2("");
   do {
     byte = mgetc();
-    if (byte == BACKSPACE || byte == DELETE) {
+    if (byte == BACKSPACE || byte == DELETE_CHAR) {
       if (pos > 0) {
         prefix[--pos] = '\0';
 	byte = prefix[pos - 1];

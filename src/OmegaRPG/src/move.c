@@ -4,7 +4,7 @@
 
 #include "glob.h"
 
-#ifndef WIN32 || MSDOS
+#if !defined(WIN32) && !defined(MSDOS)
 #include <unistd.h> /* usleep */
 #endif
 

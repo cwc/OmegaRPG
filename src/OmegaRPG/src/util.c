@@ -32,10 +32,9 @@ int inbounds(int x, int y)
 }
 
 /* RANDFUNCTION is defined in odefs.h */
-unsigned random_range(unsigned k)
+int random_range(unsigned k)
 {
-  return( k==0 ? 0 : (int) (RANDFUNCTION() % k) ) ;
-  /*return( k==0 ? 0 : (int) ((RANDFUNCTION()%10000)*k)/10000); */
+  return( k==0 ? 0 : (RANDFUNCTION() % k) ) ;
 }
 
 

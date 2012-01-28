@@ -5,7 +5,7 @@
 #include <ctype.h>
 #include <limits.h>
 
-#ifndef WIN32 || MSDOS
+#if !defined(WIN32) && !defined(MSDOS)
 #include <unistd.h>
 #endif
 
@@ -186,7 +186,7 @@ static int input_password (WINDOW *w, int line, int col, char *buf, int allow_es
           *buf = ESCAPE;
           return 1;
         }
-      else if (KEY_LEFT == key || DELETE == key || BACKSPACE == key)
+      else if (KEY_LEFT == key || DELETE_CHAR == key || BACKSPACE == key)
         {
           if (pwlen > 0)
             {
@@ -223,7 +223,7 @@ static long input_amount (WINDOW *w, int line, int col)
 
       if ('\n' == key) return sign * amount;
 
-      if (KEY_LEFT == key || DELETE == key || BACKSPACE == key)
+      if (KEY_LEFT == key || DELETE_CHAR == key || BACKSPACE == key)
         {
           if (amountlen > 0)
             {

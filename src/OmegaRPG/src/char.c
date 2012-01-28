@@ -11,7 +11,7 @@
 #include "glob.h"
 
 /* set player to begin with */
-int initplayer(void)
+bool initplayer(void)
 {
   int i;
   int oldchar=FALSE;

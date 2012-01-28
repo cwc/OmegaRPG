@@ -7,6 +7,14 @@ definitions in the following section. */
 
 /*--------------------------USER DEFINITIONS--------------------------*/
 
+#ifdef WIN32
+#include <windows.h>
+#undef MOUSE_MOVED // Will be redefined when curses is included
+#define strlen(x) (int)strlen(x) // Squashes numerous warnings
+#define sleep(x) Sleep(x * 1000)
+#define usleep(x) sleep(1)
+#endif
+
 #ifndef USE_SYSTEM_CURSES
 # include "curses.h"
 #else
@@ -16,14 +24,6 @@ definitions in the following section. */
 #  include <curses.h>
 # endif
 #endif
-
-#ifdef WIN32
-#include <windows.h>
-#define sleep(x) Sleep(x * 1000)
-#define usleep(x) sleep(1)
-#endif
-
-#define null 0
 
 /* Some minor quote changes...  This #define should be removed after some
  * public review, and the acceptable changes made permanent. */
@@ -357,8 +357,7 @@ on save and restore. */
 #define RETURN '\n' /* Aren't these backwards? WSS */
 #define LINEFEED '\r' /* Aren't these backwards? WSS */
 #define BACKSPACE '\b'
-#define DELETE 127
-
+#define DELETE_CHAR 127
 
 /* tac mode action definitions */
 /* have to remember to find where these are used, mostly unused, now! */

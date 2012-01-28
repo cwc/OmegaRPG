@@ -1437,7 +1437,7 @@ static long input_number (WINDOW * w)
         {
           return ABORT;
         }
-      else if (BACKSPACE == ch || DELETE == ch)
+      else if (BACKSPACE == ch || DELETE_CHAR == ch)
         {
           if (numlen > 0)
             {
@@ -1475,7 +1475,7 @@ long parsenum (char *message)
   cinema_display(message, "enter a number or ESC: ", NULL);
   while (entering_digits) {
     byte = wgetch(Cinema);
-    if ((byte == BACKSPACE) || (byte == DELETE)) {
+    if ((byte == BACKSPACE) || (byte == DELETE_CHAR)) {
       if (place > -1) {
         number[place] = 0;
         place--;

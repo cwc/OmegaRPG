@@ -9,9 +9,10 @@ using namespace Omega;
 int main(int argc, char *argv[])
 {
 	OmegaRPG* game;
-	int i;
 
 #ifndef NOGETOPT
+  int i;
+
   while(( i= getopt( argc, argv, "dsh")) != -1)
   {
      switch (i)

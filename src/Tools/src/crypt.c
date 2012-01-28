@@ -25,7 +25,7 @@ void packError(char *explanation, ...)
   va_list ap;
   
   va_start (ap, explanation);
-	if (fileName[0] != NULL)
+	if (fileName[0] != 0)
 	{
 		fprintf  (stderr, "%s:%d: ", fileName, lineNumber);
 	}

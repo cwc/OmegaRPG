@@ -31,7 +31,6 @@ void do_compression(int, char *);
 int save_game(int compress, char *savestr)
 {
   FILE *fd;
-  int slashpos;
 #ifdef SAVE_LEVELS
   int tmpdepth;
 #endif
@@ -42,6 +41,8 @@ int save_game(int compress, char *savestr)
 #endif
 
 #if !defined(MSDOS) && !defined(WIN32)
+  int slashpos;
+
   if (access(savestr, R_OK) == 0)
     if (access(savestr, W_OK) == 0)
     {

@@ -137,7 +137,7 @@ void kill_levels(char *str)
 	struct _finddata_t buf;
 
     sprintf(Str1, "%s%s", Omegalib, str);
-	for (i = _findfirst(Str1, &buf); !i; i = _findnext(NULL, &buf))
+	for (i = _findfirst(Str1, &buf); !i; i = _findnext(i, &buf))
     {
     	sprintf(Str2, "%s%s", Omegalib, buf.name);
 		remove(Str2);

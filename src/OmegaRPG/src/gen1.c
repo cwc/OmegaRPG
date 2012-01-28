@@ -40,7 +40,7 @@ void clear_level(struct level *dungeon_level)
     dungeon_level->depth = 0;
     dungeon_level->mlist = NULL;
     dungeon_level->next = NULL;
-    dungeon_level->last_visited = time(NULL);
+    dungeon_level->last_visited = (int)time(NULL);
     for(i=0;i<MAXWIDTH;i++)
       for(j=0;j<MAXLENGTH;j++) {
 	dungeon_level->site[i][j].locchar = WALL;
@@ -188,7 +188,7 @@ plv findlevel(struct level *dungeon, char levelnum)
     while((dungeon->next != NULL) && (dungeon->depth != levelnum))
       dungeon = dungeon->next;
     if (dungeon->depth == levelnum) {
-      dungeon->last_visited = time(NULL);
+      dungeon->last_visited = (int)time(NULL);
       return(dungeon);
     }
     else return(NULL);
