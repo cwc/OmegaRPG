@@ -147,7 +147,7 @@ void p_process( void );
 
 /* command2.c functions */
 
- void pickup( void );
+void pickup( void );
 void activate( void );
 void bash_item( void );
 void bash_location( void );

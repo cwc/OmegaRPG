@@ -45,7 +45,7 @@ int CitySiteList[NUMCITYSITES][3] = {0};
 #endif
 
 /* Currently defined in caps since it is now a variable, was a constant */
-int LENGTH=MAXLENGTH; 
+int LENGTH=MAXLENGTH;
 int WIDTH=MAXWIDTH;
 
 long GameStatus=0L;                   /* Game Status bit vector */
@@ -68,7 +68,7 @@ struct level *City=NULL;              /* The city of Rampart */
 struct level *TempLevel=NULL;         /* Place holder */
 struct level *Level=NULL;             /* Pointer to current Level */
 struct level *Dungeon=NULL;           /* Pointer to current Dungeon */
-int Villagenum = 0;                   /* Current Village number */ 
+int Villagenum = 0;                   /* Current Village number */
 int ScreenOffset = 0;                 /* Offset of displayed screen to level */
 int ScreenXOffset = 0;                 /* Offset of displayed screen to level */
 int MaxDungeonLevels = 0;             /* Deepest level allowed in dungeon */
@@ -79,7 +79,7 @@ int Last_Environment= E_COUNTRYSIDE;  /* Which environment were we in */
 int Dirs[2][9];                       /* 9 xy directions */
 #else
 int Dirs[2][9]=                       /* 9 xy directions */
-  { { 1,1,-1,-1,1,-1,0,0,0} , { 1,-1,1,-1,0,0,1,-1,0 } };
+{ { 1,1,-1,-1,1,-1,0,0,0} , { 1,-1,1,-1,0,0,1,-1,0 } };
 #endif
 char Cmd='s';                         /* last player command */
 int Command_Duration = 0;             /* how long does current command take */
@@ -125,7 +125,7 @@ int Studiesleft = 0;                  /* study allowance at monastery */
 
 int StarGemUse = 0;                   /* last date of star gem use */
 int HiMagicUse = 0;                   /* last date of high magic use */
-int HiMagic = 0;                      /* current level for l_throne */ 
+int HiMagic = 0;                      /* current level for l_throne */
 
 #ifdef NEW_BANK
 bank_account *bank = NULL;            /* ptr to a list of bank accounts */
@@ -150,7 +150,7 @@ char Str1[STRING_LEN],Str2[STRING_LEN],Str3[STRING_LEN],Str4[STRING_LEN];
 #else
 char Str1[STRING_LEN] = {0},Str2[STRING_LEN] = {0},Str3[STRING_LEN] = {0},Str4[STRING_LEN] = {0};
 #endif
-   /* Some string space, random uses */
+/* Some string space, random uses */
 
 pol Condoitems=NULL;                        /* Items in condo */
 pol Bagitems=NULL;                          /* Items in bag of holding */
@@ -211,64 +211,64 @@ int level_seed[E_MAX + 1];	/* random number seed that generated level */
 /* time, or -2 if we want to restore the random number point */
 void initrand(int environment, int level)
 {
-  static int store;
-  int seed;
+    static int store;
+    int seed;
 
-  if (environment >= 0)
-    store = RANDFUNCTION();
-  /* Pseudo Random Seed */
-  if (environment == E_RANDOM)
-    seed = (int) time(NULL);
-  else if (environment == E_RESTORE)
-    seed = store;
-  else
-    seed = level_seed[environment] + 1000*level;
-  SRANDFUNCTION(seed);
+    if (environment >= 0)
+        store = RANDFUNCTION();
+    /* Pseudo Random Seed */
+    if (environment == E_RANDOM)
+        seed = (int) time(NULL);
+    else if (environment == E_RESTORE)
+        seed = store;
+    else
+        seed = level_seed[environment] + 1000*level;
+    SRANDFUNCTION(seed);
 }
 
 
 int game_restore(char *savefile)
 {
-  int ok;
-  ok = restore_game(savefile);
-  if (! ok) {
-    endgraf();
-    printf("Try again with the right save file, luser!\n");
-    exit(1);
-  }
-  change_to_user_perms();
-  unlink(savefile);
-  change_to_game_perms();
-  return(TRUE);
+    int ok;
+    ok = restore_game(savefile);
+    if (! ok) {
+        endgraf();
+        printf("Try again with the right save file, luser!\n");
+        exit(1);
+    }
+    change_to_user_perms();
+    unlink(savefile);
+    change_to_game_perms();
+    return(TRUE);
 }
 
 void signalquit(int ignore)
 {
-  quit();
+    quit();
 }
 
 #if !defined(MSDOS) && !defined(WIN32)
 void signalexit(int ignored)
 {
-  clearmsg();
-  mprint("Yikes!");
-  morewait();
-  mprint("Sorry, caught a core-dump signal.");
-#if 0 
-  /* DAG used to prompt... space-bar holding through messages could cause
-   * failure to save.  Now always just force through with signalsave() */
-  mprint("Want to try and save the game?");
-  reply = ynq();
-  if (reply=='y')
-    save(FALSE, TRUE); /* don't compress, force save */
-  else if (reply == EOF)
-    signalsave(0);
+    clearmsg();
+    mprint("Yikes!");
+    morewait();
+    mprint("Sorry, caught a core-dump signal.");
+#if 0
+    /* DAG used to prompt... space-bar holding through messages could cause
+     * failure to save.  Now always just force through with signalsave() */
+    mprint("Want to try and save the game?");
+    reply = ynq();
+    if (reply=='y')
+        save(FALSE, TRUE); /* don't compress, force save */
+    else if (reply == EOF)
+        signalsave(0);
 #else
-  signalsave(0);
-#endif 
-  endgraf();
-  printf("Bye!\n");
-  exit(0);
+    signalsave(0);
+#endif
+    endgraf();
+    printf("Bye!\n");
+    exit(0);
 }
 #endif
 
@@ -278,47 +278,47 @@ void signalexit(int ignored)
 /* Start up game with new dungeons; start with player in city */
 void init_world(void)
 {
-  int env, i;
+    int env, i;
 
-  City = Level = TempLevel = Dungeon = NULL;
-  for (env = 0; env <= E_MAX; env++)
-    level_seed[env] = RANDFUNCTION();
-  load_country();
-  for(i=0;i<NUMCITYSITES;i++) 
-    CitySiteList[i][0] = FALSE;
-  load_city(TRUE);
-  Level = City;
-  Current_Environment = E_CITY;
-  setPlayerXY(62, 20);
-  print1("You pass through the massive gates of Rampart, the city.");  
-  screencheck(Player.x, Player.y);
+    City = Level = TempLevel = Dungeon = NULL;
+    for (env = 0; env <= E_MAX; env++)
+        level_seed[env] = RANDFUNCTION();
+    load_country();
+    for(i=0; i<NUMCITYSITES; i++)
+        CitySiteList[i][0] = FALSE;
+    load_city(TRUE);
+    Level = City;
+    Current_Environment = E_CITY;
+    setPlayerXY(62, 20);
+    print1("You pass through the massive gates of Rampart, the city.");
+    screencheck(Player.x, Player.y);
 }
 
 /* set variable item names */
 void inititem(int reset)
 {
-  int i;
+    int i;
 
-  if (reset) {
-    shuffle(scroll_ids, 30);
-    shuffle(potion_ids, 20);
-    shuffle(stick_ids, 20);
-    shuffle(boot_ids, 20);
-    shuffle(cloak_ids, 20);
-    shuffle(ring_ids, 20);
-  }
-  for(i=0;i<NUMSCROLLS;i++)
-    Objects[SCROLLID+i].objstr = scrollname(i);
-  for(i=0;i<NUMPOTIONS;i++)
-    Objects[POTIONID+i].objstr = potionname(i);
-  Objects[OB_POTION_DEATH].objstr = potionname(18);
-  Objects[OB_POTION_LIFE].objstr = potionname(19);
-  for(i=0;i<NUMSTICKS;i++)
-    Objects[STICKID+i].objstr = stickname(i);
-  for(i=0;i<NUMBOOTS;i++)
-    Objects[BOOTID+i].objstr = bootname(i);
-  for(i=0;i<NUMCLOAKS;i++)
-    Objects[CLOAKID+i].objstr = cloakname(i);
-  for(i=0;i<NUMRINGS;i++)
-    Objects[RINGID+i].objstr = ringname(i);
+    if (reset) {
+        shuffle(scroll_ids, 30);
+        shuffle(potion_ids, 20);
+        shuffle(stick_ids, 20);
+        shuffle(boot_ids, 20);
+        shuffle(cloak_ids, 20);
+        shuffle(ring_ids, 20);
+    }
+    for(i=0; i<NUMSCROLLS; i++)
+        Objects[SCROLLID+i].objstr = scrollname(i);
+    for(i=0; i<NUMPOTIONS; i++)
+        Objects[POTIONID+i].objstr = potionname(i);
+    Objects[OB_POTION_DEATH].objstr = potionname(18);
+    Objects[OB_POTION_LIFE].objstr = potionname(19);
+    for(i=0; i<NUMSTICKS; i++)
+        Objects[STICKID+i].objstr = stickname(i);
+    for(i=0; i<NUMBOOTS; i++)
+        Objects[BOOTID+i].objstr = bootname(i);
+    for(i=0; i<NUMCLOAKS; i++)
+        Objects[CLOAKID+i].objstr = cloakname(i);
+    for(i=0; i<NUMRINGS; i++)
+        Objects[RINGID+i].objstr = ringname(i);
 }

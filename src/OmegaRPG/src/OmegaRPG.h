@@ -2,27 +2,27 @@
 
 namespace Omega
 {
-	class OmegaRPG
-	{
-	public:
-		OmegaRPG(void);
-		OmegaRPG(char* filename);
+class OmegaRPG
+{
+public:
+    OmegaRPG(void);
+    OmegaRPG(char* filename);
 
-		~OmegaRPG(void);
+    ~OmegaRPG(void);
 
-		void Initialize();
+    void Initialize();
 
-		char* SaveFileName();
+    char* SaveFileName();
 
-		bool Continuing();
-		void Continuing(bool value);
+    bool Continuing();
+    void Continuing(bool value);
 
-		bool ScoresOnly();
-		void ScoresOnly(bool value);
+    bool ScoresOnly();
+    void ScoresOnly(bool value);
 
-	private:
-		char* _saveFileName;
-		bool _continuing;
-		bool _scoresOnly;
-	};
+private:
+    char* _saveFileName;
+    bool _continuing;
+    bool _scoresOnly;
+};
 }

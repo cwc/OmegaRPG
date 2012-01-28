@@ -94,7 +94,8 @@ static ClrEquiv clr_equiv[17] = {
     { "LIGHT_PURPLE",	"MAGENTA",	1 },
     { "YELLOW",		"YELLOW",	1 },
     { "BRIGHT_WHITE",	"WHITE",	1 },
-    { NULL, NULL, 0 } };
+    { NULL, NULL, 0 }
+};
 #else
 static ClrEquiv clr_equiv[17] = {
     { "BLACK",		"BLACK",	0 },
@@ -113,7 +114,8 @@ static ClrEquiv clr_equiv[17] = {
     { "LIGHT_PURPLE",	"MAGENTA",	1 },
     { "YELLOW",		"YELLOW",	1 },
     { "BRIGHT_WHITE",	"WHITE",	1 },
-    { NULL, NULL, 0 } };
+    { NULL, NULL, 0 }
+};
 #endif
 
 static char *clr_lookup (char *omega, char **curses, unsigned int *bold)
@@ -126,11 +128,11 @@ static char *clr_lookup (char *omega, char **curses, unsigned int *bold)
      */
     ClrEquiv *e = clr_equiv;
     for (; e->omega; e++)
-	if (!strcmp (e->omega, omega)) {
-	    *curses = e->curses;
-	    *bold = e->bold;
-	    return e->omega;
-	}
+        if (!strcmp (e->omega, omega)) {
+            *curses = e->curses;
+            *bold = e->bold;
+            return e->omega;
+        }
     return NULL;
 }
 
@@ -145,20 +147,20 @@ static char *clr_scan (char *p, char **curses, unsigned int *bold, char **end)
      */
     char c, *start, *omega;
     for (; (c = *p); p++) {
-	if (!ISCID (c))
-	    continue;
-	for (start = p++; (c = *p); p++) {
-	    if (ISCID (c))
-		continue;
-	    *p = '\0';
-	    if (!(omega = clr_lookup (start, curses, bold))) {
-		fprintf (stderr, "unrecognized Omega color \"%s\"\n", start);
-		exit (1);
-	    }
-	    *p = c;
-	    *end = p;
-	    return omega;
-	}
+        if (!ISCID (c))
+            continue;
+        for (start = p++; (c = *p); p++) {
+            if (ISCID (c))
+                continue;
+            *p = '\0';
+            if (!(omega = clr_lookup (start, curses, bold))) {
+                fprintf (stderr, "unrecognized Omega color \"%s\"\n", start);
+                exit (1);
+            }
+            *p = c;
+            *end = p;
+            return omega;
+        }
     }
     return NULL;
 }
@@ -173,7 +175,7 @@ static int opaircmp (const void *pair1, const void *pair2)
     ClrPair *p1 = (ClrPair *)pair1, *p2 = (ClrPair *)pair2;
     int diff = strcmp (p1->ofg, p2->ofg);
     if (diff)
-	return diff;
+        return diff;
     return strcmp (p1->obg, p2->obg);
 }
 
@@ -187,7 +189,7 @@ static int cpaircmp (const void *pair1, const void *pair2)
     ClrPair *p1 = *(ClrPair **)pair1, *p2 = *(ClrPair **)pair2;
     int diff = strcmp (p1->cfg, p2->cfg);
     if (diff)
-	return diff;
+        return diff;
     return strcmp (p1->cbg, p2->cbg);
 }
 
@@ -199,9 +201,9 @@ static FILE *emitopen (char *file, char **argv)
      */
     FILE *fp = fopen (file, "w");
     if (!fp) {
-	fprintf (stderr, "error opening %s", file);
-	perror ("");
-	exit (1);
+        fprintf (stderr, "error opening %s", file);
+        perror ("");
+        exit (1);
     }
     fprintf (fp, "\
 /*\n\
@@ -210,7 +212,7 @@ static FILE *emitopen (char *file, char **argv)
  */\n\
 \n\
 ",
-	     argv[0], argv[1], argv[2]);
+             argv[0], argv[1], argv[2]);
     return fp;
 }
 
@@ -220,10 +222,10 @@ static void emitclose (FILE *fp, char *file)
      * Close FP attached to FILE, exiting on error.
      */
     if (fclose (fp) == 0)
-	return;
+        return;
     fprintf (stderr, "error closing %s", file);
     perror ("");
-    exit (1);    
+    exit (1);
 }
 
 int genColor(int argc, char **argv)
@@ -237,8 +239,8 @@ int genColor(int argc, char **argv)
     FILE *fp;
 
     if (argc != 3) {
-	fprintf (stderr, "usage: %s <c-file> <h-file>\n", argv[0]);
-	exit (1);
+        fprintf (stderr, "usage: %s <c-file> <h-file>\n", argv[0]);
+        exit (1);
     }
     cfile = argv[1];
     hfile = argv[2];
@@ -248,27 +250,27 @@ int genColor(int argc, char **argv)
      */
     opairs = (ClrPair *)malloc (opairslen * sizeof (ClrPair));
     while (fgets (line, 1024, stdin)) {
-	for (p = line; (p = strstr (p, PREFIX));) {
-	    p += sizeof (PREFIX) - 1;
-	    if (nopairs == opairslen) {
-		opairslen *= 2;
-		opairs = (ClrPair *)realloc (opairs, opairslen *
-					     sizeof (ClrPair));
-	    }
-	    pair = opairs + nopairs++;
-	    one = *p++ == '1';
-	    pair->ofg = clr_scan (p, &pair->cfg, &pair->boldfg, &p);
-	    pair->obg = one ?
-		clr_lookup ("BLACK", &pair->cbg, &pair->boldbg) :
-		    clr_scan (p, &pair->cbg, &pair->boldbg, &p);
-	    if (pair->boldbg)
-		fprintf (stderr, "warning: \"%s\": bg bold unimplemented\n",
-			 pair->obg);
-	}
+        for (p = line; (p = strstr (p, PREFIX));) {
+            p += sizeof (PREFIX) - 1;
+            if (nopairs == opairslen) {
+                opairslen *= 2;
+                opairs = (ClrPair *)realloc (opairs, opairslen *
+                                             sizeof (ClrPair));
+            }
+            pair = opairs + nopairs++;
+            one = *p++ == '1';
+            pair->ofg = clr_scan (p, &pair->cfg, &pair->boldfg, &p);
+            pair->obg = one ?
+                        clr_lookup ("BLACK", &pair->cbg, &pair->boldbg) :
+                        clr_scan (p, &pair->cbg, &pair->boldbg, &p);
+            if (pair->boldbg)
+                fprintf (stderr, "warning: \"%s\": bg bold unimplemented\n",
+                         pair->obg);
+        }
     }
     if (!nopairs) {
-	fputs ("no colors detected in standard input\n", stderr);
-	exit (1);
+        fputs ("no colors detected in standard input\n", stderr);
+        exit (1);
     }
 
     /*
@@ -276,8 +278,8 @@ int genColor(int argc, char **argv)
      */
     qsort (opairs, nopairs, sizeof (ClrPair), opaircmp);
     for (i = 0, j = 1; j < nopairs; j++) {
-	if (opaircmp (opairs + i, opairs + j))
-	    opairs[++i] = opairs[j];
+        if (opaircmp (opairs + i, opairs + j))
+            opairs[++i] = opairs[j];
     }
     nopairs = i + 1;
 
@@ -287,14 +289,14 @@ int genColor(int argc, char **argv)
      */
     cpairs = (ClrPair **)malloc (nopairs * sizeof (ClrPair *));
     for (i = 0; i < nopairs; i++)
-	cpairs[i] = opairs + i;
+        cpairs[i] = opairs + i;
     qsort (cpairs, nopairs, sizeof (ClrPair *), cpaircmp);
     cpairs[0]->idx = 1;
 
     for (i = 0, j = 1; j < nopairs; j++) {
-	if (cpaircmp (cpairs + i, cpairs + j))
-	    cpairs[++i] = cpairs[j];
-	cpairs[j]->idx = i + 1;
+        if (cpaircmp (cpairs + i, cpairs + j))
+            cpairs[++i] = cpairs[j];
+        cpairs[j]->idx = i + 1;
     }
     ncpairs = i + 1;
 
@@ -311,7 +313,7 @@ int genColor(int argc, char **argv)
 #include <curses.h>\n");
 #endif
 
-    fprintf (fp, "\
+             fprintf (fp, "\
 #include <stdio.h>\n\
 #include <stdlib.h>\n\
 \
@@ -329,16 +331,16 @@ void clrgen_init (void)\n\
 	exit (1);\n\
     }\n\
 ",
-	     hfile, ncpairs, ncpairs);
+             hfile, ncpairs, ncpairs);
     for (i = 0; i < ncpairs; i++)
-	fprintf (fp, "\
+        fprintf (fp, "\
     init_pair (%d, COLOR_%s, COLOR_%s);\n\
 ",
-		 cpairs[i]->idx, cpairs[i]->cfg, cpairs[i]->cbg);
+                 cpairs[i]->idx, cpairs[i]->cfg, cpairs[i]->cbg);
     fputs ("\
 ""}\n\
 ",
-	   fp);
+           fp);
     emitclose (fp, cfile);
 
     /*
@@ -346,17 +348,17 @@ void clrgen_init (void)\n\
      */
     fp = emitopen (hfile, argv);
     for (i = 0; i < nopairs; i++) {
-	pair = opairs + i;
-	fprintf (fp, "#define CLR_%s_%s\t%sCOLOR_PAIR(%d)%s\n",
-		 pair->ofg, pair->obg,
-		 strlen (pair->ofg) + strlen (pair->obg) > 10 ? "" : "\t",
-		 pair->idx, pair->boldfg ? "|A_BOLD" : "");
+        pair = opairs + i;
+        fprintf (fp, "#define CLR_%s_%s\t%sCOLOR_PAIR(%d)%s\n",
+                 pair->ofg, pair->obg,
+                 strlen (pair->ofg) + strlen (pair->obg) > 10 ? "" : "\t",
+                 pair->idx, pair->boldfg ? "|A_BOLD" : "");
     }
     fputs ("\
 \n\
 extern void clrgen_init (void);\n\
 ",
-	    fp);
+           fp);
     emitclose (fp, hfile);
 
     return 0;

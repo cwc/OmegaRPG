@@ -51,7 +51,7 @@ string.h instead of strings.h (try man string) */
  * 32 bits. */
 typedef int int32;
 
-/* Implementor should uncomment the following if getopt is not 
+/* Implementor should uncomment the following if getopt is not
    available */
 
 /* #define NOGETOPT */
@@ -84,7 +84,7 @@ on save and restore. */
  * in this file (we'll wait for LFN support). */
 #define FNAME_MAX_LEN 48
 
-/* OMEGALIB is where all the data files reside. 
+/* OMEGALIB is where all the data files reside.
    Note the final / is necessary.
    msdos note: \ is the C string escape character, so you need \\ in the
    path given in OMEGALIB
@@ -132,7 +132,7 @@ on save and restore. */
 #ifndef MSDOS
 #ifndef BSD
 #ifndef SYSV
-    ERROR! - One of these should be set - edit the makefile appropriately
+ERROR! - One of these should be set - edit the makefile appropriately
 #endif
 #endif
 #endif
@@ -179,7 +179,7 @@ on save and restore. */
 #define CASHVALUE -2
 
 /* moderately arbitrary but probably cannot be easily changed */
-    /*#define MAXWIDTH 64*/
+/*#define MAXWIDTH 64*/
 #define MAXWIDTH 128
 #define MAXLENGTH 64
 #define SMALLSCREEN_LENGTH 16
@@ -269,7 +269,7 @@ on save and restore. */
 /* Verbosity levels */
 #define TERSE 0
 #define MEDIUM 1
-#define VERBOSE 2 
+#define VERBOSE 2
 
 /* Arbitrary. Max of the levels in the dungeons */
 #define MAXLEVELS 21
@@ -310,10 +310,10 @@ on save and restore. */
 #define GAVE_STARGEM		0x800000
 #define ATTACKED_ORACLE		0x1000000
 #define UNDEAD_GUARDS		0x2000000
-    /* 26 so far... */
+/* 26 so far... */
 
 /* non-existant environments for the random number seeding routine */
- /* added 12/30/98 (DG) */
+/* added 12/30/98 (DG) */
 #define E_RESTORE -2
 #define E_RANDOM -1
 /* general environment types */
@@ -349,7 +349,7 @@ on save and restore. */
 
 /* kind of arbitrary */
 #define MAXROOMS 48
-#define MAXCONNECTIONS 4 
+#define MAXCONNECTIONS 4
 #define STRING_LEN 100
 
 /* some random characters */
@@ -536,7 +536,7 @@ on save and restore. */
 
 
 /* MONSTER STATUS/ABILITY BITS */
-    /* currently a long */
+/* currently a long */
 #define AWAKE 1
 #define MOBILE 2
 #define HOSTILE 4
@@ -591,7 +591,7 @@ on save and restore. */
 /* also damage types */
 #define NUMIMMUNITIES 14
 
-#define UNSTOPPABLE 0 
+#define UNSTOPPABLE 0
 #define NORMAL_DAMAGE 1
 #define FLAME 2
 #define COLD 3
@@ -619,7 +619,7 @@ on save and restore. */
 /* room string id */
 /* for use in roomname() */
 /* number of rooms above ROOMBASE */
-#define NUMROOMNAMES 30  
+#define NUMROOMNAMES 30
 
 #define RS_WALLSPACE 1
 #define RS_CORRIDOR 2
@@ -627,7 +627,7 @@ on save and restore. */
 #define RS_GOBLINKING 4
 #define RS_DRAGONLORD 5
 #define RS_PONDS 6
-#define RS_OCEAN 7 
+#define RS_OCEAN 7
 #define RS_WYRM 8
 #define RS_ADEPT 9
 #define RS_DESTINY 10
@@ -867,7 +867,7 @@ on save and restore. */
 #define SEARCH_DURATION 11
 
 /* Player.options bits */
-#define BELLICOSE 1 
+#define BELLICOSE 1
 #define JUMPMOVE 2
 #define RUNSTOP 4
 #define PICKUP 8
@@ -893,7 +893,7 @@ on save and restore. */
 #define NUMARTIFACTS 26
 
 /* running sum of itemtypes, for indexing into Objects array */
-#define THINGID 0 
+#define THINGID 0
 #define CARDID (THINGID+NUMTHINGS-NUMCARDS)
 #define FOODID NUMTHINGS    /* 26 */
 #define SCROLLID (FOODID + NUMFOODS)  /* 42 */
@@ -995,9 +995,9 @@ on save and restore. */
 #define I_NO_OP 0
 #define I_NOTHING 1
 
-  /* note some of these functions are for other types of items too */
+/* note some of these functions are for other types of items too */
 
-    /* scroll functions */
+/* scroll functions */
 #define I_BLESS 101
 #define I_ACQUIRE 102
 #define I_ENCHANT 103
@@ -1021,7 +1021,7 @@ on save and restore. */
 #define I_ILLUMINATE 121
 #define I_DEFLECT 122
 
-    /* potion functions */
+/* potion functions */
 #define I_HEAL 201
 #define I_OBJDET 202
 #define I_MONDET 203
@@ -1040,7 +1040,7 @@ on save and restore. */
 #define I_LEVITATION 217
 #define I_CURE 218
 
-    /* stick functions */
+/* stick functions */
 #define I_FIREBOLT 301
 #define I_LBOLT 302
 #define I_MISSILE 303
@@ -1057,7 +1057,7 @@ on save and restore. */
 #define I_POLYMORPH 314
 #define I_FEAR 315
 
-    /* food functions */
+/* food functions */
 #define I_FOOD 401
 #define I_LEMBAS 402
 #define I_STIM 403
@@ -1069,7 +1069,7 @@ on save and restore. */
 #define I_CANNIBAL 409
 #define I_INEDIBLE 410
 
-    /* boots functions */
+/* boots functions */
 #define I_PERM_SPEED 501
 #define I_PERM_HERO 502
 #define I_PERM_LEVITATE 503
@@ -1077,7 +1077,7 @@ on save and restore. */
 #define I_BOOTS_JUMPING 505
 #define I_BOOTS_7LEAGUE 506
 
-    /* cloak functions */
+/* cloak functions */
 #define I_PERM_DISPLACE 601
 #define I_PERM_NEGIMMUNE 602
 #define I_PERM_INVISIBLE 603
@@ -1085,7 +1085,7 @@ on save and restore. */
 #define I_PERM_PROTECTION 605
 #define I_PERM_TRUESIGHT 606
 
-    /* ring functions */
+/* ring functions */
 #define I_PERM_VISION 701
 #define I_PERM_BURDEN 702
 #define I_PERM_STRENGTH 703
@@ -1095,7 +1095,7 @@ on save and restore. */
 #define I_PERM_REGENERATE 707
 #define I_PERM_KNOWLEDGE 708
 
-    /* armor functions */
+/* armor functions */
 #define I_PERM_ENERGY_RESIST 801
 #define I_PERM_BREATHING 802
 #define I_PERM_FEAR_RESIST 803
@@ -1536,7 +1536,7 @@ for example. */
 #define L_COMMONS 49         /* villages */
 #define L_GRANARY 50         /* villages */
 #define L_LAWSTONE 51
-#define L_CHAOSTONE 52       /* shouldn't this be CHAOSSTONE ?? :) DAG */ 
+#define L_CHAOSTONE 52       /* shouldn't this be CHAOSSTONE ?? :) DAG */
 #define L_SACRIFICESTONE 53
 #define L_VOIDSTONE 54
 #define L_BALANCESTONE 55
@@ -1544,8 +1544,8 @@ for example. */
 
 /* gap for a few more village or combined city/village sites: 57, 58, 59, 60 */
 /* sites in city & villages */
-#define L_HOVEL 61 
-#define L_HOUSE 62 
+#define L_HOVEL 61
+#define L_HOUSE 62
 
 /* sites in the countryside */
 #define L_TEMPLE_WARNING 63  /* country */
@@ -1646,7 +1646,7 @@ for example. */
 #define O_BELT1 5
 #define O_BELT2 6
 #define O_BELT3 7
-#define O_SHIELD 8 
+#define O_SHIELD 8
 #define O_ARMOR 9
 #define O_BOOTS 10
 #define O_CLOAK 11
@@ -1711,140 +1711,140 @@ typedef chtype Symbol;
 
 struct bank_account
 {
-  short player;
-  long balance;
-  long number;
-  char *password;
-  struct bank_account * next_account;
+    short player;
+    long balance;
+    long number;
+    char *password;
+    struct bank_account * next_account;
 };
 typedef struct bank_account bank_account;
 
 struct room {
-  int lighted; 
-  int left,right,top,bottom;
-  int rsi; /* index into roomname switch */
+    int lighted;
+    int left,right,top,bottom;
+    int rsi; /* index into roomname switch */
 };
 
 
 
 struct spell {
-  char known;
-  char id;
-  char powerdrain;
+    char known;
+    char id;
+    char powerdrain;
 } ;
 
 
 struct monster {
-  struct objectlist *possessions;
-  unsigned char attacked;
-  int aux1,aux2,x,y,click;
-  int id,hp,hit,ac,dmg,sense,wakeup,level,speed;
-  unsigned char sleep,treasure;
-  long xpv;
-  int corpseweight,corpsevalue,transformid,startthing;
-  unsigned char uniqueness;
-  int talkf,movef,meleef,strikef,specialf;
-  long status,immunity;
-  Symbol monchar;
-  char *monstring,*corpsestr,*meleestr;
+    struct objectlist *possessions;
+    unsigned char attacked;
+    int aux1,aux2,x,y,click;
+    int id,hp,hit,ac,dmg,sense,wakeup,level,speed;
+    unsigned char sleep,treasure;
+    long xpv;
+    int corpseweight,corpsevalue,transformid,startthing;
+    unsigned char uniqueness;
+    int talkf,movef,meleef,strikef,specialf;
+    long status,immunity;
+    Symbol monchar;
+    char *monstring,*corpsestr,*meleestr;
 };
 
 
 struct monsterlist {
-  struct monster *m;
-  struct monsterlist *next;
+    struct monster *m;
+    struct monsterlist *next;
 };
 
 
 
 
 struct player {
-  int str,con,dex,agi,iq,pow,maxstr,maxcon,maxdex,maxagi,maxiq,maxpow;
-  long xp;
-  int level,hp,maxhp,hit,dmg,absorption,speed,click;
-  int defense,food,alignment;
-  long mana,maxmana;
-  long cash;
-  int patron,birthday;
-  char preference;
-  int sx,sy; /* sanctuary coordinates */
-  int x,y; /* current player coordinates */
-  int itemweight,maxweight;
-  int immunity[NUMIMMUNITIES];
-  int status[NUMSTATI];
-  long options;
-  int rank[NUMRANKS];
-  long guildxp[NUMRANKS];
-  char name[64];
-  char meleestr[64];
-  struct object *possessions[MAXITEMS];
-  struct object *pack[MAXPACK];
-  int packptr;
+    int str,con,dex,agi,iq,pow,maxstr,maxcon,maxdex,maxagi,maxiq,maxpow;
+    long xp;
+    int level,hp,maxhp,hit,dmg,absorption,speed,click;
+    int defense,food,alignment;
+    long mana,maxmana;
+    long cash;
+    int patron,birthday;
+    char preference;
+    int sx,sy; /* sanctuary coordinates */
+    int x,y; /* current player coordinates */
+    int itemweight,maxweight;
+    int immunity[NUMIMMUNITIES];
+    int status[NUMSTATI];
+    long options;
+    int rank[NUMRANKS];
+    long guildxp[NUMRANKS];
+    char name[64];
+    char meleestr[64];
+    struct object *possessions[MAXITEMS];
+    struct object *pack[MAXPACK];
+    int packptr;
 };
 
 struct object {
-  int id,weight,plus,charge,dmg,hit,aux,number,fragility;
-  long basevalue;
-  unsigned char known,used;
-  int blessing;
-  unsigned char type,uniqueness;
-  int usef;
-  unsigned char level;
-  Symbol objchar;
-  char *objstr,*truename,*cursestr;
+    int id,weight,plus,charge,dmg,hit,aux,number,fragility;
+    long basevalue;
+    unsigned char known,used;
+    int blessing;
+    unsigned char type,uniqueness;
+    int usef;
+    unsigned char level;
+    Symbol objchar;
+    char *objstr,*truename,*cursestr;
 };
 
 
 
 struct objectlist {
-  struct object *thing;
-  struct objectlist *next;
+    struct object *thing;
+    struct objectlist *next;
 };
 
 
 
 /* terrain locations */
 struct terrain {
-  Symbol base_terrain_type;
-  Symbol current_terrain_type;
-  char aux;
-  char status;
+    Symbol base_terrain_type;
+    Symbol current_terrain_type;
+    char aux;
+    char status;
 };
 
 /* dungeon locations */
 struct location {
-  unsigned char p_locf; /* function executed when moved on */
-  unsigned char lstatus; /* seen,stopsrun,lit,secret, */
-  unsigned char roomnumber; /* so room can be named */
-  Symbol locchar; /* terrain type */
-  Symbol showchar; /*char instantaneously drawn for site */
-  int aux; /* signifies various things */
-  unsigned char buildaux; /* used in constructing level */
-  struct objectlist *things; 
-  struct monster *creature;
- };
+    unsigned char p_locf; /* function executed when moved on */
+    unsigned char lstatus; /* seen,stopsrun,lit,secret, */
+    unsigned char roomnumber; /* so room can be named */
+    Symbol locchar; /* terrain type */
+    Symbol showchar; /*char instantaneously drawn for site */
+    int aux; /* signifies various things */
+    unsigned char buildaux; /* used in constructing level */
+    struct objectlist *things;
+    struct monster *creature;
+};
 
 
 struct level {
-  char depth; /* which level is this */
-  struct level *next; /* pointer to next level in dungeon */
+    char depth; /* which level is this */
+    struct level *next; /* pointer to next level in dungeon */
 #ifndef SAVE_LEVELS
-  struct location site[MAXWIDTH][MAXLENGTH]; /* dungeon data */
+    struct location site[MAXWIDTH][MAXLENGTH]; /* dungeon data */
 #else
-  /* Over 64K worth of data! */
-  struct location *site[MAXWIDTH]; /* dungeon data */
+    /* Over 64K worth of data! */
+    struct location *site[MAXWIDTH]; /* dungeon data */
 #endif
-  char generated; /* has the level been made (visited) yet? */
-  char numrooms; /* number of rooms on level */
-  char tunnelled; /* amount of tunnelling done on this level */
-  struct monsterlist *mlist; /* List of monsters on level */
-  int environment; /* where kind of level is this? */
-  int last_visited; /* time player was last on this level */
-  int level_width; /* width of current level */
-  int level_length; /* length of current level */
+    char generated; /* has the level been made (visited) yet? */
+    char numrooms; /* number of rooms on level */
+    char tunnelled; /* amount of tunnelling done on this level */
+    struct monsterlist *mlist; /* List of monsters on level */
+    int environment; /* where kind of level is this? */
+    int last_visited; /* time player was last on this level */
+    int level_width; /* width of current level */
+    int level_length; /* length of current level */
 };
 
- 
+
 /* random typedef's */
 
 typedef struct monsterlist mltype;
