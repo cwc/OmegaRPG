@@ -155,6 +155,7 @@ int main(int argc, char *argv[])
     if (game->Continuing())
     {
         game_restore(argv[1]);
+        game->SaveFilename(argv[1]);
         mprint("Your adventure continues....");
     }
     else
@@ -170,6 +171,8 @@ int main(int argc, char *argv[])
         strcpy(Password, "");
 #endif
         game->Continuing(initplayer()); /* RM: 04-19-2000 loading patch */
+
+        game->SaveFilename(Player.name);
     }
 
     if (!game->Continuing())

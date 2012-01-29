@@ -12,7 +12,8 @@ public:
 
     void Initialize();
 
-    char* SaveFileName();
+    char* SaveFilename();
+    void SaveFilename(char* filename);
 
     bool Continuing();
     void Continuing(bool value);
@@ -21,7 +22,7 @@ public:
     void ScoresOnly(bool value);
 
 private:
-    char* _saveFileName;
+    char* _saveFilename;
     bool _continuing;
     bool _scoresOnly;
 };

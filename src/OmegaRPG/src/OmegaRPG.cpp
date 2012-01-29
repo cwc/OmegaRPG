@@ -10,15 +10,14 @@ OmegaRPG::OmegaRPG(void)
 {
     Initialize();
 
-    _saveFileName = "Omega";
+    SaveFilename("Omega");
 }
 
 OmegaRPG::OmegaRPG(char* filename)
 {
     Initialize();
 
-    _saveFileName = filename;
-    g_saveFileName = _saveFileName; // TODO Refactor out this global
+    SaveFilename(filename);
 }
 
 OmegaRPG::~OmegaRPG(void)
@@ -31,9 +30,15 @@ void OmegaRPG::Initialize()
     _scoresOnly = 0;
 }
 
-char* OmegaRPG::SaveFileName()
+char* OmegaRPG::SaveFilename()
 {
-    return _saveFileName;
+    return _saveFilename;
+}
+
+void OmegaRPG::SaveFilename(char* filename)
+{
+    _saveFilename = filename;
+    g_saveFileName = _saveFilename; // TODO Refactor out this global
 }
 
 bool OmegaRPG::Continuing()

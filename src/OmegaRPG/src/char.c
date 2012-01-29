@@ -143,7 +143,7 @@ int initstats(void)
         clearmsg(); /* RM 04-19-2000 loading patch - fix the display */
         user_character_stats();
         user_intro();
-#if defined(MSDOS) || defined(AMIGA)
+#if defined(MSDOS) || defined(AMIGA) || defined(WIN32)
         print1("Do you want to save this set-up to omega.rc in this directory? [yn] ");
 #else
         print1("Do you want to save this set-up to .omegarc in your home directory? [yn] ");
@@ -160,14 +160,14 @@ void save_omegarc(void)
     int i=VERSION;
     FILE *fd;
     change_to_user_perms();
-#if defined(MSDOS) || defined(AMIGA)
+#if defined(MSDOS) || defined(AMIGA) || defined(WIN32)
     fd = fopen("omega.rc","wb");
 #else
     sprintf(Str1, "%s/.omegarc", getenv("HOME"));
     fd = fopen(Str1,"w");
 #endif
     if (fd == NULL)
-#if defined(MSDOS) || defined(AMIGA)
+#if defined(MSDOS) || defined(AMIGA) || defined(WIN32)
         print1("Sorry, couldn't save omega.rc for some reason.");
 #else
         print1("Sorry, couldn't save .omegarc for some reason.");
