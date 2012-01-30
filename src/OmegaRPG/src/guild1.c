@@ -294,7 +294,7 @@ void l_castle(void)
             else {
                 print1("You scoundrel! Guards! Take this blackguard away!");
                 morewait();
-                p_damage(25,UNSTOPPABLE,"castle guards for lese majeste");
+                p_damage(Player.maxhp / 2, UNSTOPPABLE, "castle guards for lese majeste");
                 send_to_jail();
             }
         }
