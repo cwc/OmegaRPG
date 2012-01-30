@@ -145,11 +145,15 @@ void l_condo(void)
 
 
 
-void gymtrain(int *maxstat, int *stat)
+int gymtrain(int *maxstat, int *stat)
 {
+    int trained = 0;
+
     if (Gymcredit + Player.cash < 2000)
         print2("You can't afford our training!");
     else {
+        trained = 1;
+
         if (Gymcredit > 2000) Gymcredit -= 2000;
         else {
             Player.cash -= (2000-Gymcredit);
@@ -171,6 +175,8 @@ void gymtrain(int *maxstat, int *stat)
         }
     }
     dataprint();
+
+    return trained;
 }
 
 void healforpay(void)

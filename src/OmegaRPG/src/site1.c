@@ -134,13 +134,25 @@ void l_gym(void)
 {
     int done=TRUE;
     int trained=0;
+    int physicalSum;
     clearmsg();
+
+    // Give phsyically weak PCs free daily gym sessions
+    physicalSum = Player.maxstr + Player.maxcon + Player.maxdex + Player.maxagi;
+    if (Date - LastFreeGymDay >= 1 && physicalSum < 50 && Gymcredit < 2000) {
+        print1("As you enter the gym, you're approached by a beefy-looking trainer.");
+        print2("'Wow, you look like you need help! Have a free session, on me.'");
+        morewait();
+        Gymcredit = 2000;
+        LastFreeGymDay = Date;
+    }
+
     do {
         print1("The Rampart Gymnasium");
         if ((Gymcredit > 0) || (Player.rank[ARENA])) {
-            nprint1("-- Credit: ");
+            nprint1(" -- Gym Credit: ");
             mlongprint(Gymcredit);
-            nprint1("Au.");
+            nprint1(" Au");
         }
         done = FALSE;
         menuclear();
@@ -153,16 +165,16 @@ void l_gym(void)
         showmenu();
         switch(mgetc()) {
         case 'a':
-            gymtrain(&(Player.maxstr),&(Player.str));
+            trained += gymtrain(&(Player.maxstr),&(Player.str));
             break;
         case 'b':
-            gymtrain(&(Player.maxdex),&(Player.dex));
+            trained += gymtrain(&(Player.maxdex),&(Player.dex));
             break;
         case 'c':
-            gymtrain(&(Player.maxcon),&(Player.con));
+            trained += gymtrain(&(Player.maxcon),&(Player.con));
             break;
         case 'd':
-            gymtrain(&(Player.maxagi),&(Player.agi));
+            trained += gymtrain(&(Player.maxagi),&(Player.agi));
             break;
         case ESCAPE:
             clearmsg();
@@ -174,11 +186,7 @@ void l_gym(void)
                 print1("A refreshing bath, and you're on your way.");
             done = TRUE;
             break;
-        default:
-            trained--;
-            break;
         }
-        trained++;
     } while (! done);
     xredraw();
     calc_melee();

@@ -989,7 +989,7 @@ void wake_statue( int,int,int );
 /* site2.c functions */
 
 void cureforpay( void );
-void gymtrain( int *,int * );
+int gymtrain( int *,int * );
 void healforpay( void );
 void l_adept( void );
 void l_brothel( void );

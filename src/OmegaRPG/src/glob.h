@@ -165,6 +165,9 @@ extern int Blessing;
 extern int LastDay;
 /* DPW date of dole */
 
+extern int LastFreeGymDay;
+// Date of last free gym session
+
 extern int RitualHour;
 /* last use of ritual magic */
 

@@ -105,6 +105,7 @@ int HelmDay= -1;                     /* helm of teleportation use marker*/
 int Constriction=0;                   /* Dragonlord Attack State */
 int Blessing=FALSE;                   /* Altar Blessing State */
 int LastDay= -1;                      /* DPW date of dole */
+int LastFreeGymDay = -1;              // Date of last free gym session
 int RitualHour= -1;                   /* last use of ritual magic */
 int RitualRoom= -1;                   /* last room of ritual magic */
 int Lawstone=0;                       /* magic stone counter */
