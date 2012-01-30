@@ -103,6 +103,7 @@ void l_club(void)
                     Spells[S_RETURN].known = TRUE;
                     Player.cash -= 100;
                     setgamestatus(CLUB_MEMBER);
+                    dataprint();
                 }
             }
             else print2("OK, but you're missing out on our benefits....");
