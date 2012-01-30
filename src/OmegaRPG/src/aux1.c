@@ -609,7 +609,10 @@ void setspot(int *x, int *y)
             break;
         }
     }
-    if (c==ESCAPE) *x = *y= ABORT;
+    if (c==ESCAPE) { 
+        *x = *y = ABORT;
+        clearmsg();
+    }
     screencheck(Player.x,Player.y);
 }
 
@@ -653,6 +656,7 @@ int getdir(void)
         case 'N':
             return(0);
         case ESCAPE:
+            clearmsg();
             return(ABORT);
         default:
             print3("That's not a direction! ");

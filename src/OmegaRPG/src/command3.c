@@ -1110,7 +1110,9 @@ void city_move(void)
     else {
         print1("Move to which establishment [? for help, ESCAPE to quit]");
         site = parsecitysite();
-        if (site != ABORT) {
+        if (site == ABORT) {
+            clearmsg1();
+        } else {
             mprint("You're on your way...");
             morewait();
             while ((x != CitySiteList[site][1]) || (y != CitySiteList[site][2])) {
@@ -1143,7 +1145,9 @@ void frobgamestatus(void)
     mprint("Set or Reset or Forget it [s,r,ESCAPE]:");
     do response = (char) mcigetc();
     while ((response != 'r') && (response != 's') && (response != ESCAPE));
-    if (response != ESCAPE) {
+    if (response == ESCAPE) {
+        clearmsg();
+    } else {
         num = (int) parsenum("Enter log2 of flag:");
         if (num > -1) {
             num = pow2(num);

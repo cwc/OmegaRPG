@@ -51,6 +51,7 @@ void editstats(void)
                 slot = move_slot(slot,to, NUMSTATS+1);
             break;
         case ESCAPE:
+            clearmsg();
             done = TRUE;
             break;
         case ' ':

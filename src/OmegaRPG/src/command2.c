@@ -128,7 +128,10 @@ void activate(void)
         }
         else setgamestatus(SKIP_MONSTERS);
     }
-    else setgamestatus(SKIP_MONSTERS);
+    else {
+        clearmsg1();
+        setgamestatus(SKIP_MONSTERS);
+    }
 }
 
 void eat (void)
@@ -644,6 +647,7 @@ void setoptions(void)
             else print3("A number is meaningless for this option.");
             break;
         case ESCAPE:
+            clearmsg();
             done = TRUE;
             break;
         default:

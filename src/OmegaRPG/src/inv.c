@@ -850,7 +850,10 @@ int aux_take_from_pack(int slot)
                 morewait();
                 ok = FALSE;
             }
-            else if (response == ESCAPE) quit = TRUE;
+            else if (response == ESCAPE) { 
+                quit = TRUE;
+                clearmsg1();
+            }
             else if (response == '+') {
                 if (last_item < Player.packptr)
                     pack_item = last_item;
@@ -903,7 +906,10 @@ int aux_top_take_from_pack(int slot, int display)
                 inv_display_munge();
                 ok = FALSE;
             }
-            else if (response == ESCAPE) quit = TRUE;
+            else if (response == ESCAPE) {
+                quit = TRUE;
+                clearmsg1();
+            }
             else {
                 ok = ((response >= 'a') && (response < 'a'+Player.packptr));
                 if (ok) ok = slottable(Player.pack[response-'a'],slot);
@@ -1098,6 +1104,7 @@ void inventory_control(void)
             inv_display_munge();
             break;
         case ESCAPE:
+            clearmsg();
             if (Player.possessions[O_UP_IN_AIR] != NULL) {
                 drop_at(Player.x,Player.y,Player.possessions[O_UP_IN_AIR]);
                 Player.possessions[O_UP_IN_AIR] = NULL;
@@ -1257,6 +1264,7 @@ void top_inventory_control(void)
             usedmenu=TRUE;
             break;
         case ESCAPE:
+            clearmsg();
             if (Player.possessions[O_UP_IN_AIR] != NULL) {
                 drop_at(Player.x,Player.y,Player.possessions[O_UP_IN_AIR]);
                 Player.possessions[O_UP_IN_AIR] = NULL;

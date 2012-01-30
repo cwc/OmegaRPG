@@ -1462,6 +1462,7 @@ int getnumber(int range)
                 value = range;
                 break;
             case ESCAPE:
+                clearmsg();
                 done = TRUE;
                 break;
             }
@@ -2027,9 +2028,8 @@ void display_inventory_slot(int slotnum, int topline)
         wprintw(W,"-- %c%c finger: ",idchar,usechar);
         break;
     }
-    if (Player.possessions[slotnum]== NULL)
-        wprintw(W,"(slot vacant)");
-    else wprintw(W,itemid(Player.possessions[slotnum]));
+    if (Player.possessions[slotnum] != NULL)
+        wprintw(W,itemid(Player.possessions[slotnum]));
     wrefresh(W);
 }
 

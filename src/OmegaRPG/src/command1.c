@@ -290,7 +290,10 @@ void p_process(void)
                 print3("Run in keypad direction [ESCAPE to abort]: ");
                 Cmd = mgetc();
             }
-            if (Cmd != ESCAPE) setgamestatus(FAST_MOVE);
+            if (Cmd != ESCAPE) 
+                setgamestatus(FAST_MOVE);
+            else
+                clearmsg3();
             break;
         case 'H':
             setgamestatus(FAST_MOVE);

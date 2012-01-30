@@ -53,7 +53,10 @@ void buyfromstock(int base, int numitems)
     while ((item != ESCAPE) &&
             ((item < 'a') || (item >= 'a'+numitems)))
         item = mgetc();
-    if (item != ESCAPE) {
+    if (item == ESCAPE) {
+        clearmsg();
+    }
+    else {
         i = item - 'a';
         newitem = ((pob) checkmalloc(sizeof(objtype)));
         *newitem = Objects[base+i];
@@ -991,9 +994,11 @@ void l_pawn_shop(void)
                 print2("Purchase which item? [ESCAPE to quit] ");
                 item = ' ';
                 while ((item != ESCAPE) &&
-                        ((item < 'a') || (item >= 'a' + PAWNITEMS)))
+                    ((item < 'a') || (item >= 'a' + PAWNITEMS)))
                     item = (char) mcigetc();
-                if (item != ESCAPE) {
+                if (item == ESCAPE) {
+                    clearmsg1(); 
+                } else {
                     i = item - 'a';
                     if (Pawnitems[i] == NULL) print3("No such item!");
                     else if (true_item_value(Pawnitems[i]) <= 0) {
