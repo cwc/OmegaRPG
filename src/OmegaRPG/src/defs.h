@@ -145,7 +145,7 @@ ERROR! - One of these should be set - edit the makefile appropriately
  * this doesn't break too many things. */
 /*#define __USE_POSIX2*/
 
-#if defined(MSDOS) || defined(WIN32)
+#if defined(MSDOS)
 #define SAVE_LEVELS
 #endif
 

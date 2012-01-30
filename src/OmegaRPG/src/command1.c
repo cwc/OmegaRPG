@@ -204,7 +204,7 @@ void p_process(void)
         case 'V':
             version();
             break;
-#if defined(MSDOS) || defined(WIN32)
+#if defined(MSDOS)
         case 'X':
             check_memory();
             break;
@@ -445,7 +445,7 @@ void p_country_process(void)
         case 'V':
             version();
             break;
-#if defined(MSDOS) || defined(WIN32)
+#if defined(MSDOS)
         case 'X':
             check_memory();
             break;

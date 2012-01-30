@@ -22,8 +22,10 @@ void signalsave(int);
 
 /* abyss.c functions */
 
-#if defined(MSDOS) || defined(WIN32)
+#ifdef MSDOS
 void check_memory( void );
+#endif
+#ifdef SAVE_LEVELS
 void kill_all_levels( void );
 void kill_levels( char * );
 void msdos_init( void );
