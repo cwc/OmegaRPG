@@ -592,7 +592,10 @@ void vault(void)
         setgamestatus(SKIP_MONSTERS);
         mprint("Jump where?");
         setspot(&x,&y);
-        if (! los_p(Player.x,Player.y,x,y))
+        
+        if (x == ABORT) // Aborted jump
+            print3("You decide to keep your feet on the ground for now.");
+        else if (!los_p(Player.x,Player.y,x,y))
             print3("The way is obstructed.");
         else if (Player.itemweight > Player.maxweight)
             print3("You are too burdened to jump anywhere.");
