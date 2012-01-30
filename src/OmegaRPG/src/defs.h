@@ -59,7 +59,7 @@ typedef int int32;
 /* Implementor should uncomment the following if omega appears to
 redraw the screen excessively. */
 
-#define EXCESSIVE_REDRAW
+//#define EXCESSIVE_REDRAW
 
 /* The following definition is recommended. Remove it only if you have
 huge amounts of disk space and are annoyed at waiting a few more seconds
