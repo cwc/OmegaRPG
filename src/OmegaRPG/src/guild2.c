@@ -208,9 +208,10 @@ void l_thieves_guild(void)
                     print1("Fence one item or go through pack? [ip] ");
                     if ((char) mcigetc()=='i') {
                         i = getitem(NULL_ITEM);
-                        if ((i==ABORT) || (Player.possessions[i] == NULL))
+                        if ((i==ABORT) || (Player.possessions[i] == NULL)) {
+                            clearmsg();
                             print2("Huh, Is this some kind of set-up?");
-                        else if (Player.possessions[i]->blessing < 0)
+                        } else if (Player.possessions[i]->blessing < 0)
                             print2("I don't want to buy a cursed item!");
                         else {
                             clearmsg();
