@@ -458,6 +458,7 @@ int getspell(void)
         mprint("Cast Spell: [type spell abbrev, ?, or ESCAPE]: ");
         spell = spellparse();
     } while (spell < ABORT);
+    clearmsg();
     return(spell);
 }
 
