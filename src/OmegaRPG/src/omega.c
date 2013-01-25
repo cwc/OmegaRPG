@@ -243,11 +243,6 @@ int game_restore(char *savefile)
     return(TRUE);
 }
 
-void signalquit(int ignore)
-{
-    quit();
-}
-
 #if !defined(MSDOS) && !defined(WIN32)
 void signalexit(int ignored)
 {

@@ -128,14 +128,8 @@ on save and restore. */
 #define VERSIONSTRING "Omega version 0.91"
 
 #ifndef WIN32
-#ifndef AMIGA
 #ifndef MSDOS
-#ifndef BSD
-#ifndef SYSV
-ERROR! - One of these should be set - edit the makefile appropriately
-#endif
-#endif
-#endif
+#define UNIX // Assuming *nix
 #endif
 #endif
 
@@ -692,12 +686,12 @@ ERROR! - One of these should be set - edit the makefile appropriately
 #define RS_PENTAGRAM ROOMBASE+28
 #define RS_OMEGA_DAIS ROOMBASE+29
 
-#if defined(MSDOS) || defined(WIN32) || defined(AMIGA)
+#if defined(MSDOS) || defined(WIN32) || defined(UNIX)
 #define CLR(fg)		COL_##fg
 #define CLRS(fg,bg)	COL_##fg|COL_BG_##bg
 #endif
 
-#if defined(MSDOS) || defined(WIN32)
+#if defined(MSDOS) || defined(WIN32) || defined(UNIX)
 
 #define COL_BLACK 0x0000
 #define COL_BLUE 0x0100

@@ -2,9 +2,18 @@ extern "C" {
 #include "glob.h"
 }
 
+#if !defined(MSDOS) && !defined(WIN32)
+#include <unistd.h>
+#endif
+
 #include "OmegaRPG.h"
 
 using namespace Omega;
+
+void signalquit(int ignore)
+{
+    quit();
+}
 
 int main(int argc, char *argv[])
 {
@@ -12,6 +21,7 @@ int main(int argc, char *argv[])
 
 #ifndef NOGETOPT
     int i;
+	bool scoresOnly = false;
 
     while(( i= getopt( argc, argv, "dsh")) != -1)
     {
@@ -23,7 +33,7 @@ int main(int argc, char *argv[])
 #endif
             break;
         case 's':
-            scores_only = 1;
+            scoresOnly = true;
             break;
         case 'h':
 #ifdef DEBUG
@@ -48,16 +58,14 @@ int main(int argc, char *argv[])
 
     if (optind >= argc ) {
         /* no save file given */
-#if defined( BSD ) || defined( SYSV )
-        sprintf( SaveFileName, "Omega%d", getuid() );
-#else
-        strcpy( SaveFileName,"Omega");
-#endif
+        game = new OmegaRPG();
     } else {
         /* savefile given */
-        continuing = 1;
-        strcpy(SaveFileName,argv[optind]);
+        game = new OmegaRPG(argv[optind]);
+        game->Continuing(true);
     }
+
+    game->ScoresOnly(scoresOnly);
 
 #else
     // Alternate code for people who don't support getopt() - no enhancement

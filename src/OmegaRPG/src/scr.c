@@ -539,7 +539,7 @@ void initgraf(void)
 #endif
 
     initscr();
-#if !defined(MSDOS) && !defined(WIN32)
+#if !defined(MSDOS) && !defined(WIN32) && !defined(UNIX)
     start_color();
 # ifndef AMIGA
     clrgen_init();
