@@ -1024,26 +1024,15 @@ void save(int force)
             ok = FALSE;
         }
 
-#if defined(MSDOS) || defined(WIN32)
+        // Check destination filename length
         if (strlen(fname) > FNAME_MAX_LEN)
         {
-            /* WDT -- copied from SYSV block below. */
             sprintf(Str1, "Save name longer than %d characters - Save aborted.",
                     FNAME_MAX_LEN);
             print1(Str1);
             ok = FALSE;
         }
-#else
-# ifdef SYSV
-        if (strlen(fname) > FNAME_MAX_LEN - 1)
-        {
-            sprintf(Str1, "Save name longer than %d characters - Save aborted.",
-                    FNAME_MAX_LEN - 1);
-            print1(Str1);
-            ok = FALSE;
-        }
-# endif
-#endif
+
         if (ok) {
             if (save_game(fname)) {
                 endgraf();

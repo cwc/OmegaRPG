@@ -8,7 +8,6 @@
 #include <sys/time.h>
 #include <sys/wait.h>
 #include <unistd.h>
-int setreuid(uid_t ruid, uid_t euid);
 #include <stdlib.h>
 #endif
 
@@ -1173,38 +1172,24 @@ int user_uid;
 
 void init_perms(void)
 {
-#if (defined(BSD) || defined(SYSV)) && !defined(__DJGPP__)
+#if defined(UNIX)
     user_uid = getuid();
     game_uid = geteuid();
 #endif
 }
 
-/*
-#ifdef BSD
-void setreuid(int, int);
-#endif
-*/
-
 void change_to_user_perms(void)
 {
-#if (defined( BSD ) || defined( SYSV )) && !defined(__EMX__) && !defined(__DJGPP__)
-#ifdef BSD
-    setreuid(game_uid, user_uid);
-#else /* SYSV */
+#ifdef UNIX
     seteuid(user_uid);
-#endif /* BSD */
-#endif /* BSD || SYSV */
+#endif
 }
 
 void change_to_game_perms(void)
 {
-#if (defined( BSD ) || defined( SYSV )) && !defined(__EMX__) && !defined(__DJGPP__)
-#ifdef BSD
-    setreuid(user_uid, game_uid);
-#else /* SYSV */
+#ifdef UNIX
     seteuid(game_uid);
-#endif /* BSD */
-#endif /* BSD || SYSV */
+#endif
 }
 
 #ifdef NO_USLEEP
