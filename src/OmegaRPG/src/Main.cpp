@@ -27,11 +27,11 @@ int main(int argc, char *argv[])
     {
         switch (i)
         {
-        case 'd':
 #ifdef DEBUG
+        case 'd':
             DG_debug_flag++;
-#endif
             break;
+#endif
         case 's':
             scoresOnly = true;
             break;
@@ -117,10 +117,6 @@ int main(int argc, char *argv[])
 #endif
 
     Omegalib = OMEGALIB;
-
-#ifndef FIXED_OMEGALIB
-    Omegalib = getenv("OMEGALIB");
-#endif
 
     // If filecheck is 0, some necessary data files are missing
     if (filecheck() == 0) exit(-1);

@@ -101,16 +101,6 @@ on save and restore. */
 
 #define TILEFILE "omegatiles.xpm"
 
-/* Comment the following line out if you want users to be able to override */
-/* the OMEGALIB define, above, by setting the environment variable OMEGALIB */
-/* (I recommend leaving this line uncommented, unless you're compiling */
-/* for someone else and don't know where they'll be putting the omegalib */
-/* directory, as is the case with compiling executables for home computers. */
-/* It would be downright insecure to comment this line out in a multi-user */
-/* environment, especially if you're going to run omega setuid.) */
-
-#define FIXED_OMEGALIB
-
 /* set WIZARD to maintainers's username */
 
 #define WIZARD "sheldon"

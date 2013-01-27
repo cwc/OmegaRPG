@@ -545,10 +545,6 @@ int filecheck(void)
             printf("\nEnvironment variable OMEGALIB badly set\n");
         else {
             printf("\nOMEGALIB may be badly #defined in defs.h\n");
-#ifndef FIXED_OMEGALIB
-            printf("\nYou can set the environment variable OMEGALIB to\n");
-            printf("the location of the omegalib directory.\n");
-#endif
         }
         return(0);
     }
