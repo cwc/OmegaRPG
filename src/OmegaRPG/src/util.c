@@ -82,7 +82,6 @@ int offscreen(int x, int y)
     return ( xyes || yyes );
 }
 
-
 /* always hit on a natural 0; never hit on a natural 19 */
 int hitp(int hit, int ac)
 {
@@ -92,13 +91,11 @@ int hitp(int hit, int ac)
     else return((roll < (hit - ac)) ? TRUE : FALSE );
 }
 
-
 /* number of moves from x1,y1 to x2,y2 */
 int distance(int x1, int y1, int x2, int y2)
 {
     return(max(abs(x2-x1),abs(y2-y1)));
 }
-
 
 /* can you shoot, or move monsters through a spot? */
 int unblocked(int x, int y)

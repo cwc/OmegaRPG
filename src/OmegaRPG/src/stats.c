@@ -113,7 +113,7 @@ void editstats(void)
         colour_on();
     else
         colour_off();
-#if !defined(MSDOS) && !defined(AMIGA)
+#if !defined(MSDOS)
     xredraw();
 #endif
 }

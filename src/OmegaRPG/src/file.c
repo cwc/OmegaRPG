@@ -374,7 +374,7 @@ void save_hiscore_npc(int npc)
     fclose(infile);
     fclose(outfile);
     unlink(Str1);
-#if defined(MSDOS) || defined(AMIGA) || defined(WIN32)
+#if defined(MSDOS) || defined(WIN32)
     rename(Str2, Str1);
 #else
     link(Str2, Str1);

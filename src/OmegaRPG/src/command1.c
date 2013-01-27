@@ -180,7 +180,7 @@ void p_process(void)
             break;
         case 'O':
             setoptions();
-#if defined(AMIGA) || defined(MSDOS)
+#if defined(MSDOS)
             show_screen();
             xredraw();
 #endif

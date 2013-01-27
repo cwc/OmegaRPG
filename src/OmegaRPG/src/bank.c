@@ -12,7 +12,7 @@
 #include "glob.h"
 
 /* swiped from scr.c */
-#if defined(MSDOS) || defined(AMIGA)
+#if defined(MSDOS)
 # define CHARATTR(c) ((c) >> 8)
 #else
 # define CHARATTR(c) ((c) & ~0xff)
