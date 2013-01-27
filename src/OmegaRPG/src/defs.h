@@ -40,8 +40,6 @@ definitions in the following section. */
  * on the bandwidth. */
 /* #define CENTER_ON_PLAYER */
 
-#define NEW_BANK
-
 /* Implementor should uncomment the following if his system uses
 string.h instead of strings.h (try man string) */
 

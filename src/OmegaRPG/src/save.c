@@ -178,17 +178,12 @@ int save_player(FILE *fd)
 {
     int i;
     int ok = 1;
-#ifdef NEW_BANK
     bank_account *account;
-#endif
 
     /* Save random global state information */
 
     Player.click = (Tick + 1)%60;
     ok &= (fwrite((char *)&Player,sizeof(Player),1,fd) > 0);
-#ifndef NEW_BANK
-    ok &= (fprintf(fd,"%s\n",Password) >= 0);
-#endif
     ok &= (fprintf(fd,"%s\n",Player.name) >= 0);
     ok &= (fwrite((char *)CitySiteList,sizeof(CitySiteList),1,fd) > 0);
     ok &= (fwrite((char *)&GameStatus,sizeof(long),1,fd) > 0);
@@ -224,7 +219,6 @@ int save_player(FILE *fd)
     ok &= (fwrite((char *)&Imprisonment,sizeof(int),1,fd) > 0);
     ok &= (fwrite((char *)&Gymcredit,sizeof(long),1,fd) > 0);
 
-#ifdef NEW_BANK
     i = 0;
     for( account = bank; account; account = account->next_account ) i++;
     ok &= ( fwrite( (char *)&i, sizeof( int ), 1, fd ) > 0 );
@@ -235,9 +229,6 @@ int save_player(FILE *fd)
         ok &= ( fwrite( (char *)(&(account->number)), sizeof(long), 1, fd ) > 0 );
         ok &= ( fprintf( fd, "%s\n", account->password ) >= 0 );
     }
-#else
-    ok &= (fwrite((char *)&Balance,sizeof(long),1,fd) > 0);
-#endif
 
     ok &= (fwrite((char *)&StarGemUse,sizeof(int),1,fd) > 0);
     ok &= (fwrite((char *)&HiMagicUse,sizeof(int),1,fd) > 0);
@@ -642,23 +633,23 @@ int restore_game(char *savestr)
 void restore_player(FILE *fd, int version)
 {
     int i;
-#ifdef NEW_BANK
+
+    // Bank information
     int num_accounts;
     bank_account *account;
     char pw_buf[ 64 ];
-#endif
 
     fread((char *)&Player,sizeof(Player),1,fd);
-#ifndef NEW_BANK
-    filescanstring(fd,Password);
-#endif
+
     filescanstring(fd,Player.name);
+
 #ifdef ALLOWING_OLD_SAVEFILES
     if( version < 91 ) /* DAG */
         fread((char *)CitySiteList,(3*OLD_NUMCITYSITES*sizeof(int)),1,fd);
     else
 #endif
-        fread((char *)CitySiteList,sizeof(CitySiteList),1,fd);
+
+	fread((char *)CitySiteList,sizeof(CitySiteList),1,fd);
     fread((char *)&GameStatus,sizeof(long),1,fd);
     fread((char *)&Current_Environment,sizeof(int),1,fd);
     fread((char *)&Last_Environment,sizeof(int),1,fd);
@@ -712,7 +703,7 @@ void restore_player(FILE *fd, int version)
     fread((char *)&Imprisonment,sizeof(int),1,fd);
     fread((char *)&Gymcredit,sizeof(long),1,fd);
 
-#ifdef NEW_BANK
+    // Read bank information
     fread( (char *)&num_accounts, sizeof( int ), 1, fd );
     for( i = 0; i < num_accounts; i++ )
     {
@@ -725,9 +716,6 @@ void restore_player(FILE *fd, int version)
         account->next_account = bank;
         bank = account;
     }
-#else
-    fread((char *)&Balance,sizeof(long),1,fd);
-#endif
 
     fread((char *)&StarGemUse,sizeof(int),1,fd);
     fread((char *)&HiMagicUse,sizeof(int),1,fd);

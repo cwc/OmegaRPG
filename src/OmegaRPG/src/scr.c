@@ -26,9 +26,7 @@
 #define wclear werase
 #endif
 
-#ifdef NEW_BANK
 WINDOW *Bankw;
-#endif
 
 /* note these variables are not exported to other files */
 
@@ -570,10 +568,11 @@ void initgraf(void)
     Msgw = Msg1w;
     Morew = newwin(1,15,3,65);
     scrollok(Morew, 0);
-#ifdef NEW_BANK
+
+    // Bank window
     Bankw = newwin( 20, 50, ( ScreenLength - 20 ) / 2 + 3, 7 );
     scrollok( Bankw, 0 );
-#endif
+
     Locw = newwin(1,80,ScreenLength+3,0);
     scrollok(Locw, 0);
     Levelw = newwin(ScreenLength,ScreenWidth,3,0);

@@ -128,28 +128,18 @@ int StarGemUse = 0;                   /* last date of star gem use */
 int HiMagicUse = 0;                   /* last date of high magic use */
 int HiMagic = 0;                      /* current level for l_throne */
 
-#ifdef NEW_BANK
 bank_account *bank = NULL;            /* ptr to a list of bank accounts */
-#else
-long Balance = 0;                     /* bank account */
-#endif
 
 long FixedPoints = 0;                 /* points are frozen after adepthood*/
 int LastTownLocX=0;            /* previous position in village or city */
 int LastTownLocY=0;            /* previous position in village or city */
 int LastCountryLocX=0;            /* previous position in countryside */
 int LastCountryLocY=0;            /* previous position in countryside */
-#ifndef NEW_BANK
+
 #if !defined(MSDOS) && !defined(WIN32)
-char Password[64];                    /* autoteller password */
+		char Str1[STRING_LEN],Str2[STRING_LEN],Str3[STRING_LEN],Str4[STRING_LEN];
 #else
-char Password[64] = {0};              /* autoteller password */
-#endif
-#endif
-#if !defined(MSDOS) && !defined(WIN32)
-char Str1[STRING_LEN],Str2[STRING_LEN],Str3[STRING_LEN],Str4[STRING_LEN];
-#else
-char Str1[STRING_LEN] = {0},Str2[STRING_LEN] = {0},Str3[STRING_LEN] = {0},Str4[STRING_LEN] = {0};
+		char Str1[STRING_LEN] = {0},Str2[STRING_LEN] = {0},Str3[STRING_LEN] = {0},Str4[STRING_LEN] = {0};
 #endif
 /* Some string space, random uses */
 

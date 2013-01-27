@@ -169,11 +169,10 @@ int main(int argc, char *argv[])
         inititem(TRUE);
         Date = random_range(360);
         Phase = random_range(24);
-#ifdef NEW_BANK
+
+        // Initialize bank
         bank_init();
-#else
-        strcpy(Password, "");
-#endif
+
         game->Continuing(initplayer()); /* RM: 04-19-2000 loading patch */
 
         game->SaveFilename(Player.name);

@@ -228,13 +228,8 @@ extern int HiMagicUse;
 extern int HiMagic;
 /* current level for l_throne */
 
-#ifdef NEW_BANK
 extern bank_account *bank;
 /* ptr to a list of bank accounts */
-#else
-extern long Balance;
-/* bank account */
-#endif
 
 extern long FixedPoints;
 /* points are frozen after adepthood*/
