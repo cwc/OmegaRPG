@@ -525,7 +525,8 @@ void initgraf(void)
 #endif
 
     initscr();
-    //start_color();
+    start_color();
+    clrgen_init();
 
     if (LINES < 24 || COLS < 80) {
         printf("Minimum Screen Size: 24 Lines by 80 Columns.");

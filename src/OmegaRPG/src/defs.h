@@ -15,11 +15,9 @@ definitions in the following section. */
 #define usleep(x) sleep(1)
 #endif
 
-#ifndef USE_SYSTEM_CURSES
-# include "curses.h"
-#else
-#  include <curses.h>
-#endif
+#include <curses.h>
+
+#include "colors.h"
 
 /* Update the display every turn to center on the player.  Rather heavy
  * on the bandwidth. */
@@ -610,35 +608,13 @@ redraw the screen excessively. */
 #define RS_OMEGA_DAIS ROOMBASE+29
 
 // Color macros
-#define CLR(fg)		COL_##fg
-#define CLRS(fg,bg)	COL_##fg|COL_BG_##bg
-
-// Colors
-#define COL_BLACK 0x0000
-#define COL_BLUE 0x0100
-#define COL_GREEN 0x0200
-#define COL_CYAN 0x0300
-#define COL_RED 0x0400
-#define COL_PURPLE 0x0500
-#define COL_BROWN 0x0600
-#define COL_WHITE 0x0700
-#define COL_GREY 0x0800
-#define COL_LIGHT_BLUE 0x0900
-#define COL_LIGHT_GREEN 0x0a00
-#define COL_LIGHT_CYAN 0x0b00
-#define COL_LIGHT_RED 0x0c00
-#define COL_LIGHT_PURPLE 0x0d00
-#define COL_YELLOW 0x0e00
-#define COL_BRIGHT_WHITE 0x0f00
-#define COL_BG_BLACK 0x0000
-#define COL_BG_BLUE 0x1000
-#define COL_BG_GREEN 0x2000
-#define COL_BG_CYAN 0x3000
-#define COL_BG_RED 0x4000
-#define COL_BG_PURPLE 0x5000
-#define COL_BG_BROWN 0x6000
-#define COL_BG_WHITE 0x7000
-#define COL_FG_BLINK 0x8000
+#ifdef OMEGA_CLRGEN // Only defined when using the color-gen utility
+#   define CLR(fg)     OMEGA_CLRGEN1 fg
+#   define CLRS(fg, bg)        OMEGA_CLRGEN2 fg bg
+#else
+#   define CLR(fg)     CLR_##fg##_BLACK
+#   define CLRS(fg, bg)        CLR_##fg##_##bg
+#endif
 
 /* objects, locations, and terrain; characters to draw */
 #define NULL_ITEM '\0'
