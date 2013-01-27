@@ -51,9 +51,7 @@ redraw the screen excessively. */
 
 /* Define the maximum length of a filename on your system.  If you don't */
 /* define, will try to make an educated guess.  If you have one,  */
-/* /usr/include/limits.h  is a good place to look for this value. */
-/* DOS needn't worry; I'm forcing its FNAME_MAX_LENGTH to 8 elsewhere
- * in this file (we'll wait for LFN support). */
+/* /usr/include/limits.h is a good place to look for this value. */
 #define FNAME_MAX_LEN 48
 
 /* OMEGALIB is where all the data files reside.
@@ -90,28 +88,11 @@ redraw the screen excessively. */
 #define VERSIONSTRING "Omega version 0.91"
 
 #ifndef WIN32
-#ifndef MSDOS
 #define UNIX // Assuming *nix
 #endif
-#endif
 
-/*
- * WDT: according to my man page, getopt should be defined in unistd.h,
- * but my compiler seems to disagree unless this is set.  I hope that
- * this doesn't break too many things. */
-/*#define __USE_POSIX2*/
-
-#if defined(MSDOS)
-#define SAVE_LEVELS
-#endif
-
-#if !defined(FNAME_MAX_LEN) || defined(MSDOS)
-# ifdef MSDOS
-#  undef FNAME_MAX_LEN
-#  define FNAME_MAX_LEN 7
-# else
+#if !defined(FNAME_MAX_LEN)
 #  define FNAME_MAX_LEN 14
-# endif
 #endif
 
 #define VACANT 0
@@ -628,13 +609,11 @@ redraw the screen excessively. */
 #define RS_PENTAGRAM ROOMBASE+28
 #define RS_OMEGA_DAIS ROOMBASE+29
 
-#if defined(MSDOS) || defined(WIN32) || defined(UNIX)
+// Color macros
 #define CLR(fg)		COL_##fg
 #define CLRS(fg,bg)	COL_##fg|COL_BG_##bg
-#endif
 
-#if defined(MSDOS) || defined(WIN32) || defined(UNIX)
-
+// Colors
 #define COL_BLACK 0x0000
 #define COL_BLUE 0x0100
 #define COL_GREEN 0x0200
@@ -660,29 +639,6 @@ redraw the screen excessively. */
 #define COL_BG_BROWN 0x6000
 #define COL_BG_WHITE 0x7000
 #define COL_FG_BLINK 0x8000
-
-#else /* !MSDOS && !WIN32 && !UNIX */
-
-# define COL_FG_BLINK A_BLINK
-
-# ifdef COLOR_PAIR
-
-#  ifdef OMEGA_CLRGEN
-#   define CLR(fg)	OMEGA_CLRGEN1 fg
-#   define CLRS(fg, bg)	OMEGA_CLRGEN2 fg bg
-#  else
-#   include "clrgen.h"
-#   define CLR(fg)	CLR_##fg##_BLACK
-#   define CLRS(fg, bg)	CLR_##fg##_##bg
-#  endif
-
-# else /* COLOR_PAIR */
-
-#  define CLR(fg)		0
-#  define CLRS(fg,bg)	0
-
-# endif /* COLOR_PAIR */
-#endif
 
 /* objects, locations, and terrain; characters to draw */
 #define NULL_ITEM '\0'
@@ -1599,12 +1555,7 @@ enum map_identifier {
 struct map_type;
 typedef struct map_type map;
 
-#if defined(MSDOS)
-typedef short Symbol;
-#else
 typedef chtype Symbol;
-#endif
-
 
 /* structure definitions */
 
@@ -1771,9 +1722,9 @@ typedef oltype *pol;
 /* The assert macro (for ANSI/ISO C).  Hopefully this will always work! */
 #include <assert.h>
 
-#if defined(MSDOS) || defined(WIN32)
+#if defined(WIN32)
 #include <time.h>
-#define getlogin() "pcuser"
+#define getlogin() "pcuser" // TODO Get the real user name
 #endif
 
 #undef sign

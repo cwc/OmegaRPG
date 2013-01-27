@@ -4,22 +4,15 @@
 /* plus a few file i/o stuff */
 /* also some in file.c */
 
-#if !defined(MSDOS) && !defined(WIN32)
+#if !defined(WIN32)
 # include <sys/types.h>
+# include <unistd.h>
 #endif
 
-#if defined(MSDOS) || defined(WIN32)
-# define CHARATTR(c)	((c) >> 8)
-#else
-# define CHARATTR(c)	((c) & ~0xff)
-#endif
+#define CHARATTR(c)	((c) & ~0xff)
 
 #include "glob.h"
 #include <ctype.h>
-
-#if !defined(MSDOS) && !defined(WIN32)
-#include <unistd.h>
-#endif
 
 #ifdef EXCESSIVE_REDRAW
 #undef wclear
@@ -202,8 +195,6 @@ void show_screen(void)
     }
 }
 
-
-
 char mgetc(void)
 {
     return(wgetch(Msgw));
@@ -214,10 +205,8 @@ int mcigetc(void)
 {
     int c;
 
-#if defined(MSDOS) || defined(WIN32)
-#ifndef DJGPP
+#if defined(WIN32)
     keypad(Msgw,TRUE);
-#endif
 #endif
     c = wgetch(Msgw);
     if ((c>=(int)'A') && (c<=(int)'Z'))
@@ -229,7 +218,6 @@ char menugetc(void)
 {
     return(wgetch(Menuw));
 }
-
 
 char lgetc(void)
 {
@@ -546,7 +534,7 @@ void initgraf(void)
     ScreenLength = LINES - 6;
     ScreenWidth = 64; /* PGM */
     Msg1w = newwin(1,80,0,0);
-    scrollok(Msg1w, 0);	/* DJGPP curses defaults to scrollable new windows */
+    scrollok(Msg1w, 0);
     Msg2w = newwin(1,80,1,0);
     scrollok(Msg2w, 0);
     Msg3w = newwin(1,80,2,0);
@@ -1410,7 +1398,7 @@ int getnumber(int range)
             clearmsg();
             wprintw(Msg1w,"How many? Change with < or >, ESCAPE to select:");
             mnumprint(value);
-#if !defined(MSDOS) && !defined(WIN32)
+#if !defined(WIN32)
             do atom=mcigetc();
             while ((atom != '<')&&(atom != '>')&&(atom!=ESCAPE));
             if ((atom=='>') && (value < range)) value++;
@@ -2229,7 +2217,7 @@ void bufferprint(void)
 {
     int i = bufferpos - 1, c, finished = 0;
     clearmsg();
-#if !defined(MSDOS) && !defined(WIN32)
+#if !defined(WIN32)
     wprintw(Msg1w,"^p for previous message, ^n for next, anything else to quit.");
 #else
     wprintw(Msg1w,"^o for last message, ^n for next, anything else to quit.");
@@ -2242,7 +2230,7 @@ void bufferprint(void)
         wprintw(Msg2w,Stringbuffer[i]);
         wrefresh(Msg2w);
         c = mgetc();
-#if !defined(MSDOS) && !defined(WIN32)
+#if !defined(WIN32)
         if (c == 16)	/* ^p */
 #else
         if (c == 15)	/* ^o */

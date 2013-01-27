@@ -2,7 +2,7 @@
 /* char.c */
 /* Player generation */
 
-#if !defined(MSDOS) && !defined(WIN32)
+#if !defined(WIN32)
 #include <sys/types.h>
 #include <unistd.h>
 #include <pwd.h>
@@ -19,15 +19,13 @@ bool initplayer(void)
     char *lname;
     int ret_value = FALSE;
 
-#if !defined(MSDOS) && !defined(WIN32)
-    struct passwd *dastuff;
-#endif
-
     lname = getlogin();
 
-#if !defined(MSDOS) && !defined(WIN32)
+#if !defined(WIN32)
     if (!lname || strlen(lname) == 0)
     {
+        struct passwd *dastuff;
+
         dastuff = getpwuid(getuid());
         lname = dastuff->pw_name;
     }
@@ -58,11 +56,7 @@ bool initplayer(void)
     if ((fd=omegarc_check())!=NULL) {
         fread((char *)&i,sizeof(int),1,fd);
         if (i != VERSION) {
-#if defined(MSDOS)
-            print1("Out of date omega.rc! Make another!");
-#else
             print1("Out of date .omegarc! Make another!");
-#endif
             morewait();
         }
         else {
@@ -99,14 +93,10 @@ bool initplayer(void)
 FILE *omegarc_check(void)
 {
     FILE *fd;
-#if defined(MSDOS)
-    if ((fd = fopen("omega.rc","rb")) != NULL) {
-        print2("Use omega.rc character record in current directory? [yn] ");
-#else
+
     sprintf(Str1, "%s/.omegarc", getenv("HOME"));
     if ((fd = fopen(Str1,"r")) != NULL) {
         print2("Use .omegarc in home directory? [yn] ");
-#endif
         if (ynq2()!='y') {
             fclose(fd);
             fd = NULL;
@@ -140,11 +130,7 @@ int initstats(void)
         clearmsg(); /* RM 04-19-2000 loading patch - fix the display */
         user_character_stats();
         user_intro();
-#if defined(MSDOS)
-        print1("Do you want to save this set-up to omega.rc in this directory? [yn] ");
-#else
         print1("Do you want to save this set-up to .omegarc in your home directory? [yn] ");
-#endif
         if (ynq1()=='y')
             save_omegarc();
     }
@@ -157,18 +143,11 @@ void save_omegarc(void)
     int i=VERSION;
     FILE *fd;
     change_to_user_perms();
-#if defined(MSDOS)
-    fd = fopen("omega.rc","wb");
-#else
     sprintf(Str1, "%s/.omegarc", getenv("HOME"));
+
     fd = fopen(Str1,"w");
-#endif
     if (fd == NULL)
-#if defined(MSDOS)
-        print1("Sorry, couldn't save omega.rc for some reason.");
-#else
         print1("Sorry, couldn't save .omegarc for some reason.");
-#endif
     else {
         fwrite((char *)&i,sizeof(int),1,fd);
         print1("First, set options.");

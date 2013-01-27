@@ -471,7 +471,7 @@ void m_movefunction(pmt m, int movef)
         }
 }
 
-#if defined(MSDOS) || defined(WIN32)
+#if defined(WIN32)
 /* ****Moved here from another file**** */
 /* if signp is true, always print message, otherwise do so only sometimes */
 void sign_print(int x, int y, int signp)

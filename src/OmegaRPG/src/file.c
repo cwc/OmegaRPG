@@ -3,7 +3,7 @@
 /* functions with file access in them. Also some direct calls to
    curses functions */
 
-#if !defined(MSDOS) && !defined(WIN32)
+#if !defined(WIN32)
 # include <sys/types.h>
 # include <unistd.h>
 # include <sys/file.h>
@@ -143,7 +143,7 @@ void showmotd(void)
 
 void lock_score_file(void)
 {
-#if !defined(MSDOS) && !defined(WIN32)
+#if !defined(WIN32)
     int lock;
     int thispid;
     int lastpid = 0;
@@ -196,7 +196,7 @@ void lock_score_file(void)
 
 void unlock_score_file(void)
 {
-#if !defined(MSDOS) && !defined(WIN32)
+#if !defined(WIN32)
     strcpy(Str1,Omegalib);
     strcat(Str1,"omega.hi.lock");
     unlink(Str1);
@@ -297,11 +297,8 @@ void save_hiscore_npc(int npc)
     strcat(Str1,"omega.hi");
     infile = checkfopen(Str1,"rb");
     strcpy(Str2,Omegalib);
-#ifdef MSDOS
-    strcat(Str2,"omegahi.new");	/* stupid 8.3 msdos filename limit */
-#else
     strcat(Str2,"omega.hi.new");
-#endif
+
     outfile = checkfopen(Str2,"wb");
     for (i = 0; i < 17; i++) {
         if (npc == i) {
@@ -374,7 +371,7 @@ void save_hiscore_npc(int npc)
     fclose(infile);
     fclose(outfile);
     unlink(Str1);
-#if defined(MSDOS) || defined(WIN32)
+#if defined(WIN32)
     rename(Str2, Str1);
 #else
     link(Str2, Str1);
@@ -439,9 +436,7 @@ void extendlog(char *descrip, int lifestatus)
     }
 }
 
-
-
-#if !defined(MSDOS) && !defined(WIN32)
+#if !defined(WIN32)
 /* reads a string from a file. If it is a line with more than 80 char's,
    then remainder of line to \n is consumed */
 void filescanstring(FILE *fd, char *fstr)
@@ -460,7 +455,7 @@ void filescanstring(FILE *fd, char *fstr)
 }
 #endif
 
-#if defined(MSDOS) || defined(WIN32)
+#if defined(WIN32)
 int test_file_access(char *file_name, char mode)
 {
     FILE *fd;

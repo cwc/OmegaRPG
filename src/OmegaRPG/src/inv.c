@@ -636,7 +636,6 @@ int getitem_prompt (char * prompt, Symbol itype)
     return key_to_index(key);
 }
 
-
 /* true if the numerical index based on 'a' == 1 turns out to be either
 out of the range of the possessions array or a null item */
 int badobject(char slotchar)
@@ -646,8 +645,7 @@ int badobject(char slotchar)
     else return(Player.possessions[slot] == NULL);
 }
 
-
-#if !defined(MSDOS) && !defined(WIN32)
+#if !defined(WIN32)
 /* this takes the numerical index directly for the same effect as badobject*/
 int baditem(int slotnum)
 {
@@ -655,8 +653,6 @@ int baditem(int slotnum)
     else return(Player.possessions[slotnum] == NULL);
 }
 #endif
-
-
 
 /* formerly add_item_to_pack */
 void gain_item(pob o)
@@ -926,8 +922,7 @@ int take_from_pack(int slot, int display)
     else return aux_take_from_pack(slot);
 }
 
-
-#if !defined(MSDOS) && !defined(WIN32)
+#if !defined(WIN32)
 /* General interface to inventory */
 void item_inventory(int topline)
 {
@@ -938,7 +933,6 @@ void item_inventory(int topline)
     else top_inventory_control();
 }
 #endif
-
 
 void do_inventory_control(void)
 {
@@ -959,9 +953,11 @@ void inventory_control(void)
     int slot = O_UP_IN_AIR,done=FALSE;
     int response;
     char letter;
-#if defined(MSDOS) || defined(WIN32)
+
+#if defined(WIN32)
     int simple = 0;
 #endif
+
     /* Start out assuming that we'll need to redraw. */
     inv_display_munge();
     clearmsg3();

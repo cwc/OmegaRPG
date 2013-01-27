@@ -3,7 +3,7 @@
 
 /* This file contains toplevel commands called from command1.c */
 
-#if !defined(MSDOS) && !defined(WIN32)
+#if !defined(WIN32)
 #include <unistd.h>
 #include <ctype.h>
 #endif
@@ -198,27 +198,6 @@ void pickup(void)
     else
         pickup_at(Player.x,Player.y);
 }
-
-#if !defined(MSDOS) && !defined(WIN32)
-/* floor inventory */
-void floor_inv(void)
-{
-    pol ol = Level->site[Player.x][Player.y].things;
-    setgamestatus(SKIP_MONSTERS);
-    menuclear();
-    while (ol != NULL) {
-        if (ol->thing == NULL) print3("***Error; null thing on things list***");
-        else {
-            menuprint(itemid(ol->thing));
-            menuprint("\n");
-        }
-        ol = ol->next;
-    }
-    showmenu();
-    morewait();
-    xredraw();
-}
-#endif
 
 void drop(void)
 {
@@ -655,9 +634,8 @@ void setoptions(void)
         colour_on();
     else
         colour_off();
-#if !defined(MSDOS)
+
     xredraw();
-#endif
 }
 
 /* name an item */
@@ -1009,7 +987,7 @@ void save(int force)
             strcpy(fname, g_saveFileName);
         }
 
-#if defined(MSDOS) || defined(WIN32)
+#if defined(WIN32)
         for (pos = 0; fname[pos] && isalnum(fname[pos]); pos++)
             ;
 #else

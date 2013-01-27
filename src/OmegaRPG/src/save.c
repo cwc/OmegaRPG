@@ -1,7 +1,7 @@
 /* omega copyright (c) 1987,1988,1989 by Laurence Raphael Brothers */
 /* save.c */
 
-#if !defined(MSDOS) && !defined(WIN32)
+#if !defined(WIN32)
 #include <unistd.h>
 #include <stdlib.h>
 #endif
@@ -33,7 +33,7 @@ int save_game(char *savestr)
     int i,writeok=TRUE;
     plv current, save;
 
-#if !defined(MSDOS) && !defined(WIN32)
+#if !defined(WIN32)
     int slashpos;
 
     if (access(savestr, R_OK) == 0)
@@ -484,7 +484,6 @@ int ok_outdated(int version)
 #endif /* #if 0 */
 }
 
-
 /* read player data, city level, dungeon level,
    check on validity of save file, etc.
    return TRUE if game restored, FALSE otherwise */
@@ -494,7 +493,7 @@ int restore_game(char *savestr)
     int i,version;
     FILE *fd;
 
-#if !defined(MSDOS) && !defined(WIN32)
+#if !defined(WIN32)
     if (access(savestr, F_OK|R_OK|W_OK) == -1) /* access uses real uid */
     {
         print1("Unable to access save file: ");

@@ -647,9 +647,7 @@ void l_brothel(void)
     }
 }
 
-
-
-#if !defined(MSDOS) && !defined(WIN32)
+#if !defined(WIN32)
 /* if signp is true, always print message, otherwise do so only sometimes */
 void sign_print(int x, int y, int signp)
 {

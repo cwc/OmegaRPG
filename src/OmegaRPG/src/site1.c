@@ -2,7 +2,7 @@
 /* site1.c */
 /* 1st half of site functions and aux functions to them */
 
-#if !defined(MSDOS) && !defined(WIN32)
+#if !defined(WIN32)
 #include <unistd.h>
 #endif
 

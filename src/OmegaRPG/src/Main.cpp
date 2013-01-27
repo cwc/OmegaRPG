@@ -2,7 +2,7 @@ extern "C" {
 #include "glob.h"
 }
 
-#if !defined(MSDOS) && !defined(WIN32)
+#if !defined(WIN32)
 #include <unistd.h>
 #endif
 
@@ -85,7 +85,7 @@ int main(int argc, char *argv[])
     signal(SIGHUP,signalsave);
 #endif
 
-#if !defined(MSDOS) && !defined(WIN32)
+#if !defined(WIN32)
     if (CATCH_SIGNALS) {
         signal(SIGQUIT,signalexit);
         signal(SIGILL,signalexit);
@@ -124,7 +124,7 @@ int main(int argc, char *argv[])
     // All kinds of initialization
     init_perms();
     initgraf();
-#if !defined(MSDOS) && !defined(WIN32)
+#if !defined(WIN32)
     initdirs();
 #endif
     initrand(E_RANDOM, 0);

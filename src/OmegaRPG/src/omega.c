@@ -5,7 +5,7 @@
 
 #include "glob.h"
 
-#if !defined(MSDOS) && !defined(WIN32)
+#if !defined(WIN32)
 #include <signal.h>
 #include <fcntl.h>
 #include <time.h>
@@ -31,14 +31,14 @@ int DG_debug_flag = 0; /* debug flag -- set by -d commandline option */
 /* Objects and Monsters are allocated and initialized in init.c */
 
 /* one of each spell */
-#if !defined(MSDOS) && !defined(WIN32)
+#if !defined(WIN32)
 struct spell Spells[NUMSPELLS+1];
 #else
 struct spell Spells[NUMSPELLS+1] = {0};
 #endif
 
 /* locations of city sites [0] - found, [1] - x, [2] - y */
-#if !defined(MSDOS) && !defined(WIN32)
+#if !defined(WIN32)
 int CitySiteList[NUMCITYSITES][3];
 #else
 int CitySiteList[NUMCITYSITES][3] = {0};
@@ -51,12 +51,12 @@ int WIDTH=MAXWIDTH;
 long GameStatus=0L;                   /* Game Status bit vector */
 int ScreenLength = 0;                 /* How large is level window */
 int ScreenWidth = 0;                 /* How large is level window */
-#if !defined(MSDOS) && !defined(WIN32)
+#if !defined(WIN32)
 struct player Player;                 /* the player */
 #else
 struct player Player = {0};           /* the player */
 #endif
-#if !defined(MSDOS) && !defined(WIN32)
+#if !defined(WIN32)
 struct terrain Country[COUNTRY_WIDTH][COUNTRY_LENGTH];/* The countryside */
 #else
 struct terrain Country[COUNTRY_WIDTH][COUNTRY_LENGTH] = {0};/* The countryside */
@@ -75,7 +75,7 @@ int MaxDungeonLevels = 0;             /* Deepest level allowed in dungeon */
 int Current_Dungeon= -1;              /* What is Dungeon now */
 int Current_Environment= E_CITY;      /* Which environment are we in */
 int Last_Environment= E_COUNTRYSIDE;  /* Which environment were we in */
-#if !defined(MSDOS) && !defined(WIN32)
+#if !defined(WIN32)
 int Dirs[2][9];                       /* 9 xy directions */
 #else
 int Dirs[2][9]=                       /* 9 xy directions */
@@ -136,7 +136,7 @@ int LastTownLocY=0;            /* previous position in village or city */
 int LastCountryLocX=0;            /* previous position in countryside */
 int LastCountryLocY=0;            /* previous position in countryside */
 
-#if !defined(MSDOS) && !defined(WIN32)
+#if !defined(WIN32)
 		char Str1[STRING_LEN],Str2[STRING_LEN],Str3[STRING_LEN],Str4[STRING_LEN];
 #else
 		char Str1[STRING_LEN] = {0},Str2[STRING_LEN] = {0},Str3[STRING_LEN] = {0},Str4[STRING_LEN] = {0};
@@ -147,7 +147,7 @@ pol Condoitems=NULL;                        /* Items in condo */
 pol Bagitems=NULL;                          /* Items in bag of holding */
 
 /* high score names, levels, behavior */
-#if !defined(MSDOS) && !defined(WIN32)
+#if !defined(WIN32)
 int Shadowlordbehavior,Archmagebehavior,Primebehavior,Commandantbehavior;
 int Championbehavior,Priestbehavior[7],Hibehavior,Dukebehavior;
 int Chaoslordbehavior,Lawlordbehavior,Justiciarbehavior;
@@ -171,7 +171,7 @@ char Champion[80] = {0},Priest[7][80] = {0},Hiscorer[80] = {0},Hidescrip[80] = {
 char Chaoslord[80] = {0},Lawlord[80] = {0},Justiciar[80] = {0};
 int Shadowlordlevel = 0,Archmagelevel = 0,Primelevel = 0,Commandantlevel = 0,Dukelevel = 0;
 #endif
-#if !defined(MSDOS) && !defined(WIN32)
+#if !defined(WIN32)
 int Championlevel,Priestlevel[7],Hilevel,Justiciarlevel;
 #else
 int Championlevel = 0,Priestlevel[7] = {0},Hilevel = 0,Justiciarlevel = 0;
@@ -233,7 +233,7 @@ int game_restore(char *savefile)
     return(TRUE);
 }
 
-#if !defined(MSDOS) && !defined(WIN32)
+#if !defined(WIN32)
 void signalexit(int ignored)
 {
     clearmsg();

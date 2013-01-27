@@ -8,7 +8,7 @@
  * membership, alignment, and so on
  */
 
-#if !defined(MSDOS) && !defined(WIN32)
+#if !defined(WIN32)
 #include <unistd.h>
 #include <ctype.h>
 #endif
@@ -113,8 +113,7 @@ void editstats(void)
         colour_on();
     else
         colour_off();
-#if !defined(MSDOS)
+
     xredraw();
-#endif
 }
 

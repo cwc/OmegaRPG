@@ -4,7 +4,7 @@
 
 #include "glob.h"
 
-#if !defined(WIN32) && !defined(MSDOS)
+#if !defined(WIN32)
 #include <unistd.h> /* usleep */
 #endif
 
@@ -478,7 +478,7 @@ void l_raise_portcullis(void)
 void l_arena_exit(void)
 {
     resetgamestatus(ARENA_MODE);
-#if !defined(MSDOS) && !defined(WIN32)
+#if !defined(WIN32)
     free_level(Level);
 #endif
     Level = NULL;
@@ -493,7 +493,7 @@ void l_house_exit(void)
         if (cinema_confirm("You're about to step out of this abode.") != 'y')
             return;
     }
-#if !defined(MSDOS) && !defined(WIN32)
+#if !defined(WIN32)
     free_level(Level);
 #endif
     Level = NULL;

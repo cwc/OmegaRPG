@@ -4,16 +4,13 @@
 
 #include "glob.h"
 
-#if defined(MSDOS) || defined(WIN32)
+#if defined(WIN32)
 #include <sys/types.h>
 #include <malloc.h>
+
 #ifdef SAVE_LEVELS
-#include <sys/timeb.h>
-#ifdef WIN32
-# include <io.h>
-#else
-# include <dos.h>
-#endif
+#	include <sys/timeb.h>
+#	include <io.h>
 #endif
 #endif
 
@@ -124,16 +121,6 @@ void kill_levels(char *str)
 {
     int i;
 
-#ifndef WIN32 // Must be MSDOS
-    struct find_t buf;
-
-    sprintf(Str1,"%s%s",Omegalib,str);
-    for (i = _dos_findfirst(Str1,_A_NORMAL,&buf); !i; i = _dos_findnext(&buf))
-    {
-        sprintf(Str2,"%s%s",Omegalib,buf.name);
-        remove(Str2);
-    }
-#else // Windows
     struct _finddata_t buf;
 
     sprintf(Str1, "%s%s", Omegalib, str);
@@ -142,34 +129,6 @@ void kill_levels(char *str)
         sprintf(Str2, "%s%s", Omegalib, buf.name);
         remove(Str2);
     }
-#endif
-}
-
-#define MEM_CHECK_AMOUNT 0xf000
-void check_memory(void)
-{
-    char *mems[50];
-    long amount = 0;
-    int num_mems = 0;
-    unsigned try;
-
-    sprintf(Str1,"Heapchk returned %d.",_heapchk());
-    mprint(Str1);
-
-    try = MEM_CHECK_AMOUNT;
-    while (try > 10000)
-        {
-            while (try > 0 && (mems[num_mems] = checkmalloc(try)) == NULL)
-                    try -= 0x400;
-            amount += try;
-            num_mems++;
-        }
-    while (--num_mems >= 0)
-        if (mems[num_mems] != NULL)
-            free(mems[num_mems]);
-
-    sprintf(Str1,"Free mem approx %dK",(int)(amount / 0x400));
-    mprint(Str1);
 }
 
 static FILE *open_levfile(int env, int depth, int rw)
@@ -211,19 +170,4 @@ plv msdos_changelevel(plv oldlevel, int newenv, int newdepth)
     return(NULL);
 }
 
-#endif
-
-#ifdef DJGPP
-
-void check_memory(void)
-{
-    clear_screen();
-    print1("There should be over 300 K free on the drive.");
-    print2("Save _before_ the free space gets below 300 K.");
-    morewait();
-    system("dir");
-    morewait();
-    clear_screen();
-    xredraw();
-}
 #endif

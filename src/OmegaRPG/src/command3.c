@@ -4,7 +4,7 @@
 /* This file contains some more top level command functions
    called from command1.c */
 
-#if !defined(MSDOS) && !defined(WIN32)
+#if !defined(WIN32)
 #include <pwd.h>
 #include <unistd.h>
 #endif
@@ -194,20 +194,11 @@ void help(void)
     menuprint("k: Options Settings\n");
     menuprint("l: Dungeon/City/Other Command List\n");
     menuprint("m: Countryside Command List\n");
-#if !defined(MSDOS)
     menuprint("n: Everything\n");
-#endif
     menuprint("ESCAPE: Forget the whole thing.");
     showmenu();
     do
         c = (char) mcigetc();
-#if defined(MSDOS)
-    while ((c < 'a' || c > 'm') && c != ESCAPE);
-    if (c != ESCAPE) {
-        sprintf(filestr, "%shelp%d.txt", Omegalib, c+1-'a');
-        displayfile(filestr);
-    }
-#else
     while ((c < 'a' || c > 'n') && c != ESCAPE);
     if (c == 'n') {
         if (cinema_confirm("I'm about to copy all help files into 'omega.doc'.")=='y') {
@@ -238,7 +229,7 @@ void help(void)
             displayfile(filestr);
         else if (c == 'c') copyfile(filestr);
     }
-#endif
+
     xredraw();
 }
 
@@ -536,7 +527,7 @@ void charid(void)
 void wizard(void)
 {
     char *lname;
-#if !defined(MSDOS) && !defined(WIN32)
+#if !defined(WIN32)
     struct passwd *dastuff;
 #endif
 
@@ -547,7 +538,7 @@ void wizard(void)
         if (cinema_confirm("You just asked to enter wizard mode.")=='y') {
             lname = getlogin();
 
-#if !defined(MSDOS) && !defined(WIN32)
+#if !defined(WIN32)
             if (!lname || strlen(lname) == 0)
             {
                 dastuff = getpwuid(getuid());

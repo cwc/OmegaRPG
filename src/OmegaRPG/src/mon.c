@@ -1407,29 +1407,24 @@ void strengthen_death(pmt m)
 {
     pol ol = ((pol)checkmalloc(sizeof(oltype)));
     pob scythe = ((pob)checkmalloc(sizeof(objtype)));
-#if defined(MSDOS) || defined(WIN32)
-    unsigned tmp;
-#endif
+
     m->xpv += min(10000,m->xpv+1000);
     m->hit += min(1000,m->hit+10);
     m->dmg = min(10000,m->dmg*2);
     m->ac += min(1000,m->ac+10);
     m->speed = max(m->speed-1,1);
     m->movef = M_MOVE_SMART;
-#if !defined(MSDOS) && !defined(WIN32)
-    m->hp = min(100000,100+m->dmg*10);
-#else
+
     /* In order not to have to make the hp's into longs or unsigned,
        which would involve lots of changes, I'll make it max out at 30000. */
-    tmp = 100+m->dmg*10;
+    unsigned tmp = 100+m->dmg*10;
     m->hp = (tmp > 30000) ? 30000 : tmp;
-#endif
+
     *scythe = Objects[OB_SCYTHE_DEATH];
     ol->thing = scythe;
     ol->next = NULL;
     m->possessions = ol;
 }
-
 
 void m_no_op(pmt m)
 {

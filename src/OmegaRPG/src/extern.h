@@ -22,9 +22,6 @@ void signalsave(int);
 
 /* abyss.c functions */
 
-#ifdef MSDOS
-void check_memory( void );
-#endif
 #ifdef SAVE_LEVELS
 void kill_all_levels( void );
 void kill_levels( char * );
@@ -304,7 +301,7 @@ void learnclericalspells( int,int );
 
 /* file.c functions */
 
-#if !defined(MSDOS) && !defined(WIN32)
+#if !defined(WIN32)
 void lock_score_file( void );
 void unlock_score_file( void );
 #endif
@@ -321,7 +318,7 @@ void copyfile( char * );
 void displayfile( char * );
 void displaycryptfile( char * );
 void extendlog( char *,int );
-void filescanstring( FILE *,char * );	/* in util.c if MSDOS defined */
+void filescanstring( FILE *,char * );
 void inv_help( void );
 void save_hiscore_npc( int );
 void show_license( void );
@@ -611,7 +608,7 @@ void i_serenity( pob );
 
 /* lev.c functions */
 
-int difficulty( void );	/* this function in util.c if MSDOS defined */
+int difficulty( void );
 pmt m_create( int,int,int,int );
 pmt make_creature( int );
 void make_country_monsters( Symbol );
@@ -743,7 +740,7 @@ void stationcheck( void );
 
 void m_movefunction( struct monster *,int );
 void p_movefunction( int );
-void sign_print( int,int,int );	/* this function in site1.c if MSDOS defined */
+void sign_print( int,int,int );
 
 /* mspec.c functions */
 

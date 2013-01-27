@@ -50,11 +50,12 @@ void p_process(void)
             break; /* ^i */
         case 11:
             if (gamestatusp(CHEATED)) frobgamestatus();
+            break;
         case 12:
             xredraw();
             setgamestatus(SKIP_MONSTERS);
             break; /* ^l */
-#if !defined(MSDOS) && !defined(WIN32)
+#if !defined(WIN32)
         case 16:
             bufferprint();
             setgamestatus(SKIP_MONSTERS);
@@ -180,7 +181,7 @@ void p_process(void)
             break;
         case 'O':
             setoptions();
-#if defined(MSDOS)
+#if defined(WIN32)
             show_screen();
             xredraw();
 #endif
@@ -204,11 +205,6 @@ void p_process(void)
         case 'V':
             version();
             break;
-#if defined(MSDOS)
-        case 'X':
-            check_memory();
-            break;
-#endif
         case 'Z':
             bash_item();
             Command_Duration = Player.speed*10/5;
@@ -375,7 +371,7 @@ void p_country_process(void)
             xredraw();
             no_op = TRUE;
             break; /* ^l */
-#if !defined(MSDOS) && !defined(WIN32)
+#if !defined(WIN32)
         case 16:
             bufferprint();
             no_op = TRUE;
@@ -444,11 +440,6 @@ void p_country_process(void)
         case 'V':
             version();
             break;
-#if defined(MSDOS)
-        case 'X':
-            check_memory();
-            break;
-#endif
         case '>':
             enter_site(Country[Player.x][Player.y].base_terrain_type);
             break;

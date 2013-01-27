@@ -56,7 +56,7 @@ extern int ScreenWidth;
 extern struct terrain Country[COUNTRY_WIDTH][COUNTRY_LENGTH];
 /* The countryside */
 
-#if defined(MSDOS) || defined(WIN32)
+#if defined(WIN32)
 extern struct level TheLevel;
 #endif
 

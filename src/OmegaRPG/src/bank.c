@@ -5,18 +5,14 @@
 #include <ctype.h>
 #include <limits.h>
 
-#if !defined(WIN32) && !defined(MSDOS)
+#if !defined(WIN32)
 #include <unistd.h>
 #endif
 
 #include "glob.h"
 
 /* swiped from scr.c */
-#if defined(MSDOS)
-# define CHARATTR(c) ((c) >> 8)
-#else
-# define CHARATTR(c) ((c) & ~0xff)
-#endif
+#define CHARATTR(c) ((c) & ~0xff)
 
 /* defined in scr.c */
 extern WINDOW *Bankw;

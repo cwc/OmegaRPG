@@ -3,7 +3,7 @@
 
 /* Random utility functions called from all over */
 
-#if !defined(MSDOS) && !defined(WIN32)
+#if !defined(WIN32)
 #include <sys/types.h>
 #include <sys/time.h>
 #include <sys/wait.h>
@@ -201,7 +201,7 @@ int view_unblocked(int x, int y)
 }
 
 
-#if !defined(MSDOS) && !defined(WIN32)
+#if !defined(WIN32)
 /* 8 moves in Dirs */
 void initdirs(void)
 {
@@ -225,10 +225,6 @@ void initdirs(void)
     Dirs[1][8] = 0;
 }
 #endif
-
-
-
-
 
 /* do_los moves pyx along a lineofsight from x1 to x2 */
 /* x1 and x2 are pointers because as a side effect they are changed */
@@ -452,7 +448,7 @@ int view_los_p(int x1, int y1, int x2, int y2)
     return((x1==x2) && (y1==y2));
 }
 
-#if !defined(MSDOS) && !defined(WIN32)
+#if !defined(WIN32)
 /* returns the command direction from the index into Dirs */
 char inversedir(int dirindex)
 {
@@ -1048,7 +1044,7 @@ char *salloc(char *str)
     return(s);
 }
 
-#if defined(MSDOS) || defined(WIN32)
+#if defined(WIN32)
 /* ****Moved here from another file**** */
 /* reads a string from a file. If it is a line with more than 80 char's,
    then remainder of line to \n is consumed */
@@ -1068,7 +1064,7 @@ void filescanstring(FILE *fd, char *fstr)
 }
 #endif
 
-#if defined(MSDOS) || defined(WIN32)
+#if defined(WIN32)
 /* ****Moved here from another file**** */
 /* returns a "level of difficulty" based on current environment
    and depth in dungeon. Is somewhat arbitrary. value between 1 and 10.
