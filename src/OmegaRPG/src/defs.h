@@ -25,10 +25,6 @@ definitions in the following section. */
 # endif
 #endif
 
-/* Some minor quote changes...  This #define should be removed after some
- * public review, and the acceptable changes made permanent. */
-#define NEW_QUOTES
-
 /* A few parody quotes...  These have to be checked to make sure that they
  * make sense even if you don't know what they're parodying. */
 #define TRADEMARK_VIOLATION

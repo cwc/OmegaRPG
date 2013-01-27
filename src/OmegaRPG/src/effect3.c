@@ -900,11 +900,7 @@ void polymorph(int blessing)
         mprint(Str2);
         mprint(Monsters[rnd].monstring);
         mprint("But your game is over....");
-#ifdef NEW_QUOTES
         p_death("autopolymorphosis");
-#else
-        p_death("polymorphing oneself");
-#endif
     }
     else if ((m=Level->site[x][y].creature) == NULL)
         mprint("Nothing happens.");

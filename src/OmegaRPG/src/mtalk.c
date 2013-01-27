@@ -97,11 +97,7 @@ void m_talk_druid(pmt m)
 
 void m_talk_silent(pmt m)
 {
-#ifdef NEW_QUOTES
     int reply = random_range(8);
-#else
-    int reply = random_range(4);
-#endif
     if (m->uniqueness == COMMON) {
         strcpy(Str2,"The ");
         strcat(Str2,m->monstring);
@@ -253,15 +249,11 @@ void m_talk_guard(pmt m)
         }
         else if (Player.rank[ORDER]>0)
             print1("'Greetings comrade! May you always tread the paths of Law.'");
-#ifdef NEW_QUOTES
         else {
             if (random_range(2))
                 print1("Move it right along, stranger!");
             else print1("Nothing to see here.");
         }
-#else
-        else print1("Move it right along, stranger!");
-#endif
     }
 }
 

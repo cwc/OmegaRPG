@@ -45,16 +45,12 @@ void p_hit (struct monster *m,int dmg,int dtype)
     default:
         dmult=1;
         if (random_range(10)) strcpy(Str3,"You hit ");
-#ifdef NEW_QUOTES
         else switch(random_range(12)) {
-#else
-        else switch(random_range(4)) {
-#endif
             case 0:
                 strcpy(Str3,"You damage ");
                 break;
             case 1:
-                strcpy(Str3,"You inflict bodily harm on ");
+                strcpy(Str3,"You inflict bodily harm upon ");
                 break;
             case 2:
                 strcpy(Str3,"You injure ");

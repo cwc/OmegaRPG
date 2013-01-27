@@ -409,11 +409,7 @@ void invisible(int blessing)
         Player.status[INVISIBLE]+= 2+5*blessing;
     }
     else {
-#ifdef NEW_QUOTES
         mprint("You feel endangered!");
-#else
-        mprint("You feel dangerous!");
-#endif
         Player.status[VULNERABLE] +=
             random_range(10)+1;
     }
