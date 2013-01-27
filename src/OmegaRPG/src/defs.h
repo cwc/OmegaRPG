@@ -25,10 +25,6 @@ definitions in the following section. */
 # endif
 #endif
 
-/* A few parody quotes...  These have to be checked to make sure that they
- * make sense even if you don't know what they're parodying. */
-#define TRADEMARK_VIOLATION
-
 /* Update the display every turn to center on the player.  Rather heavy
  * on the bandwidth. */
 /* #define CENTER_ON_PLAYER */

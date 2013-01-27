@@ -7,11 +7,12 @@
 
 void s_nutrition(void)
 {
-#ifdef TRADEMARK_VIOLATION
-    mprint("Magically Delicious!");
-#else
-    mprint("Scrumptious!");
-#endif
+	if (random_range(3)) {
+		mprint("Magically Delicious!");
+	} else {
+		mprint("Scrumptious!");
+	}
+
     Player.food = 44;
     foodcheck();
 }

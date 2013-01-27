@@ -315,11 +315,13 @@ void m_death(pmt m)
                 }
                 break;
             case 16:
-#ifdef TRADEMARK_VIOLATION /* paraphrase of harlan ellison... ? PGM */
-                mprint("It doesn't rain this day, anywhere in the known universe.");
-#else
-                mprint("The universal equilibrium slides down a notch.");
-#endif
+            	if (random_range(3)) {
+            		/* paraphrase of harlan ellison... ? PGM */
+            		mprint("It doesn't rain this day, anywhere in the known universe.");
+            	} else {
+            		mprint("The universal equilibrium slides down a notch.");
+            	}
+
                 strcpy(Grandmaster,nameprint());
                 Grandmasterbehavior = 2933;
                 break;
