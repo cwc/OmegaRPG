@@ -195,7 +195,7 @@ void p_process(void)
             rename_player();
             break;
         case 'S':
-            save(optionp(COMPRESS_OPTION), FALSE);
+            save(FALSE);
             break;
         case 'T':
             tunnel();
@@ -353,10 +353,6 @@ void p_process(void)
     screencheck(Player.x,Player.y);
 }
 
-
-
-
-
 /* deal with a new player command in countryside mode */
 void p_country_process(void)
 {
@@ -443,7 +439,7 @@ void p_country_process(void)
             rename_player();
             break;
         case 'S':
-            save(optionp(COMPRESS_OPTION), FALSE);
+            save(FALSE);
             break;
         case 'V':
             version();

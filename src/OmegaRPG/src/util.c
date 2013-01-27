@@ -1038,7 +1038,7 @@ void *checkmalloc(unsigned int bytes)
     else {
         print1("Out of memory!  Saving and quitting.");
         morewait();
-        save(FALSE, TRUE);
+        save(TRUE);
         endgraf();
         exit(0);
     }

@@ -17,10 +17,6 @@
 /*The game remembers various player information, the city level,
 the country level, and the last or current dungeon level */
 
-#if defined(MSDOS) || defined(WIN32) || defined(AMIGA)
-void do_compression(int, char *);
-#endif
-
 /**************** SAVE FUNCTIONS */
 
 /* Checks to see if save file already exists.
@@ -28,7 +24,7 @@ void do_compression(int, char *);
    The player, the city level, and the current dungeon level are saved.
 */
 
-int save_game(int compress, char *savestr)
+int save_game(char *savestr)
 {
     FILE *fd;
 #ifdef SAVE_LEVELS
@@ -36,9 +32,6 @@ int save_game(int compress, char *savestr)
 #endif
     int i,writeok=TRUE;
     plv current, save;
-#ifdef COMPRESS_SAVE_FILES
-    char temp[200];
-#endif
 
 #if !defined(MSDOS) && !defined(WIN32)
     int slashpos;
@@ -124,26 +117,6 @@ int save_game(int compress, char *savestr)
             print1("Game Saved.");
         else
             print1("Something didn't work... save aborted.");
-#ifdef COMPRESS_SAVE_FILES
-        if (writeok && compress) {
-            print2("Compressing Save File....");
-# if defined(MSDOS) || defined(AMIGA)
-            do_compression(0, savestr);
-            strcpy(temp, savestr);
-            strcat(temp, "Z");
-            rename(temp, savestr);
-# else
-            strcpy(temp,COMPRESSOR);
-            strcat(temp," ");
-            strcat(temp,savestr);
-            system(temp);
-            sprintf(temp, "%s.%s", savestr, COMPRESS_EXT);
-            unlink(savestr);
-            link(temp, savestr);
-            unlink(temp);	/* renames, but sys-V doesn't have rename()... */
-# endif
-        }
-#endif
         morewait();
         clearmsg();
     }
@@ -151,21 +124,12 @@ int save_game(int compress, char *savestr)
     return(writeok);
 }
 
-
-
-
 /* saves game on SIGHUP */
-/* no longer tries to compress, which hangs */
 void signalsave(int ignore)
 {
     change_to_user_perms();
-    save_game(FALSE, "Omega.Sav");
-#ifdef COMPRESS_SAVE_FILES
-    print1("Signal - Saving uncompressed file 'Omega.Sav'.");
-    print2("You can compress it yourself, if you like.");
-#else
+    save_game("Omega.Sav");
     print1("Signal - Saving file 'Omega.Sav'.");
-#endif
     morewait();
     endgraf();
     exit(0);
@@ -528,9 +492,6 @@ int ok_outdated(int version)
 int restore_game(char *savestr)
 {
     int i,version;
-#ifdef COMPRESS_SAVE_FILES
-    char temp[200];
-#endif
     FILE *fd;
 
 #if !defined(MSDOS) && !defined(WIN32)
@@ -543,39 +504,6 @@ int restore_game(char *savestr)
     }
 #endif
     change_to_user_perms();
-#ifdef COMPRESS_SAVE_FILES
-    fd = fopen(savestr,"rb");
-    if (fd == NULL) {
-        print1("Error restoring game -- aborted.");
-        print2("File name was: ");
-        nprint2(savestr);
-        morewait();
-        change_to_game_perms();
-        return(FALSE);
-    }
-    fread((char *)&version,sizeof(int),1,fd);
-    fclose(fd);
-    if (VERSION != version && !ok_outdated(version)) {
-        print1("Uncompressing Save File....");
-#if defined(MSDOS) || defined(AMIGA)
-        strcpy(temp, savestr);
-        strcat(temp, "Z");
-        rename(savestr, temp);
-        do_compression(1, savestr);
-#else
-        sprintf(temp, "%s.%s", savestr, COMPRESS_EXT);
-        unlink(temp);
-        link(savestr, temp);
-        unlink(savestr);	/* renames, but sys-V doesn't have rename()... */
-        strcpy(temp,UNCOMPRESSOR);
-        strcat(temp," ");
-        strcat(temp,savestr);
-        system(temp);
-#endif
-        print2("Save file uncompressed.");
-        morewait();
-    }
-#endif
 
     fd = fopen(savestr,"rb");
 

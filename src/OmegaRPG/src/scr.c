@@ -2091,12 +2091,6 @@ void display_option_slot(int slot)
         wprintw(Showline[slot], optionp(PACKADD) ? "(now T) " : "(now F) ");
         break;
     case 8:
-#ifdef COMPRESS_SAVE_FILES
-        wprintw(Showline[slot],"-- Option COMPRESS [TF]: ");
-        wprintw(Showline[slot], optionp(COMPRESS_OPTION) ? "(now T) " : "(now F) ");
-#endif
-        break;
-    case 9:
         wprintw(Showline[slot],"-- Option COLOUR [TF]: ");
         wprintw(Showline[slot], optionp(SHOW_COLOUR) ? "(now T) " : "(now F) ");
         break;

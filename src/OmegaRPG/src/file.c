@@ -31,7 +31,7 @@ FILE *checkfopen(char *filestring, char *optionstring)
         else {
             print2("Sorry 'bout that.... Saving character, then quitting.");
             morewait();
-            save(optionp(COMPRESS_OPTION), TRUE);
+            save(TRUE);
             endgraf();
             exit(0);
         }

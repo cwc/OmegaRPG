@@ -582,10 +582,7 @@ void setoptions(void)
         case KEY_DOWN:
 #endif
             to = slot + 1;
-#ifndef COMPRESS_SAVE_FILES
-            if (to == 8)	/* COMPRESS_OPTION */
-                to = 9;
-#endif
+
             slot = move_slot(slot,to,NUMOPTIONS+1);
             break;
         case 'k':
@@ -594,10 +591,7 @@ void setoptions(void)
         case KEY_UP:
 #endif
             to = slot - 1;
-#ifndef COMPRESS_SAVE_FILES
-            if (to == 8)	/* COMPRESS_OPTION */
-                to = 7;
-#endif
+
             if (to > 0)
                 slot = move_slot(slot,to,NUMOPTIONS+1);
             break;
@@ -965,7 +959,7 @@ void bash_item(void)
 
 /* guess what this does */
 /* if force is true, exiting due to some problem - don't bomb out */
-void save(int compress, int force)
+void save(int force)
 {
     char fname[100];
     int pos, ok = TRUE;
@@ -1041,17 +1035,17 @@ void save(int compress, int force)
         }
 #else
 # ifdef SYSV
-        if (strlen(fname) > FNAME_MAX_LEN - EXT_LENGTH - 1)
+        if (strlen(fname) > FNAME_MAX_LEN - 1)
         {
             sprintf(Str1, "Save name longer than %d characters - Save aborted.",
-                    FNAME_MAX_LEN - EXT_LENGTH - 1);
+                    FNAME_MAX_LEN - 1);
             print1(Str1);
             ok = FALSE;
         }
 # endif
 #endif
         if (ok) {
-            if (save_game(compress,fname)) {
+            if (save_game(fname)) {
                 endgraf();
                 printf("Bye!\n");
                 exit(0);
@@ -1066,7 +1060,7 @@ void save(int compress, int force)
         print1("The game is quitting - you will lose your character.");
         print2("Try to save again? ");
         if (ynq2() == 'y')
-            save(compress, force);
+            save(force);
     }
     setgamestatus(SKIP_MONSTERS);	/* if we get here, we failed to save */
 }

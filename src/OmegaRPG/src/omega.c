@@ -240,26 +240,12 @@ void signalexit(int ignored)
     mprint("Yikes!");
     morewait();
     mprint("Sorry, caught a core-dump signal.");
-#if 0
-    /* DAG used to prompt... space-bar holding through messages could cause
-     * failure to save.  Now always just force through with signalsave() */
-    mprint("Want to try and save the game?");
-    reply = ynq();
-    if (reply=='y')
-        save(FALSE, TRUE); /* don't compress, force save */
-    else if (reply == EOF)
-        signalsave(0);
-#else
     signalsave(0);
-#endif
     endgraf();
     printf("Bye!\n");
     exit(0);
 }
 #endif
-
-
-
 
 /* Start up game with new dungeons; start with player in city */
 void init_world(void)

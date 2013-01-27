@@ -80,9 +80,6 @@ bool initplayer(void)
     if (! oldchar) {
         optionset(RUNSTOP);
         optionset(CONFIRM);
-#ifdef COMPRESS_SAVE_FILES
-        optionset(COMPRESS_OPTION);
-#endif
         optionset(SHOW_COLOUR);
         ret_value = initstats() ; /* RM 04-19-2000:loading patch */ /* DAG */
     }

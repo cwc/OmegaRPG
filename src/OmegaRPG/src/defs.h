@@ -48,17 +48,6 @@ redraw the screen excessively. */
 
 //#define EXCESSIVE_REDRAW
 
-/* The following definition is recommended. Remove it only if you have
-huge amounts of disk space and are annoyed at waiting a few more seconds
-on save and restore. */
-
-/*#define COMPRESS_SAVE_FILES*/
-
-/* If your system has gzip, I recommend using it instead of compress */
-/* (try just typing 'gzip' at the shell prompt) */
-
-#define USE_GZIP
-
 /* If your system doesn't have the usleep call, uncomment this line */
 /* (try man usleep) */
 
@@ -118,22 +107,6 @@ on save and restore. */
 
 #if defined(MSDOS)
 #define SAVE_LEVELS
-#endif
-
-#ifdef COMPRESS_SAVE_FILES
-# ifdef USE_GZIP
-# define COMPRESSOR "gzip"
-# define UNCOMPRESSOR "gunzip"
-# define COMPRESS_EXT "gz"
-# define EXT_LENGTH 2
-# else
-# define COMPRESSOR "compress"
-# define UNCOMPRESSOR "uncompress"
-# define COMPRESS_EXT "Z"
-# define EXT_LENGTH 1
-# endif
-#else
-# define EXT_LENGTH 0
 #endif
 
 #if !defined(FNAME_MAX_LEN) || defined(MSDOS)
@@ -824,14 +797,14 @@ on save and restore. */
 #define NUMSTATS 11
 
 /* total number of player options */
-#define NUMOPTIONS 11
+#define NUMOPTIONS 10
 
 /* number of options with TRUE/FALSE values */
 #define NUMTFOPTIONS 9
 
 /* The slot number of the two options not in Player.options */
-#define VERBOSITY_LEVEL 10
-#define SEARCH_DURATION 11
+#define VERBOSITY_LEVEL 9
+#define SEARCH_DURATION 10
 
 /* Player.options bits */
 #define BELLICOSE 1
@@ -841,7 +814,6 @@ on save and restore. */
 #define CONFIRM 16
 #define TOPINV 32
 #define PACKADD 64
-#define COMPRESS_OPTION 128
 #define SHOW_COLOUR 256
 
 /* This has to be changed whenever an item is added */
