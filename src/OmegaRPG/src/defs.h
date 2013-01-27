@@ -29,9 +29,6 @@ definitions in the following section. */
  * make sense even if you don't know what they're parodying. */
 #define TRADEMARK_VIOLATION
 
-/* Include the Monk guild. */
-#define INCLUDE_MONKS
-
 /* Update the display every turn to center on the player.  Rather heavy
  * on the bandwidth. */
 /* #define CENTER_ON_PLAYER */
@@ -440,9 +437,7 @@ on save and restore. */
 #define CIRCLE 5
 #define NOBILITY 6
 #define PRIESTHOOD 7
-#ifdef INCLUDE_MONKS
 #define MONKS 8
-#endif
 #define ADEPT 9
 
 #define LEGIONAIRE 1
@@ -493,7 +488,6 @@ on save and restore. */
 #define SPRIEST 4
 #define HIGHPRIEST 5
 
-#ifdef INCLUDE_MONKS
 #define MONK_TRAINEE 1
 #define MONK_MONK 2
 #define MONK_MASTER 3
@@ -501,7 +495,6 @@ on save and restore. */
 #define MONK_MASTER_PAINS 5
 #define MONK_MASTER_TEARS 6
 #define MONK_GRANDMASTER 7
-#endif
 
 /* different priesthoods */
 #define ODIN 1
@@ -1493,9 +1486,7 @@ for example. */
 #define L_BROTHEL 33
 #define L_SEWER 34
 #define L_TOURIST 35
-#ifdef INCLUDE_MONKS
 #define L_MONASTERY 36 /* first available PGM */
-#endif
 /* end of city sites */
 
 /* gap for a few more city sites, could be either list: 37, 38, 39, 40 */

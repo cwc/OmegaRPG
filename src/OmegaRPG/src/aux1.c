@@ -335,7 +335,6 @@ void calc_melee(void)
         Player.hit += 10;
         Player.dmg += 10;
     }
-#ifdef INCLUDE_MONKS
     else if (Player.rank[MONKS] > 0)
     {
         /* monks are faster when not in armor or on horseback */
@@ -343,7 +342,7 @@ void calc_melee(void)
             Player.speed += (min(0,(Player.rank[MONKS] -1)));
         }
     }
-#endif
+
     /* weapon */
     /* have to check for used since it could be a 2h weapon just carried
     in one hand */
@@ -359,7 +358,6 @@ void calc_melee(void)
                 Player.possessions[O_WEAPON_HAND]->plus;
         }
 
-#ifdef INCLUDE_MONKS
     if (Player.rank[MONKS] > 0)
     {
         /* monks */
@@ -378,7 +376,6 @@ void calc_melee(void)
             }
         }
     }
-#endif
 
     /* shield or defensive weapon */
     if (Player.possessions[O_SHIELD] != NULL) {

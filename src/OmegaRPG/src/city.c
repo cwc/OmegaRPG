@@ -129,15 +129,11 @@ void load_city(int populate)
                     CitySiteList[L_MERC_GUILD-CITYSITEBASE][2] = j;
                     break;
                     case 'K':
-#ifdef INCLUDE_MONKS
                     Level->site[i][j].locchar = OPEN_DOOR;
                     Level->site[i][j].p_locf = L_MONASTERY;
                     CitySiteList[L_MONASTERY-CITYSITEBASE][0] = TRUE;
                     CitySiteList[L_MONASTERY-CITYSITEBASE][1] = i;
                     CitySiteList[L_MONASTERY-CITYSITEBASE][2] = j;
-#else
-                    assign_city_function(i,j);
-#endif
                     break;
                     case 'c':
                     Level->site[i][j].locchar = OPEN_DOOR;

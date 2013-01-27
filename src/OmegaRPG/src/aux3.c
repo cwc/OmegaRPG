@@ -843,9 +843,7 @@ static char sitenames[][30] = {	/* alphabetical listing */
     "city gates", "collegium magii", "condo", "department of public works",
     "diner", "explorers' club", "fast food", "gymnasium", "healer",
     "hospice", "les crapuleux", "library", "mercenary guild",
-#ifdef INCLUDE_MONKS
     "monastery",
-#endif
     "oracle", "order of paladins", "pawn shop", "sewer entrance",
     "sorcerors' guild", "tavern", "temple", "thieves' guild",
     "tourist information"
@@ -855,9 +853,7 @@ static int sitenums[] = {	/* the order matches sitenames[] */
     L_ALCHEMIST, L_ARENA, L_ARMORER, L_BANK, L_BROTHEL, L_CASINO, L_CASTLE,
     L_COUNTRYSIDE, L_COLLEGE, L_CONDO, L_DPW, L_DINER, L_CLUB,
     L_COMMANDANT, L_GYM, L_HEALER, L_CHARITY, L_CRAP, L_LIBRARY, L_MERC_GUILD,
-#ifdef INCLUDE_MONKS
     L_MONASTERY,
-#endif
     L_ORACLE, L_ORDER, L_PAWN_SHOP, L_SEWER, L_SORCERORS, L_TAVERN, L_TEMPLE,
     L_THIEVES_GUILD, L_TOURIST
 };

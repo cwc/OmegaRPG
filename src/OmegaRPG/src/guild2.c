@@ -315,10 +315,8 @@ void l_college(void)
                     print2("Your low IQ renders you incapable of being educated.");
                 else if (Player.rank[CIRCLE] > 0)
                     print2("Sorcery and our Magic are rather incompatible, no?");
-#ifdef INCLUDE_MONKS
                 else if (Player.rank[MONKS] > 0)
                     print2("Meditation will not leave you enough time for studies.");
-#endif
                 else {
                     if (Player.iq > 17) {
                         print2("You are given a scholarship!");
@@ -455,7 +453,6 @@ void l_college(void)
     xredraw();
 }
 
-#ifdef INCLUDE_MONKS
 void l_monastery(void)
 {
     char action;
@@ -487,9 +484,9 @@ void l_monastery(void)
                 else if (Player.pow < 13)
                     print2("Your mind is too fragile to follow the Path, child.");
                 else if (Player.rank[COLLEGE] > 0)
-                    print2("The Collegium has corruputed your spirit, child.");
+                    print2("The Collegium has corrupted your spirit, child.");
                 else if (Player.rank[CIRCLE] > 0)
-                    print2("The Circle has corruputed your spirit, child.");
+                    print2("The Circle has corrupted your spirit, child.");
                 else {
                     if (Player.pow > 17) {
                         print2("Your spirit is strong. You may study the Path with us.");
@@ -741,8 +738,6 @@ void l_monastery(void)
     }
     xredraw();
 }
-#endif
-
 
 void l_sorcerors(void)
 {
@@ -793,10 +788,8 @@ void l_sorcerors(void)
                     print2("You may not join -- you reek of Law!");
                 else if (Player.rank[COLLEGE] > 0)
                     print2("Foolish Mage!  You don't have the right attitude to Power!");
-#ifdef INCLUDE_MONKS
                 else if (Player.rank[MONKS] > 0)
-                    print2("Stupid monk. Go Meditate on this!");
-#endif
+                    print2("Stupid monk. Go meditate on this!");
                 else {
                     fee = 3000;
                     fee += Player.alignment*100;

@@ -795,12 +795,10 @@ void sign_print(int x, int y, int signp)
         print1("You notice a sign:");
         print2("Rampart City Gaol -- always room for more.");
         break;
-#ifdef INCLUDE_MONKS
     case L_MONASTERY:
         print1("You notice a sign:");
         print2("Tholian Monastery. Truthseekers Welcome.");
         break;
-#endif
     case L_ORACLE:
         print1("You notice a sign:");
         print2("The Oracle of the Cyan Flames");

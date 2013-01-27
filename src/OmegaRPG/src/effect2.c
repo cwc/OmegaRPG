@@ -327,7 +327,6 @@ void knowledge(int blessing)
             menunumprint(Player.guildxp[PRIESTHOOD]);
             menuprint(" XP).\n");
         }
-#ifdef INCLUDE_MONKS
         switch(Player.rank[MONKS]) {
         case MONK_GRANDMASTER:
             menuprint("Tholian Monks: Grandmaster");
@@ -356,7 +355,6 @@ void knowledge(int blessing)
             menunumprint(Player.guildxp[MONKS]);
             menuprint(" XP).\n");
         }
-#endif
         if (Player.rank[ADEPT] > 0)
             menuprint("**************\n*Omegan Adept*\n**************\n");
         showmenu();

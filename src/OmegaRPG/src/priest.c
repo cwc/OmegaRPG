@@ -39,11 +39,9 @@ void l_altar(void)
     print2("Worship at this altar? [yn] ");
     if (ynq2() == 'y') {
 
-#ifdef INCLUDE_MONKS
         if (Player.rank[MONKS] > 0)
             print2("A monk seeks truth within.");
         else
-#endif
             if (Player.rank[PRIESTHOOD] == 0)
                 increase_priest_rank(deity);
             else if (! check_sacrilege(deity)) {

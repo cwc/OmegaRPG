@@ -24,9 +24,7 @@ void p_hit (struct monster *m,int dmg,int dtype)
     switch (random_range(10)) {
     case 0:
         if (random_range(100) < (Player.level
-#ifdef INCLUDE_MONKS
                                  + Player.rank[MONKS]
-#endif
                                 )) {
             strcpy(Str3,"You annihilate ");
             dmult = 1000;
@@ -94,14 +92,13 @@ void p_hit (struct monster *m,int dmg,int dtype)
     if (Verbosity != TERSE) mprint(Str3);
     else mprint("You hit it.");
 
-#ifdef INCLUDE_MONKS
     if (Player.possessions[O_WEAPON_HAND] == NULL) { /*barehanded*/
         if (Player.rank[MONKS] > MONK_MASTER_SIGHS) {
             /* high level monks do unstoppable hand damage */
             dtype = UNSTOPPABLE;
         }
     }
-#endif
+
     m_damage(m,dmult * random_range(dmg),dtype);
     if ((Verbosity != TERSE) && (random_range(10)==3) && (m->hp > 0))
         mprint("It laughs at the injury and fights on!");
