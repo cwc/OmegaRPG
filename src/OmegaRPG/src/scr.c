@@ -14,10 +14,9 @@
 #include "glob.h"
 #include <ctype.h>
 
-#ifdef EXCESSIVE_REDRAW
+// Screen flicker fix
 #undef wclear
 #define wclear werase
-#endif
 
 WINDOW *Bankw;
 
@@ -1829,10 +1828,6 @@ void screencheck(int x, int y)
 
 
 #else
-#if 0
-    int width = 0;
-#endif
-
     if (((y-ScreenOffset) < (ScreenLength/8)) ||
             ((y-ScreenOffset) > (7*ScreenLength/8))) {
         change = 1;
@@ -1843,6 +1838,7 @@ void screencheck(int x, int y)
             ((x-ScreenXOffset) > (7*ScreenWidth/8))) {
 
 #if 0
+    	int width;
         if ( Current_Environment == E_COUNTRYSIDE )
             width = COUNTRY_WIDTH;
         else

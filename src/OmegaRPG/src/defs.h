@@ -21,7 +21,7 @@ definitions in the following section. */
 
 /* Update the display every turn to center on the player.  Rather heavy
  * on the bandwidth. */
-/* #define CENTER_ON_PLAYER */
+#define CENTER_ON_PLAYER // TODO Make this a user-specifiable option
 
 /* Implementor should uncomment the following if his system uses
 string.h instead of strings.h (try man string) */
@@ -36,11 +36,6 @@ typedef int int32;
    available */
 
 /* #define NOGETOPT */
-
-/* Implementor should uncomment the following if omega appears to
-redraw the screen excessively. */
-
-//#define EXCESSIVE_REDRAW
 
 /* If your system doesn't have the usleep call, uncomment this line */
 /* (try man usleep) */
