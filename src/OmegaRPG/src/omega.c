@@ -15,10 +15,6 @@
    explicitly initializing every global to something. */
 #endif
 
-#ifndef NOGETOPT
-# include <unistd.h>
-#endif
-
 /* most globals originate in omega.c */
 
 char* Omegalib;		/* contains the path to the library files */
