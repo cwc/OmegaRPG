@@ -23,11 +23,6 @@ definitions in the following section. */
  * on the bandwidth. */
 #define CENTER_ON_PLAYER // TODO Make this a user-specifiable option
 
-/* Implementor should uncomment the following if his system uses
-string.h instead of strings.h (try man string) */
-
-#define STRING
-
 /* Implementor should define int32 as the type of integer which uses
  * 32 bits. */
 typedef int int32;
@@ -1738,17 +1733,7 @@ typedef oltype *pol;
 #define optionset(o) (Player.options |= (o))
 #define optionreset(o) (Player.options &= ~(o))
 
-/* systemV for some reason uses string.h instead of strings.h */
-/* Also, random and srandom are unlikely to be found on system V... */
-
-#ifdef STRING
-#include <string.h>
-#endif
-
-#ifndef STRING
 #include <strings.h>
-#endif
-
 #include <stdio.h>
 
 #ifndef TRUE
