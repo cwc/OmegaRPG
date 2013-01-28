@@ -6,3 +6,4 @@ ipch
 *.user
 *.opensdf
 Debug
+.metadata
