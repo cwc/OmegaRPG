@@ -1,0 +1,1363 @@
+Path: alcyone!uuwest!goonsquad.spies.com!netline-fddi.jpl.nasa.gov!nntp-server.caltech.edu!ferrari.mst6.lanl.gov!newshost.lanl.gov!ncar!gatech!newsjunkie.ans.net!news0.cybernetics.net!cybernetics.net!alight
+From: alight@cybernetics.net (A. Light)
+Newsgroups: alt.games.omega,rec.games.roguelike.misc
+Subject: Spoilers
+Message-ID: <3n2rdp$gfk@news0.cybernetics.net>
+Date: 19 Apr 1995 11:16:09 GMT
+Organization: Cybernetx, Inc.
+Lines: 1353
+NNTP-Posting-Host: server0.cybernetics.net
+
+Since there have been fairly frequent requests lately
+for this sort of thing, and although this is a little old,
+I don't know of anyone writing spoilers for the current version,
+so I'll post this.  It should be noted that this is for
+an older version, and therefore is not accurate
+for current versions -- nonetheless, a lot has stayed the same,
+so you may find it useful.  Distribute freely and all that.
+
+
+Alan
+--------
+SPOILERS ALERT!
+SPOILERS ALERT!
+SPOILERS ALERT!
+
+                        OMEGA SPOILERS FILE
+
+                   ***   **   **  *****   ***     **
+                  *   *  * * * *  *      *   *   *  *
+                  *   *  *  *  *  ***    *       ****
+                  *   *  *     *  *      *  **   *  *
+                   ***   *     *  *****   ***    *  *
+
+Well, it doesn't match the Nethack Spoilers opening, but it will have to
+do.  Imagine a nice fanfare and all.  Maybe a marching band or two.
+
+
+
+Omega Spoilers, Version 1.10, last updated 3 May 1994.
+
+
+
+CONTENTS:\\
+
+
+Table of Contents:
+Contents -- This section.
+Introduction -- The next section, gives a brief introduction to the game.
+Map -- A map of the Omegan countryside.
+Wishing -- How to wish and what to wish for.
+Artifacts -- The special objects in the game.
+Advancement -- How to advance within the Guilds.
+Guilds -- Other stuff about the Guilds.
+Dungeons -- Lists the important level for different dungeons,
+  and what to do at each.
+Robbery -- How rob people, houses, the castle, and so forth.
+*Scams -- How to criminally exploit known bugs in versions prior to .75.
+Spells -- A list of the spells and what they are used for.  Other than
+  Artifacts, only real list, as these are the most important things in
+  the game.
+Stones -- How to use stones (in villages) to increase stats.
+Misc -- Miscellaneous Information that is helpful.
+Library -- Information about Rampart Public, including four full documents.
+*Challenge -- About the Adept's Challenge.
+Strategy -- One suggested strategy of Fronk Taylor's.
+Final Notes -- Final Notes (of course), credits and so forth.
+
+The two entries with an asterisk should be avoided by those who want to
+leave a few things unknown.
+Each entry title is in all capitals and is followed by a colon and two
+slashes to make a search easier.  See below for example.
+
+
+
+INTRODUCTION:\\
+
+
+The OMEGA SPOILERS FILE is brought to you by that same group of fine
+people who brought you the WCST Nethack Spoilers.  With one big
+difference.  alight, who edited this file, is far more random than
+water, so you could find anything anywhere.  On the other hand, this
+file is short enough you might just be able to sit down and read it.
+
+This is a reference manual for Omega.  It is meant as a guide and is by no
+means exhaustive.  Repeat, THIS IS ONLY A GUIDE, and is NOT EXHAUSTIVE.
+Furthermore, it isn't even necessarily correct.
+
+Omega is a game in the tradition of rogue and the other dungeon games,
+but Omega has far more features than the other games of this type, a far
+greater reliance on magic rather than hacking and slashing, several
+dungeons and other settings, a superior (if hard to learn at first)
+inventory, and all sorts of bugs that its competitors can only dream about.
+
+To begin the game, choose to play yourself and then lie outrageously on all
+the questions.  No stats should be less than 18.  It can of course be
+challenging to create a weaker character.  Also remember that the game is
+much easier if you can copy save files.  If it weren't for this, we'd never
+have figured out all this information.  Not even using wizard mode.
+Even if you start off well in this game, there are a lot of stupid deaths,
+like walking in the direction 'y', and then when the confirm comes to walk
+into a pit of lava or such...
+
+Please note that some of this information may not be applicable to all
+versions of omega.  I have tried to root out the information that is only
+applicable to the local version at Wheaton College (where Paul Waterman
+fixed many of the bugs), but some of that information may have slipped
+through.  Please note that I have only begun to explore version .75 (the
+last official release), so much information is lacking about it.
+
+As a final note, these spoilers are incomplete enough that if you read them,
+you should still have plenty of other obscure stuff to learn in the game.
+
+However, hopefully they will be helpful for a new or experienced player.
+
+
+
+MAP:\\
+
+
+With a little editing, this map will fit on one 66 line page.
+
+This is a map of the Omegan Countryside:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++^^^^^%^^^^^^^^^^^^^---^^^^^^^^^^^^^^^^((((((------^^^^^^^^^~~^^
+++^^~^^v^^^---------------((((((((((((((((((--------^^^^^^~~~~~^ 
++++^^~^^v^^------------(((((((((((((((((((((((((------^^^~~~~|~^
+++++^^~^^v^------((((((((((((((^^^((((((((((------------^^^~v~~^
+++++^~^^v^^----------((((((((((^5^((((((((-------.......b~~^~~~^
+++++^^~a^^--------------(((((((^(^(((((---------.------~~^^^^^^^
++++----~.......-----------((((((((((-----------.------~~--^^^^^^
+++++--~--------.......------((((((((((((------.-------~^^^^^^^^^
++++++++---------------.......(((((((((-------.--------~~--^^^^^^
++++++++----------------------......-.........--------~~-----^^^^
++++++++++--------------((((((((((((c(((((((------^^3~~------^^^^
+++++++++++++---------------(((((((.(((((((------^^^~~-------^^^^
+++++++++++-------((((((((((((((((.(((((((((((((^^^-~~-------^^^^
++++++++----------------(((((((((.(((((((((---^^^----~~------^^^^
+++++++++++++--------------((((.(((((((((--^^^-----~~---^^^^^^^^
+++++++++++++++++--------------.--------^^^^^------~~---^^^^^^^^^
++++++++++++++++++++----------.------^^^^---------~~---^^^^^^^^^^
+++++++++++++++++++++++++----.---v^^^^^^^^-((((--~~----------^^^^
++++++++++++++++++++++++++++O--^^^v^^^((((((((((((~~---^^^^^^^^^^
++++++++++++++-------------.----^^^v^(((((((((((((~~(----^^^^^^^^
+++++++++++---------------.-^^^^^^(((((((((((((((~~((--------^^^^
+++++++++++++++++++++++...-^*^^^^(((((((((((((((~~((((((-----^^^^
+++++++++++++++++++-...-----^^^-(((((((((((((((~~(((((((((---^^^^
++++++++++++++-----.------^^^^((((((((((((((((~~(((((((((----^^^^
+++++++++++-------.-----^^^^--((((((((((((((~~~(((((((((-----^^^^
+++++++++++++++++.------^^^-------(((((((((~~(((((((((((((---^^^^
++++++++++++++++.------^^^---((((((((((((((~~(((((((--------^^^^^
++++++++++++++++.-----^^^(((((((((((((((~~~~(((((((-------^^^^^^^
++++++++++++++--.------vvv(((((((((((~~~~(((((((((-------^^^"^^^^
++++++++++++++++.-----^1^-------((~~~~((((((((((((((--^^^^^""^^^^
++++++++++++++++.------^^^-----((~~~((((((((((((((((-^^^"""""^^^^
+++++++++++-----.----^^^------(((((~~(((((((((---^^^^""""""""^^^^
+++++++++-------.----^^^-(((((((((((~((((((((((((--^"""""""^^^^^^
+++++++---------.-----^^^(((((((((((~~((((((((((--^^^""""""""$^^^
++++++++++++++++.----^^-(((((((((((~~((((((((((--^^^"""""""""^^^^
++++++++++++++++.-----^^^^((((((((~~(((((((((-------""""""""^^^^^
+++++++++++++---.----^^^(((((((~~~~(((((((-----^^""""""""""""^^^^
++++++++++++++++.---^^^-(((~~~~~(((((((------^^^"""""""""""""^^^^
++++++++++++++++.---^^^^~~~~(((((----------^^^"""""""""""""""^^^^
+++++++++++d....-...~~~~~-((((((((((-----^^^^""""""""""""""""^^^^
+++++++++++++++~~~~~.e==-------------^^^^""""""""""""""""^^^^^^^^
+++++++++++++=====~==~======----^^^^^^^^^"""""""""""""""""""^^^^^
++++++++++++=====~====~====---------------f""""""""""""""^^^^^^^^
++++++++++++++++~====~====-^^-------^^^^^^"""""""""""""""""""^^^^
++++++++++++++++====~====-^^------^^^"""""""""2"""""""""""---^^^^
++++++++++++++=====~4~===---^-----^^"""""""""""---^^^^-------^^^^
+++++++++++=======~==~====---------^^"""""""""--^^-----------^^^^
++++++++++++++===~====~====--^--------""""""---^^-)))-^^-----^^^^
+++++++++++++===~======~===---^^^^------------^^~)))))--^^---^^^^
++++++++++++++++======~======-----^^^------^----)~)))))--^^^-^^^^
++++++++++++++++=====~===^=======--~~~^^^-^---))))~))))))----^^^^
+++++++++++++++=====~=============~~=~~~~^^))))))))~))))))))-^^^^
++++++++++++++++===~=~~~~~~=====~~~~====^^^^)))))))~)))))))^^^^^^
+++++&++++++++++==~========~~~~~~==~~~~===^^^)))))))~))))))))^^^^
++++++=+++++++===~=~=========~===~~===~~~~~~^^)))))))~)))))^^^^^^
+++++++=++++++++~===~===^===~===~=====~====^^^^)))))))~))))))^^^^
++++++++=+++++++====~~=====~===^=======~====^^)))))))))~)))))^^^+
+++++++++=+========~==~===~===^!^=======~===^^^))+++)))~)))^^^^++
++++++++++=++=====~====~=~~====^=======~=~=^^^)))+6+))~)))^^^^+++
+++++++++++++====~======~==~++++======~===~==^^))+++))~^^^^^+++++
+++++++++++++++++========~++++++++===~====~^^^^^^^+^^^~^^++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 
+The Usual:
+ O   The City of Rampart
+ o   A town    (symbol used in game)
+ X   A temple  (symbol used in game)
+ .   Well maintained road
+ +   Sea of Chaos (deadly to lawful characters)
+ ^   Mountain
+ ~   water (river)
+ (   forest
+ )   forest
+ =   swamp
+ -   plains
+ "   steppes of time   (a.k.a.  The Waste of Time ;-)
+ v   secret mountain pass          Will have to search for these passes
+				   on the map (using the 's' command).
+				   Similarly, some other features will
+				   have to be searched for.
+ 
+The Unusual:                       Using Amulet of the Planes:
+
+ *   The Goblin Caves              -- Rampart is closest
+ %   The Archmage's Castle         -- Thaumaris is closest
+ |   Star Peak                     -- Star View is closest
+ &   Island of the Eater of Magic  -- Temple of the Hidden Moon is closest.
+ !   Hellwell Volcano              -- Temple of the Hidden Moon is closest.
+ $   Dragon's Lair                 -- Skorch is closest, but you have to
+                                      walk across a BIG desert.  It may be
+				      better to walk from Rampart.
+ 1   Temple of Odin                -- Temple of the Noose
+ 2   Temple of Set                 -- Temple of the Black Hand
+ 3   Temple of Athena              -- The Parthenon
+ 4   Temple of Hecate              -- Temple of the Hidden Moon
+ 5   Temple of Druidism            -- Woodhenge
+ 6   Temple of Destiny             -- Temple of Destiny
+ a   The Village of Thaumaris         
+ b   The Village of Star View         The towns are shown as the symbol
+ c   The Village of Woodmere          "o" in the game.  The letters on this
+ d   The Village of Stormwatch        map are only for identification.
+ e   The Village of Whorfen           Similarly, the temples are designated
+ f   The Village of Skorch            "X" but have been numbered here.
+
+
+
+WISHING:\\
+
+
+You can wish with a spell of wishing, a wish from a good fairy, a scroll
+of wishing, or casting ritual magic in a Shrine to High Magic.
+Unlike the 'M' and 'm' commands, Wishing requires the full word to be
+typed out, with the first letter capitolized and the rest lower case.  You
+can NOT use a shortened form.  If it is not exactly right the first time,
+you do NOT get a second chance.  In fact, you do not get anything at all.
+NOTE:  This is NOT correct for version .75.  There are several things that
+can no longer be wished for, including Mana and the various stats.  See
+also the LIBRARY section, the document of high magic.
+
+Research at the "Library" reveals that these are the things you can wish for:
+
+*Mana  --  Ten times current maximum mana 
+
+Health  --  Ten times current maximum hitpoints
+
+Wealth  --  Ten thousand gold pieces
+
+Knowledge  --  Learn spell or makes spell easier to cast
+
+*Strength  Constitution  Dexterity  Agility  Intelligence
+Power  
+  -- Each randomly adds between one and five to corresponding stat
+
+Death  --  Pretty simple, die by a death wish 
+
+Location  --  Works like Amulet of the Planes
+
+Balance, Law, and Chaos -- quick way to make yourself neutral, lawful, chaotic 
+
+Skill  --  Gain an Experience Level
+
+Summoning  -- Just like the summoning spell.  Cannot choose whom to summon. 
+
+Destruction  --  Lightning comes down and kills everything, self included 
+
+Acquisition  --  Can come in handy.  Spell works as well in regular play.
+  The spell or the wish can come in handy during the Adept's Challenge.
+
+* Wishes marked with an asterisk can not be wished for in version .75.  To
+gain a stat other than intelligence, visit the gymnasium.  To gain
+intelligence, visit the library.  I think you can still wish for Power.
+
+Acquisition and a few objects:
+  In regular play there is no choice as to what you get from Acquisition.
+
+  In Wiz mode, a prompt asks what you want with these choices:  !?][}{)/=%\
+  A blessed scroll of acquisition will give these choices in regular play.
+  The key is as follows:
+
+  ! Potions  -- normal stuff.
+
+  ? Scrolls  -- normal stuff
+
+  ] Armour   -- You can get some good stuff here.  #15 & #16 are good for sure.
+
+  [ Shield   -- #8 -- shield of deflection.  Monsters miss you a whole lot
+
+  } Cloaks   -- Cloak of Negimunity, easy to get elsewhere, keeps mana from
+  being drained.  Cloak of Displacement causes monsters to miss you a lot.
+  Cloak of sharpness is also quite nice.  Cloak of invisibility is ok
+  but really not that helpful.  True sight is also ok but the ring is better.
+  Cloaks can be torn or disintegrated easily.  Never wear a cloak into
+  rubble or a hedge.
+
+  { Boots    -- Normal stuff, Levitation is real nice for walking on water,
+  but boots of Levitation are pretty common.  Seven League boots are REAL
+  nice for use in the countryside.  Almost a necessity.  Walk anywhere in
+  the countryside, no time taken.  Searching, however, does take time.
+  Quite difficult to starve while wearing these.  Boots of Heroism
+  are fairly common but still worthwhile since they add
+  to fighting ability and speed. 
+
+  ) Weapons  -- Easy to get a +10 Victrix.  Don't use scythe of death,
+  it will kill you on the backswing even if you throw it.  However,
+  get a whole bunch, enchant and bless a whole load up to +21 (Quite a few
+  will explode, but if you have at least sixty or so, it's worth it)
+  See the section on scams to find out why this is useful.
+  Defenders (if you are lawful?) are quite nice.  Most of these are available
+  in the Dragon's Lair (which is probably more worthwhile than wishing
+  unless you just happen to get a scroll of acquisition).  Firestars cast
+  a firebolt spell on whatever you attack (only if it is chaotic?)
+  in addition to their normal damage.
+
+  / Staffs & Wands  -- There may be other references in this file to the
+  staff of summoning.  In our local version, Paul created a new bug while
+  getting rid of the old one.  Apparently a blessed scroll of summoning is
+  supposed to allow you a choice of what to summon, but the old bug did not
+  allow any choice.  While correcting this bug, Paul accidentally caused
+  the staff of summoning to do the same thing.  Please note that references
+  to this choice of summoning are of little use to you.  As of version .75,
+  there is still no choice of summoning -- not even with a blessed scroll.
+  Dispelling and enchantment are good, but like the other useful staffs,
+  there are spells that work as well or better.  The staff of enchantment
+  requires a day to recharge.  Summoning is definitely the most important
+  staff in the game.  They are not too difficult to find.
+
+  = Rings  -- fire resistance proves helpful at times.  Protection, strength,
+  and poison resistance are also nice.  Gaze immunity is nice but you need it
+  so rarely there is no point in bothering.  True sight is very handy.
+  Some rings are better if enchanted -- i.e., protection and strength.
+
+  % Food   -- only get it from a wish if you're about to starve.  Actually if
+  you are about to die of poison (or disease?) lembas can be quite handy.
+  I haven't figured out exactly what imunotabs do.  The other two types of
+  tablets are very useful, but it's been so long I forget which does what,
+  but I do remember that one gives temporary strength (or was it Hit Points)
+  and another increases Mana.
+
+  \ Other stuff  -- this includes gold bars, emeralds, magic key,
+  thieve's pick, and bucket of salt water.  All in all not worth it.
+
+(Of course, always remember to carry some salt water around trifids.)
+
+Unfortunately, you cannot get artifacts this way except in wizard mode,
+though there is a random chance of getting an artifact when there is
+no choice as to the acquisition.
+
+Speaking of artifacts:  Please note that the Key of Kolwynia and the Amulet
+of the Planes are extremely helpful to winning the game.
+
+
+
+ARTIFACTS:\\
+
+
+Amulet of the Plains:  Obtained from the Demon Emperor at Hellwell Volcano,
+this amulet, when activated, requires 100 Mana and will list all the cities
+and temples and ask which one to go to.  VERY HELPFUL, may be most important
+object in the game.
+
+The Juggernaut of Karnak: Can only be used once.  When activated, this will
+clear out ALL obstacles in a given direction.  It will ask the direction.
+
+Orbs of Mastery and of the four elements:  Must have all five before
+anything can be done with them.  Once all are acquired (from the Masters of
+all four elements and of the void, all found on the Astral Plane, which can
+be reached with the help of the oracle -- pickpocketing is useful) activate
+the Orb of Mastery.  The correct response to the question given is 'm' for
+mix.  This will give you double all your stats.  Depending on the bugs in
+your version, you may be able to summon the  masters over and over again,
+doubling your stats each time using the same method.  If you do so, be
+careful because you may wrap your stats.  When you wrap your stats, you'll
+probably find that you lack the strength to carry much of anything at all.
+
+Amulet of Yendor:  Does nothing.
+
+Symbol of your deity (high priest only):  Heals you
+
+Symbol of your former deity (former high priest only):  Brings godsfire
+
+Symbol of a deity whose high priest you have pickpocketed:  Worth a lot
+of money and will become your symbol if you become high priest.  Does
+nothing if activated.
+
+Kolwynia, the Key that was lost:  Know all spells.  Doubles Power.
+Can get several times by pickpocketing Archmage (must have good dexterity).
+Each time it is used, will make spells easier to cast.
+Since the spell of wishing can only be used once after learning it,
+use it before you learn it again, so that you can have more wishes.
+You MUST IDENTIFY this artifact EACH TIME before you activate it.
+Otherwise you will be killed in a Mana storm.
+
+Sceptre of High Magic:  At Archmages castle, talk to Archmage
+after pickpocketing him.  Wield Sceptre as weapon before sitting on throne.
+Will give you +3 Strength first.  After leaving Castle and returning
+to Rampart, can do whole thing over.  Each time you will get +3
+to the next statistic in line.  Don't know what happens after +3 Power.
+Activating sceptre (once a day only) takes you to the archmages throneroom.
+
+Crystal Ball:  May work only once or like a lot of objects,
+need to be regenerated 24 hrs before reuse.  Object and Monster detection.
+
+New York Subway Map:  Does nothing as far as we know; you activate the item
+and . . . nothing seems to happen.  It could however do something obscure.
+
+Potion of Life:  Doubles Hit Points
+
+Potion of Death:  Kills you
+
+Justiciar's Badge:  Well, it's helpful for becoming shadowlord.  We don't
+know if it does anything else.
+
+Demon Emperor's Regalia:  Ditto except that its for becoming commandant.
+
+
+
+ADVANCEMENT:\\
+
+
+Advancement within Guilds is dependent on the amount of experience gained
+_since_you_joined_that_guild_, not overall experience.  But for the final
+honour as leader of a guild, the player must complete some quest _and_
+have a higher total experience level than whoever the last player who
+became leader of that guild was.  Here I treat only the objects of the
+final quest.
+
+Objects required for advancement in different guilds:
+
+Religions:  Bring back the symbol of another religion as required by your
+deity or order.  If Set, Odin's, and vice versa.  If Athena, Hecate's, and
+vice versa.  If Druids, any.  If Destiny, Destiny's.
+
+Castle:  Five quests, including: 1) Becoming famous enough to gain entrance
+to the castle (gain a few levels), 2) Getting the head of the Goblin King.
+3) Getting a Holy Defender (estoc) from the Great Wyrm on level twenty of
+the sewers.  4) Getting dragon scale armour, which it may be necessary to
+kill a dragon to do (whatever you do, don't kill the dragon lord or you
+won't be able to go to his lair and loot it repeatedly.  Besides, The Dragon
+Lord's Armour won't do anyway), 5) Getting the Orb of Mastery (you will be 
+allowed to keep this one, the others will be taken from you).
+
+Palladins:  Return the Star Gem (from the lowest level of the Astral Plane)
+to the Law Bringer.
+
+Thieve's Guild:  Get the Justiciar's badge.
+
+Collegium Magii:  Bring back the Heart of the Eater of Magic.  He lives on
+an island (see map).  Do NOT use Energy Drain.  Use clairvoyance to find him
+(and/or Monster detection) and use disrupt to kill him and his friends.
+
+Mercenary's Guild:  Bring back the Demon Emperor's Regalia from HellWell
+Volcano.  He also has the amulet of the planes.  Once again, do NOT use
+energy drain (on the Demon Emporer).  The lesser demons and monsters here
+are of no importance -- seek out the Emporer and kill him, to get the
+Regalia and the Amulet of the Plains.  The Amulet of the Plains is one of
+the most useful objects in the game.
+
+Sorceror's Guild:  The LawBringer's Crown from the LawBringer on Star Peak.
+
+
+
+GUILDS:\\
+
+
+Miscellaneous about guilds:
+
+Gladiators -- the arena:  Join and 1) Make more money than non-registered
+gladiators, 2) Kill the champion and obtain his +10 Victrix, and 3) Get
+credit to work out at the gym.
+
+Order of the Paladins, Mercenary's Guild, and Gladiator's Guild are all
+mutually exclusive.  To counter this, a player can be thrown out of a Guild.
+A Palladin can do something unlawful, like robbing the safe in the castle at
+any hour other than 11-12 P.M. (even if he is the Duke of Rampart and owns the
+castle) but he should never never get caught stealing or he will be thrown
+out of the guild and never allowed to return. It goes on his permanent
+record (self-knowledge/oracle mirror as "Washout").  Gladiators, after 
+becoming arena champion, simply leave before the fight is over (use 
+shadowform or disintegrate spells) to be expelled.  The Amulet of the
+planes may also have the same effect.
+
+Mercs -- As far as we know, you cannot get kicked out.  If you play a system
+where you want to become the head of every guild and get on the high
+scoreboard everywhere (as some players do) then you should plan on making this
+the last guild you enter.
+
+Thieve's Guild -- A must.  Allows you to determine the identity of objects,
+and gets you good prices for many objects you wish to sell.  Must be at
+least mildly unlawful when you join, but does not require a consistent
+alignment afterwards.  Must search many closed doors to find the den, but
+the door will not be locked.  Must visit at night, as there are no thieves
+around during the day.
+
+General guidlines:  Starting out as a paladin is usually easiest.
+However, if you do plan on switching, you may need to start out as
+a gladiator to avoid screwing up the high scoreboard (there was a bug
+but it may be fixed now).  Remember, only the Paladin's Guild and the
+Sorceror's Guild require a consistent alliance.  Your alignment will be
+checked each time you return to home base.  The sorcerors will even attack
+you if you return there while lawful.  You can however join the Thieve's guild
+and remain a Paladin by switching alliances briefly.  The thieves' only check
+you the first time.  To be safe, visit the mirror before each trip to the
+order.  In return for your lawfulness you get: a blessed spear +1 when you sign
+up, each time you visit you get a free meal, full healing of wounds, a new
+horse (if you lost your old one), and some nice stuff if you happen to gain a
+level.  The Gladiators give out free tickets to the gym, nice but not that
+great, lousy equipment for starters, a fair amount of money, and the blessed
+victrix at the top.  Not too bad.  The mercs give some decent equipment and
+great money but still nothing special.  Overall the Order of the Paladin's is
+probably the best, especially if you wish to play a lawful character.  The
+Thieve's Guild is helpful, even essential, regardless of your alliance.
+
+
+
+DUNGEONS:\\ (and so forth)
+
+
+The target level is the level at which the main object of that "dungeon"
+dwell.  For example, it is the Demon Emperor in Hellwell Volcano.  The
+game does not allow you to warp directly to these levels, so a guide is
+also given for which level you can warp to.
+
+How to get to target level at various dungeons:
+
+Dungeon:                       Target Level:         Warp to:
+
+Star Peak                      1                     ------
+Island of the Eater of Magic   1                     ------
+Dragon's Lair                  1                     ------
+Sewers                         18                    17 
+Hellwell Volcano               20                    19
+Goblin Caves                   10                    9 
+The Archmage's Castle          Throne Room           15, stairs to 16, go
+                                                     through Magic Portal 
+						     (looks like down stairs)
+The Astral Plane               6                     Don't, need objects
+						     from each level.  However,
+						     all but the Star Gem
+                                                     can be obtained
+                                                     through summoning.
+						     If you want to skip the
+						     elementals, warp to 5.
+
+
+
+ROBBERY:\\
+
+
+Klaxon alarms:  be very careful.  No matter where they are,
+they always get all the Guards after you.  This is especially bad in Rampart,
+as there is no way to make peace with the Guards after a first offense,
+and sometimes even if it is a first offense.  If it happens in a town,
+(i.e., not Rampart) just leave and come back.  Shadowform and Teleport
+are useful here.
+
+Jail:  If thrown in jail, a breakout can be arranged with the help
+of shadowform, teleport, or disintegration spells (disintegrate the walls).
+A garage door opener (the grey box with a red button) will also work,
+but as they only work once, do not re-enter the cell.  The door will
+slam shut again.  There is a rumour that sufficiently chaotic characters
+may get off with the help of mob lawyers.  (This has been verified.)
+
+How to rob the castle:  Shadowform is nice to simply walk through the walls.
+I am not sure if disintegration will work on the castle, but if so, the wall
+can be disintegrated and then passed through to get to the water.  The water
+can be crossed if you are breathing (powered combat or scout suits do this,
+as well as a potion and a spell), on horseback, levitating, or if fire is
+used to evaporate the water.  While in the moat, start searching.  One of
+the blocks will be a secret door.  Enter and keep on searching all the way
+to a vault door.  There will be traps along the passageway.  When the vault
+is reached, do *not* try to open it unless it is 11-12 P.M., in which case
+it will have been opened for you.  Once opened, search everything well.  Should
+be message that vault is open.  *Every* space will have a Klaxon trap.  Lots of
+goodies here.
+
+How to rob the bank:  Go to bank, O)pen account, enter password, Deposit
+some money, e(X)it.  Go back, enter P)assword, but enter it wrong.  When
+told to hit space bar, hit anything BUT spacebar.  Will then recieve
+probably greater than 1000, less than 4000 gold pieces (usually around
+3000).  WARNING: This bank cannot be used for the rest of the game.  It is
+nice to leave some money in if you can swing it, so that passing robbers
+won't be able to get your savings.
+
+It is generally not advisable to rob houses until the character is a
+somewhat high level.  However, many players will find house robbing somewhat
+boring by the time they have reached a fairly high level. 
+
+
+
+SCAMS:\\
+
+
+WARNING!   WARNING!   WARNING!   WARNING!   WARNING!   WARNING!   WARNING!
+*********************BEGINNING*OF MASSIVE*SPOILERS***********************
+                ********AND WE DO MEAN MASSIVE********
+NOTE:  THESE SCAMS WILL NOT WORK IN VERSION .75 (Alas!)
+The first scam will not work unless the code is changed so that a particular
+monster can be summoned, or if you want to just randomly summon monsters
+until Death happens to come along.  The staff of summoning is a local thing.
+There are two major scams in omega.  The first is to gain experience --
+The character Death was meant to only appear at the Adept's Challenge, but
+it happens that Death can be summoned with a staff of summoning.  For a
+strong character, especially one using sanctuary for defence and disrupt,
+energy drain, or hellfire for offence, Death is rather easy to kill.  If
+you do not have the ability to cast sanctuary, you can always summon death
+next to a barrier such as water, and then cross over before commencing the
+magic attack.  Make sure there is no way for Death to get around though.
+Every time Death is killed, he is stronger when he returns to life (the
+next turn -- no waiting in Omega, it's a first class game).  This means
+that more and more experience is gained each time you kill Death.  It is
+not at all difficult to gain 150 or more levels of experience with each
+summon of Death.  Because you can't really make Death go away permanently
+when you're finished with him, fight him in a town rather than Rampart.
+This is because whereas in Rampart the configurations for the individual
+games are saved, the towns are reconfigured every time the player
+re-enters them.  This means that after you leave and come back, Death is
+no longer there to give you problems.  On our local game, we regularly
+have players at an experience level in excess of 10,000.  Now this takes
+a lot of time to beat, because Death has to be re-summoned so often, and
+is generally not worth it if it can be avoided.  But keep in mind that
+each time Death dies, he leaves behind a Scythe of Death.  Be careful
+never to use a Scythe of Death, because it will kill you on the backswing
+even if you throw it.  Every time.  However, collect enough Scythes of
+Death, and enchant them to about +21, and they sell at a very high price.
+Which brings us to the second scam:
+
+NOTE:  This scam will work on versions prior to .75, but not in v. .75.
+The two-handed weapon scam:  The Scythe of Death is the best to get, but
+any two-handed weapon will do.  This scam gets enormous amounts of wealth
+(easily 2 or 3 million gold) fairly quickly.  Basically you can keep
+doubling the amount of two-handed weapons you have.  Do this in town so
+you can 'M' to the pawn shop to sell them.  After getting a large amount,
+use the enchant spell to enchant them to around +21 (or even higher if you
+wish, but there is a higher chance of exploding the higher one goes).
+Don't worry if there is an explosion, because only one of the weapons
+will actually explode -- the others will be in perfect shape.
+The thing to be aware of is if the explosions are wearing down
+your hit points.  Hopefully this bug hasn't been fixed ;-)
+It may have been in the latest version ;-(
+Anyway:  Wield your two-handed weapon.  It should take up slots a and b.
+Save the game.  Restore the game.  Go into your inventory and use `p'
+to put the weapon in slot a into your pack.  If the weapon still remains
+in slot b as well, then the scam is working.  Go to slot b.
+t)ake the other weapon, that is, the one you just put into your pack,
+back out of your pack.  You may have to fiddle around with it a bit here,
+but you should be able to get one into the 'up in the air' slot,
+and then combine them using 'e' so that you now are wielding
+*2* two-handed weapons.  Save game again.  Repeat process indefinitely.
+The number of weapons will double each time.  Enchant and sell for big bucks.
+With the big bucks, you can buy that condo and get most of your spells
+down to needing only one mana.  Then you can buy all sorts of neat armour
+and weapons.  If you can't get the scythes yet, some axes and swords
+are also two-handed, and work just as well.
+
+In some very old versions of the game, there is a well-known bug
+known as the scroll/potion-on-finger cheat.  By putting a scroll or potion
+in one of the slots reserved for rings, you will get the effect
+without losing the potion or scroll.  The same on removing it.
+I will let you figure out what scrolls and potions are most useful.
+*************************END*OF*MASSIVE*SPOILERS************************
+WARNING!   WARNING!   WARNING!   WARNING!   WARNING!   WARNING!   WARNING!
+
+
+
+SPELLS:\\
+
+
+This should be pretty complete.  Spells are essential to omega.  Some are
+very powerful.  When casting a spell (with the 'm' command), you do not
+have to spell out the whole thing -- you need only type enough letters to
+differentiate the spell you wish to cast from the other spells you know.
+Hence, if your only spell is disintegration, you need only type 'd'.
+However, if you also have dispell or disrupt, you would have to type 'disi'.
+The numbers shown in parentheses is the amount of mana needed for the spell.
+This number is halved each time you relearn the spell, unless you relearn
+the spell from the Key of Kolwynia or from a guild, deity, or other group.
+If a spell is relearned this way, it has no effect whatsoever on the game.
+Many of the spells are directional or need to have a target given.  The same
+code that is used to e(x)amine a square is used for targeting a spell.
+
+monster detection (03)  Detect monsters in area.
+object detection  (03)  Detect objects in area.
+clairvoyance      (10)  See an area remotely.
+fear              (10)  Put fear into an enemy.
+identification    (10)  Identify objects.
+magic missile     (10)  Minor combat spell.
+return            (10)  When in a dungeon, cast this on lower level to
+			  return to first level, and cast it on the first
+			  level to return to the lowest level scored.  Join
+			  the explorer's club to get this spell.
+self knowledge    (10)  Find out about yourself.
+alertness         (15)  Not sure what this really does.  Resist sleep???
+apportation       (15)  Pick up objects remotely.
+haste             (15)  Speed yourself up.
+healing           (15)  Restores hit points.
+invisibility      (15)  Make yourself invisible.
+sleep             (15)  Put enemies to sleep?
+accuracy          (20)  Might increase to-hit.
+breathing         (20)  Breath underwater or in a cloud of gas.
+curing            (20)  Cures poisoning and sickness.
+firebolt          (20)  A bolt of fire (of course).  Use on enemies or to
+                          clear bushes.  Does not kill trifids, so this can
+			  be used to distinguish the two, so you can walk
+			  into trifids with your salt water, and not run the
+			  risk of getting caught in a bush.
+heroism           (20)  Makes one unafraid, among other things.
+regeneration      (20)  I tested this one, and I _still_ don't know what it
+			  does.
+restoration       (20)  Same as regeneration.  (Haven't a clue).  A bug?
+summoning         (20)  Summon a monster.  No choice of monster.
+teleport          (20)  Random teleport of self.
+true sight        (20)  See invisible.
+ball lightning    (25)  Blast a small area (several squares) with lightning.
+			  If you stand too near, it could be electrifying.
+levitate          (25)  Feeling down?  This will lift you up.
+blessing          (30)  Bless objects.
+disrupt           (30)  Blast your enemies, third only to energy drain and
+			  hellfire.
+enchantment       (30)  Enchant objects.  Be careful as they might explode.
+polymorph         (30)  Can polymorph yourself, but you die.  Use on other
+			  creatures.
+disintegrate      (40)  Kill enemies, or clear out walls and bushes.  Can
+			  use this to tell bushes from trifids.  (Trifids
+			  aren't affected, most bushes are).
+dispelling        (40)  Make an incorporeal being subject to cold steel.
+energy drain      (40)  Drain enemy's hit points, gives you the hit points.
+			  Don't use on some monsters, such as the Eater of
+			  Magic or the Demon Emperor.  Otherwise, one of the
+			  most powerful spells.  Real fun to use on Death.
+desecration       (50)  Desecrate and destroy an altar of a deity.
+ritual magic      (50)  Various.  Depends on where it is cast.
+                          In a room with a blue omega dais, it can take you
+                          to the Adept's Challenge.
+shadow form       (50)  You become incorporeal.  Can walk through walls.
+			  However, can still get stuck in rubble or bushes
+			  (Can we say buggy?).  Can only fight using magic.
+			  Be careful around water or lava, as confirm option
+			  automatically shuts off when in shadow form.
+			  Remember that you can use ^F to abort shadow form.
+			  As of version .75, it appears that bushes at least
+			  will not stop a player in shadow form.  However,
+			  trifids will, due to their higher nature.  Make
+			  sure you have your salt water!
+the warp          (50)  Warp to a different dungeon level.
+sanctification    (75)  Make an altar to your deity.
+sanctuary         (75)  Let your deity protect you from enemies.  Must stay
+			  in the spot where you cast the spell.  One of the
+			  best spells, but cannot fight from sanctuary,
+			  except by magic.  Does not work in temples.
+hellfire          (90)  BLAST your enemies, but be sure you blast _some_
+			  monster (not an empty space or wall, etc.) or your
+			  deity may become angry at you for wasting magic..
+wishing          (100)  Get a wish.  After one use, this spell will be lost.
+
+
+
+STONES:\\
+
+
+Raising stats by worshipping stones:  I am not personally familiar
+with this, but several players have reported it.
+Stones are represented by `8'.
+Each stone will raise one stat (Constitution, Strength, Intelligence)
+by up to 10 points (you can reset it and use more than once),
+but only to a maximum of 30.
+
+The steps to using the stone are:
+1)  Keep on worshipping until 10 points are added to stat.
+
+Watch out for side effects, especially:
+
+  a)  "You start to foam at the mouth".  This is when you go berzerk.
+  I.e., you will attack any creature in the space beside you.
+  This is not a problem so long as you do not move next to any creature,
+  especially Guardsmen, until you heal.  If possible, wait until healed
+  to continue worshipping stone, because of the next effect.
+
+  b)  "A portal opens and a confused monster appears".
+  If this monster is too tough to deal with (which is often,
+  early in the game), you can leave the village and reenter --
+  village information is reset and the monster will be gone.
+
+  c) "You develop an advanced case of Leprosy".  You become diseased
+  and drop to one hitpoint.  Get cured and wait for your hitpoints
+  to return before continuing.
+
+  d)  "You are struck by lightning".  A lot of damage.
+
+2)  After you gain the maximum you can ("the stone glows cosmic"),
+if that is less than 30, worship one more time.  This will randomly
+teleport you into the countryside.  Depending on conditions,
+have lots of food or seven-league boots handy.  This will reset the stone.
+
+3)  Continue steps 1 and 2 until you reach the maximum of 30.
+
+
+The Stones:
+
+Lawstone:  Constitution.  Village of Star View.
+Chaos stone:  Strength.  Village of Stormwatch.
+Opal stone:  Intelligence.  Village of Whorfen.
+
+Sacrifice stone:  Power.  Village of Skorch.  This stone operates
+differently than the others, in that you lose maximum hitpoints
+to gain power.  Let your hitpoints become 3/4 of original value:
+Any lesser sacrifice and the gods frown on you, any greater sacrifice
+is unnecessary and likely fatal.
+
+
+
+MISC:\\
+
+
+To become lawful enough for Odin or Athena to accept you, go to hospice and
+give 1 gold.  To become chaotic enough for Set or Hecate to accept you,
+several things can be done.  One is to rob the bank. Rob the bank after you
+have joined any lawful guilds you want to join.
+
+Vorpal Sword gives theft protection.  However, theft is not too big of
+a problem for highlevel characters.
+
+Powered Scout Armor and Powered Combat Armor give breathing.  These are
+recommended when using shadowform (because when in shadowform
+you are not given a warning message when you are about to walk into water,
+and can easily drown if you do not have BREATHING).
+
+Mithril Plate (which you get on the 4th level of the paladins)
+gives fear immunity.  It should only be worn by lawful characters
+(it apparently increases lawfulness).
+
+Demonscale armor apparently increases chaos.  It is usually found cursed
+but can still make excellent armor.
+
+Prismatrix Armor gives immunity to electric shock and a number of other things.
+
+Demonblades and Desecrators should only be used by chaotic characters.  They
+are however very good weapons, cursed or not.  The problem is that these
+weapons (or at least Demonblade) apparently cause any monster walking next
+to you to attack you until you are dead.  If you are in shadowform, this will
+be eternity and you will have to exit the game.  The only way to unwield a
+Demonblade is to overenchant it until it explodes.
+
+Defenders should only be used by lawful characters.
+
+If you join the Sorcerors Guild and return while not be chaotically
+alligned, they will kill you.
+
+Condo:  Can buy it for 50,000 gold.  Worth it.  Can store items and rest for
+a week to restore stats.  Can rent it for one week for ten thou.  Buy it.
+The condo is also useful for getting rid of some bugs, as your character
+is reset at the end of the week.
+
+At Dragon's Lair, search for alarms at entrance to inner room.
+Probably safer to use shadow form to go through the south or north walls
+to the dragon's end of the cavern.  Then use clairavoyance to see
+what's there.  You can pick up most of it safely.  Find and kill
+the King Wyverns with monster detection and some strong offensive spell
+like disrupt or hellfire.  Don't walk next to the dragons!
+They will stay asleep as long as you don't go next to them.
+You can apport the items next to the dragons.  You want to have used
+the key of Kolwynia before going here.  Do not kill dragons.  If dragons
+are left in peace, wealth will replenish itself, so future visits
+are worthwhile.  Otherwise forget it.
+
+Use `M' command while in Rampart if your character is overloaded (weight)
+or if obstacles (i.e. angry guards, bushes) prevent easy access
+to a destination.  It will not work if you are stuck (i.e. in a bush
+or in rubble).  'M' is like the 'm' command in that you do not have to type
+the entire name of the destination, only enough to differentiate
+from the other locations that are known.
+
+Each of the small towns will have a shop where maps of the surrounding area
+are sold, and several towns sell horses.  After paying merchant,
+take a bag of grain lying around the stable and offer it to a horse
+to befriend it.  To mount a horse you will need to t)alk to it first.
+
+Gymnasium is nice to increase stats, at the rate of 1 point per stat
+selected for $2000.  Stat to be improved is selected by workout type
+selected.  The two catches seem to be that it is random (~50%) chance of
+getting increased stat and it will only raise stats a certain amount (either
+12 points max by this means, or up to 30.  Not sure which).
+
+Stones can also be used to increase certain stats.  See section.
+
+Backdoor to Wiz mode:  This mode will not let you score.  It is very
+helpful to find out about the game.  To get into Wiz mode, go to the
+upper lefthand corner of Rampart which should look something like
+this:
+
+		       ######
+		       #@....
+		       #.####
+		       #.#|##
+
+Where @ is the player.  Use the command z (Bash) and the direction 'y' (or 7).
+Might be the direction 'b' (or 1) in some versions.
+You may also get an option to try out Wiz mode during a freak storm in the
+countryside.  But it's been a while, so don't take it as gospel truth.
+ctrl-w maps the level in dungeons (though clairvoyance is easier to use)
+and ctrl-x allows a wish.
+
+Some actions gain experience in large doses.  Among these is pouring salt
+on trifids (walk into trifids while a bucket of salt water is in inventory), 
+going to the cat house, and bashing or desecrating [bashing may gain more
+and you don't have to be as high of a level to use it effectively]
+non-aligned altars (must be aligned yourself).
+As for the trifids -- do not combine your buckets of salt water into one
+slot, or they will all be used at once.  You may keep the salt water in
+your pack, but once again, do not combine them.
+
+
+
+LIBRARY:\\
+
+
+At Rampart Public Library.  Research costs 1000 Au.
+(I have now been informed that cost depends on Intelligence level,
+and is only 50 Au at a level of 3 -- I am not sure how this is better
+than starting with a higher level and not having to make up ground,
+except that with option e, advanced research, you can gain intelligence,
+and at the lower cost you may be able to go further for less cost.)
+
+You will have 5 choices.  Below are the complete documents you would see
+if you were to make choices a-d.
+
+Peruse a scroll:
+--------
+a: Omegan Theology
+
+You unfurl an ancient, yellowing scroll...
+
+Theogony of Omega,
+
+being an explication of the Ways of the Gods of Omega.
+
+Know ye, O ignorant ones, that Omega is the battleground of the mighty forces
+of Law and Chaos. Powerful are the Champions and Avatars of the two great
+forces, but most powerful of all are the Gods who, it is rumored, have
+been summoned from other planes to represent the two forces.
+
+On the side of Law:
+
+  Odin, God of Vengeance -- followers of Odin vow to eradicate the taint
+of chaos wherever it may be found. Odin rewards his faithful with the
+power to strike strong blows against the Legions of Chaos.
+
+  Athena, Goddess of Justice -- devotees of Athena, while prepared to
+fight the forces of chaos, choose a more intellectual approach to the
+battle, marshalling the more subtle powers of magic in their striving.
+
+
+On the side of Chaos:
+
+  Set, God of Destruction -- worshippers of Set will follow any path to
+destroy and corrupt Law and its minions. Set teaches his followers powers
+equally as potent as those of Odin.
+
+  Hecate, Goddess of Illusion -- Hecate matches Athena's wisdom with
+deception, and matches Athena's defensive powers with destructive
+abilities.
+
+Followers of any of these deities must be careful to keep to the true path --
+the wrath of a God is fearsome.... It is also said the Gods are jealous --
+honoring another deity, even of the same alignment, is an extremely bad idea.
+On the other hand, any act against a God of the opposite alignment would
+be looked on kindly by your patron deity.
+
+It should be noted that there are still other Gods of Omega. The Druids
+think themselves beyond the struggles of Law and Chaos and attempt to
+maintain a Balance between the two -- they are despised by all the
+aligned Gods. The ArchDruid is said to command powers greater than
+any other cleric.
+
+The mysterious Lords of Destiny are said to preside over the struggles
+of Law and Chaos as a referee rules a bout. Their powers are said to
+be extremely subtle and pervasive, and while no one has ever seen this
+power displayed, the self-appointed clerics of these mysterious beings
+claim great abilities.	Certain it is that the aligned Gods have never
+acted against the followers of the Lords of Destiny, though whether
+this is because of their power, or because they offer no threat, is
+unknown.
+
+--------
+b: Guide to Rampart
+
+You unroll a slick four-color document...
+
+Welcome to Rampart! A guidebook of the Rampart Tourist Association.
+
+Rampart is the sole city in this area of LOCUS, a bastion which the
+wild forces of both Law and Chaos cannot breach. Within the town there
+is a truce between the followers of Law and Chaos which is hardly ever
+broken.
+
+The visitor to Rampart will enjoy a wide range of divertissements,
+from shopping at Rampart's diverse assortment of shops, to attending
+games at the Rampart Coliseum, to a relaxing picnic at the Botanical
+Gardens. Distinguished visitors may apply for an audience with the
+Duke, who is said to be the greatest courtier on LOCUS. Others spend
+their nights (and days) gambling at the Rampart Casino.
+
+The traveller who intends a longer stay in Rampart should check out the
+various guilds, societies, and clubs which protect and employ almost
+all the citizenry. The Commandant of the Mercenary Guild is always
+hiring, just for example. Many travellers are attracted to the
+Collegium Magii -- scholarships are available to the qualified.
+
+A few cautions should be offered to the unwary. Rampart's sewer system
+is dangerous, and while there is ABSOLUTELY NO TRUTH to the rumors of
+treasure-filled dungeons and caverns beneath the city, many
+disappearances each year are attributed to unauthorized excursions
+beneath the city. For the larcenous-minded, be warned that Rampart's
+City Guard is uncorruptible. It is just a matter of time, promises
+Morgon the Justiciar, until the secret hideout of the Thieves' Guild
+is uncovered....
+
+But these warnings are surely unnecessary for the vast majority of our
+visitors who will be perfectly safe if they act with reasonable caution....
+
+--------
+c: High Magick
+
+This scroll is written in a strange magical script...
+
+Being un Explication et Tretys on ye Powers of Hy Magick.
+
+It ys whysper'd among the dark mages of Kulthar and also ye Gnomes of
+Zrenheim that Hy Magick is unattainable. But I know the truth! Hy
+Magick ys hard to come bye, tis true, but ye mightie and ye fortunat
+may even discover ye secrets thereof with carful application of
+their talents. It ys known that many have had the oppportunitie to
+invoke ye Hy Magick but have failed du to ignorance, or fear.
+For knoe ye this: If Hy Magick be not invoked with exactitude,
+it will not manifest, so ye mages, ye prentices, ye thaumaturges,
+ye seers: Hearken! And learn ye the proper words of invocation.
+Make sure the word is spoken precislie as I put it herein.
+
+'Death' is said by some to be a blessing, and it may be had from
+ye offices of Hy Magick as I put it.
+
+Many practicers of the Recondite Arts might wish for 'Power', but
+this ys truelie not as great an office as one myte desyre, being
+of strong but ephemeral effect.
+
+'Skill', howbeit, ys a very fortunat benefice of Hy Magick.
+
+Let not ye greed for material possessions best ye, for 'Wealth'
+does not signifie so much as some other choyces.
+
+The ones who walk the Way of the Druid may have occasion to request
+'Balance' of ye Hy Magick, while other clarical seekers may
+desire 'Law' or 'Chaos'.
+
+Truelie, 'Knowledge' is a great thing to gayn of the Hy Magick.
+
+Those poor ones who are afflicted myte well wish for 'Health'.
+
+Travellers culd find theyr destinations with 'Location'.
+
+Shuld a certain ytem of power be beyond thy grasp, 'Acquisition'
+mought well gayn yt for thee.
+
+
+Those seekers who learn from ye studie ye beast supernal could
+wish for 'Summoning'.
+
+Onlie True Adepts may wish for 'Destruction', it ys sayed.
+
+It ys mine hope that this list may be of servis to other seekers after
+Wysdom.
+
+-- Octariis Otharian, Mage of Klosternon. Cycle of the Eft, Year of
+the Slug, Day of the Dolphin.
+
+--------
+d: Odd Uncatalogued Document
+
+You find a strange document, obviously misfiled
+under the heading 'acrylic fungus painting technique'
+
+[Librarian's note. This odd item just won't go away. Every time we
+lend it out, it just appears back in the stacks.... Even burning it
+didn't work....]
+
+The Adepts' Manifesto.
+
+``Mastery of the World can only be achieved by the Master of the Self.
+For one who has total Self-Control, all things are possible.''
+
+[Obvious hyperbole -- Librarian]
+
+``The apex of High Magic is a triviality for a true Adept.''
+
+[Surely, this is exaggeration -- Librarian]
+
+``An Adept makes his own Destiny, and Destiny caters to the whims of
+an Adept.''
+
+[Oh, come now, be serious. -- Librarian]
+
+``Only Self-Improvement can lead to Adepthood. Those who have not
+raised their personal attributes to the highest values will
+be inevitably destroyed in their quest for Adepthood.''
+
+[Say what? -- Librarian]
+
+``The Challenge of Adepthood is maintained by the Lords of Destiny.''
+
+[Nonsense! -- Librarian]
+
+``An Adept-Aspirant must be prepared to go beyond the trivial powers of
+Magic, even spurning the tawdry attractions of Artifacts, if the
+Aspirant would achieve Adepthood.''
+
+[Me, I'll take the Artifacts... -- Librarian]
+
+``The final test of an Adept is Mastery of that Void which lies both
+within and without the Self.''
+
+[Zen Gobbledygook. -- Librarian]
+
+``Only an Adept can become a Total Winner.''
+
+[What the heck is a Total Winner? -- Librarian]
+
+--------
+e: Attempt Advanced Research
+
+You may get a message something like this:
+You find advice in an ancient tome:
+Tullimore Dew is a panacea.
+They say that the autoteller program is buggy.
+Some junk may be worth a fortune if identified.
+
+If you get the message:
+You feel more knowledgeable!
+It means that you have gained intelligence.
+
+
+
+CHALLENGE:\\
+
+
+The Adept's Challenge is the final challenge in the game.  No experience
+may be gained after the Challenge is completed.  The Oracle will give you
+the needed information when the time comes.
+WARNING!   WARNING!   WARNING!   WARNING!   WARNING!   WARNING!   
+****************MAJOR*SPOILERS****************
+The Challenge takes place at the Temple of Destiny.  This Temple is
+surrounded by the Sea of Chaos (a lawful character won't be able to go
+more than one space through this Sea, but that is all that is needed).
+Before going to the Challenge, try to have the spell of wishing (remember
+it can only be used once) so that by wishing for 'Location' you can return
+to Rampart easily.  Try also to have either Acquisition or Summoning (This
+is not necessary, but helpful.  It does not matter what the object is, you
+will simply need an object.  If you kill Death, you can use one of his
+scythes.  Other monsters randomly summoned will also often bring objects
+with them).  When you enter the portal at the Temple of Destiny, you will
+be stripped of all objects (and you won't get them back), so no need to
+take any more than what you'll need to kill the militant priests so you
+can get to the portal.  (Or, if you are perfectly neutral,
+they won't attack you.)  Once in the portal, you will find an odd screen --
+be careful not to fall off into the void, or you will starve while falling
+down a bottomless pit.  If you want to take care of it now, you can use
+summon or acquisition now to get an object.  Throw it off into the void.
+There will be 4 spaces that look odd -- each represents one of the four
+elements -- fire, earth, water, and air.  Each is a test.  Walk into each,
+and when asked to confirm, answer 'y'.  You will not get a second chance.
+You must go headfirst into each.  They will each in turn disappear.  When
+all four are finished, Death will appear.  Kill Death a great number of
+times, and when you are done with Him, throw an object into the void if
+you have not already done so (there will be plenty of scythes lying about),
+and follow yourself.  After jumping into the void, you will find yourself
+in the Temple of Destiny again.  As you won't have any objects like seven
+league boots, it would be difficult to get back to Rampart alive, as the
+Temple of Destiny is far away.  Use the wishing spell, wish for Location,
+and return to Rampart.  Go to your condo and retire.  End of Game.
+Also as an option:  As an adept you can safely use the Scythe of Death --
+there are also some other weird things, including one report that
+you can use ^X to make wishes or that you can swim in the Sea of Chaos.
+****************MAJOR*SPOILER****************
+WARNING!   WARNING!   WARNING!   WARNING!   WARNING!   WARNING!   
+
+
+
+STRATEGY:\\
+
+
+Franklin "Fronk" Taylor's Suggested Stategy:
+Now that you know the basics, here is a suggested pattern for beginning the
+game and planning your strategy.  Remember to save and backup saves after
+any major achievements such as getting useful spells, gaining levels,
+gaining major objects.  Save more often if you are in shadow form mode since
+you have no "confirm" protection from drowning or abysses.  The following
+is just one of many possible and successful strategies.
+
+1) Worship Athena: go to the hospice and become lawful, then immediately
+worship her.  
+2) Immediately join the Paladins and the Collegium.  Save.  Then get
+your random spell research.  Keep trying until you get something good.
+If you get a good enough spell, you will go up several levels.  
+3) Rob the bank.  Join the sorcerors' guild (you are now chaotic).  
+   Go around town looking for:  thieve's guild, gym, tavern, alchemist,
+   pawn shop, explorer's club, healer, fast food, etc.  Afterwards you
+   can save a lot of time by using M to go to these places.
+4) Fight in the arena (without joining) until you beat the goblin. After
+   this you should try to wait and see how strong you are.
+5) Search out the trifid maze.  Visit the oracle.  Use it for self-knowledge
+   frequently.  
+6) Visit the castle and be sent on a quest.
+7) Join the thieve's guild, then go pilfer the castle.  You don't have to
+   have any spells.  Just don't be too heavy going in.  You can jump over
+   the moat on the way out.
+At night sleep at the tavern (25au).  Begin making visits to the first couple
+levels of the Goblin Caves.  When you are strong enough for a long journey, go
+to the Archdruid's shrine and get the experience he gives.
+When you feel ready, buy a scroll of warp at the scroll shop (or use the
+spell) and go down in the Goblin Caves and kill the king.  Use his ax after
+you have identified it. Don't stay down there too long; the shamans are a real
+pain!
+Keep visiting the caves and the sewers.  Don't go too deep in the sewers 
+until you're fairly strong (about 7 or 8 level); anything could be down
+there.  You should make regular trips to the thieve's guild.  In this
+way, continue to gradually accumulate wealth, equipment, and experience.
+	You should keep an eye out for a rod of summoning.  You really
+shouldn't worry about too much else until you get one.  Use it to perfect
+your self, summoning the fairy for money, stats, and skill.  Once you
+have the appropriate spells, summon the Wyrm.  
+[Note:  There are two fairies, a good one and a bad one.  Only the good
+fairy will give you a wish, and only if you answer her questions correctly.
+If you summon a fairy, you can determine which you get by the monster
+number.  The list of creatures you can summon (shown when you summon, if you
+are given a choice) will have two fairies listed.  The good fairy is # 121.]
+	When you have done these things, and not before, you should begin to
+think about summoning the Demon Emperor.  Plan on pickpocketing him and 
+killing him with hellfire or else casting sanctuary and killing him with
+disrupt, disintegrate, or dispell and some lesser spell.  The Holy
+Hand Grenade which you may have gotten by now works well for this purpose.
+YOU MUST GET THE AMULET OF THE PLAINS BEFORE DOING ANYTHING ELSE.
+	Now you should be about 10th or 11th level.  The fairy can see
+that you get there if you haven't yet.  You should be as far as you can
+go in every guild without gaining some special object.  Now that
+you have the amulet, it is very easy to gain those special objects.  The
+trick is that they do you no good unless you have more experience than the
+player who currently holds that title (check the high score board).  If
+you can become Shadowlord do so immediately.  If you can become high priest
+do it next.  (this is easier if you have shadowform, monster detection, 
+disrupt, clairvoyance, and apportation.  otherwise the militant priests 
+become quite a nuisance--like the Goblin shamans were earlier).
+	Before you go any further, you will need certain spells.  Not
+all of them are musts, but certain combinations are quite helpful.  You
+will need:
+
+the warp (or scroll of same), hellfire, disrupt, dispell, disintegrate,
+healing, curing, and clairvoyance or shadowform to rapidly check levels.
+
+In addition you want to have the rod of summoning, the amulet of the plains,
+and if possible, protection equipment like rings of poison and fire resistance,
+and a cloak of negimmunity.  You should have some type of truesight ability
+whether a spell, ring, or cloak.  
+	This stuff is for your big quest: to reach to Archmage's throneroom.
+Remember, this is probably the only major quest in the game which does not
+require you to kill anything.  All you have to do is Amulet to Thaumaris,
+buy a map, walk to the castle, warp down to 15, find stairs to 16, find
+magic portal to throneroom, pickpocket KEY from Archmage, greet him, get the
+sceptre from under the throne, identify it, sit on the throne, and use the
+escalator to go back up!  Of course, you should try to do this without dying,
+being mangled beyond repair, or yielding to robbers any valuables.  It is
+also a good idea to have your pack quite full when you get back to
+Rampart.  Use the Key and you are one happy camper.  SAVE ONCE YOU ARE 
+BACK IN RAMPART WITH THE KEY!
+	You now have several quests which you are fully ready to carry out.
+This is where the game gets really fun.  You are not invincible, but you can
+becoming nearly so by practical application of the appropriate spells.  When
+you are about 20 level you are ready to try the Dragon's Lair.  This is the
+great treasure trove of Omega.  After looting the lair several times, you
+may be well-equipped enough to face the Astral Plain.  Unless you need
+to visit the sorceror's circle level (for the paladins), just summon up
+anything from here that you want to fight or get something from.  
+	When you have completed all of these quests, you may be ready for
+adept's challenge.  The oracle will send you there as she does to the Astral
+Plain.  Be sure to go up at least 200 levels during the challenge.  You should
+then be strong enough to become the head of most guilds.  
+	After that, you can repeat any of the above actions, with the
+Archmage's castle, the Dragon's Lair, and the Astral Plain being the most
+challenging and worthwhile.  
+	At this point your game will probably begin to get boring.  This
+can easily be rememdied!  Just switch deities, alliances, and guilds.  
+Many of the better players, make a goal of taking their characters up to the
+top of the list in every category on the high scoreboard.  When you are
+done with that, please retire your character (do so at your condo which
+you have probably bought by this time).   DON'T keep a high character around
+just to get back on the score board if it is erased or someone passes you
+up!  This ruins the game for other people.  Once the high score becomes a joke,
+very few people will continue playing.  With a game as detailed as omega that
+would be very unfortunate.
+	Now that that is said and done, you may say that the game is
+	obviously too easy if I can have such a system that takes me
+	through the game so rapidly.  Well, you're right, BUT the game
+	is much more complex than I have said.  There are also a lot of
+	variations.  For instance, I said nothing about the strategies of
+	gaining wealth, equipment, and experience by robbing houses, 
+	transforming dead monsters, visiting the sewers repeatedly, or
+	hunting in the countryside.  Also, most of the quests which I
+	have glossed over are harder than they appear.  For instance, I find
+	the Eater of Magic's Island so hard, that I usually just summon him
+	up.  Going there is extremely challenging.  Don't let my
+	directions above become a cage.  Branch out, try new things with the
+	game.  There may be things that we have not even dreamed of yet.
+
+
+
+FINAL NOTES:\\
+
+
+The spell of apportation is also extremely useful.  It allows you to pick up
+an object remotely, that is, you don't have to stand on the square the
+object is on to pick it up.
+
+I personally find it much easier to visit the Eater of Magic's Island than
+to summon him.  The problem is in getting there and back.  Once there,
+simply use clairvoyance or monster detection to determine his location, then
+use disrupt until he is killed.  Am not sure about hellfire.  It should work
+for most versions.
+
+Several high level monsters should not be drained of energy.
+If you cast this spell, they may in fact drain YOU of energy,
+and heal themselves with your energy.
+
+Don't forget the command screens in the game.  These will let you know much
+of the information you are looking for, and even have an option to print
+the screens out to a file, which in turn can be printed out for easier
+reference.
+
+Lastly, you will note that these spoilers are nowhere near as nicely
+formatted and all as the nethack spoilers also created at Wheaton.
+That is because Paul is much better at organizing this stuff than I am.
+Nevertheless, I hope this file is helpful.  Just remember that this file
+is BY NO MEANS complete, and the accuracy of the statements is doubtful.
+If you don't like this, make a better help file yourself.
+I'm sure somebody will be grateful if you do so.  Otherwise,
+you can always mail suggestions to me, but I may never get around
+to doing anything with them.
+
+This Omega Spoilers File was created by students at Wheaton College:
+Alan Light (`92) and Franklin "Fronk" Taylor (`91).  Final editing
+(as bad as it is) provided by alight.  We were students at Wheaton College,
+the same site that produced the famous "Wheaton College Nethack Spoilers"
+(As well as spoilers for rogue and ultrarogue).  We are additionally grateful
+to Ken Roth (`92) and Paul Waterman for their help in providing information
+for this file.  Any mail should be directed to alight@mercury.interpath.net
+(For continuity purposes, I was formerly at wheaton.UUCP, wheaton.edu,
+and rock.concert.net).
+
+
+Alan
+-- 
+A. Light  |  Long Live the Great Teutonic Squirrel Uprising!
+  alight@cybernetics.net

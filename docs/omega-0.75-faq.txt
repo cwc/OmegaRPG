@@ -1,0 +1,441 @@
+Path: alcyone!uuwest!goonsquad.spies.com!genmagic!bug.rahul.net!a2i!news.erinet.com!uunet!in2.uu.net!newsxfer.itd.umich.edu!news.itd.umich.edu!choplifter.rs.itd.umich.edu!rix
+From: rix@umich.edu (Rick Garner Sanders)
+Newsgroups: alt.games.omega
+Subject: Omega FAQ
+Message-ID: <44s8fn$luj@lastactionhero.rs.itd.umich.edu>
+Date: 3 Oct 1995 21:03:51 GMT
+Organization: University of Michigan
+Lines: 430
+NNTP-Posting-Host: choplifter.rs.itd.umich.edu
+X-Newsreader: TIN [version 1.2 PL2]
+
+
+This is the Omega FAQ.  (That is, it attempts to answer Frequently
+Asked Questions about Omega.)  It is posted weekly to alt.games.omega
+and to rec.games.roguelike.misc.
+
+
+Last updated: April 20, 1995
+
+New since last update:
+
+Question 6, about the location of the Archmage's Castle.
+
+Questions addressed in this FAQ:
+1.  Where do I get Omega?
+2.  a.  How should I begin the game?
+    b.  Which guild should I join?
+    c.  What should I do after I join a guild and get equipped?
+3.  What order should I do things in?
+4.  a.  What is the Oracle?
+    b.  How do I find the Oracle?
+    c.  Why do I want to find the Oracle, anyway?
+5.  How do I find the Archdruid?
+6.  Where is the Archmage's Castle?
+7.  How do I become more Lawful or more Chaotic?
+8.  How do I keep from being slowed down by monsters?
+9.  Some monsters ignore my attacks -- what do I do?
+10.  How do I use the Orbs?
+11. How do I find the Adept's Challenge?
+12. How do I win the Adept's Challenge?  How do I completely destroy Death?
+13. How do I enter Wizard Mode?
+
+
+*Part One*
+
+
+1.  Where do I get Omega?
+
+Omega is available from monu1.cc.monash.edu.au
+
+
+2.  a.  How should I begin the game?
+
+The guilds are the key to success in Omega, and joining a guild should
+be your first action upon beginning a game.  You want all of the
+experience you get to count towards advancement in your guild, so you
+should join a guild before you disarm your first trap or kill your
+first monster or go on the Oracle's first quest.
+
+Some guilds require that you be of a particular alignment in order to
+join, and you will need to do one or two things before joining the
+guild in order to become of the appropriate alignment.  Notice,
+though, that there is something you can do in Rampart that will make
+you slightly Lawful (Lawful enough to join any of the Lawful guilds),
+and there is something in Rampart you can do to make you slightly
+Chaotic (Chaotic enough to join any of the Chaotic guilds), so you
+needn't leave Rampart before you join a guild.
+
+In addition to joining a guild, you'll need to obtain some basic
+equipment, if your guild doesn't provide you with any (some guilds do,
+and some don't, so don't buy anything before you've joined your
+guild).  You should have some sort of weapon and some sort of armor --
+there's an armorer in Rampart who will sell these to you.  You should
+also have a little bit of food on hand when you leave Rampart, in case
+you need to eat on your journey -- there's a fast food restaurant in
+Rampart that will sell you food.  It's also nice to check out the pawn
+shop from time to time and see if they have anything you can't live
+without.
+
+    b.  Which guild should I join?
+
+Each player has his or her own favorite guild.  The game is set up so
+that each guild gives you something good, so all of them are worthy
+(with the possible exception of being a priest of Destiny).  Which
+guild you pick really depends on what kinds of things you like to do
+and how you like to play.  And part of the fun of Omega is that you
+can join one set of guilds this time and a different set of guilds the
+next time you play, so your game doesn't get stale.
+
+All of the gods except Destiny give their adherents spells and will
+occasionally remove cursed items for you.  The god will also sometimes
+throw snowballs at monsters that are attacking you.  When you advance
+to the highest level, you get a holy symbol that recharges your mana.
+You must have the same alignment as your god (Lawful, Neutral, or
+Chaotic), and you must be of the right alignment every time you pray
+to your god.  Unlike the sorcerers and the paladins, though, you are
+not required to become more lawful or more chaotic in order to advance.
+
+The collegium magi gives you lots of spells, and every time you
+research a new spell, you get experience for it.  Unfortunately,
+sometimes spell research is unsuccessful.  You must pay tuition unless
+you have an intelligence of 18.  Alignment is unimportant.
+
+The sorcerers also give you spells, but not nearly as many as the
+collegium magi does.  You can join them no matter what your alignment
+is, but you must be Chaotic in order to advance, and your alignment
+must become progressively more chaotic in order to advance to higher
+levels.  There is a fee required to join the guild -- the higher your
+Power is, the lower the fee is.
+
+The thieves' guild requires that you be Neutral or Chaotic when you
+join, but they don't care what you are after that.  They'll identify
+stuff for you, buy stuff at better rates than the pawnshop, and give
+you an occasional spell.  You can pickpocket other creatures and open
+locks with a lockpick.  One must pay dues in order to join; the higher
+your Dexterity, the lower the dues.
+
+The mercenaries give you lots of cash and not much else.  They start
+you off with a basic weapon and armor, but you don't get any niftier
+equipment upon advancement.  Money is versatile, though -- you can
+buy equipment or you can buy time at the gym to boost your stats or
+you can buy spell research at the collegium magi.  Some of us find
+money to be rather a yawn, though.
+
+The paladins give you equipment and a horse.  Every time you return to
+their headquarters, they feed you and cure you of any wounds or
+diseases you may have.  In older versions of the game, they also
+remove the curse on any cursed items you're carrying, but in later
+versions of the game, this feature has been removed.  At later levels,
+the paladins also give you a spell or two.  The paladins' mace of
+disruption, which you get when you advance enough in their guild, is
+one of those rare weapons that will hit even those monsters that
+aren't subject to normal weapons.  You must be Lawful to join the
+order of paladins, and you must become progressively more Lawful in
+order to advance.
+
+The arena gives you free time at the gym, which boosts your stats, one
+basic (not very good) weapon, and cash every time you win a fight.
+They also give you an extra maneuver (attack or defense), which is
+very useful, especially at low levels.  If you advance to the highest
+level, you win Victrix, a very nifty weapon that has a high to-hit and
+also makes you immune to fear.  You must have reasonable physical
+stats in order to join the arena, but alignment is unimportant.
+
+Most guilds raise one or more of your stats every time you advance.
+For example, the collegium raises your intelligence and power, the
+mercenaries raise your strength and constitution, and so forth.  The
+arena doesn't do this, but it does give you time at the gym, which
+accomplishes the same thing.
+
+So, if you like to cast spells, you should pray to a god or join the
+collegium magi or the sorcerers.  If you'd prefer to hack and slash,
+then you should join the mercenaries or the paladins or the arena.
+Which guild you join may be limited by what your stats are or by
+whether you can afford tuition or dues or whatever.
+
+If you STILL don't know which guild to join, then join the paladins.
+They take care of you, by feeding you and curing disease and whatnot,
+so they're good for a new player who doesn't yet know how to avoid
+becoming diseased or how to avoid some of the other nasty things that
+the paladins will take care of for you.  (This is especially true of
+older versions of the game, where the paladins remove curses on cursed
+items.)  But remember that you'll have to be VERY Lawful.
+
+It is possible to join more than one guild at once, although there are
+some guilds that don't work together.  For example, you can't belong
+to the arena or the mercenaries and also be a paladin.  You can't be a
+sorcerer and also a member of the collegium magi.  When you belong to
+more than one guild, any experience you gain is split among those
+guilds (with the exception of the arena, where you only advance by
+fighting in the arena).  This means that the more guilds you belong
+to, the more slowly you advance in all of them.  Hence, low-level
+characters should probably stick to a single guild (or a single guild
+plus the arena, if your guild accepts arena members).  Once you've
+advanced as far as you can go in your guild without completing the
+final guildquest, then it's time to join a second guild.
+
+    c.  What should I do after I join a guild and get equipped?
+
+Now is the time for you to consult the Oracle for advice about what to
+do next.  
+
+
+3.  Which order should I do things in?
+
+If you visit the Oracle, she will give you excellent advice about what
+order you should do things in.  The Duke, who lives in the castle,
+will also send you on quests if you present yourself to him.  His
+quests and the Oracle's advice usually overlap, but if they disagree,
+well, the Duke is just a secular authority, but the Oracle's whole job
+is being wise....
+
+
+4.  a.  What is the Oracle?  
+
+The Oracle is a wise person who resides in Rampart and gives advice to
+adventurers. 
+
+    b.  How do I find the Oracle?
+
+Since the Oracle is a special and magical person, she doesn't live in
+an ordinary house in an ordinary part of town.  Seek her where Rampart
+is wilder.
+
+    c.  Why do I want to find the Oracle, anyway?
+
+There are a couple of reasons for finding the Oracle.  The game is
+lots easier if you do things in the order the Oracle tells you, rather
+than just randomly wandering around.  The Oracle's initial advice is
+especially valuable, since she sends you on a quest that is not very
+dangerous but which will advance you from level one to level three.
+This means that you will have more hit points and more mana and more
+experience to take on the next, more dangerous, quest.
+
+Another reason for finding the Oracle is that there is a place that
+you will eventually need to visit that is only reachable via the
+Oracle.  She will send you to this place when you are ready.
+
+
+5.  How do I find the Archdruid?  
+
+The Archdruid is in a temple north of the city.  Follow the road
+northeast until you come to a village.  (You don't need to enter the
+village; it's just a landmark.)  Explore the forest northwest of the
+village, and you should find the temple, which is denoted by an X.
+Once inside the temple, you'll need to explore it rather thoroughly in
+order to find the Archdruid.  Search some likely-looking areas....
+
+
+6.  Where is the Archmage's Castle?
+
+The Archmage's Castle lies to the far northwest.  You'll have to
+search for it once you're in the right area, just as you did to find
+the Goblin Caves.  (Um, you HAVE gone to the Goblin Caves already,
+haven't you?  You're probably not ready for the Archmage's Castle
+unless you have.)
+
+
+7.  How do I become more Lawful or more Chaotic?
+
+There is at least one place in Rampart that will give you the
+opportunity to become more Lawful, and there is at least one place in
+Rampart that will give you the opportunity to become more Chaotic.
+Look at the places in Rampart -- what would a good person do?  What
+would a bad person do?
+
+Once you've left Rampart, you'll have ample opportunities to alter
+your alignment.  It's easy, in these sorts of games, to fall into the
+mindset that monsters are for killing, but think about it for a second
+-- does a Lawful person really attack anything that hasn't attacked
+him or her first?  What other things might a Lawful person do -- might
+they not try to reform the monsters somehow?  As for a Chaotic person,
+it's easy to see that they would kill anything that moves, if it would
+be to their advantage, without regard for whether the monster was
+hostile or not.  But there's another, even more Chaotic thing that you
+can do with monsters.  Think of something sneaky that you could do to
+betray a monster....
+
+The Archdruid will conduct the ritual of neutralization if you ask him
+to.  If you are a Druid, this makes your alignment completely neutral.
+If you are not a Druid, the effect is somewhat different.  In the most
+recent version of the game, the ritual will bring your alignment back
+TOWARDS Neutral -- the less experienced you are, the more nearly
+Neutral you become.  If you are a very advanced character, it doesn't
+work at all.  In previous versions of the game, the ritual always
+accomplished complete neutralization, so if you're used to the older
+version, be aware that it doesn't work that way anymore....
+
+
+8.  How do I keep from being slowed by monsters?
+
+Some monsters will reduce your speed, so that you get fewer attacks
+and move more slowly in general.  Goblin shamans (found in the lower
+levels of the Goblin Cave) often do this, and necromancers (found
+around levels 3-5 of the Archmage's Castle) do it, too.  Preventing
+slowness is much easier than curing slowness, though both can be done.
+To keep from being slowed, you need immunity to slowness, which will
+show up on your stats (when you use a ring of knowledge or look in the
+Oracle's mirror) as "Hasted."  You get hasted by taking a stimtab or
+by casting the spell of haste on yourself or by wearing boots of
+speed.  Doing these things won't CURE slowness -- they'll only PREVENT
+slowness, so you have to do them before you start fighting the goblin
+shamans or the necromancers or whatever.  To cure slowness, you can
+either wait a really long time, or you can rent a condo for a week of
+rest and relaxation.
+
+
+9.  Some monsters ignore my attack -- what do I do?
+
+There are several possible strategies for fighting monsters that are
+invulnerable to normal damage:
+
+a.  Some weapons will hit monsters that are invulnerable to attack by
+normal weapons, and some weapons do more than just physical damage.  A
+mace of disruption (which the paladins will give you if you advance
+far enough in their guild, and which you can sometimes find just lying
+around) will hit any creature, even the ones that normal weapons won't
+touch.  A lightsabre, an acid whip, and Demonblade will also hit
+invulnerable monsters.  (Be careful of Demonblade, though -- it's
+cursed, and it makes you berserk.)  A firestar won't *hit*
+invulnerable monsters, but it will blast them with a fireball, which
+usually damages them.  There are some weapons that are special and
+LOOK as if they'd hit invulnerable monsters but do not actually do so.
+The vorpal sword, Victrix, Defender, Goblin's Hewer, scythe of
+slicing, and giant club all fall into this category -- they look
+special, and some of them do special things, but they do NOT hit
+invulnerable monsters.
+
+b.  Use a wand or scroll or spell of dispell -- it'll make the
+critters vulnerable to normal physical damage, and then you can hit
+them with your regular weapons.  
+
+c.  Attack them with wands or spells of fire or cold or whatever.
+Most monsters that can't be hit with a normal weapon are vulnerable to
+wand or spell damage.  If fire doesn't work, try cold.  If cold
+doesn't work, try disruption.  Many monsters are invulnerable to one
+thing, like cold, but not invulnerable to other stuff, like fire or
+disruption.  Another advantage to this method is that you can attack
+from  a distance, so you can kill that astral vampire when you first
+detect him, before he has time to drain all your mana.
+
+
+10.  What do I do with the Orbs?
+
+You'll sometimes find an Orb lying around in the goblin caves or the
+sewers or the Archmage's castle, but the usual place to find the Orbs
+is on the Astral Plane.  When you go to the Astral Plane, you should
+get FIVE Orbs: the Orb of Water, the Orb of Earth, the Orb of Air, the
+Orb of Fire, and the Orb of Mastery.  It's kinda hard to get back to
+the Astral Plane once you've left, so make sure you pick up all five
+of them while you're there.  If you find an Orb somewhere not on the
+Astral Plane, it's probably okay to activate it.  If you find an Orb
+in the Astral Plane, though, you should hang onto it.  The reason for
+this is that you can only activate the Orb of Mastery if you have the
+other four Orbs (on your person, not in your backpack).  Activating
+the Orb of Mastery will burn out all four of the other Orbs.
+
+Orbs are artifacts and are activated in the same way that you would
+activate any other artifact.  After you've activated it, you will be
+asked to choose an action from a list -- which action you should
+choose will be obvious.  Then you will be asked for a target.
+Whatever you choose is about to get blasted, so you shouldn't choose
+the square where you're standing!
+
+Oh, and you might want to show the Orb of Mastery to the Duke before
+you activate it....
+
+While we're talking about the Astral Plane, please note that there is
+a bug in the game such that if you save the game while you're on the
+Astral Plane and then restore it, the Star Gem will be gone.  This
+means that you should only go to the Astral Plane when you have enough
+time to play all six levels in one sitting.
+
+
+11.  How do I find the Adept's Challenge?
+
+If you are a member of the collegium magi or have acquired the spell
+of ritual magic in some other way, you can reach the Adept's Challenge
+by casting ritual magic in the appropriate room.  Which room LOOKS
+like it would send you to the Adept's Challenge if you cast ritual
+magic there?
+
+If you have the spell of wishing, you can wish for Location and then
+ask to be transported to the Temple of Destiny.
+
+If you have the Amulet of the Planes, you can use it to transport you
+to the Temple of Destiny.
+
+If you don't have any of these things, you might not be ready to try
+the Adept's Challenge after all.  If you want to do it anyway, then
+you'll have to hoof it to the Temple of Destiny, which is in a rather
+inaccessible location....
+
+
+12.  How do I win the Adept's Challenge?  How do I completely destroy
+Death?
+
+The game itself gives you three hints about the Adept's Challenge,
+which are all that should be necessary for you to figure out what to
+do and how to win.  To get these three hints, make sure you step on
+every square of the area where the Challenge takes place (except the
+ones that have stuff on them).  The area where the Challenge takes
+place isn't all that big, so it doesn't take too long to explore it
+completely.  Step on every square and listen to the three things it
+tells you.
+
+As it turns out, it isn't necessary to completely destroy Death to win
+the Adept's Challenge.  If you've been waiting to finish up until you
+completely destroy Death, you'll wait a loooong time.  You only have
+to kill Death once, to get the item he carries, and then you're ready.
+Of course, killing Death is good experience, so you might enjoy just
+hanging out and killing him over and over again, but once is all
+that's necessary.
+
+
+13.  How do I enter Wizard mode?
+
+Go to the northwest corner of Rampart and bash the wall.  You'll feel
+like a cheater. :-)  Entering Wizard mode will invalidate your score
+but will enable you to wish for anything you want (including specific
+objects, unlike the spell of wishing).  This enables you to test out
+spells or objects or strategies.  Be careful, though -- having
+infinite power with no limits actually gets stale awfully fast, so
+Wizard mode isn't fun for very long.  And after you've been in Wizard
+mode, it's hard to get used to regular Omega again.  I'd recommend
+that you not enter Wizard mode without a specific reason.  If all you
+want to do is try something out without getting your character killed,
+just copy the file....
+
+
+Good luck, and have fun!
+
+*End of Part One.*
+
+Part Two is still under construction -- look for it soon.  (Probably
+another couple of weeks -- graduate school is demanding attention
+right now....)
+
+Copyright by Cory L. Kerens, January, 1995.
+
+This FAQ can be e-mailed or archived, as long as
+1) You don't charge anybody for it.
+2) This copyright notice is left intact.
+
+-- 
+*******************************************************************************
+		Who needs drugs when we have sex and chocolate?
+		           cory@gagme.wwa.com
+*******************************************************************************
+
+--
+  /~_\               --Rick Sanders....rix@umich.edu--
+ / /                  
+ | |             /\_/\                  0------------------------------0
+ \ \            / o o \                 {                              }
+  \ \~~____~~~~/  -X-  \                { "Ignorance is the ground of  }
+  {             \_  ,_/                 {  thought.  Unproof is the    }
+  {                /                    {  ground of action."          }
+  { /~~___~~~\  __/                     {         --Faxe the Weaver    }
+ / /\ \   / / \ \                       {                              }
+ \__\\__\/_/   \_\   --The Catspaw--    0------------------------------0

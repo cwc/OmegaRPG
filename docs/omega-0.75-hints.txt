@@ -1,0 +1,456 @@
+From:         Knight in white satin <FSEJO@ALASKA.BITNET>
+ 
+I'm a level 0 master of Omega, but I haven't really been able to do much; I
+finished the thieves' quest, which was to kill someone from the order of
+paladins, the magic users quest, (the Eater- I'll get to that in a moment),
+and I'm master of one other order which I don't remember what it is.  ANYway,
+I'm writing this to tell whoever asked MY secret for getting the heart of
+the eater of magic- (Sorcerors, that was it, I got the lawbringer's crown)
+you charge in there with a speed of 5.00, totally ignore the priests, use
+boots of levitation to float over that nasty water, charge in, bash the
+eater with a good weapon (for GOD's sake don't use magic), grab his heart,
+and git while the priests are still thinking.  The secret to most any of the
+quests in this game is hit-and-run; if you belong to a fighting order and
+to the collegium, you can beat on the magic opponents and vv.  I got the
+Wyrm in the bottom of the sewer while I was like 10th level or something
+(from an 18th level dungeon!) that way.
+Anyway, I'm starting to repeat myself, so I'll shut up now.
+Good luck and happy omegging!
+Eric
+===================================================================
+From:         Gunnar Radons <S46@DHDURZ1.BITNET>
+ 
+Hello omega fanclub,
+ 
+A new hint for those who are need. Ever worn a bottle on a finger?
+Or a waffer of lembas ? Try it !
+Get the thing up in the air, put the cursor on your finger of
+choice and exchange.
+Repeated doing can bring your hitpoints from nearly zero back to
+maximum. Also the effects of the potion (i.e. levitating) starts.
+You may do as often as you like (at least I'm walking with my
+first potion and had no bad effects yet).
+With the object first up in the air I could also use a flail in the
+armor slot.
+ 
+Bye
+Gunnar
+====================================================================
+From:         Matt Cohen <chron!magic706!sysnmc@UUNET.UU.NET>
+ 
+I have been playing way too much Omega over the last few weeks and
+now am: Level 1 Master of Omega, Ultimate Avatar of Chaos, Archmage,
+Shadowlord, Prime Sorceror, High Priest of Destiny, Commandant,
+Duke of Rampart, and Adept (if you don't know what that is, then
+you've got a long way to go.)
+ 
+The way I killed the Eater of Magic was to be invisible, stand just
+around the bend in the hallway, map the EoM's cave with clairvoyance,
+and disrupt him to death. (You can tell where he is because there
+are "."'s where he and the priests are and he's in the middle.)
+This method works rather well in general.
+ 
+Raymond seems to be having several wierd problems. What version are you
+using? I run under Unix, on a Sun with Omega 0.75. I had some wierd
+similar problems with earlier versions.
+ 
+Be careful when skipping levels, you might miss the "special" monster.
+This happened in the Goblin Caves to me; I used an elevator and skipped
+the 10th level (where the king is) and got to the 35th level before
+I realized this must be going on. The "special" levels are:
+ 
+	Rampart Sewers 18, ArchMage's Castle 16,
+	Goblin Caves 10, and Volcano (whew!) 20.
+ 
+You cannot warp to a special level. Try the level above and walk down.
+(In rogue and moria, any level at or below the special level triggers
+the big monster. In Omega, if you miss it, you have to go back...)
+ 
+The Demon Emperor is on level 20 of the Volcano and he is NASTY.
+Does anyone know how to not become afraid of demons and ghosts without
+a potion of banishing fear? (That's what I used.) I killed him
+by casting sanctuary and then disrupting him.
+ 
+Has anyone found the Dragon Lord? He's also extremely nasty. Much fun.
+ 
+Getting cursed items uncursed is wierd. Basically, you have to bless
+them, some more than others. Items appear to have a bless/curse value.
+The more cursed an item is, the more blesses it takes to fix it, and the
+more blesses an item has, the more a monster has to curse it to make
+it cursed. This is independent of plus, except that when an item
+initally becomes cursed, its plus goes down one and/or stops working
+or _reverses_ effect. You can either cast the bless spell, if
+you have it, or if you are a priest (of Destiny, at least) and
+you sacrifice enough to your God, he/she/they/it will give an item
+a mondo bless/enchant (ask for Blessing).
+ 
+This took me forever to figure out: the alchemist's "pay for
+transformation" is not to transform you (I initially thought it
+was for if you get canged into a toad or something), it is for
+transmuting certain monster remains into magic items! (You figure
+out which ones...)
+ 
+How long did it take folks to figure out how to mount a horse?
+ 
+Another hint: Orbs - collect the whole set and redeem a valuable
+	prize! (Black Orbs don't count.)
+===================================================================
+From:         Gunnar Radons <S46@DHDURZ1.BITNET>
+ 
+Hello folks,
+ 
+if you don't mind to get a servant of chaos, toy may shorten your way by
+pickpocketing the priests in the temple of the druids. Stop when you
+get a mace. This way I got a defender (2. quest of the duke) and a
+dragonscale armor (3.quest of the duke).
+Drowning is prevented by a potion/spell of breathing or dto. levitating.
+Also being mounted helps.
+The way of receiving magic benefits i.e. from tabs, wafers, potions etc.
+while wearing them on a finger (1. get them i.t. Air, then exchange
+with the finger) has sideeffects due to variable-size. When strengthen
+yourself with repeated exchange of stimtabs, you may receive easy more
+then 130 in strength. After that your maximum load gets larger then
+32k and will become negative. When going on, to get it positive again,
+CON (the first val) went negative (more then 128?). So keep an eye to
+your status lines.
+The Hit and run technique described a few days earlier works fine for
+the eater of magic, but failed yet with the lawbringer. Execept for one
+try, the cave was flooded with mirroshades, and a Nazgul stoped me soon
+after entering (even while my speed was 5). So bringing a staff of sleep
+to the lawbringers cave might be a good thing.
+ 
+Get youre items identified before you sell them to the thieves. The
+<>70 AU will be soon back into your pockets.
+Bye
+Gunnar
+=====================================================================
+From:         Gunnar Radons <S46@DHDURZ1.BITNET>
+ 
+Hi omega fans,
+ 
+did somebody yet manage to get into hy magick? The document from
+the library sounds interesting but any time I tried ctrl-g brother
+appears and warned me not to interfear with it. The spell of
+ritual magic does not be related with it (by now i'm archmage and
+had eraned some AU by ritual magic (the townpeople seem to like
+the coulours accompanying it)). A once got the spell of wishing
+but died before i could save.
+Once upon a time in an abyss a young naked magician wandered
+and had trouble with a void. I know it is the fifth elemental, but
+what is the sense of the void?
+Any experience within the abyss is greatly appreciated.
+btw: don't get to chaotic. The Archdruid might be out of house so
+there is no way back (maybe except wishing).
+=====================================================================
+From:         Gunnar <S46@DHDURZ1.BITNET>
+ 
+The archmages castle:
+ 
+Knowing that something was down there, I went to the castle
+of the archmage and searched it from top to bottom, thereby slaugtering
+some one dragon and getting the sceptre. Back to Rampart I went to the
+oracle and used her to get into the astral plane..., just like you
+described it. Beyond that plane was another stairway down, which led to
+some super temple of the sorcerors, where I had to sanctificate at once
+to survive those Demon Princes (how do get a demblade blessed? The Lords
+of destiny won't do). After that I had to get the Star Gem and I think I
+also found the amulett of the astral plane (a shortcut to any village
+and temple/dungeon(?)). Back at Star Peak I activated the Star Gem, but
+because the Lawbringer was dead it only glowd and brought me back to
+the outside of Star Peak.
+After that I used the warp (with jumps of no more than six levels) to reach
+the bottom of the volcano, disrupted the Demon Emperor to death (maybe
+it was there that I got that amulett) and got level 0 master.
+ 
+HM, thinking fast I do a counterspell. As I remember, I got to the
+archmage from the castle, to the sorcerors from the astral plane, so
+the above description was correct (btw. by continous activation of the
+scepter you get more of it, and may sell the burnt out).
+ 
+when getting a scroll of wish, wish for aquisition. I threfore got
+K... the key that was lost. Activating brought me all available
+spells, including wishing. But I'm not strong enough for the latter
+though it is wiped out after use.
+ 
+Questions:
+- how do I activate the orb corrct? Whan activating I am asked for the
+  additional ding to do, but failed. Tossing to earth etc. seems to be
+  a very fatal error, while mixing leads to an unstabelized orb. Is this
+  because I'm a servant of chaos? (Thistleman disappeared even without
+  me slaugthering him), Spells of law are to rare to get and wishing
+  is to heavy.
+- How do I get to neutral or even law?
+- When entering the adepts challange, I have no problems with the
+  electrical storm, the fire and earth. But the pool of acid always
+  dissolved me, except for a few cases, when I first drained energy
+  from it. The death wsa no problem then, he was burn't with hell fire
+  But entering the void, led me always to death, something was not
+  stabelized.
+- after solving all quests, are there other things to do before getting
+  to the adepts challange?
+=====================================================================
+From:         CSSNET@NUSDISCS.BITNET
+ 
+I have encountered 2 of the artifacts in Omega, namely,
+ 
+- Amulet of Yendor
+- Potion of Life
+ 
+I know what the Potion of Life does, but what about the Amulet?
+I tried invoking it but nothing happens.
+ 
+Also, I have experimented with monstere part transformation.
+Seems that if the alchemist is willing to buy the part from you,
+you can also get it transformed into some magic item.
+ 
+Some examples are:
+ 
+- Manticore's Spikes - Blessed Staff of Missiles
+- Tesla Monstrs' Whip- Blessed Wand of Ball Lightning
+- Body of Salamander - Blessed Ring of Fire Resistance +3
+- Spectre's body     - Cloak of Negimmunity
+- Head of Jabberwock - Blessed Vorpal Blade +5
+- Transparent Nasty  - Potion of Invisibility
+- Fnord              - Scroll of Summoning
+- Wyvern             - Blessed Ring of Poison Resistance +5
+- Frost Demon Lord   - Demonblade
+- Frost Demon        - rod of summoning
+- Lesser Frost Demon - Snowball Wand -20-
+- Blipper            - scroll of teleportation
+- Phantasticon       - scroll of true sight
+- Manticore          - staff of missiles
+- fire elemental     - wand of fireballs
+- dragon             - dragonscale armor
+ 
+Other monsters which cannot be transformed may be sold off
+at either the pawn shop or thieves' guild, some of the parts
+fetch a rather handsome price.
+ 
+Also, on the topic of wishing, I have managed to learn how to cast
+the spell, it requires 100 mana points to cast, I have 108 mana points
+but each time I cast it, it prompts me for a request.  I have tried
+Aquisition (as suggested by another Omega player) but ended up getting
+killed.  What are the things that I can wish for? Does WISH use anything
+besides mana points?
+ 
+Also, are there any uses for the Golden Bejewelled Falcon which I can
+only sell for 0 AUs?
+=====================================================================
+From:         SHELDON <V1200G@TEMPLEVM.BITNET>
+ 
+    The secret entrance to the castle is in the water, you just have to use the
+search command.  Low intelligence can be usefull.  If your intelligence is low
+enough you can get a scholarship from the library.  If you do advanced
+research? (I haven't played in awhile) it will raise your intelligence, stay in
+untill you reach eighteen. (The program will not display this, you must keep
+track yourself.) Join the college for free.
+     Join the thieves guild.  They pay much more than the pawn shop for  goods
+and they charge very little to identify your goods.
+     Invisibility is very helpful in the arena.
+===================================================================      21
+From:         Gunnar Radons <S46@DHDURZ1.BITNET>
+ 
+Hello omega fanclub,
+ 
+if my messages are to boring for you (or the rest of this comunity) justn
+discard them from your reader. For all of the others a few hints from
+a beginner which got to the discoverer status for other beginners or
+seakers of whatever.
+- If you are the very start with an own character, be not to honest with
+  the computer. A bit more of strength and intelligence raises some of
+  your chances.
+  After entering rampart (with your 250 AU and nothing more than your
+  will to get it all) go to the mercenarys (use capitel M) and try to
+  join the legion. If you pass the physical, you get a sword, a leather
+  armor and 500AU. You might also try to join the gladiators (at the
+  arena, but will get only a wooden sword, no money; there you have to
+  fight in the arena to get money - or die). Then ask whether the
+  collegium magii offers you a scholarschip. If yes you got one spell.
+  Otherwise search the giuld of thieves (open all doors ans enter those
+  houses. Do not look around. If you found them you immediately know).
+  Pay there entrance few. After this go to the bank, deposit some money,
+  look around and buy say 10 or so from the fast food (50AU).
+ 
+- Now leave rampart and enter either the goblins dungeon (se you have to
+  a bit) or look for the archdruids temple. In the dungeon you'll find l
+  thinks. Pack as lot as may carry and sell them to the thieves.
+  In the temple look for three militant priests. Pickpocket them until y
+  a mace (each priest, thanks sheldon). Also try to sell those to the th
+  when you're back in rampart.
+- IMPORTANT: The thieves don't offer for cursed goods. Items, the thieve
+  no offer for are probably cursed. Don't put them on but drop them some
+- This should give you some money and a bank error to your favour should
+  even raised this. Now pay the fee's for the collegium and, if you can
+  guild of sorcerors.
+- With your newly earned level enter the mace and look for the oracle. T
+  enter the castle to get a quest. In the castle is also a vault which I
+  no entry yet.
+- Horses (in the village) won't follow you in dungeons, but will follow
+  temples.
+ 
+- You may variy some of the above for your need, but it should be enough
+  get to into the first levels of experience. Try checking the mercenary
+  and the giulds from time to time to raise your rank. Raising thieves a
+  sorcerors rank drives you to chaos!
+- Don't touch all altars(countr).Some leave you without pack. In rampart
+  else) worship at the lords of destiny. I tried them once after Odin an
+  struck by odins light bolt. The lords are more tolerant. Try blessing
+  sacrifice (good:armor, cloaks,rings, not so good:weapons). The lords l
+  scrolls!
+ 
+- A few questions: who knows the secret entrance into the castle? Sheldo
+  There is strip of water between a hedge and the castle wall. All walls
+  imp.. (forgot the expression) execpt for one, which is only aged stone
+  I also dived after quaffing the potion of breathing but couldn't find
+  thing (checked with examine). Better ideas?
+  I got into the dungeon till level 8 (than i ran out of mana due to Gob
+  shamanes). Is there really a goblin king down there? or is it's head a
+  in the castle vault?
+ 
+- Another question: I'm encountert in the PBM's (play by mail) Spiral Ar
+  Spiral Arm 202, Kingdom, and CelestrekII/A (all European games). Anybo
+  out there who also plays one of those and willing to contact me?
+- Klaus Ziegler, I lost your account number. Please contact me again .
+- Monster/Moria where might i find ibm-pc versions for those (EARN/BITNE
+ 
+Hope i could help some of you
+======================================================================== 127
+From:         Gunnar Radons <S46@DHDURZ1.BITNET>
+ 
+Hello omega fanclub,
+ 
+if my messages are to boring for you (or the rest of this comunity)
+just discard them from your reader. For all of the others more
+hints from a beginner which got to the senior explorer status for
+those who might have problems.
+ 
+A question first: Is there a special protection or combination
+of items to protect against mana drainage? Is there at least
+something (except the sorcerors guild, new ranking and prayers)
+which could restore your mana?
+ 
+The hints (thanks to all who wrote me):
+- The quests which the duke of rampart gives you are those:
+ -Bring him the head of the goblin King. The Gob.King (monster
+  symbol: K) is in the bottom of the goblin caves, just a few
+  segments south of rampart.
+ -Bring the sword of the Great Wurm which lives in the bottom
+  of the sewers. Try to take as much protection as you can. More
+  on the sewers will be enclosed later.
+ -Bring him an dragonhide armor from the castle of the archmage,
+  which is situated behind some secret mountain passes in the
+  far NW of the map (maybe 6 fields behind that village). I was
+  lucky enough to pickpoket it from one of the druids, so I don't
+  know anything about the interna of that castle.
+ -Last quest is an astral orb (or something sounding like that)
+  I have no ideas about that yet.
+- Some other quests:
+ -To become high priest of the lords of destiny bring them the
+  holy symbol of Humperdink, in the Lords tempel  outside ramparte
+  (I have found lots of tempels, but couldn't identify them all
+  yet).
+ -To become archmage: Bring the heart of the mana eater to the
+  collegium. He (it) is found on the island in the sea of chaos
+  far SW of rampart. From the last SW village you have to go
+  through the swamp. In the swamp there is another village and
+  two temples, but all away from you. take about 60 fast food
+  with you for you won't be able to hunt there.
+  The mana eater lives inside that strange cave. Follow the river
+  (which is not a real river) up north into the wall-enclosed
+  part. When it begins to bend back, be prepared for light bolts
+  and mana drainage. Save before you get into the false river.
+  I died there, so no more information.
+ -To become chief of the mercenaries bring them the Regalia
+  of someone in (i think) the temple of set (which is in the
+  great desert?). Not tried yet.
+- Don't raise your rankings in the sorcerors and thieves guilds
+  if you are tending law or better. The sorcerors expelled me,
+  so i have no chance of mana restauration except when reaching
+  new levels.
+ 
+- Now to the archdruids temple. I think I reported that behind
+  the altar their is a way to the right but a wall to the left
+  Use search(s) to find a secret passage. At the end of the
+  way left you find thistleman and two other priests. The priests
+  may be pickpocketet until you find their mace. Also thistlman
+  may be pickpocket for the holy symbol of druidism (only!!!).
+  Better you talk to thistleman. He offers you neutralisation,
+  which brought me from lawful back to neutral, tending to chaos.
+- The sewers. The sewer entrance is in the mace. Don't try to
+  enter the hole of the sewer rat, use (>) to descend a level.
+  The sewers down there have several monsters, most of them are
+  easy to kill. But for the lower parts try to bring or find
+  good armor and a bit of luck (I died two times after defeating
+  the great wyrm until i could get the sword).
+  You have to go down to level 18 to find the Wyrm. Maybe a scroll
+  of warp or the elevator (not in every level) help you.
+ -Dangerous monsters:
+  Some fungus, which (in the midst and lower levels) emitts
+  blinding spores. it needs 40 minutes without disturbation to
+  restore your seeing ability monster symbol: (f).
+  A swarm, which expands when you come near it. Annihilate it
+  with a rod of disruption or magic. Normal fighting doesnt work.
+  If you manage to escape it, do so. I first met the swarm at
+  level 8; symbol: (s).
+  A necromancer: drains your mana similar but heavier than an
+  enchanter. Easy to kill if you manage to reach him; symbol (n)
+  don't miss with a night haunt (n)!
+  A shadow spirit. Zaps your strength, hit points and mana. Best
+  to kill with one or two firebolts (i had to use the magic ones)
+  symbol (S). Often in lower levels.
+  Triton: like shadow spirit, but it just drains your mana and HP.
+  Symbol (T,enlighted). Only from level 15 on.
+  A Water elemental (W,enlighted). Strike low to smash it.
+  The Great Wyrm (W, enlighted). Use good protection. A hard
+  enemy, but easy to get if you are well equiped.
+  A rod of unusal size (r, enligthed) his first strikes are out
+  of the dark, then you'll see him. Uses spells to get your mana
+  Drains your HP fast,but is easy to get with a couple of hits.
+ 
+- Maybe an error in the program, maybe aspecial effect of the
+  sewers:
+  I fought with the great axe of the goblin king (a bihanded
+  weapon). Every time i took something into my ready hand, I had
+  two great axes! This didn't work outside of the sewers.
+- A special item in the sewers: (symol &). I took it and it was
+  named '?'. After activating, it doubled my HP! But only use it
+  once, even if find it more often. Something like this might also
+  found in the other dungeons.
+- Read all scrolls you find. You might need them somewhen. Quaff
+  all useful potions you find or carry them until you need them.
+- SAVE EVERY LEVEL OF THE SEWERS BEFORE/AFTER YOU ENTER IT!
+======================================================================== 46
+From:         Gunnar Radons <S46@DHDURZ1.BITNET>
+ 
+Hallo Folks,
+ 
+The gray tablets which are found from time to time have very different
+effects. One raised my mana from 0 to the double of the normal value,
+another oversatiated me, so i had immediately to deliver my last meals.
+I haven't check extensively, but it might be, that some of theme might
+kill you, too.
+The items called '?' when taking are also very differnt. As mentioned
+before, one doubled my HP, but yesterday another killed me. I suppose
+you check those with a scroll of identification or the same spell after
+you put them into a free slot (did you ever ate from your left shoulder?
+The mana eater is some tuff guy. I have to correct my yesterday message
+a bit.The danger begins after the second rebend of the river. Check your
+weapon from time to time, ot but it in your bag befor you enter the rive
+because mine somehow vanished in one of the pools. Use a staff of sleep
+or the appropriate magic spell to put the four militant priests aside.
+Use a potion of monster detection or the spell to see where the Eater
+is (E,enligthed). Iused firebolts (magic and normal), magic missiles,
+and disrupt to blast him away, but no one worked. Also i had only time
+for two or three spells until my mana was eaten. Normal figthing was to
+short to get it, but i think it's the only way you can get him (btw:
+my armor was 13, def 20, damage >50). Maybe the spell of sanctification
+could also work?
+East of the island, midst in the swamp there is a volcane (sign: !),
+which contains a dungeon. I entered and found lots of interesting things
+but lots of mana eating demons,too. most could be blasted with the
+disrupt spell.
+Unfortunately a militant priest got me while a frost demon had destroyed
+my mana and put me asleep. I couldn't therefore explore the rest of the
+volcano
+ 
+Greetings from the Shadowlord of the g.of thieves, slippery jim (ranger)
