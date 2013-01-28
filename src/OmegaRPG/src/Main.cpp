@@ -86,7 +86,6 @@ int main(int argc, char *argv[])
 #endif
 
 #if !defined(WIN32)
-    if (CATCH_SIGNALS) {
         signal(SIGQUIT,signalexit);
         signal(SIGILL,signalexit);
 #ifdef DEBUG
@@ -113,7 +112,6 @@ int main(int argc, char *argv[])
 #ifdef SIGSYS
         signal(SIGSYS,signalexit);
 #endif
-    }
 #endif
 
     Omegalib = OMEGALIB;
