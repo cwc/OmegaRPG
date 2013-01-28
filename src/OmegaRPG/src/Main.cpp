@@ -90,14 +90,24 @@ int main(int argc, char *argv[])
 #endif
 
 #if !defined(WIN32)
+#ifdef SIGQUIT
         signal(SIGQUIT,signalexit);
+#endif
+#ifdef SIGILL
         signal(SIGILL,signalexit);
+#endif
 #ifdef DEBUG
         if( DG_debug_flag ) {
 #endif
+#ifdef SIGTRAP
             signal(SIGTRAP,signalexit);
+#endif
+#ifdef SIGFPE
             signal(SIGFPE,signalexit);
+#endif
+#ifdef SIGSEGV
             signal(SIGSEGV,signalexit);
+#endif
 #ifdef DEBUG
         }
 #endif
