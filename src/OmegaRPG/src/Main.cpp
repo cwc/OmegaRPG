@@ -15,6 +15,20 @@ void signalquit(int ignore)
     quit();
 }
 
+void printUsage() {
+#ifdef DEBUG
+            printf("Usage: omega [-shd] [savefile]\n");
+#else
+            printf("Usage: omega [-sh] [savefile]\n");
+#endif
+            printf("Options:\n");
+            printf("  -s  Display high score list\n");
+            printf("  -h  Display this message\n");
+#ifdef DEBUG
+            printf("  -d  Enable debug mode\n");
+#endif
+}
+
 int main(int argc, char *argv[])
 {
     OmegaRPG* game;
@@ -36,17 +50,7 @@ int main(int argc, char *argv[])
             scoresOnly = true;
             break;
         case 'h':
-#ifdef DEBUG
-            printf("Usage: omega [-shd] [savefile]\n");
-#else
-            printf("Usage: omega [-sh] [savefile]\n");
-#endif
-            printf("Options:\n");
-            printf("  -s  Display high score list\n");
-            printf("  -h  Display this message\n");
-#ifdef DEBUG
-            printf("  -d  Enable debug mode\n");
-#endif
+        	printUsage();
             exit(0);
             break;
         case '?':
