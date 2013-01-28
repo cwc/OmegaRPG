@@ -1,3 +1,4 @@
+BUILD_DIR := obj
 
 CPP := g++
 CC  := gcc
@@ -6,27 +7,25 @@ LD := g++
 CFLAGS :=
 LDFLAGS := -lcurses
 
-CXX_SRC_FILES := $(wildcard src/OmegaRPG/src/*.cpp)
-CXX_OBJS := $(patsubst src/OmegaRPG/src/%.cpp, obj/%.op, $(CXX_SRC_FILES))
+OMEGA_CPP_SRC:= $(wildcard src/OmegaRPG/src/*.cpp)
+OMEGA_CPP_OBJS := $(patsubst src/OmegaRPG/src/%.cpp, $(BUILD_DIR)/%.opp, $(OMEGA_CPP_SRC))
 
-C_SRC_FILES := $(wildcard src/OmegaRPG/src/*.c)
-C_OBJS := $(patsubst src/OmegaRPG/src/%.c, obj/%.o, $(C_SRC_FILES))
+OMEGA_C_SRC := $(wildcard src/OmegaRPG/src/*.c)
+OMEGA_C_OBJS := $(patsubst src/OmegaRPG/src/%.c, $(BUILD_DIR)/%.o, $(OMEGA_C_SRC))
 
-omega : dir cppobj cobj
-	$(LD) -o $@ $(CXX_OBJS) $(C_OBJS) $(LDFLAGS)
+all : omega
 
-cppobj : $(CXX_OBJS)
+omega : build_dir $(OMEGA_CPP_OBJS) $(OMEGA_C_OBJS)
+	$(LD) -o $@ $(OMEGA_CPP_OBJS) $(OMEGA_C_OBJS) $(LDFLAGS)
 
-cobj : $(C_OBJS)
-
-obj/%.o : src/OmegaRPG/src/%.c
+$(BUILD_DIR)/%.o : src/OmegaRPG/src/%.c
 	$(CC) $(CFLAGS) -o $@ -c $<
 
-obj/%.op : src/OmegaRPG/src/%.cpp
+$(BUILD_DIR)/%.opp : src/OmegaRPG/src/%.cpp
 	$(CPP) $(CFLAGS) -o $@ -c $<
 
-dir : 
-	mkdir -p obj
+build_dir : 
+	mkdir -p $(BUILD_DIR)
 
 clean : 
-	rm -rf obj/
+	rm -rf $(BUILD_DIR)
