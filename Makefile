@@ -13,7 +13,7 @@ C_SRC_FILES := $(wildcard src/OmegaRPG/src/*.c)
 C_OBJS := $(patsubst src/OmegaRPG/src/%.c, obj/%.o, $(C_SRC_FILES))
 
 omega : dir cppobj cobj
-	$(LD) $(LDFLAGS) -o $@ $(CXX_OBJS) $(C_OBJS)
+	$(LD) -o $@ $(CXX_OBJS) $(C_OBJS) $(LDFLAGS)
 
 cppobj : $(CXX_OBJS)
 
