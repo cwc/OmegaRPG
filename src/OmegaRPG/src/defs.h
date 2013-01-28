@@ -40,18 +40,13 @@ definitions in the following section. */
 #include <time.h>
 #include <stdarg.h>
 #include <assert.h> // The assert macro (for ANSI/ISO C).  Hopefully this will always work!
-#include <strings.h>
+#include <string.h>
 
 #include "colors.h"
 
 /* Update the display every turn to center on the player.  Rather heavy
  * on the bandwidth. */
 #define CENTER_ON_PLAYER // TODO Make this a user-specifiable option
-
-/* Implementor should uncomment the following if his system uses
-string.h instead of strings.h (try man string) */
-
-#define STRING
 
 /* Implementor should define int32 as the type of integer which uses
  * 32 bits. */
