@@ -134,7 +134,7 @@ int main(int argc, char *argv[])
 
 #ifdef DEBUG
     /* initialize debug log file */
-    DG_debug_log = fopen( "/tmp/omega_dbg_log", "a" );
+    DG_debug_log = fopen( "omegadbg.log", "a" );
     assert( DG_debug_log ); /* WDT :) */
     setvbuf( DG_debug_log, NULL, _IOLBF, 0);
     fprintf(DG_debug_log, "##############  new game started ##############\n");
