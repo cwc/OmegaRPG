@@ -22,6 +22,7 @@ definitions in the following section. */
 #	include <io.h>
 #endif
 #else
+// These includes are not supported or supplanted in Windows
 #include <unistd.h>
 #include <pwd.h>
 #include <sys/file.h>
@@ -96,10 +97,6 @@ typedef int int32;
 
 #ifndef WIN32
 #define UNIX // Assuming *nix
-#endif
-
-#if !defined(FNAME_MAX_LEN)
-#  define FNAME_MAX_LEN 14
 #endif
 
 #define VACANT 0
@@ -307,7 +304,6 @@ typedef int int32;
 #define CENTER 2
 #define HIGH 3
 #define CLEVER 4
-
 
 /* weapon types */
 #define CUTTING 1

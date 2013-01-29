@@ -192,32 +192,6 @@ int view_unblocked(int x, int y)
         return(TRUE);
 }
 
-
-#if !defined(WIN32)
-/* 8 moves in Dirs */
-void initdirs(void)
-{
-    Dirs[0][0] = 1;
-    Dirs[0][1] = 1;
-    Dirs[0][2] = -1;
-    Dirs[0][3] = -1;
-    Dirs[0][4] = 1;
-    Dirs[0][5] = -1;
-    Dirs[0][6] = 0;
-    Dirs[0][7] = 0;
-    Dirs[0][8] = 0;
-    Dirs[1][0] = 1;
-    Dirs[1][1] = -1;
-    Dirs[1][2] = 1;
-    Dirs[1][3] = -1;
-    Dirs[1][4] = 0;
-    Dirs[1][5] = 0;
-    Dirs[1][6] = 1;
-    Dirs[1][7] = -1;
-    Dirs[1][8] = 0;
-}
-#endif
-
 /* do_los moves pyx along a lineofsight from x1 to x2 */
 /* x1 and x2 are pointers because as a side effect they are changed */
 /* to the final location of the pyx */

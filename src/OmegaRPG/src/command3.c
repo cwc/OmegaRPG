@@ -522,9 +522,6 @@ void charid(void)
 void wizard(void)
 {
     char *lname;
-#if !defined(WIN32)
-    struct passwd *dastuff;
-#endif
 
     setgamestatus(SKIP_MONSTERS);
     if (gamestatusp(CHEATED)) mprint("You're already in wizard mode!");
@@ -534,6 +531,8 @@ void wizard(void)
             lname = getlogin();
 
 #if !defined(WIN32)
+            struct passwd *dastuff;
+
             if (!lname || strlen(lname) == 0)
             {
                 dastuff = getpwuid(getuid());

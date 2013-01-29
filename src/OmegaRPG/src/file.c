@@ -135,7 +135,6 @@ void showmotd(void)
 
 void lock_score_file(void)
 {
-#if !defined(WIN32)
     int lock;
     int thispid;
     int lastpid = 0;
@@ -183,16 +182,13 @@ void lock_score_file(void)
     sprintf(Str1, "%d", getpid());
     write(lock, Str1, strlen(Str1));
     close(lock);
-#endif
 }
 
 void unlock_score_file(void)
 {
-#if !defined(WIN32)
     strcpy(Str1,Omegalib);
     strcat(Str1,"omega.hi.lock");
     unlink(Str1);
-#endif
 }
 
 void showscores(void)

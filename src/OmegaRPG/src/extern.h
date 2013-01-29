@@ -301,10 +301,8 @@ void learnclericalspells( int,int );
 
 /* file.c functions */
 
-#if !defined(WIN32)
 void lock_score_file( void );
 void unlock_score_file( void );
-#endif
 FILE *checkfopen( char *,char * );
 int filecheck( void );
 int test_file_access( char *, char );
@@ -1123,7 +1121,7 @@ void change_to_user_perms( void );
 void do_los( Symbol,int *,int *,int,int );
 void do_object_los (Symbol, int *, int *, int, int);
 void findspace( int *,int *,int );
-void initdirs( void );
+
 #ifdef NO_USLEEP
 void usleep( int );
 #endif

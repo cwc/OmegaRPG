@@ -954,10 +954,6 @@ void inventory_control(void)
     int response;
     char letter;
 
-#if defined(WIN32)
-    int simple = 0;
-#endif
-
     /* Start out assuming that we'll need to redraw. */
     inv_display_munge();
     clearmsg3();

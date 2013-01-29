@@ -16,6 +16,7 @@ bool initplayer(void)
     lname = getlogin();
 
 #if !defined(WIN32)
+    // Get the login name if getlogin() failed
     if (!lname || strlen(lname) == 0)
     {
         struct passwd *dastuff;

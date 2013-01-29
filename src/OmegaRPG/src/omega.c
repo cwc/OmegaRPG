@@ -20,18 +20,10 @@ int DG_debug_flag = 0; /* debug flag -- set by -d commandline option */
 /* Objects and Monsters are allocated and initialized in init.c */
 
 /* one of each spell */
-#if !defined(WIN32)
-struct spell Spells[NUMSPELLS+1];
-#else
 struct spell Spells[NUMSPELLS+1] = {0};
-#endif
 
 /* locations of city sites [0] - found, [1] - x, [2] - y */
-#if !defined(WIN32)
-int CitySiteList[NUMCITYSITES][3];
-#else
 int CitySiteList[NUMCITYSITES][3] = {0};
-#endif
 
 /* Currently defined in caps since it is now a variable, was a constant */
 int LENGTH=MAXLENGTH;
@@ -40,16 +32,10 @@ int WIDTH=MAXWIDTH;
 long GameStatus=0L;                   /* Game Status bit vector */
 int ScreenLength = 0;                 /* How large is level window */
 int ScreenWidth = 0;                 /* How large is level window */
-#if !defined(WIN32)
-struct player Player;                 /* the player */
-#else
 struct player Player = {0};           /* the player */
-#endif
-#if !defined(WIN32)
-struct terrain Country[COUNTRY_WIDTH][COUNTRY_LENGTH];/* The countryside */
-#else
+
 struct terrain Country[COUNTRY_WIDTH][COUNTRY_LENGTH] = {0};/* The countryside */
-#endif
+
 #ifdef SAVE_LEVELS
 struct level TheLevel;
 #endif
@@ -64,12 +50,10 @@ int MaxDungeonLevels = 0;             /* Deepest level allowed in dungeon */
 int Current_Dungeon= -1;              /* What is Dungeon now */
 int Current_Environment= E_CITY;      /* Which environment are we in */
 int Last_Environment= E_COUNTRYSIDE;  /* Which environment were we in */
-#if !defined(WIN32)
-int Dirs[2][9];                       /* 9 xy directions */
-#else
+
 int Dirs[2][9]=                       /* 9 xy directions */
 { { 1,1,-1,-1,1,-1,0,0,0} , { 1,-1,1,-1,0,0,1,-1,0 } };
-#endif
+
 char Cmd='s';                         /* last player command */
 int Command_Duration = 0;             /* how long does current command take */
 struct monster *Arena_Monster=NULL;   /* Opponent in arena */
@@ -125,29 +109,13 @@ int LastTownLocY=0;            /* previous position in village or city */
 int LastCountryLocX=0;            /* previous position in countryside */
 int LastCountryLocY=0;            /* previous position in countryside */
 
-#if !defined(WIN32)
-		char Str1[STRING_LEN],Str2[STRING_LEN],Str3[STRING_LEN],Str4[STRING_LEN];
-#else
-		char Str1[STRING_LEN] = {0},Str2[STRING_LEN] = {0},Str3[STRING_LEN] = {0},Str4[STRING_LEN] = {0};
-#endif
+char Str1[STRING_LEN] = {0},Str2[STRING_LEN] = {0},Str3[STRING_LEN] = {0},Str4[STRING_LEN] = {0};
 /* Some string space, random uses */
 
 pol Condoitems=NULL;                        /* Items in condo */
 pol Bagitems=NULL;                          /* Items in bag of holding */
 
 /* high score names, levels, behavior */
-#if !defined(WIN32)
-int Shadowlordbehavior,Archmagebehavior,Primebehavior,Commandantbehavior;
-int Championbehavior,Priestbehavior[7],Hibehavior,Dukebehavior;
-int Chaoslordbehavior,Lawlordbehavior,Justiciarbehavior;
-int Grandmasterbehavior;
-int Grandmasterlevel;
-char Grandmaster[80];
-char Shadowlord[80],Archmage[80],Prime[80],Commandant[80],Duke[80];
-char Champion[80],Priest[7][80],Hiscorer[80],Hidescrip[80];
-char Chaoslord[80],Lawlord[80],Justiciar[80];
-int Shadowlordlevel,Archmagelevel,Primelevel,Commandantlevel,Dukelevel;
-#else
 int Grandmasterbehavior = 0;
 int Grandmasterlevel = 0;
 char Grandmaster[80] = {0};
@@ -159,12 +127,7 @@ char Shadowlord[80] = {0},Archmage[80] = {0},Prime[80] = {0},Commandant[80] = {0
 char Champion[80] = {0},Priest[7][80] = {0},Hiscorer[80] = {0},Hidescrip[80] = {0};
 char Chaoslord[80] = {0},Lawlord[80] = {0},Justiciar[80] = {0};
 int Shadowlordlevel = 0,Archmagelevel = 0,Primelevel = 0,Commandantlevel = 0,Dukelevel = 0;
-#endif
-#if !defined(WIN32)
-int Championlevel,Priestlevel[7],Hilevel,Justiciarlevel;
-#else
 int Championlevel = 0,Priestlevel[7] = {0},Hilevel = 0,Justiciarlevel = 0;
-#endif
 long Hiscore = 0L;
 int Chaoslordlevel = 0,Lawlordlevel = 0,Chaos = 0,Law = 0;
 

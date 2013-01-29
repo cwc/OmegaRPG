@@ -982,14 +982,10 @@ void save(int force)
             strcpy(fname, g_saveFileName);
         }
 
-#if defined(WIN32)
-        for (pos = 0; fname[pos] && isalnum(fname[pos]); pos++)
-            ;
-#else
-        for (pos = 0; fname[pos] && isprint(fname[pos]) && !isspace(fname[pos]);
+        // Check for spaces and odd characters in the filename
+        for (pos = 0; fname[pos] && isgraph(fname[pos]);
                 pos++)
             ;
-#endif
 
         if (fname[pos]) {
             sprintf(Str1, "Illegal character '%c' in filename - Save aborted.", fname[pos]);

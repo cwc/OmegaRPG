@@ -94,28 +94,13 @@ int main(int argc, char *argv[])
     signal(SIGHUP,signalsave);
 #endif
 
-#if !defined(WIN32)
 #ifdef SIGQUIT
         signal(SIGQUIT,signalexit);
 #endif
 #ifdef SIGILL
         signal(SIGILL,signalexit);
 #endif
-#ifdef DEBUG
-        if( DG_debug_flag ) {
-#endif
-#ifdef SIGTRAP
-            signal(SIGTRAP,signalexit);
-#endif
-#ifdef SIGFPE
-            signal(SIGFPE,signalexit);
-#endif
-#ifdef SIGSEGV
-            signal(SIGSEGV,signalexit);
-#endif
-#ifdef DEBUG
-        }
-#endif
+
 #ifdef SIGIOT
         signal(SIGIOT,signalexit);
 #endif
@@ -131,6 +116,19 @@ int main(int argc, char *argv[])
 #ifdef SIGSYS
         signal(SIGSYS,signalexit);
 #endif
+
+#ifdef DEBUG
+        if( DG_debug_flag ) {
+#ifdef SIGTRAP
+            signal(SIGTRAP,signalexit);
+#endif
+#ifdef SIGFPE
+            signal(SIGFPE,signalexit);
+#endif
+#ifdef SIGSEGV
+            signal(SIGSEGV,signalexit);
+#endif
+        }
 #endif
 
     Omegalib = OMEGALIB;
@@ -141,9 +139,6 @@ int main(int argc, char *argv[])
     // All kinds of initialization
     init_perms();
     initgraf();
-#if !defined(WIN32)
-    initdirs();
-#endif
     initrand(E_RANDOM, 0);
     initspells();
 
