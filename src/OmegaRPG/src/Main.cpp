@@ -17,13 +17,14 @@ void signalquit(int ignore)
 
 void printUsage() {
 #ifdef DEBUG
-            printf("Usage: omega [-shd] [savefile]\n");
+            printf("Usage: omega [-shqd] [savefile]\n");
 #else
-            printf("Usage: omega [-sh] [savefile]\n");
+            printf("Usage: omega [-shq] [savefile]\n");
 #endif
             printf("Options:\n");
-            printf("  -s  Display high score list\n");
+            printf("  -s  Display high score list only\n");
             printf("  -h  Display this message\n");
+            printf("  -q  Quick launch (skip title and high score list)\n");
 #ifdef DEBUG
             printf("  -d  Enable debug mode\n");
 #endif
@@ -33,11 +34,14 @@ int main(int argc, char *argv[])
 {
     OmegaRPG* game;
 
+	bool showTitle = true;
+	bool showScores = true;
+
 #ifndef NOGETOPT
     int i;
 	bool scoresOnly = false;
 
-    while(( i= getopt( argc, argv, "dsh")) != -1)
+    while(( i= getopt( argc, argv, "dshq")) != -1)
     {
         switch (i)
         {
@@ -48,11 +52,16 @@ int main(int argc, char *argv[])
 #endif
         case 's':
             scoresOnly = true;
+            showTitle = false;
             break;
         case 'h':
         	printUsage();
             exit(0);
             break;
+        case 'q':
+        	showTitle = false;
+        	showScores = false;
+        	break;
         case '?':
             /* error parsing args... ignore? */
             printf("'%c' is an invalid option, ignoring\n", optopt );
@@ -159,8 +168,13 @@ int main(int argc, char *argv[])
     msdos_init();
 #endif
 
-    omega_title();
-    showscores();
+    if (showTitle) {
+    	omega_title();
+    }
+
+    if (showScores || game->ScoresOnly()) {
+    	showscores();
+    }
 
     if (game->ScoresOnly()) {
         endgraf();
@@ -170,8 +184,8 @@ int main(int argc, char *argv[])
     /* game restore attempts to restore game if there is an argument */
     if (game->Continuing())
     {
-        game_restore(argv[1]);
-        game->SaveFilename(argv[1]);
+        game_restore(argv[optind]);
+        game->SaveFilename(argv[optind]);
         mprint("Your adventure continues....");
     }
     else
