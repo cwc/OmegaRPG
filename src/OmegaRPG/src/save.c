@@ -3,11 +3,6 @@
 
 #include "glob.h"
 
-#ifdef ALLOWING_OLD_SAVEFILES
-/* holds the OLD_ definitions */
-# include "oldsave.h"
-#endif
-
 /*Various functions for doing game saves and restores */
 /*The game remembers various player information, the city level,
 the country level, and the last or current dungeon level */
@@ -444,39 +439,6 @@ int ok_outdated(int version)
        until we actually re-install some type of backwards compatibility. DAG */
 
     return FALSE;
-
-#if 0
-    switch (version) {
-    case 80:
-        print1("Converting version 0.80 savefile to current.");
-        morewait();
-        return TRUE;
-        break;
-    case 81:
-        print1("Converting version 0.81 savefile to current.");
-        morewait();
-        return TRUE;
-        break;
-    case 90:
-        print1("Converting version 0.90 savefile to current.");
-        morewait();
-        return TRUE;
-        break;
-    case 91:
-        /* version 91 is same as version 9000 right now */
-        return TRUE;
-        break;
-    case 9000:
-        /* DAG - 9000 is the re-numbered 90, for the new version numbering system. */
-        print1("Converting version 0.90 savefile to current.");
-        morewait();
-        return TRUE;
-        break;
-    default:
-        return FALSE;
-        break;
-    }
-#endif /* #if 0 */
 }
 
 /* read player data, city level, dungeon level,
@@ -519,7 +481,11 @@ int restore_game(char *savestr)
             fclose(fd);
             clearmsg();
             mprint(" Sorry, I can't restore an outdated save file!");
-            mprint(" savefile is version ");
+            mprint(" Game version is ");
+            mnumprint(VERSION/10000);
+			nprint2(".");
+			mnumprint( (version/100)%100);
+            mprint(" Save file version is ");
             mnumprint(version/10000);
             nprint2(".");
             mnumprint( (version/100)%100);
@@ -564,12 +530,6 @@ void restore_player(FILE *fd, int version)
     fread((char *)&Player,sizeof(Player),1,fd);
 
     filescanstring(fd,Player.name);
-
-#ifdef ALLOWING_OLD_SAVEFILES
-    if( version < 91 ) /* DAG */
-        fread((char *)CitySiteList,(3*OLD_NUMCITYSITES*sizeof(int)),1,fd);
-    else
-#endif
 
 	fread((char *)CitySiteList,sizeof(CitySiteList),1,fd);
     fread((char *)&GameStatus,sizeof(long),1,fd);
@@ -780,338 +740,6 @@ pol restore_itemlist(FILE *fd, int version)
     return(ol);
 }
 
-/* converts old location function ids to current ones.  DAG */
-void fix_p_locf( unsigned char *p_locf, int version )
-/* char *p_locf is pointer to single char, not a string */
-{
-#ifdef ALLOWING_OLD_SAVEFILES
-    if( version < 91 )
-    {
-        switch( *p_locf )
-        {
-        case OLD_L_NO_OP                 :
-            *p_locf =  L_NO_OP;
-            break;
-        case OLD_L_LIFT                  :
-            *p_locf =  L_LIFT;
-            break;
-        case OLD_L_BALANCESTONE          :
-            *p_locf =  L_BALANCESTONE;
-            break;
-        case OLD_L_FIRE                  :
-            *p_locf =  L_FIRE;
-            break;
-        case OLD_L_WHIRLWIND             :
-            *p_locf =  L_WHIRLWIND;
-            break;
-        case OLD_L_VOIDSTONE             :
-            *p_locf =  L_VOIDSTONE;
-            break;
-        case OLD_L_WARNING               :
-            *p_locf =  L_WARNING;
-            break;
-        case OLD_L_ARENA_EXIT            :
-            *p_locf =  L_ARENA_EXIT;
-            break;
-        case OLD_L_HOUSE_EXIT            :
-            *p_locf =  L_HOUSE_EXIT;
-            break;
-        case OLD_L_SAFE                  :
-            *p_locf =  L_SAFE;
-            break;
-        case OLD_L_CHARITY               :
-            *p_locf =  L_CHARITY;
-            break;
-        case OLD_L_ARMORER               :
-            *p_locf =  L_ARMORER;
-            break;
-        case OLD_L_CLUB                  :
-            *p_locf =  L_CLUB;
-            break;
-        case OLD_L_GYM                   :
-            *p_locf =  L_GYM;
-            break;
-        case OLD_L_THIEVES_GUILD         :
-            *p_locf =  L_THIEVES_GUILD;
-            break;
-        case OLD_L_COLLEGE               :
-            *p_locf =  L_COLLEGE;
-            break;
-        case OLD_L_HEALER                :
-            *p_locf =  L_HEALER;
-            break;
-        case OLD_L_CASINO                :
-            *p_locf =  L_CASINO;
-            break;
-        case OLD_L_TAVERN                :
-            *p_locf =  L_TAVERN;
-            break;
-        case OLD_L_MERC_GUILD            :
-            *p_locf =  L_MERC_GUILD;
-            break;
-        case OLD_L_ALCHEMIST             :
-            *p_locf =  L_ALCHEMIST;
-            break;
-        case OLD_L_SORCERORS             :
-            *p_locf =  L_SORCERORS;
-            break;
-        case OLD_L_CASTLE                :
-            *p_locf =  L_CASTLE;
-            break;
-        case OLD_L_ARENA                 :
-            *p_locf =  L_ARENA;
-            break;
-        case OLD_L_DPW                   :
-            *p_locf =  L_DPW;
-            break;
-        case OLD_L_LIBRARY               :
-            *p_locf =  L_LIBRARY;
-            break;
-        case OLD_L_PAWN_SHOP             :
-            *p_locf =  L_PAWN_SHOP;
-            break;
-        case OLD_L_BANK                  :
-            *p_locf =  L_BANK;
-            break;
-        case OLD_L_CONDO                 :
-            *p_locf =  L_CONDO;
-            break;
-        case OLD_L_ORACLE                :
-            *p_locf =  L_ORACLE;
-            break;
-        case OLD_L_ORDER                 :
-            *p_locf =  L_ORDER;
-            break;
-        case OLD_L_DINER                 :
-            *p_locf =  L_DINER;
-            break;
-        case OLD_L_COMMANDANT            :
-            *p_locf =  L_COMMANDANT;
-            break;
-        case OLD_L_CRAP                  :
-            *p_locf =  L_CRAP;
-            break;
-        case OLD_L_TEMPLE                :
-            *p_locf =  L_TEMPLE;
-            break;
-        case OLD_L_COUNTRYSIDE           :
-            *p_locf =  L_COUNTRYSIDE;
-            break;
-        case OLD_L_BROTHEL               :
-            *p_locf =  L_BROTHEL;
-            break;
-        case OLD_L_JAIL                  :
-            *p_locf =  L_JAIL;
-            break;
-        case OLD_L_TEMPLE_WARNING        :
-            *p_locf =  L_TEMPLE_WARNING;
-            break;
-        case OLD_L_LAWSTONE              :
-            *p_locf =  L_LAWSTONE;
-            break;
-        case OLD_L_CHAOSTONE             :
-            *p_locf =  L_CHAOSTONE;
-            break;
-        case OLD_L_EARTH_STATION         :
-            *p_locf =  L_EARTH_STATION;
-            break;
-        case OLD_L_FIRE_STATION          :
-            *p_locf =  L_FIRE_STATION;
-            break;
-        case OLD_L_WATER_STATION         :
-            *p_locf =  L_WATER_STATION;
-            break;
-        case OLD_L_AIR_STATION           :
-            *p_locf =  L_AIR_STATION;
-            break;
-        case OLD_L_VOID_STATION          :
-            *p_locf =  L_VOID_STATION;
-            break;
-        case OLD_L_VOID                  :
-            *p_locf =  L_VOID;
-            break;
-        case OLD_L_VOICE1                :
-            *p_locf =  L_VOICE1;
-            break;
-        case OLD_L_VOICE2                :
-            *p_locf =  L_VOICE2;
-            break;
-        case OLD_L_VOICE3                :
-            *p_locf =  L_VOICE3;
-            break;
-        case OLD_L_SACRIFICESTONE        :
-            *p_locf =  L_SACRIFICESTONE;
-            break;
-        case OLD_L_TOME1                 :
-            *p_locf =  L_TOME1;
-            break;
-        case OLD_L_TOME2                 :
-            *p_locf =  L_TOME2;
-            break;
-        case OLD_L_ENTER_CIRCLE          :
-            *p_locf =  L_ENTER_CIRCLE;
-            break;
-        case OLD_L_CIRCLE_LIBRARY        :
-            *p_locf =  L_CIRCLE_LIBRARY;
-            break;
-        case OLD_L_DRUID                 :
-            *p_locf =  L_DRUID;
-            break;
-        case OLD_L_ALTAR                 :
-            *p_locf =  L_ALTAR;
-            break;
-        case OLD_L_GARDEN                :
-            *p_locf =  L_GARDEN;
-            break;
-        case OLD_L_ADEPT                 :
-            *p_locf =  L_ADEPT;
-            break;
-        case OLD_L_SEWER                 :
-            *p_locf =  L_SEWER;
-            break;
-        case OLD_L_OMEGA                 :
-            *p_locf =  L_OMEGA;
-            break;
-        case OLD_L_CARTOGRAPHER          :
-            *p_locf =  L_CARTOGRAPHER;
-            break;
-        case OLD_L_STABLES               :
-            *p_locf =  L_STABLES;
-            break;
-        case OLD_L_COMMONS               :
-            *p_locf =  L_COMMONS;
-            break;
-        case OLD_L_GRANARY               :
-            *p_locf =  L_GRANARY;
-            break;
-        case OLD_L_MAZE                  :
-            *p_locf =  L_MAZE;
-            break;
-        case OLD_L_HOVEL                 :
-            *p_locf =  L_HOVEL;
-            break;
-        case OLD_L_HOUSE                 :
-            *p_locf =  L_HOUSE;
-            break;
-        case OLD_L_MANSION               :
-            *p_locf =  L_MANSION;
-            break;
-        case OLD_L_OCCUPIED_HOUSE        :
-            *p_locf =  L_OCCUPIED_HOUSE;
-            break;
-        case OLD_L_TACTICAL_EXIT         :
-            *p_locf =  L_TACTICAL_EXIT;
-            break;
-        case OLD_L_VAULT                 :
-            *p_locf =  L_VAULT;
-            break;
-        case OLD_L_CEMETARY              :
-            *p_locf =  L_CEMETARY;
-            break;
-        case OLD_L_THRONE                :
-            *p_locf =  L_THRONE;
-            break;
-        case OLD_L_ESCALATOR             :
-            *p_locf =  L_ESCALATOR;
-            break;
-        case OLD_L_ENTER_COURT           :
-            *p_locf =  L_ENTER_COURT;
-            break;
-        case OLD_L_TRIFID                :
-            *p_locf =  L_TRIFID;
-            break;
-        case OLD_L_FINAL_ABYSS           :
-            *p_locf =  L_FINAL_ABYSS;
-            break;
-        case OLD_L_RAISE_PORTCULLIS      :
-            *p_locf =  L_RAISE_PORTCULLIS;
-            break;
-        case OLD_L_MINDSTONE             :
-            *p_locf =  L_MINDSTONE;
-            break;
-        case OLD_L_CHAOS                 :
-            *p_locf =  L_CHAOS;
-            break;
-        case OLD_L_WATER                 :
-            *p_locf =  L_WATER;
-            break;
-        case OLD_L_LAVA                  :
-            *p_locf =  L_LAVA;
-            break;
-        case OLD_L_MAGIC_POOL            :
-            *p_locf =  L_MAGIC_POOL;
-            break;
-        case OLD_L_PORTCULLIS_TRAP       :
-            *p_locf =  L_PORTCULLIS_TRAP;
-            break;
-        case OLD_L_DROP_EVERY_PORTCULLIS :
-            *p_locf =  L_DROP_EVERY_PORTCULLIS;
-            break;
-        case OLD_L_PORTCULLIS            :
-            *p_locf =  L_PORTCULLIS;
-            break;
-        case OLD_L_TRAP_DART             :
-            *p_locf =  L_TRAP_DART;
-            break;
-        case OLD_L_TRAP_PIT              :
-            *p_locf =  L_TRAP_PIT;
-            break;
-        case OLD_L_TRAP_DOOR             :
-            *p_locf =  L_TRAP_DOOR;
-            break;
-        case OLD_L_TRAP_SNARE            :
-            *p_locf =  L_TRAP_SNARE;
-            break;
-        case OLD_L_TRAP_BLADE            :
-            *p_locf =  L_TRAP_BLADE;
-            break;
-        case OLD_L_TRAP_FIRE             :
-            *p_locf =  L_TRAP_FIRE;
-            break;
-        case OLD_L_TRAP_TELEPORT         :
-            *p_locf =  L_TRAP_TELEPORT;
-            break;
-        case OLD_L_TRAP_DISINTEGRATE     :
-            *p_locf =  L_TRAP_DISINTEGRATE;
-            break;
-        case OLD_L_TRAP_SLEEP_GAS        :
-            *p_locf =  L_TRAP_SLEEP_GAS;
-            break;
-        case OLD_L_TRAP_ACID             :
-            *p_locf =  L_TRAP_ACID;
-            break;
-        case OLD_L_TRAP_MANADRAIN        :
-            *p_locf =  L_TRAP_MANADRAIN;
-            break;
-        case OLD_L_TRAP_ABYSS            :
-            *p_locf =  L_TRAP_ABYSS;
-            break;
-        case OLD_L_TRAP_SIREN            :
-            *p_locf =  L_TRAP_SIREN;
-            break;
-        case OLD_L_STATUE_WAKE           :
-            *p_locf =  L_STATUE_WAKE;
-            break;
-        case OLD_L_STATUE_RANDOM         :
-            *p_locf =  L_STATUE_RANDOM;
-            break;
-        case OLD_L_HEDGE                 :
-            *p_locf =  L_HEDGE;
-            break;
-        case OLD_L_RUBBLE                :
-            *p_locf =  L_RUBBLE;
-            break;
-        case OLD_L_ABYSS                 :
-            *p_locf =  L_ABYSS;
-            break;
-        default:
-            *p_locf = L_NO_OP;
-            break; /* shouldn't happen */
-        }
-    }
-#endif
-}
-
 void restore_level(FILE *fd, int version)
 {
     int i, j, run;
@@ -1222,7 +850,6 @@ void restore_level(FILE *fd, int version)
         fread((char *)&run,sizeof(int),1,fd);
         for (; i < run; i++) {
             fread((char *)&Level->site[i][j],sizeof(struct location),1,fd);
-            fix_p_locf( &(Level->site[i][j].p_locf), version ); /* DAG */
             Level->site[i][j].creature = NULL;
             Level->site[i][j].things = NULL;
         }

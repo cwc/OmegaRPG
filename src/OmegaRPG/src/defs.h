@@ -96,7 +96,7 @@ typedef int int32;
 /*---------------------------SYSTEM DEFINITIONS---------------------------*/
 
 /* Don't change anything from here on (unless you know what you're doing) */
-#define VERSION 9002
+#define VERSION 9100
 #define VERSIONSTRING "Omega version 0.91"
 
 #ifndef WIN32
