@@ -4,8 +4,6 @@
 
 #include "glob.h"
 
-
-
 /*               Revised function                   */
 /* WDT: code contributed by David J. Robertson */
 /* consider one monster's action */

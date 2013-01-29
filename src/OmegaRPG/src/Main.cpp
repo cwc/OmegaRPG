@@ -2,10 +2,6 @@ extern "C" {
 #include "glob.h"
 }
 
-#if !defined(WIN32)
-#include <unistd.h>
-#endif
-
 #include "OmegaRPG.h"
 
 using namespace Omega;

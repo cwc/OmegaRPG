@@ -5,15 +5,8 @@
 
 #include "glob.h"
 
-#if !defined(WIN32)
-#include <signal.h>
-#include <fcntl.h>
-#include <time.h>
-#include <unistd.h>
-#include <stdlib.h>
 /* Note: in order to avoid a memory bug I've been told about, I'm
    explicitly initializing every global to something. */
-#endif
 
 /* most globals originate in omega.c */
 

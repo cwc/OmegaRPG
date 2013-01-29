@@ -6,7 +6,6 @@
 /* Functions dealing with dungeon and country levels aside from actual
 level structure generation */
 
-
 /* monsters for tactical encounters */
 void make_country_monsters(Symbol terrain)
 {

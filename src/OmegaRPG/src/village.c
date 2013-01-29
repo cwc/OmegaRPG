@@ -4,7 +4,6 @@
 
 #include "glob.h"
 
-
 /* loads the village level into Level*/
 void load_village(int villagenum, int populate)
 {

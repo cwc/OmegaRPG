@@ -4,7 +4,6 @@
 
 #include "glob.h"
 
-
 void mazesite( char,int,int,int );
 extern int WIDTH, LENGTH;
 void randommazesite( int,int,int );

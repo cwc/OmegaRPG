@@ -2,13 +2,6 @@
 /* bank.c */
 /* new bank -- moved out of site1.c */
 
-#include <ctype.h>
-#include <limits.h>
-
-#if !defined(WIN32)
-#include <unistd.h>
-#endif
-
 #include "glob.h"
 
 /* swiped from scr.c */

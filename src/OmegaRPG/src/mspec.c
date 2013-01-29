@@ -4,7 +4,6 @@
 
 #include "glob.h"
 
-
 void m_sp_mp(pmt m)
 {
     if (m->attacked && (random_range(3) == 1)) {
@@ -22,7 +21,6 @@ void m_sp_mp(pmt m)
     }
 }
 
-
 void m_sp_ng(pmt m)
 {
     if (distance(m->x,m->y,Player.x,Player.y) < 2)
@@ -35,8 +33,6 @@ void m_sp_ng(pmt m)
         }
 }
 
-
-
 void m_sp_poison_cloud(pmt m)
 {
     if (distance(m->x,m->y,Player.x,Player.y) < 3) {
@@ -46,7 +42,6 @@ void m_sp_poison_cloud(pmt m)
         else p_poison(7);
     }
 }
-
 
 void m_sp_explode(pmt m)
 {

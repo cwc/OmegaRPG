@@ -4,8 +4,6 @@
 
 #include "glob.h"
 
-#include <time.h>
-
 /* Deallocate current dungeon */
 void free_dungeon(void)
 {
@@ -25,7 +23,6 @@ void free_dungeon(void)
     }
 #endif
 }
-
 
 /* erase the level w/o deallocating it*/
 void clear_level(struct level *dungeon_level)

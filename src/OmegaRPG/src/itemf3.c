@@ -39,7 +39,6 @@ void i_serenity(pob o)
     }
 }
 
-
 /* the sceptre of high magic */
 void i_sceptre(pob o)
 {

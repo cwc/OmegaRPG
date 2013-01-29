@@ -3,14 +3,6 @@
 
 /* Random utility functions called from all over */
 
-#if !defined(WIN32)
-#include <sys/types.h>
-#include <sys/time.h>
-#include <sys/wait.h>
-#include <unistd.h>
-#include <stdlib.h>
-#endif
-
 #include "glob.h"
 
 void setPlayerXY(int x, int y)

@@ -4,8 +4,6 @@
 
 #include "glob.h"
 
-
-
 void p_movefunction(int movef)
 {
     /* loc functs above traps should be activated whether levitating or not */

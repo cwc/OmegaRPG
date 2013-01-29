@@ -4,7 +4,6 @@
 
 #include "glob.h"
 
-
 void m_firebolt(pmt m)
 {
     fbolt(m->x,m->y,Player.x,Player.y,m->hit,m->dmg);
@@ -15,7 +14,6 @@ void m_nbolt(pmt m)
     nbolt(m->x,m->y,Player.x,Player.y,m->hit,m->dmg);
 }
 
-
 void m_lball(pmt m)
 {
     lball(m->x,m->y,Player.x,Player.y,m->dmg);
@@ -25,7 +23,6 @@ void m_fireball(pmt m)
 {
     fball(m->x,m->y,Player.x,Player.y,m->dmg);
 }
-
 
 void m_snowball(pmt m)
 {

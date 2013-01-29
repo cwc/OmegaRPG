@@ -1,11 +1,6 @@
 /* omega copyright (c) 1987,1988,1989 by Laurence Raphael Brothers */
 /* save.c */
 
-#if !defined(WIN32)
-#include <unistd.h>
-#include <stdlib.h>
-#endif
-
 #include "glob.h"
 
 #ifdef ALLOWING_OLD_SAVEFILES

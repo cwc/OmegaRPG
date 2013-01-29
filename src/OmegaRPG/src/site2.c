@@ -4,8 +4,6 @@
 
 #include "glob.h"
 
-
-
 void l_condo(void)
 {
     pol ol,prev=NULL;

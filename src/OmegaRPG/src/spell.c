@@ -4,7 +4,6 @@
 
 #include "glob.h"
 
-
 void s_nutrition(void)
 {
 	if (random_range(3)) {

@@ -14,7 +14,6 @@ int statmod(int stat)
     return((stat-10)/2);
 }
 
-
 /* effects of hitting */
 void p_hit (struct monster *m,int dmg,int dtype)
 {

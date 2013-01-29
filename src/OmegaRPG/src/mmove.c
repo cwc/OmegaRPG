@@ -4,7 +4,6 @@
 
 #include "glob.h"
 
-
 /* like m_normal_move, but can open doors */
 void m_smart_move(pmt m)
 {
@@ -16,7 +15,6 @@ void m_normal_move(pmt m)
 {
     m_simple_move(m);
 }
-
 
 /* used by both m_normal_move and m_smart_move */
 void m_simple_move(pmt m)

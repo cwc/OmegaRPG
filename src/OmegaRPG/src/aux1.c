@@ -4,8 +4,6 @@
 
 #include "glob.h"
 
-
-
 /* check to see if too much tunneling has been done in this level */
 void tunnelcheck(void)
 {

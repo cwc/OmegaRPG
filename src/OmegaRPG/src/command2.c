@@ -3,11 +3,6 @@
 
 /* This file contains toplevel commands called from command1.c */
 
-#if !defined(WIN32)
-#include <unistd.h>
-#include <ctype.h>
-#endif
-
 #include "glob.h"
 
 /* no op a turn.... */

@@ -1,7 +1,6 @@
 /* omega copyright (c) 1987,1988,1989 by Laurence Raphael Brothers */
 /* pdump.c */
 
-#include <ctype.h>
 #include "glob.h"
 
 char *monk_rank_string(int rank);

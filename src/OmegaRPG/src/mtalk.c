@@ -4,7 +4,6 @@
 
 #include "glob.h"
 
-
 /* The druid's altar is in the northern forest */
 void m_talk_druid(pmt m)
 {

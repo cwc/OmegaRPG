@@ -1,10 +1,6 @@
 /* Copyright 2000 William D. Tanksley Jr., licensed under the terms of the
  * Omega license as part of Omega. */
 #include "glob.h"
-#include <stdio.h>
-#include <stdarg.h>
-#include <stdlib.h>
-#include <assert.h>
 
 #define MAP_VERSION      2
 #define MAP_HEADER_SIZE  3

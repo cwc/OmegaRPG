@@ -5,9 +5,6 @@
 
 #include "glob.h"
 
-
-
-
 /* ring functions */
 void i_perm_knowledge(pob o)
 {
@@ -40,8 +37,6 @@ void i_perm_strength(pob o)
     }
     calc_melee();
 }
-
-
 
 void i_perm_burden(pob o)
 {

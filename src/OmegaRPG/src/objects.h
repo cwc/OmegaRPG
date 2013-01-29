@@ -31,6 +31,8 @@ struct object
 
 */
 
+#ifndef __OBJECTS_H__
+#define __OBJECTS_H__
 
 struct object Objects[TOTALITEMS] = {
     { THINGID+0,10,0,0,0,0,0,1,10,50,0,0,0,0,COMMON,I_RAISE_PORTCULLIS,2,THING,"small grey box with red button","disposeable garage door opener","disposeable garage door opener" },
@@ -482,3 +484,5 @@ struct object Objects[TOTALITEMS] = {
 
     { CORPSEID,100,0,0,0,0,0,1,10,0,0,0,0,0,COMMON,I_CORPSE,0,CORPSE,"a mysterious corpse","a mysterious corpse","a mysterious corpse" }
 };
+
+#endif

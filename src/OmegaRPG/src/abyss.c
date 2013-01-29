@@ -4,16 +4,6 @@
 
 #include "glob.h"
 
-#if defined(WIN32)
-#include <sys/types.h>
-#include <malloc.h>
-
-#ifdef SAVE_LEVELS
-#	include <sys/timeb.h>
-#	include <io.h>
-#endif
-#endif
-
 /* loads the abyss level into Level*/
 void load_abyss(void)
 {

@@ -9,13 +9,38 @@ definitions in the following section. */
 
 #ifdef WIN32
 #include <windows.h>
+#include <malloc.h>
+
 #undef MOUSE_MOVED // Will be redefined when curses is included
 #define strlen(x) (int)strlen(x) // Squashes numerous warnings
 #define sleep(x) Sleep(x * 1000)
 #define usleep(x) sleep(1)
+#define getlogin() "pcuser" // TODO Get the real user name
+
+#ifdef SAVE_LEVELS
+#	include <sys/timeb.h>
+#	include <io.h>
+#endif
+#else
+#include <unistd.h>
+#include <pwd.h>
+#include <sys/file.h>
+#include <fcntl.h>
+#include <errno.h>
+#include <signal.h>
+#include <sys/wait.h>
 #endif
 
+#include <sys/types.h>
+#include <ctype.h>
+#include <limits.h>
 #include <curses.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <stdarg.h>
+#include <assert.h> // The assert macro (for ANSI/ISO C).  Hopefully this will always work!
+#include <strings.h>
 
 #include "colors.h"
 
@@ -1682,16 +1707,6 @@ typedef oltype *pol;
 
 /* random  function declarations from system libraries */
 
-#include <stdlib.h>
-
-/* The assert macro (for ANSI/ISO C).  Hopefully this will always work! */
-#include <assert.h>
-
-#if defined(WIN32)
-#include <time.h>
-#define getlogin() "pcuser" // TODO Get the real user name
-#endif
-
 #undef sign
 #undef max
 #undef min
@@ -1731,19 +1746,6 @@ typedef oltype *pol;
 #define optionp(o) ((Player.options&(o))?1:0)
 #define optionset(o) (Player.options |= (o))
 #define optionreset(o) (Player.options &= ~(o))
-
-/* systemV for some reason uses string.h instead of strings.h */
-/* Also, random and srandom are unlikely to be found on system V... */
-
-#ifdef STRING
-#include <string.h>
-#endif
-
-#ifndef STRING
-#include <strings.h>
-#endif
-
-#include <stdio.h>
 
 #ifndef TRUE
 #define TRUE 1

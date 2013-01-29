@@ -4,15 +4,9 @@
 /* plus a few file i/o stuff */
 /* also some in file.c */
 
-#if !defined(WIN32)
-# include <sys/types.h>
-# include <unistd.h>
-#endif
-
 #define CHARATTR(c)	((c) & ~0xff)
 
 #include "glob.h"
-#include <ctype.h>
 
 // Screen flicker fix
 #undef wclear

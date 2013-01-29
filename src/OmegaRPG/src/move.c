@@ -4,10 +4,6 @@
 
 #include "glob.h"
 
-#if !defined(WIN32)
-#include <unistd.h> /* usleep */
-#endif
-
 /* various miscellaneous location functions */
 void l_water(void)
 {

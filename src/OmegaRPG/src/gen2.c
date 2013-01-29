@@ -4,8 +4,6 @@
 
 #include "glob.h"
 
-
-
 /* For each level, there should be one stairway going up and one down.
 fromlevel determines whether the player is placed on the up or the down
 staircase. The aux value is currently unused elsewhere, but is set

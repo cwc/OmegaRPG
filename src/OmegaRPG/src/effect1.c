@@ -3,7 +3,6 @@
 
 #include "glob.h"
 
-
 /* enchant */
 void enchant(int delta)
 {

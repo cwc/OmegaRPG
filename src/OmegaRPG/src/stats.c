@@ -8,11 +8,6 @@
  * membership, alignment, and so on
  */
 
-#if !defined(WIN32)
-#include <unistd.h>
-#include <ctype.h>
-#endif
-
 #include "glob.h"
 
 void editstats(void)

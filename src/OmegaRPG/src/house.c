@@ -4,7 +4,6 @@
 
 #include "glob.h"
 
-
 /* loads the house level into Level*/
 void load_house(int kind, int populate)
 {

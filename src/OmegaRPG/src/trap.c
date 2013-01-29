@@ -4,7 +4,6 @@
 
 #include "glob.h"
 
-
 /* various traps */
 
 /* note special function on different levels */

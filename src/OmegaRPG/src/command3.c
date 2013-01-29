@@ -4,11 +4,6 @@
 /* This file contains some more top level command functions
    called from command1.c */
 
-#if !defined(WIN32)
-#include <pwd.h>
-#include <unistd.h>
-#endif
-
 #include "glob.h"
 
 /* look at some spot */

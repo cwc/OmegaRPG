@@ -3,14 +3,6 @@
 /* functions with file access in them. Also some direct calls to
    curses functions */
 
-#if !defined(WIN32)
-# include <sys/types.h>
-# include <unistd.h>
-# include <sys/file.h>
-# include <fcntl.h>
-# include <errno.h>
-#endif
-
 #include "glob.h"
 
 FILE *checkfopen(char *filestring, char *optionstring)

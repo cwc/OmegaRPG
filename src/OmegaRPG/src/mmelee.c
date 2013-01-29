@@ -4,7 +4,6 @@
 
 #include "glob.h"
 
-
 void m_hit(pmt m, int dtype)
 {
     if (m->uniqueness == COMMON) {
@@ -16,8 +15,6 @@ void m_hit(pmt m, int dtype)
         mprint("The attack was displaced!");
     else  p_damage(random_range(m->dmg),dtype,Str3);
 }
-
-
 
 /* execute monster attacks versus player */
 void tacmonster(pmt m)

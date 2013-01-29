@@ -2,10 +2,6 @@
 /* site1.c */
 /* 1st half of site functions and aux functions to them */
 
-#if !defined(WIN32)
-#include <unistd.h>
-#endif
-
 #include "glob.h"
 
 void l_armorer(void)
@@ -31,7 +27,6 @@ void l_armorer(void)
     }
     xredraw();
 }
-
 
 void buyfromstock(int base, int numitems)
 {
@@ -79,7 +74,6 @@ void buyfromstock(int base, int numitems)
         else free_obj( newitem, TRUE );
     }
 }
-
 
 void l_club(void)
 {

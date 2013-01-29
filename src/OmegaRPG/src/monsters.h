@@ -21,6 +21,9 @@ struct monster {
 
 */
 
+#ifndef __MONSTERS_H__
+#define __MONSTERS_H__
+
 struct monster Monsters[NUMMONSTERS] = {
     { NULL,0,0,0,0,0,0,ML0+0,1,1,10,2,4,1,0,1,50,0,1,1,1,-1,-1,COMMON,M_TALK_STUPID,M_MOVE_FLUTTER,M_MELEE_NORMAL,M_NO_OP,M_NO_OP,MOBILE|HOSTILE|FLYING|POISONOUS,0,'h'|CLR(YELLOW),"hornet","dead hornet","AXAX" },
 
@@ -326,3 +329,5 @@ struct monster Monsters[NUMMONSTERS] = {
     { NULL,0,0,0,0,0,0,ML10+10,1150,90,90,48,10,20,10,2,0,7,6000,40,40,-1,ARTIFACTID+25,UNIQUE_MADE,M_TALK_MAHARAJA,M_MOVE_SMART,M_MELEE_NORMAL,M_MELEE_NORMAL,M_SP_DEMON,MOBILE|HOSTILE,pow2(FLAME)|pow2(COLD)|pow2(ELECTRICITY)|pow2(ACID)|pow2(FEAR)|pow2(SLEEP)|pow2(NEGENERGY)|pow2(THEFT)|pow2(INFECTION),'D'|CLRS(GREY,RED),"The Maharaja","The Maharaja's Skull","L?L?B?B?R?R?R?" }
 
 };
+
+#endif

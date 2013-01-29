@@ -8,7 +8,6 @@
 
 #include "glob.h"
 
-
 void l_thieves_guild(void)
 {
     int fee,count,i,number,done=FALSE,dues=1000;
