@@ -1,10 +1,14 @@
 #pragma once
 
+#include <stdio.h>
+
 namespace Omega
 {
 class OmegaRPG
 {
 public:
+    static void printUsage();
+
     OmegaRPG(void);
     OmegaRPG(char* filename);
 

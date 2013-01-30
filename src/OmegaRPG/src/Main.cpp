@@ -11,21 +11,6 @@ void signalquit(int ignore)
     quit();
 }
 
-void printUsage() {
-#ifdef DEBUG
-            printf("Usage: omega [-shqd] [savefile]\n");
-#else
-            printf("Usage: omega [-shq] [savefile]\n");
-#endif
-            printf("Options:\n");
-            printf("  -s  Display high score list only\n");
-            printf("  -h  Display this message\n");
-            printf("  -q  Quick launch (skip title and high score list)\n");
-#ifdef DEBUG
-            printf("  -d  Enable debug mode\n");
-#endif
-}
-
 int main(int argc, char *argv[])
 {
     OmegaRPG* game;
@@ -51,7 +36,7 @@ int main(int argc, char *argv[])
             showTitle = false;
             break;
         case 'h':
-        	printUsage();
+            OmegaRPG::printUsage();
             exit(0);
             break;
         case 'q':

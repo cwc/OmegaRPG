@@ -60,4 +60,19 @@ void OmegaRPG::ScoresOnly(bool value)
 {
     _scoresOnly = value;
 }
+
+void OmegaRPG::printUsage() {
+#ifdef DEBUG
+    printf("Usage: omega [-shqd] [savefile]\n");
+#else
+    printf("Usage: omega [-shq] [savefile]\n");
+#endif
+    printf("Options:\n");
+    printf("  -s  Display high score list only\n");
+    printf("  -h  Display this message\n");
+    printf("  -q  Quick launch (skip title and high score list)\n");
+#ifdef DEBUG
+    printf("  -d  Enable debug mode\n");
+#endif
+}
 }
