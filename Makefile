@@ -29,3 +29,6 @@ build_dir :
 
 clean : 
 	rm -rf $(BUILD_DIR)
+
+test : omega
+

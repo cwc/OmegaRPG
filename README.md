@@ -1,7 +1,9 @@
 Omega
 =====
+
 A text-based roguelike game
------
+
+[![Build Status](https://travis-ci.org/cwc/OmegaRPG.png)](https://travis-ci.org/cwc/OmegaRPG)
 
 About the Game
 -----
