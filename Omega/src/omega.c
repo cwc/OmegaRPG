@@ -185,20 +185,6 @@ int game_restore(char *savefile)
     return(TRUE);
 }
 
-#if !defined(WIN32)
-void signalexit(int ignored)
-{
-    clearmsg();
-    mprint("Yikes!");
-    morewait();
-    mprint("Sorry, caught a core-dump signal.");
-    signalsave(0);
-    endgraf();
-    printf("Bye!\n");
-    exit(0);
-}
-#endif
-
 /* Start up game with new dungeons; start with player in city */
 void init_world(void)
 {

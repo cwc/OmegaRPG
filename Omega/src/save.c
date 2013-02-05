@@ -14,6 +14,8 @@ the country level, and the last or current dungeon level */
    The player, the city level, and the current dungeon level are saved.
 */
 
+char* g_saveFileName = NULL;
+
 int save_game(char *savestr)
 {
     FILE *fd;
@@ -114,20 +116,7 @@ int save_game(char *savestr)
     return(writeok);
 }
 
-/* saves game on SIGHUP */
-void signalsave(int ignore)
-{
-    change_to_user_perms();
-    save_game("Omega.Sav");
-    print1("Signal - Saving file 'Omega.Sav'.");
-    morewait();
-    endgraf();
-    exit(0);
-}
-
-
 /* also saves some globals like Level->depth... */
-
 int save_player(FILE *fd)
 {
     int i;

@@ -1,5 +1,9 @@
 #pragma once
 
+extern "C" {
+#include "glob.h"
+}
+
 #include <stdio.h>
 
 namespace Omega
@@ -10,11 +14,7 @@ public:
     static void printUsage();
 
     OmegaRPG(void);
-    OmegaRPG(char* filename);
-
     ~OmegaRPG(void);
-
-    void Initialize();
 
     char* SaveFilename();
     void SaveFilename(char* filename);
@@ -25,9 +25,19 @@ public:
     bool ScoresOnly();
     void ScoresOnly(bool value);
 
+    bool ShowTitle();
+    void ShowTitle(bool value);
+
+    bool ShowScores();
+    void ShowScores(bool value);
+
+    void startGame();
+
 private:
     char* _saveFilename;
     bool _continuing;
     bool _scoresOnly;
+    bool _showScores;
+    bool _showTitle;
 };
 }
