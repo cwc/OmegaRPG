@@ -1413,10 +1413,9 @@ void strengthen_death(pmt m)
     m->speed = max(m->speed-1,1);
     m->movef = M_MOVE_SMART;
 
-    /* In order not to have to make the hp's into longs or unsigned,
-       which would involve lots of changes, I'll make it max out at 30000. */
-    unsigned tmp = 100+m->dmg*10;
-    m->hp = (tmp > 30000) ? 30000 : tmp;
+	/* In order not to have to make the hp's into longs or unsigned,
+    which would involve lots of changes, I'll make it max out at 30000. */
+	m->hp = min(30000, 100 * m->dmg * 10);
 
     *scythe = Objects[OB_SCYTHE_DEATH];
     ol->thing = scythe;

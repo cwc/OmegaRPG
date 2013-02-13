@@ -10,6 +10,19 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\Tools\src\bwt.c" />
+    <ClCompile Include="..\..\..\Tools\src\crypt.c" />
+    <ClCompile Include="..\..\..\Tools\src\decrypt.c" />
+    <ClCompile Include="..\..\..\Tools\src\genclr.c" />
+    <ClCompile Include="..\..\..\Tools\src\OmegaTool.cpp" />
+    <ClCompile Include="..\..\..\Tools\src\PackTool.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\Tools\src\bwt.h" />
+    <ClInclude Include="..\..\..\Tools\src\OmegaTool.h" />
+    <ClInclude Include="..\..\..\Tools\src\PackTool.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{463483F6-F45A-437A-A9F1-0B0318DB515F}</ProjectGuid>
     <RootNamespace>Tools</RootNamespace>
@@ -19,12 +32,14 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -72,19 +87,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="src\bwt.c" />
-    <ClCompile Include="src\crypt.c" />
-    <ClCompile Include="src\decrypt.c" />
-    <ClCompile Include="src\genclr.c" />
-    <ClCompile Include="src\OmegaTool.cpp" />
-    <ClCompile Include="src\PackTool.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="src\bwt.h" />
-    <ClInclude Include="src\OmegaTool.h" />
-    <ClInclude Include="src\PackTool.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

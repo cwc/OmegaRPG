@@ -17,6 +17,8 @@ definitions in the following section. */
 #define usleep(x) sleep(1)
 #define getlogin() "pcuser" // TODO Get the real user name
 
+#include "pdcurses.h"
+
 #ifdef SAVE_LEVELS
 #	include <sys/timeb.h>
 #	include <io.h>
@@ -30,12 +32,12 @@ definitions in the following section. */
 #include <errno.h>
 #include <signal.h>
 #include <sys/wait.h>
+#include <curses.h>
 #endif
 
 #include <sys/types.h>
 #include <ctype.h>
 #include <limits.h>
-#include <curses.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>

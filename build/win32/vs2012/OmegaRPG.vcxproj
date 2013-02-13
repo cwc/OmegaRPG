@@ -11,72 +11,74 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\defs.h" />
-    <ClInclude Include="src\extern.h" />
-    <ClInclude Include="src\glob.h" />
-    <ClInclude Include="src\iinit.h" />
-    <ClInclude Include="src\minit.h" />
-    <ClInclude Include="src\oldsave.h" />
-    <ClInclude Include="src\OmegaRPG.h" />
+    <ClInclude Include="..\..\..\lib\pdcurses.h" />
+    <ClInclude Include="..\..\..\Omega\src\colors.h" />
+    <ClInclude Include="..\..\..\Omega\src\defs.h" />
+    <ClInclude Include="..\..\..\Omega\src\extern.h" />
+    <ClInclude Include="..\..\..\Omega\src\glob.h" />
+    <ClInclude Include="..\..\..\Omega\src\monsters.h" />
+    <ClInclude Include="..\..\..\Omega\src\objects.h" />
+    <ClInclude Include="..\..\..\Omega\src\OmegaRPG.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\abyss.c" />
-    <ClCompile Include="src\aux1.c" />
-    <ClCompile Include="src\aux2.c" />
-    <ClCompile Include="src\aux3.c" />
-    <ClCompile Include="src\bank.c" />
-    <ClCompile Include="src\char.c" />
-    <ClCompile Include="src\city.c" />
-    <ClCompile Include="src\command1.c" />
-    <ClCompile Include="src\command2.c" />
-    <ClCompile Include="src\command3.c" />
-    <ClCompile Include="src\country.c" />
-    <ClCompile Include="src\effect1.c" />
-    <ClCompile Include="src\effect2.c" />
-    <ClCompile Include="src\effect3.c" />
-    <ClCompile Include="src\env.c" />
-    <ClCompile Include="src\etc.c" />
-    <ClCompile Include="src\file.c" />
-    <ClCompile Include="src\gen1.c" />
-    <ClCompile Include="src\gen2.c" />
-    <ClCompile Include="src\guild1.c" />
-    <ClCompile Include="src\guild2.c" />
-    <ClCompile Include="src\house.c" />
-    <ClCompile Include="src\init.c" />
-    <ClCompile Include="src\inv.c" />
-    <ClCompile Include="src\item.c" />
-    <ClCompile Include="src\itemf1.c" />
-    <ClCompile Include="src\itemf2.c" />
-    <ClCompile Include="src\itemf3.c" />
-    <ClCompile Include="src\lev.c" />
-    <ClCompile Include="src\Main.cpp" />
-    <ClCompile Include="src\map.c" />
-    <ClCompile Include="src\mmelee.c" />
-    <ClCompile Include="src\mmove.c" />
-    <ClCompile Include="src\mon.c" />
-    <ClCompile Include="src\move.c" />
-    <ClCompile Include="src\movef.c" />
-    <ClCompile Include="src\mspec.c" />
-    <ClCompile Include="src\mstrike.c" />
-    <ClCompile Include="src\mtalk.c" />
-    <ClCompile Include="src\newrand.c" />
-    <ClCompile Include="src\omega.c" />
-    <ClCompile Include="src\OmegaRPG.cpp" />
-    <ClCompile Include="src\pdump.c" />
-    <ClCompile Include="src\priest.c" />
-    <ClCompile Include="src\save.c" />
-    <ClCompile Include="src\scr.c" />
-    <ClCompile Include="src\site1.c" />
-    <ClCompile Include="src\site2.c" />
-    <ClCompile Include="src\spell.c" />
-    <ClCompile Include="src\stats.c" />
-    <ClCompile Include="src\time.c" />
-    <ClCompile Include="src\trap.c" />
-    <ClCompile Include="src\util.c" />
-    <ClCompile Include="src\village.c" />
+    <ClCompile Include="..\..\..\Omega\src\abyss.c" />
+    <ClCompile Include="..\..\..\Omega\src\aux1.c" />
+    <ClCompile Include="..\..\..\Omega\src\aux2.c" />
+    <ClCompile Include="..\..\..\Omega\src\aux3.c" />
+    <ClCompile Include="..\..\..\Omega\src\bank.c" />
+    <ClCompile Include="..\..\..\Omega\src\char.c" />
+    <ClCompile Include="..\..\..\Omega\src\city.c" />
+    <ClCompile Include="..\..\..\Omega\src\colors.c" />
+    <ClCompile Include="..\..\..\Omega\src\command1.c" />
+    <ClCompile Include="..\..\..\Omega\src\command2.c" />
+    <ClCompile Include="..\..\..\Omega\src\command3.c" />
+    <ClCompile Include="..\..\..\Omega\src\country.c" />
+    <ClCompile Include="..\..\..\Omega\src\effect1.c" />
+    <ClCompile Include="..\..\..\Omega\src\effect2.c" />
+    <ClCompile Include="..\..\..\Omega\src\effect3.c" />
+    <ClCompile Include="..\..\..\Omega\src\env.c" />
+    <ClCompile Include="..\..\..\Omega\src\etc.c" />
+    <ClCompile Include="..\..\..\Omega\src\file.c" />
+    <ClCompile Include="..\..\..\Omega\src\gen1.c" />
+    <ClCompile Include="..\..\..\Omega\src\gen2.c" />
+    <ClCompile Include="..\..\..\Omega\src\guild1.c" />
+    <ClCompile Include="..\..\..\Omega\src\guild2.c" />
+    <ClCompile Include="..\..\..\Omega\src\house.c" />
+    <ClCompile Include="..\..\..\Omega\src\init.c" />
+    <ClCompile Include="..\..\..\Omega\src\inv.c" />
+    <ClCompile Include="..\..\..\Omega\src\item.c" />
+    <ClCompile Include="..\..\..\Omega\src\itemf1.c" />
+    <ClCompile Include="..\..\..\Omega\src\itemf2.c" />
+    <ClCompile Include="..\..\..\Omega\src\itemf3.c" />
+    <ClCompile Include="..\..\..\Omega\src\lev.c" />
+    <ClCompile Include="..\..\..\Omega\src\Main.cpp" />
+    <ClCompile Include="..\..\..\Omega\src\map.c" />
+    <ClCompile Include="..\..\..\Omega\src\mmelee.c" />
+    <ClCompile Include="..\..\..\Omega\src\mmove.c" />
+    <ClCompile Include="..\..\..\Omega\src\mon.c" />
+    <ClCompile Include="..\..\..\Omega\src\move.c" />
+    <ClCompile Include="..\..\..\Omega\src\movef.c" />
+    <ClCompile Include="..\..\..\Omega\src\mspec.c" />
+    <ClCompile Include="..\..\..\Omega\src\mstrike.c" />
+    <ClCompile Include="..\..\..\Omega\src\mtalk.c" />
+    <ClCompile Include="..\..\..\Omega\src\newrand.c" />
+    <ClCompile Include="..\..\..\Omega\src\omega.c" />
+    <ClCompile Include="..\..\..\Omega\src\OmegaRPG.cpp" />
+    <ClCompile Include="..\..\..\Omega\src\pdump.c" />
+    <ClCompile Include="..\..\..\Omega\src\priest.c" />
+    <ClCompile Include="..\..\..\Omega\src\save.c" />
+    <ClCompile Include="..\..\..\Omega\src\scr.c" />
+    <ClCompile Include="..\..\..\Omega\src\site1.c" />
+    <ClCompile Include="..\..\..\Omega\src\site2.c" />
+    <ClCompile Include="..\..\..\Omega\src\spell.c" />
+    <ClCompile Include="..\..\..\Omega\src\stats.c" />
+    <ClCompile Include="..\..\..\Omega\src\time.c" />
+    <ClCompile Include="..\..\..\Omega\src\trap.c" />
+    <ClCompile Include="..\..\..\Omega\src\util.c" />
+    <ClCompile Include="..\..\..\Omega\src\village.c" />
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\..\lib\pdcurses.lib" />
+    <Library Include="..\..\..\lib\pdcurses.lib" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D144A6BB-1ED6-4993-9A52-8DA5C8F3AFCC}</ProjectGuid>
@@ -85,15 +87,15 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -105,10 +107,7 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)obj\$(Configuration)\</IntDir>
-  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir>
   </PropertyGroup>
@@ -126,8 +125,8 @@
     </Link>
     <PostBuildEvent>
       <Command>mkdir $(TargetDir)data
-copy /y $(SolutionDir)data\*.* $(TargetDir)data
-copy /y $(SolutionDir)lib\*.dll $(TargetDir)</Command>
+copy /y $(SolutionDir)..\..\..\data\*.* $(TargetDir)data
+copy /y $(SolutionDir)..\..\..\lib\*.dll $(TargetDir)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
