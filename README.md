@@ -19,8 +19,11 @@ build everything.
 
 Visual Studio solution/project files are located in `build/win32`. Since these
 files are typically incompatible with older versions of VS, each Visual Studio
-version has its own subfolder. Choose the subfolder appropriate to your version
-and open the `OmegaRPG.sln` file therein.
+version has its own subfolder. Either:
+
+Choose the subfolder appropriate to your version and open the `OmegaRPG.sln`
+file therein, or run the `build_debug.bat` file to automatically build the
+game.
 
 About the Game
 -----
