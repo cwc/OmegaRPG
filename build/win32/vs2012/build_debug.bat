@@ -1,9 +1,11 @@
 @echo off
 
+if "%ProgramFiles(x86)%XXX" == "XXX" set ProgramFiles(x86)=C:\Program Files
+
 echo Building with devenv...
 echo.
 
-"c:\Program Files (x86)\Microsoft Visual Studio 11.0\Common7\IDE\devenv.exe" /build debug OmegaRPG.sln
+"%ProgramFiles(x86)%\Microsoft Visual Studio 11.0\Common7\IDE\devenv.exe" /build debug OmegaRPG.sln
 
 if %errorlevel% == 0 goto filecheck
 
@@ -11,7 +13,7 @@ echo.
 echo devenv not found, trying WDExpress...
 echo.
 
-"c:\Program Files (x86)\Microsoft Visual Studio 11.0\Common7\IDE\WDExpress.exe" /build debug OmegaRPG.sln
+"%ProgramFiles(x86)%\Microsoft Visual Studio 11.0\Common7\IDE\WDExpress.exe" /build debug OmegaRPG.sln
 
 :filecheck
 if not exist ".\Debug\omega.exe" (
