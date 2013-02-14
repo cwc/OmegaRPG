@@ -399,7 +399,7 @@ void calc_melee(void)
 
 
 /* player attacks monster m */
-void fight_monster(struct monster *m)
+void fight_monster(Monster *m)
 {
     int hitmod = 0;
     int reallyfight = TRUE;
@@ -662,7 +662,7 @@ int getdir(void)
 
 
 /* functions describes monster m's state for examine function */
-char *mstatus_string(struct monster *m)
+char *mstatus_string(Monster *m)
 {
     if (m_statusp(m, M_INVISIBLE) && !Player.status[TRUESIGHT])
         strcpy(Str2, "Some invisible creature");
@@ -866,7 +866,7 @@ void roomcheck(void)
 
 
 /* ask for mercy */
-void surrender(struct monster *m)
+void surrender(Monster *m)
 {
     int i;
     long bestitem,bestvalue;
@@ -952,7 +952,7 @@ void surrender(struct monster *m)
 
 
 /* threaten a monster */
-void threaten(struct monster *m)
+void threaten(Monster *m)
 {
     char response;
     switch(random_range(4)) {

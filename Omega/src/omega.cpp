@@ -56,7 +56,7 @@ int Dirs[2][9]=                       /* 9 xy directions */
 
 char Cmd='s';                         /* last player command */
 int Command_Duration = 0;             /* how long does current command take */
-struct monster *Arena_Monster=NULL;   /* Opponent in arena */
+Monster *Arena_Monster=NULL;   /* Opponent in arena */
 int Arena_Opponent=0;                 /* case label of opponent in l_arena()*/
 int Arena_Victory = 0;                /* did player win in arena? */
 int Imprisonment=0;                   /* amount of time spent in jail */

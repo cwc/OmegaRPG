@@ -710,20 +710,20 @@ pob restore_item(FILE *fd, int version)
 
 pol restore_itemlist(FILE *fd, int version)
 {
-    pol ol=NULL,cur=NULL,new=NULL;
+    pol ol=NULL,cur=NULL,newObject=NULL;
     int i,numitems,firsttime=TRUE;
     fread((char *)&numitems,sizeof(int),1,fd);
     for(i=0; i<numitems; i++) {
-        new = ((pol) checkmalloc(sizeof(oltype)));
-        new->thing = restore_item(fd, version);
-        new->next = NULL;
+        newObject = ((pol) checkmalloc(sizeof(oltype)));
+        newObject->thing = restore_item(fd, version);
+        newObject->next = NULL;
         if (firsttime==TRUE) {
-            ol = cur = new;
+            ol = cur = newObject;
             firsttime = FALSE;
         }
         else {
-            cur->next = new;
-            cur = new;
+            cur->next = newObject;
+            cur = newObject;
         }
     }
     return(ol);

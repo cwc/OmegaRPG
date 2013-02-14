@@ -238,7 +238,7 @@ void fire(void)
 {
     int index,x1,y1,x2,y2;
     pob obj;
-    struct monster *m;
+    Monster *m;
 
     clearmsg();
 
@@ -795,7 +795,7 @@ void tacoptions(void)
 void pickpocket(void)
 {
     int dx,dy,index=0;
-    struct monster *m;
+    Monster *m;
 
     clearmsg();
 

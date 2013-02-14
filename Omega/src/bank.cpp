@@ -98,7 +98,7 @@ bank_account * bank_create_account (int player, int balance, char *password)
     assert(password);
 
     /* allocate space */
-    new_account = checkmalloc(sizeof(bank_account));
+    new_account = (bank_account*) checkmalloc(sizeof(bank_account));
 
     /* copy fields */
     new_account->player = player;
@@ -108,7 +108,7 @@ bank_account * bank_create_account (int player, int balance, char *password)
     account_number_next += account_number_incr;
 
     /* allocate and copy the password */
-    new_account->password = checkmalloc(1 + strlen(password));
+    new_account->password = (char*) checkmalloc(1 + strlen(password));
     strcpy(new_account->password, password);
 
     /* add the new account to the bank */
@@ -124,7 +124,7 @@ struct object * bank_create_card (int account_number, int type)
 
     assert(OB_DEBIT_CARD == type || OB_SMART_CARD == type);
 
-    card = checkmalloc(sizeof(struct object));
+    card = (pob) checkmalloc(sizeof(struct object));
     *card = Objects[type];
     card->aux = account_number;
 

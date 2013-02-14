@@ -1622,7 +1622,7 @@ struct location {
     int aux; /* signifies various things */
     unsigned char buildaux; /* used in constructing level */
     struct objectlist *things;
-    struct monster *creature;
+    Monster *creature;
 };
 
 
@@ -1638,7 +1638,7 @@ struct level {
     char generated; /* has the level been made (visited) yet? */
     char numrooms; /* number of rooms on level */
     char tunnelled; /* amount of tunnelling done on this level */
-    struct monsterlist *mlist; /* List of monsters on level */
+    MonsterList *mlist; /* List of monsters on level */
     int environment; /* where kind of level is this? */
     int last_visited; /* time player was last on this level */
     int level_width; /* width of current level */

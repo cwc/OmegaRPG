@@ -915,14 +915,14 @@ void free_obj( pob obj, int flag )
 
 pob copy_obj ( pob obj )
 {
-    pob new;
-    new = ((pob) checkmalloc(sizeof(objtype)));
-    *new = *obj;
+    pob newObject;
+    newObject = ((pob) checkmalloc(sizeof(objtype)));
+    *newObject = *obj;
     if ( (obj->id == CORPSEID) && (obj->level & ALLOC) )
     {
-        new->objstr = new->cursestr = new->truename = salloc( obj->objstr );
+        newObject->objstr = newObject->cursestr = newObject->truename = salloc( obj->objstr );
     }
-    return new;
+    return newObject;
 }
 
 void free_objlist(pol pobjlist)
@@ -1005,7 +1005,7 @@ void *checkmalloc(unsigned int bytes)
 /* alloc just enough string space for str, strcpy, and return pointer */
 char *salloc(char *str)
 {
-    char *s=checkmalloc((unsigned)(strlen(str)+1));
+    char *s = (char*) checkmalloc((unsigned)(strlen(str)+1));
     strcpy(s,str);
     return(s);
 }

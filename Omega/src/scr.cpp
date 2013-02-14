@@ -354,7 +354,6 @@ void clearmsg1(void)
     wrefresh(Msg2w);
 }
 
-
 void erase_level(void)
 {
     wclear(Levelw);
@@ -362,7 +361,7 @@ void erase_level(void)
 }
 
 /* direct print to first msg line */
-void print1(char *s)
+void print1(const char *s)
 {
     if (! gamestatusp(SUPPRESS_PRINTING)) {
         buffercycle(s);
@@ -2177,12 +2176,11 @@ void clear_if_necessary(void)
         erasemsg3();
         wrefresh(Msg3w);
     }
-
 }
 
 int bufferpos = 0;
 
-void buffercycle(char *s)
+void buffercycle(const char *s)
 {
     strcpy(Stringbuffer[bufferpos++],s);
     if (bufferpos >= STRING_BUFFER_SIZE)

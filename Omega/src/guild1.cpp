@@ -86,12 +86,12 @@ void l_merc_guild(void)
                 clearmsg();
 
                 /* gain shortsword */
-                newitem = checkmalloc(sizeof(struct object));
+                newitem = (pob) checkmalloc(sizeof(struct object));
                 *newitem = Objects[OB_SHORT_SWORD];
                 gain_item(newitem);
 
                 /* gain leather armor */
-                newitem = checkmalloc(sizeof(struct object));
+                newitem = (pob) checkmalloc(sizeof(struct object));
                 *newitem = Objects[OB_LEATHER];
                 gain_item(newitem);
 

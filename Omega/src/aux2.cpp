@@ -15,7 +15,7 @@ int statmod(int stat)
 }
 
 /* effects of hitting */
-void p_hit (struct monster *m,int dmg,int dtype)
+void p_hit (Monster *m,int dmg,int dtype)
 {
     int dmult = 0;
 
@@ -104,7 +104,7 @@ void p_hit (struct monster *m,int dmg,int dtype)
 }
 
 /* and effects of missing */
-void player_miss(struct monster *m,int dtype)
+void player_miss(Monster *m,int dtype)
 {
     if (random_range(30)==1) /* fumble 1 in 30 */
         p_fumble(dtype);
@@ -524,8 +524,7 @@ void gain_level(void)
 }
 
 /* experience requirements */
-long expval(plevel)
-int plevel;
+long expval(int plevel)
 {
     switch(plevel) {
     case 0:
@@ -657,7 +656,7 @@ void p_drown(void)
 
 
 /* the effect of some weapon on monster m, with dmgmod a bonus to damage */
-void weapon_use(int dmgmod, pob weapon, struct monster *m)
+void weapon_use(int dmgmod, pob weapon, Monster *m)
 {
     int aux = (weapon==NULL ? -2 : weapon->aux); /* bare hands */
     switch(aux) {
@@ -733,7 +732,7 @@ char *actionlocstr(char dir)
 
 
 /* execute player combat actions versus monster m */
-void tacplayer(struct monster *m)
+void tacplayer(Monster *m)
 {
     int i=0;
 
@@ -787,7 +786,7 @@ void tacplayer(struct monster *m)
 
 
 /* checks to see if player hits with hitmod vs. monster m at location hitloc */
-int player_hit(int hitmod, char hitloc, struct monster *m)
+int player_hit(int hitmod, char hitloc, Monster *m)
 {
     int i=0,blocks=FALSE,goodblocks=0,hit;
     if (m->hp < 1) {

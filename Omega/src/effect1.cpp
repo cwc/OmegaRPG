@@ -245,7 +245,7 @@ void nbolt(int fx, int fy, int tx, int ty, int hit, int dmg)
 void bolt(int fx, int fy, int tx, int ty, int hit, int dmg, int dtype)
 {
     int xx,yy;
-    struct monster *target;
+    Monster *target;
     Symbol boltchar = '?';
     xx = fx;
     yy = fy;
@@ -391,7 +391,7 @@ void fball(int fx, int fy, int tx, int ty, int dmg)
 void ball(int fx, int fy, int tx, int ty, int dmg, int dtype)
 {
     int xx,yy,ex,ey,i;
-    struct monster *target;
+    Monster *target;
     Symbol expchar=('@' | CLR(LIGHT_PURPLE));
 
     xx = fx;

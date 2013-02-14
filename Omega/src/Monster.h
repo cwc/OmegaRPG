@@ -1,19 +1,13 @@
 #pragma once
 
-#ifdef __cplusplus 
-extern "C" {
-#endif
-
 typedef chtype Symbol;
 
 #include "curses.h"
 
-#ifdef __cplusplus
-namespace Omega {
-	class monster {
-#else
-	typedef struct monster {
-#endif
+//namespace Omega {
+
+	class Monster {
+	public:
 		struct objectlist *possessions;
 		unsigned char attacked;
 		int aux1,aux2,x,y,click;
@@ -26,26 +20,12 @@ namespace Omega {
 		long status,immunity;
 		Symbol monchar;
 		char *monstring,*corpsestr,*meleestr;
-#ifdef __cplusplus
 	};
-#else
-	} Monster;
-#endif
 
-#ifdef __cplusplus
-	class monsterlist {
-#else
-	typedef struct monsterlist {
-#endif
-		struct monster* m;
-		struct monsterlist* next;
-#ifdef __cplusplus
+	class MonsterList {
+	public:
+		Monster* m;
+		MonsterList* next;
 	};
-#else
-	} MonsterList;
-#endif
 
-#ifdef __cplusplus
-} // namespace Omega
-} // extern "C"
-#endif
+//} // namespace Omega

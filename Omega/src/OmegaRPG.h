@@ -1,10 +1,6 @@
 #pragma once
 
-extern "C" {
 #include "glob.h"
-}
-
-#include <stdio.h>
 
 namespace Omega
 {

@@ -124,7 +124,7 @@ void populate_level(int monstertype)
     else if (monstertype == E_ASTRAL) nummonsters += 10;
     else if (monstertype == E_VOLCANO) nummonsters += 20;
 
-    head = tml = checkmalloc(sizeof(MonsterList));
+    head = tml = (MonsterList*) checkmalloc(sizeof(MonsterList));
 
     for(k=0; k<nummonsters; k++) {
 

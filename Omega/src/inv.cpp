@@ -347,7 +347,7 @@ void setchargestr(pob obj, char *cstr)
 }
 
 
-void give_money(struct monster *m)
+void give_money(Monster *m)
 {
     pob cash;
 

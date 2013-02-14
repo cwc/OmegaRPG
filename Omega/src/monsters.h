@@ -2,9 +2,9 @@
 /* minit.h */
 /* This file defines and initializes the Monsters Array */
 
-/* the struct monster (from defs.h) looks like:
+/* the Monster (from defs.h) looks like:
 
-struct monster {
+Monster {
   struct objectlist *possessions;
   unsigned char attacked;
   int aux1,aux2,x,y,click;
@@ -24,7 +24,7 @@ struct monster {
 #ifndef __MONSTERS_H__
 #define __MONSTERS_H__
 
-struct monster Monsters[NUMMONSTERS] = {
+Monster Monsters[NUMMONSTERS] = {
     { NULL,0,0,0,0,0,0,ML0+0,1,1,10,2,4,1,0,1,50,0,1,1,1,-1,-1,COMMON,M_TALK_STUPID,M_MOVE_FLUTTER,M_MELEE_NORMAL,M_NO_OP,M_NO_OP,MOBILE|HOSTILE|FLYING|POISONOUS,0,'h'|CLR(YELLOW),"hornet","dead hornet","AXAX" },
 
     { NULL,0,0,0,0,0,0,ML0+1,30,0,0,0,10,10,0,5,100,2,15,1000,0,-1,-1,COMMON,M_TALK_MP,M_MOVE_FOLLOW,M_MELEE_MP,M_NO_OP,M_SP_MP,MOBILE|NEEDY,0,'@'|CLR(RED),"mendicant priest","dead mendicant priest","BX" },

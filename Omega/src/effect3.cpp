@@ -43,7 +43,7 @@ void summon (int blessing, int id)
 
         Level->site[x][y].creature->x = x;
         Level->site[x][y].creature->y = y;
-        tml = checkmalloc(sizeof(MonsterList));
+        tml = (MonsterList*) checkmalloc(sizeof(MonsterList));
         tml->m = Level->site[x][y].creature;
 
         if (blessing > 0)
@@ -181,7 +181,7 @@ void sleep_monster(int blessing)
 {
     /* MonsterList* ml; */
     int x=Player.x,y=Player.y;
-    struct monster *target;
+    Monster *target;
 
     if (blessing == 0) setspot(&x,&y);
 
@@ -339,7 +339,7 @@ void level_drain(int levels, char *source)
 
 void disrupt(int x, int y, int amount)
 {
-    struct monster *target;
+    Monster *target;
 
     if ((x ==Player.x) && (y==Player.y)) {
         mprint("You feel disrupted!");
@@ -370,7 +370,7 @@ void disrupt(int x, int y, int amount)
 
 void disintegrate(int x, int y)
 {
-    struct monster *target;
+    Monster *target;
     if (! inbounds(x,y)) mprint("You feel a sense of wastage.");
     else if ((x==Player.x)&&(y==Player.y)) {
         if (Player.possessions[O_CLOAK] != NULL) {
@@ -885,7 +885,7 @@ void dispel(int blessing)
 void polymorph(int blessing)
 {
     int x=Player.x,y=Player.y,newmonster;
-    struct monster *m;
+    Monster *m;
     int rnd;
     /* for the copy */
     int ohp,olvl;
@@ -943,7 +943,7 @@ void polymorph(int blessing)
 
 void hellfire(int x, int y, int blessing)
 {
-    struct monster *m;
+    Monster *m;
     if ((x==Player.x)&&(y==Player.y)) {
         mprint("You have been completely annihilated. Congratulations.");
         p_death("hellfire");
@@ -982,7 +982,7 @@ void hellfire(int x, int y, int blessing)
 void drain(int blessing)
 {
     int x=Player.x,y=Player.y;
-    struct monster *m;
+    Monster *m;
     setspot(&x,&y);
     mprint("You begin to drain energy...");
     if ((x==Player.x)&&(y==Player.y)) {
@@ -1147,7 +1147,7 @@ void drain_life(int amount)
 
 void inflict_fear(int x, int y)
 {
-    struct monster *m;
+    Monster *m;
     if ((Player.x == x) && (Player.y == y)) {
         mprint("You shudder with otherworldly dread.");
         if (Player.immunity[FEAR] > 0)

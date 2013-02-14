@@ -113,7 +113,7 @@ void map_read(map *m, FILE *in, int subLevel)
 
     /* We now know that we're looking at the right map, and we know its size. */
     /* Read the encoding of the level into a buffer. */
-    m->sites = malloc(size);
+    m->sites = (char*) malloc(size);
     fread(m->sites,size,1,in);
 
     /* Decode the level. */
@@ -157,7 +157,7 @@ void map_readDimensions(map *m, FILE *in, enum map_identifier map)
 
 map *map_open(enum map_identifier mapNumber)
 {
-    map *m = malloc( sizeof(map) );
+    map *m = (map*) malloc( sizeof(map) );
     FILE *fd;
 
     strcpy(Str3,Omegalib);
