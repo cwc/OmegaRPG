@@ -16,7 +16,8 @@ definitions in the following section. */
 #define strlen(x) (int)strlen(x) // Squashes numerous warnings
 #define sleep(x) Sleep(x * 1000)
 #define usleep(x) sleep(x / 1000000.0)
-#define getlogin() "pcuser" // TODO Get the real user name
+
+extern char* getlogin();
 
 #ifdef SAVE_LEVELS
 #	include <sys/timeb.h>

@@ -4,6 +4,19 @@
 
 #include "glob.h"
 
+#ifdef WIN32
+char* getlogin() {
+	DWORD size = 256;
+	char buf[256];
+
+	if (!GetUserName(buf, &size)) {
+		return "pcuser";
+	}
+
+	return buf;
+}
+#endif
+
 /* set player to begin with */
 bool initplayer(void)
 {
