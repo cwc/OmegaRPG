@@ -12,7 +12,7 @@ void randommazesite( int,int,int );
 void load_city(int populate)
 {
     int i,j;
-    pml ml;
+    mltype* ml;
     char site;
     map *city;
     map *maze;
@@ -528,8 +528,8 @@ void assign_city_function(int x, int y)
 /* makes a hiscore npc for mansions */
 void make_justiciar(int i, int j)
 {
-    pml ml = ((pml) checkmalloc(sizeof(mltype)));
-    ml->m = ((pmt) checkmalloc(sizeof(montype)));
+    mltype* ml = ((mltype*) checkmalloc(sizeof(mltype)));
+    ml->m = ((montype*) checkmalloc(sizeof(montype)));
     *(ml->m) = Monsters[NPC];
     make_hiscore_npc(ml->m,15);
     ml->m->x = i;

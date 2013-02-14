@@ -358,7 +358,7 @@ void give_money(struct monster *m)
 }
 
 
-void lawbringer_gets_gem(pmt m, pob o)
+void lawbringer_gets_gem(montype* m, pob o)
 {
     clearmsg();
     print1("The LawBringer accepts the gem reverently.");
@@ -381,7 +381,7 @@ void lawbringer_gets_gem(pmt m, pob o)
     free_obj(o, TRUE);
 }
 
-void givemonster(pmt m, pob o)
+void givemonster(montype* m, pob o)
 {
     /* special case -- give gem to LawBringer */
     if ((m->id == LAWBRINGER) && (o->id == OB_STARGEM))

@@ -44,6 +44,9 @@
     <ClInclude Include="..\..\..\Omega\src\colors.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Omega\src\Monster.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Omega\src\abyss.c">

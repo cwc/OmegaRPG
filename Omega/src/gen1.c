@@ -576,11 +576,11 @@ void cavern_level(void)
     if (Current_Dungeon == E_CAVES) {
         if ((Level->depth == CAVELEVELS) && (! gamestatusp(COMPLETED_CAVES))) {
             findspace(&tx,&ty,-1);
-            Level->mlist = ((pml) checkmalloc(sizeof(mltype)));
+            Level->mlist = ((mltype*) checkmalloc(sizeof(mltype)));
             Level->mlist->next = NULL;
             Level->mlist->m =
                 Level->site[tx][ty].creature =
-                    ((pmt) make_creature(GOBLIN_KING)); /* goblin king */
+                    ((montype*) make_creature(GOBLIN_KING)); /* goblin king */
             Level->mlist->m->x = tx;
             Level->mlist->m->y = ty;
         }
@@ -588,11 +588,11 @@ void cavern_level(void)
     else if (Current_Environment == E_VOLCANO) {
         if (Level->depth == VOLCANOLEVELS) {
             findspace(&tx,&ty,-1);
-            Level->mlist = ((pml) checkmalloc(sizeof(mltype)));
+            Level->mlist = ((mltype*) checkmalloc(sizeof(mltype)));
             Level->mlist->next = NULL;
             Level->mlist->m =
                 Level->site[tx][ty].creature =
-                    ((pmt) make_creature(DEMON_EMP)); /* The demon emp */
+                    ((montype*) make_creature(DEMON_EMP)); /* The demon emp */
             Level->mlist->m->x = tx;
             Level->mlist->m->y = ty;
         }
@@ -634,11 +634,11 @@ void sewer_level(void)
     if (Current_Dungeon == E_SEWERS) {
         if ((Level->depth == SEWERLEVELS) && (! gamestatusp(COMPLETED_SEWERS))) {
             findspace(&tx,&ty,-1);
-            Level->mlist = ((pml) checkmalloc(sizeof(mltype)));
+            Level->mlist = ((mltype*) checkmalloc(sizeof(mltype)));
             Level->mlist->next = NULL;
             Level->mlist->m =
                 Level->site[tx][ty].creature =
-                    ((pmt) make_creature(GREAT_WYRM)); /* The Great Wyrm */
+                    ((montype*) make_creature(GREAT_WYRM)); /* The Great Wyrm */
             Level->mlist->m->x = tx;
             Level->mlist->m->y = ty;
         }

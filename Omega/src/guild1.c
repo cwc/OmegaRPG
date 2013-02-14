@@ -428,7 +428,7 @@ void l_arena(void)
     else if (response == 'e') {
         print1("OK, we're arranging a match....");
         morewait();
-        Arena_Monster = ((pmt) checkmalloc(sizeof(montype)));
+        Arena_Monster = ((montype*) checkmalloc(sizeof(montype)));
         Arena_Victory = FALSE;
         switch(Arena_Opponent) {
         case 0:

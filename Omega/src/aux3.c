@@ -51,7 +51,7 @@ void hourly_check(void)
 
 void indoors_random_event(void)
 {
-    pml ml;
+    mltype* ml;
     pol ol;
 
     switch(random_range(1000)) {
@@ -1170,7 +1170,7 @@ int stonecheck(int alignment)
 void alert_guards(void)
 {
     int foundguard=FALSE;
-    pml ml;
+    mltype* ml;
     int suppress = 0;
     for(ml=Level->mlist; ml!=NULL; ml=ml->next)
         if (((ml->m->id == GUARD) ||

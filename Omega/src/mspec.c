@@ -4,7 +4,7 @@
 
 #include "glob.h"
 
-void m_sp_mp(pmt m)
+void m_sp_mp(montype* m)
 {
     if (m->attacked && (random_range(3) == 1)) {
         mprint("You feel cursed!");
@@ -21,7 +21,7 @@ void m_sp_mp(pmt m)
     }
 }
 
-void m_sp_ng(pmt m)
+void m_sp_ng(montype* m)
 {
     if (distance(m->x,m->y,Player.x,Player.y) < 2)
         if ((random_range(5) == 1) || (Player.status[VULNERABLE]>0)) {
@@ -33,7 +33,7 @@ void m_sp_ng(pmt m)
         }
 }
 
-void m_sp_poison_cloud(pmt m)
+void m_sp_poison_cloud(montype* m)
 {
     if (distance(m->x,m->y,Player.x,Player.y) < 3) {
         mprint("A cloud of poison gas surrounds you!");
@@ -43,7 +43,7 @@ void m_sp_poison_cloud(pmt m)
     }
 }
 
-void m_sp_explode(pmt m)
+void m_sp_explode(montype* m)
 {
     if ((distance(Player.x,Player.y,m->x,m->y)<2) &&
             (m-> hp > 0) &&
@@ -52,7 +52,7 @@ void m_sp_explode(pmt m)
 }
 
 
-void m_sp_demon (pmt m)
+void m_sp_demon (montype* m)
 {
     int mid;
 
@@ -111,7 +111,7 @@ void m_sp_demon (pmt m)
 }
 
 
-void m_sp_acid_cloud(pmt m)
+void m_sp_acid_cloud(montype* m)
 {
     if (m_statusp(m,HOSTILE) &&
             (distance(m->x,m->y,Player.x,Player.y) < 3))
@@ -119,14 +119,14 @@ void m_sp_acid_cloud(pmt m)
 }
 
 
-void m_sp_escape(pmt m)
+void m_sp_escape(montype* m)
 {
     if (m_statusp(m,HOSTILE))
         m_vanish(m);
 }
 
 
-void m_sp_ghost(pmt m)
+void m_sp_ghost(montype* m)
 {
     if (m_statusp(m,HOSTILE)) {
         mprint("The ghost moans horribly....");
@@ -139,7 +139,7 @@ void m_sp_ghost(pmt m)
 
 
 /* random spell cast by monster */
-void m_sp_spell(pmt m)
+void m_sp_spell(montype* m)
 {
     char action[80];
     if (m_statusp(m,HOSTILE) && los_p(Player.x,Player.y,m->x,m->y)) {
@@ -223,7 +223,7 @@ void m_sp_spell(pmt m)
 
 /* monsters with this have some way to hide, camouflage, etc until they
    attack */
-void m_sp_surprise(pmt m)
+void m_sp_surprise(montype* m)
 {
     if (m->attacked) {
         if (m_statusp(m,HOSTILE) &&
@@ -257,7 +257,7 @@ void m_sp_surprise(pmt m)
     }
 }
 
-void m_sp_whistleblower(pmt m)
+void m_sp_whistleblower(montype* m)
 {
     if (m_statusp(m,HOSTILE)) {
         alert_guards();
@@ -266,7 +266,7 @@ void m_sp_whistleblower(pmt m)
 }
 
 
-void m_sp_seductor(pmt m)
+void m_sp_seductor(montype* m)
 {
     if (m_statusp(m,HOSTILE)) {
         if (m->uniqueness == COMMON) {
@@ -287,13 +287,13 @@ void m_sp_seductor(pmt m)
 }
 
 
-void m_sp_demonlover(pmt m)
+void m_sp_demonlover(montype* m)
 {
     if (distance(Player.x,Player.y,m->x,m->y) < 2)
         m_talk_demonlover(m);
 }
 
-void m_sp_eater(pmt m)
+void m_sp_eater(montype* m)
 {
     if (Player.rank[COLLEGE]) m_status_set(m,HOSTILE);
     if (m_statusp(m,HOSTILE))
@@ -313,7 +313,7 @@ void m_sp_eater(pmt m)
 }
 
 
-void m_sp_dragonlord(pmt m)
+void m_sp_dragonlord(montype* m)
 {
     if (m_statusp(m,HOSTILE)) {
         if (distance(m->x,m->y,Player.x,Player.y)<2) {
@@ -360,7 +360,7 @@ void m_sp_dragonlord(pmt m)
 }
 
 
-void m_sp_blackout(pmt m)
+void m_sp_blackout(montype* m)
 {
     if ((distance(m->x,m->y,Player.x,Player.y) < 4) &&
             (Player.status[BLINDED] == 0)) {
@@ -383,7 +383,7 @@ void m_sp_blackout(pmt m)
 }
 
 
-void m_sp_bogthing(pmt m)
+void m_sp_bogthing(montype* m)
 {
     if (Player.status[IMMOBILE] &&
             (distance(Player.x,Player.y,m->x,m->y) < 2)) {
@@ -405,7 +405,7 @@ void m_sp_bogthing(pmt m)
 }
 
 
-void m_sp_were(pmt m)
+void m_sp_were(montype* m)
 {
     int mid;
     if (m_statusp(m,HOSTILE) || (Phase == 6)) {
@@ -446,7 +446,7 @@ void m_sp_were(pmt m)
 }
 
 
-void m_sp_servant(pmt m)
+void m_sp_servant(montype* m)
 {
     if ((m->id == SERV_LAW) && (Player.alignment < 0))
         m_status_set(m,HOSTILE);
@@ -455,7 +455,7 @@ void m_sp_servant(pmt m)
 }
 
 
-void m_sp_av(pmt m)
+void m_sp_av(montype* m)
 {
     if (Player.mana > 0) {
         mprint("You feel a sudden loss of mana!");
@@ -464,7 +464,7 @@ void m_sp_av(pmt m)
     }
 }
 
-void m_sp_lw(pmt m)
+void m_sp_lw(montype* m)
 {
     if (random_range(2)) {
         if (Level->site[m->x][m->y].locchar == FLOOR) {
@@ -481,7 +481,7 @@ void m_sp_lw(pmt m)
 }
 
 
-void m_sp_angel(pmt m)
+void m_sp_angel(montype* m)
 {
     int mid,hostile = FALSE;
     switch(m->aux1) {
@@ -523,7 +523,7 @@ void m_sp_angel(pmt m)
 
 
 /* Could completely fill up level */
-void m_sp_swarm(pmt m)
+void m_sp_swarm(montype* m)
 {
     if (random_range(5)==1) {
         if (view_los_p(m->x,m->y,Player.x,Player.y))
@@ -535,7 +535,7 @@ void m_sp_swarm(pmt m)
 
 
 /* raise nearby corpses from the dead.... */
-void m_sp_raise(pmt m)
+void m_sp_raise(montype* m)
 {
     int x,y;
     pol t;
@@ -555,7 +555,7 @@ void m_sp_raise(pmt m)
 
 
 
-void m_sp_mb(pmt m)
+void m_sp_mb(montype* m)
 {
     if (distance(m->x,m->y,Player.x,Player.y)==1) {
         mprint("The manaburst explodes!");
@@ -587,7 +587,7 @@ void m_sp_mb(pmt m)
 }
 
 
-void m_sp_mirror(pmt m)
+void m_sp_mirror(montype* m)
 {
     int i,x,y;
     if (view_los_p(m->x,m->y,Player.x,Player.y)) {
@@ -608,7 +608,7 @@ void m_sp_mirror(pmt m)
 
 
 
-void m_illusion(pmt m)
+void m_illusion(montype* m)
 {
     int i = random_range(NUMMONSTERS);
     if (i==NPC || i==HISCORE_NPC || i==ZERO_NPC) i = m->id; /* can't imitate NPC */
@@ -624,7 +624,7 @@ void m_illusion(pmt m)
 
 
 
-void m_huge_sounds(pmt m)
+void m_huge_sounds(montype* m)
 {
     if (m_statusp(m,AWAKE) &&
             (! los_p(m->x,m->y,Player.x,Player.y)) &&
@@ -634,7 +634,7 @@ void m_huge_sounds(pmt m)
 
 
 
-void m_thief_f(pmt m)
+void m_thief_f(montype* m)
 {
     int i = stolen_item();
     if (random_range(3) == 1) {
@@ -670,7 +670,7 @@ void m_thief_f(pmt m)
 }
 
 
-void m_summon(pmt m)
+void m_summon(montype* m)
 {
     if ((distance(Player.x,Player.y,m->x,m->y) < 2) &&
             (random_range(3) == 1)) {
@@ -680,7 +680,7 @@ void m_summon(pmt m)
 }
 
 
-void m_aggravate(pmt m)
+void m_aggravate(montype* m)
 {
 
     if (m_statusp(m,HOSTILE)) {
@@ -698,9 +698,9 @@ void m_aggravate(pmt m)
 
 
 
-void m_sp_merchant(pmt m)
+void m_sp_merchant(montype* m)
 {
-    pml ml;
+    mltype* ml;
     if (m_statusp(m,HOSTILE))
         if (Current_Environment == E_VILLAGE) {
             mprint("The merchant screams: 'Help! Murder! Guards! Help!'");
@@ -715,9 +715,9 @@ void m_sp_merchant(pmt m)
 
 /* The special function of the various people in the court of the archmage */
 /* and the sorcerors' circle */
-void m_sp_court(pmt m)
+void m_sp_court(montype* m)
 {
-    pml ml;
+    mltype* ml;
     if (m_statusp(m,HOSTILE)) {
         mprint("A storm of spells hits you!");
         for(ml=Level->mlist; ml!=NULL; ml=ml->next) {
@@ -731,9 +731,9 @@ void m_sp_court(pmt m)
 
 
 /* The special function of the dragons in the dragons' lair */
-void m_sp_lair(pmt m)
+void m_sp_lair(montype* m)
 {
-    pml ml;
+    mltype* ml;
     if (m_statusp(m,HOSTILE)) {
         mprint("You notice a number of dragons waking up....");
         mprint("You are struck by a quantity of firebolts.");
@@ -751,7 +751,7 @@ void m_sp_lair(pmt m)
 }
 
 
-void m_sp_prime(pmt m)
+void m_sp_prime(montype* m)
 {
     if (m_statusp(m,HOSTILE)) {
         mprint("The prime sorceror gestures and a pentacular gate opens!");

@@ -55,7 +55,7 @@ void make_food(pob new, int id)
 }
 
 
-void make_corpse(pob new, pmt m)
+void make_corpse(pob new, montype* m)
 {
     *new = Objects[CORPSEID];
     new->charge = m->id;

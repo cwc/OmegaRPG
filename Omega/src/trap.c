@@ -9,7 +9,7 @@
 /* note special function on different levels */
 void l_trap_siren(void)
 {
-    pml ml;
+    mltype* ml;
     Level->site[Player.x][Player.y].locchar = TRAP;
     lset(Player.x, Player.y, CHANGED);
     print1("A klaxon goes off!");

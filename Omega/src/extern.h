@@ -1,6 +1,13 @@
 /* omega copyright (c) 1987,1988,1989 by Laurence Raphael Brothers */
 /* extern.h -- function declarations */
 
+#ifdef __cplusplus
+extern "C" {
+
+typedef struct monster montype;
+typedef struct monsterlist mltype;
+#endif
+
 /* newrand.c */
 unsigned long genrand(void);
 void sgenrand(unsigned long seed);
@@ -607,8 +614,8 @@ void i_serenity( pob );
 /* lev.c functions */
 
 int difficulty( void );
-pmt m_create( int,int,int,int );
-pmt make_creature( int );
+montype* m_create( int,int,int,int );
+montype* make_creature( int );
 void make_country_monsters( Symbol );
 void make_site_monster( int,int,int );
 void make_site_treasure( int,int,int );
@@ -655,7 +662,7 @@ void m_move_leash( struct monster * );
 
 char *mancorpse( void );
 char *angeltype( int,int );
-void determine_npc_behavior( pmt,int,int );
+void determine_npc_behavior( montype*,int,int );
 void m_abyss( struct monster * );
 void m_altar( struct monster * );
 void m_damage( struct monster *,int,int );
@@ -680,7 +687,7 @@ void m_trap_sleepgas( struct monster * );
 void m_trap_snare( struct monster * );
 void m_trap_teleport( struct monster * );
 void m_water( struct monster * );
-void make_hiscore_npc( pmt,int );
+void make_hiscore_npc( montype*,int );
 void make_log_npc( struct monster * );
 void monster_action( struct monster *,int );
 void monster_move( struct monster * );
@@ -839,7 +846,7 @@ void make_hp( pob );
 
 int ok_outdated( int );
 int restore_game( char * );
-void restore_hiscore_npc( pmt, int );
+void restore_hiscore_npc( montype*, int );
 pob restore_item( FILE *, int );
 pol restore_itemlist( FILE *, int );
 void restore_country( FILE *, int );
@@ -851,7 +858,7 @@ int save_country( FILE * );
 int save_item( FILE *,pob );
 int save_itemlist( FILE *,pol );
 int save_level( FILE *,plv );
-int save_monsters( FILE *,pml );
+int save_monsters( FILE *,mltype* );
 int save_player( FILE * );
 
 /* scr.c functions */
@@ -1095,7 +1102,7 @@ int nighttime( void );
 int offscreen( int,int );
 int ok_to_free( plv );
 void free_level( plv );
-void free_mons_and_objs( pml );
+void free_mons_and_objs( mltype* );
 void free_obj( pob, int );
 pob copy_obj( pob );
 void free_objlist( pol );
@@ -1134,3 +1141,7 @@ void make_sheep( int,int );
 void special_village_site( int,int,int );
 
 void getOmegaRCPath();
+
+#ifdef __cplusplus
+} // extern "C"
+#endif

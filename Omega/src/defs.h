@@ -47,6 +47,8 @@ extern char* getlogin();
 #include "curses.h"
 #include "colors.h"
 
+#include "Monster.h"
+
 /* Update the display every turn to center on the player.  Rather heavy
  * on the bandwidth. */
 #define CENTER_ON_PLAYER // TODO Make this a user-specifiable option
@@ -1533,8 +1535,6 @@ enum map_identifier {
 struct map_type;
 typedef struct map_type map;
 
-typedef chtype Symbol;
-
 /* structure definitions */
 
 struct bank_account
@@ -1553,38 +1553,11 @@ struct room {
     int rsi; /* index into roomname switch */
 };
 
-
-
 struct spell {
     char known;
     char id;
     char powerdrain;
 } ;
-
-
-struct monster {
-    struct objectlist *possessions;
-    unsigned char attacked;
-    int aux1,aux2,x,y,click;
-    int id,hp,hit,ac,dmg,sense,wakeup,level,speed;
-    unsigned char sleep,treasure;
-    long xpv;
-    int corpseweight,corpsevalue,transformid,startthing;
-    unsigned char uniqueness;
-    int talkf,movef,meleef,strikef,specialf;
-    long status,immunity;
-    Symbol monchar;
-    char *monstring,*corpsestr,*meleestr;
-};
-
-
-struct monsterlist {
-    struct monster *m;
-    struct monsterlist *next;
-};
-
-
-
 
 struct player {
     int str,con,dex,agi,iq,pow,maxstr,maxcon,maxdex,maxagi,maxiq,maxpow;
@@ -1674,12 +1647,6 @@ struct level {
 
 
 /* random typedef's */
-
-typedef struct monsterlist mltype;
-typedef mltype *pml;
-
-typedef struct monster montype;
-typedef montype *pmt;
 
 typedef struct location loctype;
 typedef loctype *plc;

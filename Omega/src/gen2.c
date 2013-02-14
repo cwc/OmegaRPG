@@ -305,11 +305,11 @@ void room_level(void)
     if (Current_Dungeon == E_SEWERS) {
         if (Level->depth == SEWERLEVELS) {
             findspace(&tx,&ty,-1);
-            Level->mlist = ((pml) checkmalloc(sizeof(mltype)));
+            Level->mlist = ((mltype*) checkmalloc(sizeof(mltype)));
             Level->mlist->next = NULL;
             Level->mlist->m =
                 Level->site[tx][ty].creature =
-                    ((pmt) make_creature(GREAT_WYRM)); /* The Great Wyrm */
+                    ((montype*) make_creature(GREAT_WYRM)); /* The Great Wyrm */
             Level->mlist->m->x = tx;
             Level->mlist->m->y = ty;
         }
@@ -318,11 +318,11 @@ void room_level(void)
     if (Current_Dungeon == E_PALACE) { /* PGM TODO */
         if (Level->depth == PALACELEVELS) {
             findspace(&tx,&ty,-1);
-            Level->mlist = ((pml) checkmalloc(sizeof(mltype)));
+            Level->mlist = ((mltype*) checkmalloc(sizeof(mltype)));
             Level->mlist->next = NULL;
             Level->mlist->m =
                 Level->site[tx][ty].creature =
-                    ((pmt) make_creature(MAHARAJA)); /* The Maharaja */
+                    ((montype*) make_creature(MAHARAJA)); /* The Maharaja */
             Level->mlist->m->x = tx;
             Level->mlist->m->y = ty;
         }
@@ -338,11 +338,11 @@ void room_level(void)
     else if (Current_Environment == E_VOLCANO) {
         if (Level->depth == VOLCANOLEVELS && !gamestatusp(COMPLETED_VOLCANO)) {
             findspace(&tx,&ty,-1);
-            Level->mlist = ((pml) checkmalloc(sizeof(mltype)));
+            Level->mlist = ((mltype*) checkmalloc(sizeof(mltype)));
             Level->mlist->next = NULL;
             Level->mlist->m =
                 Level->site[tx][ty].creature =
-                    ((pmt) make_creature(DEMON_EMP)); /* The demon emp */
+                    ((montype*) make_creature(DEMON_EMP)); /* The demon emp */
             Level->mlist->m->x = tx;
             Level->mlist->m->y = ty;
         }

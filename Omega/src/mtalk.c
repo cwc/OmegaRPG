@@ -5,10 +5,10 @@
 #include "glob.h"
 
 /* The druid's altar is in the northern forest */
-void m_talk_druid(pmt m)
+void m_talk_druid(montype* m)
 {
     int i;
-    pml curr;
+    mltype* curr;
 
     if (! m_statusp(m,HOSTILE)) {
         print1("The Archdruid raises a hand in greeting.");
@@ -94,7 +94,7 @@ void m_talk_druid(pmt m)
 }
 
 
-void m_talk_silent(pmt m)
+void m_talk_silent(montype* m)
 {
     int reply = random_range(8);
     if (m->uniqueness == COMMON) {
@@ -131,7 +131,7 @@ void m_talk_silent(pmt m)
     mprint(Str2);
 }
 
-void m_talk_stupid(pmt m)
+void m_talk_stupid(montype* m)
 {
 
     int reply = random_range(4);
@@ -157,7 +157,7 @@ void m_talk_stupid(pmt m)
     mprint(Str2);
 }
 
-void m_talk_greedy(pmt m)
+void m_talk_greedy(montype* m)
 {
 
     int reply = random_range(4);
@@ -183,7 +183,7 @@ void m_talk_greedy(pmt m)
     mprint(Str2);
 }
 
-void m_talk_hungry(pmt m)
+void m_talk_hungry(montype* m)
 {
 
     int reply = random_range(4);
@@ -210,7 +210,7 @@ void m_talk_hungry(pmt m)
 }
 
 
-void m_talk_guard(pmt m)
+void m_talk_guard(montype* m)
 {
     if (m_statusp(m,HOSTILE)) {
         print1("'Surrender in the name of the Law!'");
@@ -257,13 +257,13 @@ void m_talk_guard(pmt m)
 }
 
 
-void m_talk_mp(pmt m)
+void m_talk_mp(montype* m)
 {
     mprint("The mendicant priest asks you to spare some treasure for the needy");
 }
 
 
-void m_talk_titter(pmt m)
+void m_talk_titter(montype* m)
 {
 
     if (m->uniqueness == COMMON) {
@@ -276,7 +276,7 @@ void m_talk_titter(pmt m)
 }
 
 
-void m_talk_ninja(pmt m)
+void m_talk_ninja(montype* m)
 {
     mprint("The black-garbed figure says apologetically:");
     mprint("'Situree simasita, wakarimasen.'");
@@ -285,7 +285,7 @@ void m_talk_ninja(pmt m)
 
 
 
-void m_talk_thief(pmt m)
+void m_talk_thief(montype* m)
 {
     if (Player.rank[THIEVES]) {
         if (m->level == 2)
@@ -303,7 +303,7 @@ void m_talk_thief(pmt m)
 
 
 
-void m_talk_assassin(pmt m)
+void m_talk_assassin(montype* m)
 {
     m->monstring = "master assassin";
     print1("The ominous figure does not reply, but hands you an embossed card:");
@@ -311,7 +311,7 @@ void m_talk_assassin(pmt m)
 }
 
 
-void m_talk_im(pmt m)
+void m_talk_im(montype* m)
 {
     pol tmp;
 
@@ -360,7 +360,7 @@ void m_talk_im(pmt m)
     }
 }
 
-void m_talk_man(pmt m)
+void m_talk_man(montype* m)
 {
 
     if (m->uniqueness == COMMON) {
@@ -389,7 +389,7 @@ void m_talk_man(pmt m)
 }
 
 
-void m_talk_evil(pmt m)
+void m_talk_evil(montype* m)
 {
 
     if (m->uniqueness == COMMON) {
@@ -445,7 +445,7 @@ void m_talk_evil(pmt m)
 }
 
 
-void m_talk_robot(pmt m)
+void m_talk_robot(montype* m)
 {
     if (m->uniqueness == COMMON) {
         strcpy(Str2,"The ");
@@ -469,20 +469,20 @@ void m_talk_robot(pmt m)
     mprint(Str2);
 }
 
-void m_talk_slithy(pmt m)
+void m_talk_slithy(montype* m)
 {
     mprint("It can't talk -- it's too slithy!");
 }
 
 
-void m_talk_mimsy(pmt m)
+void m_talk_mimsy(montype* m)
 {
     mprint("It can't talk -- it's too mimsy!");
 }
 
 
 
-void m_talk_burble(pmt m)
+void m_talk_burble(montype* m)
 {
 
     if (m->uniqueness == COMMON) {
@@ -495,7 +495,7 @@ void m_talk_burble(pmt m)
 }
 
 
-void m_talk_beg(pmt m)
+void m_talk_beg(montype* m)
 {
     if (m->uniqueness == COMMON) {
         strcpy(Str2,"The ");
@@ -507,7 +507,7 @@ void m_talk_beg(pmt m)
 }
 
 
-void m_talk_hint(pmt m)
+void m_talk_hint(montype* m)
 {
     if (m->uniqueness == COMMON) {
         strcpy(Str2,"The ");
@@ -526,7 +526,7 @@ void m_talk_hint(pmt m)
     }
 }
 
-void m_talk_gf(pmt m)
+void m_talk_gf(montype* m)
 {
     mprint("The good fairy glints: Would you like a wish?");
     if (ynq()=='y') {
@@ -550,7 +550,7 @@ void m_talk_gf(pmt m)
     m_vanish(m);
 }
 
-void m_talk_ef(pmt m)
+void m_talk_ef(montype* m)
 {
     mprint("The evil fairy roils: Eat my pixie dust!");
     mprint("She waves her black-glowing wand, which screams thinly....");
@@ -568,7 +568,7 @@ void m_talk_ef(pmt m)
 }
 
 
-void m_talk_seductor(pmt m)
+void m_talk_seductor(montype* m)
 {
     if (m->uniqueness == COMMON) {
         strcpy(Str2,"The ");
@@ -601,7 +601,7 @@ void m_talk_seductor(pmt m)
 }
 
 
-void m_talk_demonlover(pmt m)
+void m_talk_demonlover(montype* m)
 {
     if (m->uniqueness == COMMON) {
         strcpy(Str2,"The ");
@@ -660,7 +660,7 @@ void m_talk_demonlover(pmt m)
 }
 
 
-void m_talk_horse(pmt m)
+void m_talk_horse(montype* m)
 {
     if (m_statusp(m,HOSTILE))
         mprint("The horse neighs angrily at you.");
@@ -681,18 +681,18 @@ void m_talk_horse(pmt m)
     }
 }
 
-void m_talk_hyena(pmt m)
+void m_talk_hyena(montype* m)
 {
     mprint("The hyena only laughs at you...");
 }
 
-void m_talk_parrot(pmt m)
+void m_talk_parrot(montype* m)
 {
     mprint("Polly wanna cracker?");
 }
 
 
-void m_talk_servant(pmt m)
+void m_talk_servant(montype* m)
 {
     int target,x=Player.x,y=Player.y;
     if (m->id == SERV_LAW) {
@@ -730,7 +730,7 @@ void m_talk_servant(pmt m)
 }
 
 
-void m_talk_animal(pmt m)
+void m_talk_animal(montype* m)
 {
     if (m->uniqueness == COMMON) {
         strcpy(Str2,"The ");
@@ -745,7 +745,7 @@ void m_talk_animal(pmt m)
 }
 
 
-void m_talk_scream(pmt m)
+void m_talk_scream(montype* m)
 {
     mprint("A thinly echoing scream reaches your ears....");
     morewait();
@@ -757,7 +757,7 @@ void m_talk_scream(pmt m)
 }
 
 
-void m_talk_archmage(pmt m)
+void m_talk_archmage(montype* m)
 {
     if (m_statusp(m,HOSTILE)) {
         mprint("The Archmage ignores your attempt at conversation");
@@ -781,7 +781,7 @@ void m_talk_archmage(pmt m)
     }
 }
 
-void m_talk_maharaja(pmt m)
+void m_talk_maharaja(montype* m)
 {
     if (m_statusp(m,HOSTILE)) {
         switch (random_range(4)) {
@@ -808,7 +808,7 @@ void m_talk_maharaja(pmt m)
 }
 
 
-void m_talk_merchant(pmt m)
+void m_talk_merchant(montype* m)
 {
     if (! m_statusp(m,HOSTILE)) {
         if (Current_Environment == E_VILLAGE) {
@@ -841,7 +841,7 @@ void m_talk_merchant(pmt m)
 }
 
 
-void m_talk_prime(pmt m)
+void m_talk_prime(montype* m)
 {
     if (!m_statusp(m,HOSTILE)) {
         if (Current_Environment == E_CIRCLE) {

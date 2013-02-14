@@ -4,7 +4,7 @@
 
 #include "glob.h"
 
-void m_hit(pmt m, int dtype)
+void m_hit(montype* m, int dtype)
 {
     if (m->uniqueness == COMMON) {
         strcpy(Str3,"a ");
@@ -17,7 +17,7 @@ void m_hit(pmt m, int dtype)
 }
 
 /* execute monster attacks versus player */
-void tacmonster(pmt m)
+void tacmonster(montype* m)
 {
     int i=0;
     drawvision(Player.x,Player.y);
@@ -46,7 +46,7 @@ void tacmonster(pmt m)
 
 
 
-void monster_melee(pmt m, char hitloc, int bonus)
+void monster_melee(montype* m, char hitloc, int bonus)
 {
     if (player_on_sanctuary())
         print1("The aegis of your deity protects you!");
@@ -205,7 +205,7 @@ void monster_melee(pmt m, char hitloc, int bonus)
 
 
 /* checks to see if player hits with hitmod vs. monster m at location hitloc */
-int monster_hit(pmt m, char hitloc, int bonus)
+int monster_hit(montype* m, char hitloc, int bonus)
 {
     int i=0,blocks=FALSE,goodblocks=0,hit,riposte=FALSE;
     while (i<strlen(Player.meleestr)) {
@@ -240,7 +240,7 @@ int monster_hit(pmt m, char hitloc, int bonus)
 /* if monster is skilled, it can try see the player's attacks coming and
    try to block appropriately. */
 
-void transcribe_monster_actions(pmt m)
+void transcribe_monster_actions(montype* m)
 {
     int i;
     char attack_loc,block_loc;

@@ -7,7 +7,7 @@
 void summon (int blessing, int id)
 {
     int i,x,y;
-    pml tml;
+    mltype* tml;
 
     if (id < 0)
     {
@@ -144,7 +144,7 @@ void cleanse(int blessing)
 
 void annihilate(int blessing)
 {
-    pml ml;
+    mltype* ml;
     int i;
 
     if (blessing == 0) {
@@ -179,7 +179,7 @@ void annihilate(int blessing)
 
 void sleep_monster(int blessing)
 {
-    /* pml ml; */
+    /* mltype* ml; */
     int x=Player.x,y=Player.y;
     struct monster *target;
 
@@ -258,7 +258,7 @@ void clairvoyance(int vision)
 
 void aggravate(void)
 {
-    pml tm;
+    mltype* tm;
 
     for (tm=Level->mlist; tm!=NULL; tm=tm->next) {
         m_status_set(tm->m,AWAKE);

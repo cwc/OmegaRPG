@@ -1056,7 +1056,7 @@ void hunt(Symbol terrain)
 
 void dismount_steed(void)
 {
-    pml ml;
+    mltype* ml;
     if (! gamestatusp(MOUNTED))
         print3("You're on foot already!");
     else if (Current_Environment == E_COUNTRYSIDE) {
@@ -1065,8 +1065,8 @@ void dismount_steed(void)
     }
     else {
         resetgamestatus(MOUNTED);;
-        ml = ((pml) checkmalloc(sizeof(mltype)));
-        ml->m = ((pmt) checkmalloc(sizeof(montype)));
+        ml = ((mltype*) checkmalloc(sizeof(mltype)));
+        ml->m = ((montype*) checkmalloc(sizeof(montype)));
         *(ml->m) = Monsters[HORSE];
         ml->m->x = Player.x;
         ml->m->y = Player.y;

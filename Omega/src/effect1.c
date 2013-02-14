@@ -486,7 +486,7 @@ void ball(int fx, int fy, int tx, int ty, int dmg, int dtype)
 
 void mondet(int blessing)
 {
-    pml ml;
+    mltype* ml;
     for (ml=Level->mlist; ml!=NULL; ml=ml->next)
         if (ml->m->hp > 0) /* FIXED 12/30/98 DG */
         {

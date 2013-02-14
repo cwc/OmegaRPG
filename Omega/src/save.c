@@ -290,9 +290,9 @@ int save_level(FILE *fd, plv level)
 }
 
 
-int save_monsters(FILE *fd, pml ml)
+int save_monsters(FILE *fd, mltype* ml)
 {
-    pml tml;
+    mltype* tml;
     int nummonsters=0;
     int ok = 1;
     unsigned char type;
@@ -868,7 +868,7 @@ void restore_level(FILE *fd, int version)
 }
 
 
-void restore_hiscore_npc(pmt npc, int npcid)
+void restore_hiscore_npc(montype* npc, int npcid)
 {
     int level, behavior;
     long status;
@@ -959,7 +959,7 @@ void restore_hiscore_npc(pmt npc, int npcid)
 
 void restore_monsters(FILE *fd, plv level, int version)
 {
-    pml ml=NULL;
+    mltype* ml=NULL;
     int i,nummonsters;
     char tempstr[80];
     int temp_x, temp_y;
@@ -970,8 +970,8 @@ void restore_monsters(FILE *fd, plv level, int version)
     fread((char *)&nummonsters,sizeof(int),1,fd);
 
     for(i=0; i<nummonsters; i++) {
-        ml = ((pml) checkmalloc(sizeof(mltype)));
-        ml->m = ((pmt) checkmalloc(sizeof(montype)));
+        ml = ((mltype*) checkmalloc(sizeof(mltype)));
+        ml->m = ((montype*) checkmalloc(sizeof(montype)));
         ml->next = NULL;
         fread((char *)ml->m,sizeof(montype),1,fd);
         if (ml->m->id == HISCORE_NPC)

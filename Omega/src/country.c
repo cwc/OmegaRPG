@@ -496,7 +496,7 @@ void load_temple(int deity, int populate)
 {
     int i,j;
     char site;
-    pml ml;
+    mltype* ml;
     map *holy;
 
     /*  initrand(Current_Environment, deity); */ /* FIXED! 12/30/98 */
@@ -657,8 +657,8 @@ void random_temple_site(int i, int j, int deity, int populate)
 
 void make_high_priest(int i, int j, int deity)
 {
-    pml ml = ((pml) checkmalloc(sizeof(mltype)));
-    pmt m = ((pmt) checkmalloc(sizeof(montype)));
+    mltype* ml = ((mltype*) checkmalloc(sizeof(mltype)));
+    montype* m = ((montype*) checkmalloc(sizeof(montype)));
     make_hiscore_npc(m,deity);
     m->x = i;
     m->y = j;

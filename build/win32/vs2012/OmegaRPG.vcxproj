@@ -16,6 +16,7 @@
     <ClInclude Include="..\..\..\Omega\src\defs.h" />
     <ClInclude Include="..\..\..\Omega\src\extern.h" />
     <ClInclude Include="..\..\..\Omega\src\glob.h" />
+    <ClInclude Include="..\..\..\Omega\src\Monster.h" />
     <ClInclude Include="..\..\..\Omega\src\monsters.h" />
     <ClInclude Include="..\..\..\Omega\src\objects.h" />
     <ClInclude Include="..\..\..\Omega\src\OmegaRPG.h" />
