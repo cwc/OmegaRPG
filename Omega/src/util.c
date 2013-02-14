@@ -1153,16 +1153,3 @@ void change_to_game_perms(void)
     seteuid(game_uid);
 #endif
 }
-
-#ifdef NO_USLEEP
-void usleep(int usecs)
-{
-    fd_set null;
-    struct timeval timeout;
-
-    FD_ZERO(&null);
-    timeout.tv_usec = usecs;
-    timeout.tv_sec = 0;
-    select(0, &null, &null, &null, &timeout);
-}
-#endif

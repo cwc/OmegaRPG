@@ -1122,10 +1122,6 @@ void do_los( Symbol,int *,int *,int,int );
 void do_object_los (Symbol, int *, int *, int, int);
 void findspace( int *,int *,int );
 
-#ifdef NO_USLEEP
-void usleep( int );
-#endif
-
 /* village.c functions */
 
 void assign_village_function( int,int,int );

@@ -14,7 +14,7 @@ definitions in the following section. */
 #undef MOUSE_MOVED // Will be redefined when curses is included
 #define strlen(x) (int)strlen(x) // Squashes numerous warnings
 #define sleep(x) Sleep(x * 1000)
-#define usleep(x) sleep(1)
+#define usleep(x) sleep(x / 1000000.0)
 #define getlogin() "pcuser" // TODO Get the real user name
 
 #ifdef SAVE_LEVELS
@@ -57,11 +57,6 @@ typedef int int32;
    available */
 
 /* #define NOGETOPT */
-
-/* If your system doesn't have the usleep call, uncomment this line */
-/* (try man usleep) */
-
-/* #define NO_USLEEP */
 
 /* Define the maximum length of a filename on your system.  If you don't */
 /* define, will try to make an educated guess.  If you have one,  */
