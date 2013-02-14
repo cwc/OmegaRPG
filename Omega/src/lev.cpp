@@ -516,31 +516,31 @@ Monster* make_creature(int mid)
             newmonster->aux1 = Country[LastCountryLocX][LastCountryLocY].aux;
         else
             newmonster->aux1 = random_range(6)+1;
-        newmonster->monstring = angeltype( mid, newmonster->aux1 );
+        newmonster->name = angeltype( mid, newmonster->aux1 );
     }
     else if (mid == ZERO_NPC || mid == WEREHUMAN) {
         /* generic 0th level human, or a were-human */
-        newmonster->corpsestr = mancorpse();
+        newmonster->corpseString = mancorpse();
         /* DAG use same (static data) string, after "dead " part */
-        newmonster->monstring = (newmonster->corpsestr)+5;
+        newmonster->name = (newmonster->corpseString)+5;
     }
-    else if ((newmonster->monchar&0xff) == '!') {
+    else if ((newmonster->symbol&0xff) == '!') {
         /* the nymph/satyr and incubus/succubus */
         if (Player.preference == 'f' ||
                 (Player.preference != 'm' && random_range(2))) {
-            newmonster->monchar = 'n'|CLR(RED);
-            newmonster->monstring = "nymph";
-            newmonster->corpsestr = "dead nymph";
+            newmonster->symbol = 'n'|CLR(RED);
+            newmonster->name = "nymph";
+            newmonster->corpseString = "dead nymph";
         }
         else {
-            newmonster->monchar = 's'|CLR(RED);
-            newmonster->monstring = "satyr";
-            newmonster->corpsestr = "dead satyr";
+            newmonster->symbol = 's'|CLR(RED);
+            newmonster->name = "satyr";
+            newmonster->corpseString = "dead satyr";
         }
         if (newmonster->id == INCUBUS) {
-            if ((newmonster->monchar&0xff) == 'n')
-                newmonster->corpsestr = "dead succubus";
-            else newmonster->corpsestr = "dead incubus";
+            if ((newmonster->symbol&0xff) == 'n')
+                newmonster->corpseString = "dead succubus";
+            else newmonster->corpseString = "dead incubus";
         }
     }
     if (mid == NPC)
@@ -550,10 +550,10 @@ Monster* make_creature(int mid)
     else {
         if (newmonster->sleep < random_range(100))
             m_status_set(newmonster,AWAKE);
-        if (newmonster->startthing > -1 &&
-                Objects[newmonster->startthing].uniqueness <= UNIQUE_MADE) {
+        if (newmonster->startThing > -1 &&
+                Objects[newmonster->startThing].uniqueness <= UNIQUE_MADE) {
             ob = ((pob) checkmalloc(sizeof(objtype)));
-            *ob = Objects[newmonster->startthing];
+            *ob = Objects[newmonster->startThing];
             m_pickup(newmonster,ob);
         }
         /* DAG -- monster with treasure of 1 would be same as 0, shouldn't be. */

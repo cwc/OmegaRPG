@@ -484,10 +484,10 @@ void l_arena(void)
                 strcpy(Str1,Champion);
                 strcat(Str1,", the arena champion");
                 *Arena_Monster = Monsters[HISCORE_NPC];
-                Arena_Monster->monstring = salloc(Str1);
+                Arena_Monster->name = salloc(Str1);
                 strcpy(Str2,"The corpse of ");
                 strcat(Str2,Str1);
-                Arena_Monster->corpsestr = salloc(Str2);
+                Arena_Monster->corpseString = salloc(Str2);
                 m_status_set( Arena_Monster, ALLOC );
                 Arena_Monster->level = 20;
                 Arena_Monster->hp = Championlevel*Championlevel*5;
@@ -496,10 +496,10 @@ void l_arena(void)
                 Arena_Monster->dmg = 100+Championlevel*2;
                 Arena_Monster->xpv = Championlevel*Championlevel*5;
                 Arena_Monster->speed = 3;
-                melee = Arena_Monster->meleestr = (char *) checkmalloc(30*sizeof(char));
-                strcpy(Arena_Monster->meleestr,"");
+                melee = Arena_Monster->combatManeuvers = (char *) checkmalloc(30*sizeof(char));
+                strcpy(Arena_Monster->combatManeuvers,"");
                 for(i=0; i<Championlevel/5; i++)
-                    strcat(Arena_Monster->meleestr,"L?R?");
+                    strcat(Arena_Monster->combatManeuvers,"L?R?");
                 m_status_set(Arena_Monster, MOBILE);
                 m_status_set(Arena_Monster, HOSTILE);
             }
@@ -517,17 +517,17 @@ void l_arena(void)
         if (Arena_Monster->level != 20) {
             strcpy(Str1,nameprint());
             strcat(Str1," the ");
-            strcat(Str1,Arena_Monster->monstring);
-            Arena_Monster->monstring = salloc(Str1);
+            strcat(Str1,Arena_Monster->name);
+            Arena_Monster->name = salloc(Str1);
             strcpy(Str2,"The corpse of ");
             strcat(Str2,Str1);
-            Arena_Monster->corpsestr = salloc(Str2);
+            Arena_Monster->corpseString = salloc(Str2);
             m_status_set( Arena_Monster, ALLOC );
         }
         Arena_Monster->uniqueness = UNIQUE_MADE;
         print1("You have a challenger: ");
-        print2(Arena_Monster->monstring);
-        Arena_Monster->attacked = TRUE;
+        print2(Arena_Monster->name);
+        Arena_Monster->wasAttackedByPlayer = true;
         m_status_set(Arena_Monster,HOSTILE);
         /* DAG  pump up the stats of the arena monster; from env.c */
         /* DAG should we even do this for the champion? */

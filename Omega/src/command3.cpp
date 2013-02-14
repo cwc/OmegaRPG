@@ -644,23 +644,23 @@ void tacoptions(void)
             if (actionsleft < 1) print3("No more maneuvers!");
             else {
                 if (Player.possessions[O_WEAPON_HAND] == NULL) {
-                    Player.meleestr[place] = 'C';
+                    Player.combatManeuvers[place] = 'C';
                     menuprint("\nPunch:");
                 }
                 else if (Player.possessions[O_WEAPON_HAND]->type == THRUSTING) {
-                    Player.meleestr[place] = 'T';
+                    Player.combatManeuvers[place] = 'T';
                     menuprint("\nThrust:");
                 }
                 else if (Player.possessions[O_WEAPON_HAND]->type == STRIKING) {
-                    Player.meleestr[place] = 'C';
+                    Player.combatManeuvers[place] = 'C';
                     menuprint("\nStrike:");
                 }
                 else {
                     menuprint("\nCut:");
-                    Player.meleestr[place] = 'C';
+                    Player.combatManeuvers[place] = 'C';
                 }
                 place++;
-                Player.meleestr[place]=getlocation();
+                Player.combatManeuvers[place]=getlocation();
                 place++;
                 actionsleft--;
             }
@@ -669,14 +669,14 @@ void tacoptions(void)
         case 'B':
             if (actionsleft<1) print3("No more maneuvers!");
             else {
-                Player.meleestr[place] = 'B';
+                Player.combatManeuvers[place] = 'B';
                 if (Player.possessions[O_WEAPON_HAND] == NULL)
                     menuprint("\nDodge (from):");
                 else if (Player.possessions[O_WEAPON_HAND]->type == THRUSTING)
                     menuprint("\nParry:");
                 else menuprint("\nBlock:");
                 place++;
-                Player.meleestr[place]= getlocation();
+                Player.combatManeuvers[place]= getlocation();
                 place++;
                 actionsleft--;
             }
@@ -688,9 +688,9 @@ void tacoptions(void)
                 if (Player.possessions[O_WEAPON_HAND] != NULL) {
                     if (Player.possessions[O_WEAPON_HAND]->type != MISSILE) {
                         menuprint("\nLunge:");
-                        Player.meleestr[place] = 'L';
+                        Player.combatManeuvers[place] = 'L';
                         place++;
-                        Player.meleestr[place]=getlocation();
+                        Player.combatManeuvers[place]=getlocation();
                         place++;
                         actionsleft -= 2;
                     }
@@ -711,9 +711,9 @@ void tacoptions(void)
             else {
                 if (Player.possessions[O_WEAPON_HAND] != NULL) {
                     if (Player.possessions[O_WEAPON_HAND]->type == THRUSTING) {
-                        Player.meleestr[place++] = 'R';
+                        Player.combatManeuvers[place++] = 'R';
                         menuprint("\nRiposte:");
-                        Player.meleestr[place++]=getlocation();
+                        Player.combatManeuvers[place++]=getlocation();
                         actionsleft -= 2;
                     }
                     else {
@@ -761,20 +761,20 @@ void tacoptions(void)
             menuprint(" RETURN to save sequence\n\n");
             for(place=0; place<maneuvers(); place++)
                 if (place&1) { /* every 2nd time around */
-                    Player.meleestr[place*2] = 'B';
-                    Player.meleestr[(place*2)+1] = 'C';
+                    Player.combatManeuvers[place*2] = 'B';
+                    Player.combatManeuvers[(place*2)+1] = 'C';
                     menuprint(defstr);
                     menuprint(" Center.\n");
                 }
                 else {
-                    Player.meleestr[place*2] = defatt;
-                    Player.meleestr[(place*2)+1] = 'C';
+                    Player.combatManeuvers[place*2] = defatt;
+                    Player.combatManeuvers[(place*2)+1] = 'C';
                     menuprint(attstr);
                     menuprint(" Center.\n");
                 }
             actionsleft = 0;
             showmenu();
-            Player.meleestr[place*2]='\0';
+            Player.combatManeuvers[place*2]='\0';
             break;
         case RETURN:
         case LINEFEED:
@@ -785,7 +785,7 @@ void tacoptions(void)
         /*    if (actionsleft < 1) morewait(); */ /* FIXED 12/30/98 */
     } while (! done);
     xredraw();
-    Player.meleestr[place] = 0;
+    Player.combatManeuvers[place] = 0;
 }
 
 

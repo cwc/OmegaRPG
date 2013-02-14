@@ -390,7 +390,7 @@ void calc_melee(void)
             Player.possessions[O_ARMOR]->aux;
     }
 
-    if (strlen(Player.meleestr) > 2*maneuvers())
+    if (strlen(Player.combatManeuvers) > 2*maneuvers())
         default_maneuvers();
     comwinprint();
     showflags();
@@ -427,10 +427,10 @@ void fight_monster(Monster *m)
         if (Lunarity == 1) hitmod += Player.level;
         else if (Lunarity == -1) hitmod -= (Player.level / 2);
 
-        if (! m->attacked) Player.alignment -= 2; /* chaotic action */
+        if (! m->wasAttackedByPlayer) Player.alignment -= 2; /* chaotic action */
         m_status_set(m,AWAKE);
         m_status_set(m,HOSTILE);
-        m->attacked = TRUE;
+        m->wasAttackedByPlayer = true;
         Player.hit += hitmod;
         tacplayer(m);
         Player.hit -= hitmod;
@@ -673,16 +673,16 @@ char *mstatus_string(Monster *m)
             strcpy(Str2,"a severely injured ");
         else if (m->hp < Monsters[m->id].hp)
             strcpy(Str2,"an injured ");
-        else strcpy(Str2,getarticle(m->monstring));
+        else strcpy(Str2,getarticle(m->name));
         if (m->level > Monsters[m->id].level) {
             strcat(Str2," (level ");
             strcat(Str2,wordnum(m->level+1-Monsters[m->id].level));
             strcat(Str2,") ");
         }
-        strcat(Str2,m->monstring);
+        strcat(Str2,m->name);
     }
     else {
-        strcpy(Str2,m->monstring);
+        strcpy(Str2,m->name);
         if (m->hp < Monsters[m->id].hp / 3)
             strcat(Str2," who is grievously injured ");
         else if (m->hp < Monsters[m->id].hp / 2)
@@ -738,9 +738,9 @@ adjacent monsters! */
 int goberserk(void)
 {
     int wentberserk=FALSE,i;
-    char meleestr[80];
-    strcpy(meleestr,Player.meleestr);
-    strcpy(Player.meleestr,"lLlClH");
+    char combatManeuvers[80];
+    strcpy(combatManeuvers,Player.combatManeuvers);
+    strcpy(Player.combatManeuvers,"lLlClH");
     for(i=0; i<8; i++)
         if (Level->site[Player.x+Dirs[0][i]][Player.y+Dirs[1][i]].creature
                 != NULL) {
@@ -748,7 +748,7 @@ int goberserk(void)
             fight_monster(Level->site[Player.x+Dirs[0][i]][Player.y+Dirs[1][i]].creature);
             morewait();
         }
-    strcpy(Player.meleestr,meleestr);
+    strcpy(Player.combatManeuvers,combatManeuvers);
     return(wentberserk);
 }
 

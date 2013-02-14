@@ -1252,7 +1252,7 @@ void destroy_order(void)
                     Level->site[i][j].creature = NULL;
                 }
                 make_site_monster(i,j,GHOST);
-                Level->site[i][j].creature->monstring = "ghost of a Paladin";
+                Level->site[i][j].creature->name = "ghost of a Paladin";
                 m_status_set(Level->site[i][j].creature,HOSTILE);
             }
 }
@@ -1284,10 +1284,10 @@ void default_maneuvers(void)
     print2("Use the 'F' command to select which options you prefer.");
     morewait();
     for(i=0; i<maneuvers(); i+=2) {
-        Player.meleestr[i*2]='A';
-        Player.meleestr[(i*2)+1]='C';
-        Player.meleestr[(i+1)*2]='B';
-        Player.meleestr[((i+1)*2)+1]='C';
+        Player.combatManeuvers[i*2]='A';
+        Player.combatManeuvers[(i*2)+1]='C';
+        Player.combatManeuvers[(i+1)*2]='B';
+        Player.combatManeuvers[((i+1)*2)+1]='C';
     }
-    Player.meleestr[maneuvers()*2]=0;
+    Player.combatManeuvers[maneuvers()*2]=0;
 }

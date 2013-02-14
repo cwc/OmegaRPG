@@ -59,19 +59,19 @@ void make_corpse(pob newObject, Monster* m)
 {
     *newObject = Objects[CORPSEID];
     newObject->charge = m->id;
-    newObject->weight = m->corpseweight;
-    newObject->basevalue = m->corpsevalue;
+    newObject->weight = m->corpseWeight;
+    newObject->basevalue = m->corpseValue;
     newObject->known = 2;
-    newObject->objstr = m->corpsestr;
+    newObject->objstr = m->corpseString;
     newObject->truename = newObject->cursestr = newObject->objstr;
     if ( m_statusp(m, ALLOC ) )
     {
-        /* DAG we are keeping the corpsestr here, can free monstring */
+        /* DAG we are keeping the corpseString here, can free name */
         /*     later, should track this in the object as well, as this */
         /*     is still a memory leak (though smaller than before)  */
-        free ( m->monstring );
-        m->monstring = Monsters[m->id].monstring;
-        m->corpsestr = Monsters[m->id].corpsestr;
+        free ( m->name );
+        m->name = Monsters[m->id].name;
+        m->corpseString = Monsters[m->id].corpseString;
         m_status_reset( m, ALLOC );
         /* DAG level not otherwise used for corpses.  Use to hold ALLOC info. */
         newObject->level |= ALLOC;
@@ -79,7 +79,7 @@ void make_corpse(pob newObject, Monster* m)
     /* DG I_CANNIBAL not implemented... fall through to code in I_CORPSE */
     /* WDT HACK, of course -- we need to implement I_CANNIBAL. */
 #if 0
-    if ((m->monchar&0xff) == '@')
+    if ((m->symbol&0xff) == '@')
         newObject->usef = I_CANNIBAL;
     else
 #endif

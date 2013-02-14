@@ -86,7 +86,7 @@ void p_hit (Monster *m,int dmg,int dtype)
     if (Lunarity == 1) dmult = dmult * 2;
     else if (Lunarity == -1) dmult = dmult / 2;
     if (m->uniqueness == COMMON) strcat(Str3,"the ");
-    strcat(Str3,m->monstring);
+    strcat(Str3,m->name);
     strcat(Str3,". ");
     if (Verbosity != TERSE) mprint(Str3);
     else mprint("You hit it.");
@@ -127,7 +127,7 @@ void player_miss(Monster *m,int dtype)
                     break;
                 }
             if (m->uniqueness == COMMON) strcat(Str3,"the ");
-            strcat(Str3,m->monstring);
+            strcat(Str3,m->name);
             strcat(Str3,". ");
             mprint(Str3);
         }
@@ -736,17 +736,17 @@ void tacplayer(Monster *m)
 {
     int i=0;
 
-    while (i < strlen(Player.meleestr)) {
+    while (i < strlen(Player.combatManeuvers)) {
         if (m->hp > 0) {
-            switch(Player.meleestr[i]) {
+            switch(Player.combatManeuvers[i]) {
             case 't':
             case 'T':
                 if (Player.possessions[O_WEAPON_HAND] == NULL)
                     strcpy(Str1,"You punch ");
                 else strcpy(Str1,"You thrust ");
-                strcat(Str1,actionlocstr(Player.meleestr[i+1]));
+                strcat(Str1,actionlocstr(Player.combatManeuvers[i+1]));
                 if (Verbosity == VERBOSE) mprint(Str1);
-                if (player_hit(2*statmod(Player.dex),Player.meleestr[i+1],m))
+                if (player_hit(2*statmod(Player.dex),Player.combatManeuvers[i+1],m))
                     weapon_use(0,Player.possessions[O_WEAPON_HAND],m);
                 else player_miss(m,NORMAL_DAMAGE);
                 break;
@@ -759,9 +759,9 @@ void tacplayer(Monster *m)
                 else if (Player.possessions[O_WEAPON_HAND]->type == STRIKING)
                     strcpy(Str1,"You strike ");
                 else strcpy(Str1,"You attack ");
-                strcat(Str1,actionlocstr(Player.meleestr[i+1]));
+                strcat(Str1,actionlocstr(Player.combatManeuvers[i+1]));
                 if (Verbosity == VERBOSE) mprint(Str1);
-                if (player_hit(0,Player.meleestr[i+1],m))
+                if (player_hit(0,Player.combatManeuvers[i+1],m))
                     weapon_use(2*statmod(Player.str),
                                Player.possessions[O_WEAPON_HAND],
                                m);
@@ -770,9 +770,9 @@ void tacplayer(Monster *m)
             case 'l':
             case 'L':
                 strcpy(Str1,"You lunge ");
-                strcat(Str1,actionlocstr(Player.meleestr[i+1]));
+                strcat(Str1,actionlocstr(Player.combatManeuvers[i+1]));
                 if (Verbosity == VERBOSE) mprint(Str1);
-                if (player_hit(Player.level+Player.dex,Player.meleestr[i+1],m))
+                if (player_hit(Player.level+Player.dex,Player.combatManeuvers[i+1],m))
                     weapon_use(Player.level,Player.possessions[O_WEAPON_HAND],m);
                 else player_miss(m,NORMAL_DAMAGE);
                 break;
@@ -798,10 +798,10 @@ int player_hit(int hitmod, char hitloc, Monster *m)
 
         transcribe_monster_actions(m);
 
-        while (i<strlen(m->meleestr)) {
-            if ((m->meleestr[i] == 'B') || (m->meleestr[i] == 'R')) {
+        while (i<strlen(m->combatManeuvers)) {
+            if ((m->combatManeuvers[i] == 'B') || (m->combatManeuvers[i] == 'R')) {
                 blocks = TRUE;
-                if (hitloc == m->meleestr[i+1])
+                if (hitloc == m->combatManeuvers[i+1])
                     goodblocks++;
             }
             i+=2;
@@ -812,9 +812,9 @@ int player_hit(int hitmod, char hitloc, Monster *m)
         if ((! hit) && (goodblocks > 0)) {
             if (m->uniqueness == COMMON) {
                 strcpy(Str1,"The ");
-                strcat(Str1,m->monstring);
+                strcat(Str1,m->name);
             }
-            else strcpy(Str1,m->monstring);
+            else strcpy(Str1,m->name);
             strcat(Str1," blocks it!");
             if (Verbosity == VERBOSE) mprint(Str1);
         }

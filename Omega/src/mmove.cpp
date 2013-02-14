@@ -29,9 +29,9 @@ void m_simple_move(Monster* m)
         m->movef = M_MOVE_SCAREDY;
         if (m->uniqueness == COMMON) {
             strcpy(Str2,"The ");
-            strcat(Str2,m->monstring);
+            strcat(Str2,m->name);
         }
-        else strcpy(Str2,m->monstring);
+        else strcpy(Str2,m->name);
         if (m->possessions != NULL) {
             strcat(Str2," drops its treasure and flees!");
             m_dropstuff(m);
@@ -209,9 +209,9 @@ void m_vanish(Monster* m)
 {
     if (m->uniqueness == COMMON) {
         strcpy(Str2,"The ");
-        strcat(Str2,m->monstring);
+        strcat(Str2,m->name);
     }
-    else strcpy(Str2,m->monstring);
+    else strcpy(Str2,m->name);
     strcat(Str2," vanishes in the twinkling of an eye!");
     mprint(Str2);
     m_remove( m );/* signals "death" -- no credit to player, though */
@@ -242,10 +242,10 @@ void m_move_leash(Monster* m)
                 /* some other monster is where the chain starts */
                 if (Level->site[m->aux1][m->aux2].creature->uniqueness == COMMON) {
                     strcpy(Str1, "The ");
-                    strcat(Str1, Level->site[m->aux1][m->aux2].creature->monstring);
+                    strcat(Str1, Level->site[m->aux1][m->aux2].creature->name);
                 }
                 else
-                    strcpy(Str1, Level->site[m->aux1][m->aux2].creature->monstring);
+                    strcpy(Str1, Level->site[m->aux1][m->aux2].creature->name);
                 strcat(Str1, " releases the dog's chain!");
                 mprint(Str1);
             }

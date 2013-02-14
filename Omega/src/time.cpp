@@ -67,11 +67,11 @@ void time_clock(int reset)
             }
             else if (ml->m != Arena_Monster) {
                 *prev = ml->next;
-                /* DAG free the monstring & corpsestr if allocated */
+                /* DAG free the name & corpseString if allocated */
                 if ( m_statusp( ml->m, ALLOC ) )
                 {
-                    free( ml->m->monstring );
-                    free( ml->m->corpsestr );
+                    free( ml->m->name );
+                    free( ml->m->corpseString );
                 }
                 free((char *) ml->m);
                 free((char *) ml);

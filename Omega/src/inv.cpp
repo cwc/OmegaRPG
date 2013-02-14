@@ -389,9 +389,9 @@ void givemonster(Monster* m, pob o)
     else {
         if (m->uniqueness == COMMON) {
             strcpy(Str3,"The ");
-            strcat(Str3,m->monstring);
+            strcat(Str3,m->name);
         }
-        else strcpy(Str3,m->monstring);
+        else strcpy(Str3,m->name);
 
         if (m_statusp(m,GREEDY) || m_statusp(m,NEEDY)) {
             m_pickup(m,o);

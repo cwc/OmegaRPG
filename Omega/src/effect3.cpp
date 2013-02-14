@@ -88,7 +88,7 @@ int monsterlist(void)
             for(i=0; i<NUMMONSTERS; i++) {
                 menunumprint(i+1);
                 menuprint(":");
-                menuprint(Monsters[i].monstring);
+                menuprint(Monsters[i].name);
                 menuprint("\n");
             }
             showmenu();
@@ -201,9 +201,9 @@ void sleep_monster(int blessing)
         if (target != NULL) {
             if (target->uniqueness == COMMON) {
                 strcpy(Str1,"The ");
-                strcat(Str1,target->monstring);
+                strcat(Str1,target->name);
             }
-            else strcpy(Str1,target->monstring);
+            else strcpy(Str1,target->name);
             if ( (! m_immunityp(target,SLEEP)) || (blessing > 0)) {
                 strcat(Str1," seems to have fallen asleep.");
                 m_status_reset(target,AWAKE);
@@ -350,9 +350,9 @@ void disrupt(int x, int y, int amount)
         if (target != NULL) {
             if (target->uniqueness == COMMON) {
                 strcpy(Str1,"The ");
-                strcat(Str1,target->monstring);
+                strcat(Str1,target->name);
             }
-            else strcpy(Str1,target->monstring);
+            else strcpy(Str1,target->name);
             if (! m_immunityp(target,NORMAL_DAMAGE)) {
                 strcat(Str1," was blasted!");
                 mprint(Str1);
@@ -393,9 +393,9 @@ void disintegrate(int x, int y)
         if ((target = Level->site[x][y].creature) != NULL) {
             if (target->uniqueness == COMMON) {
                 strcpy(Str1,"The ");
-                strcat(Str1,target->monstring);
+                strcat(Str1,target->name);
             }
-            else strcpy(Str1,target->monstring);
+            else strcpy(Str1,target->name);
             strcat(Str1," disintegrates!");
             mprint(Str1);
             m_damage(target,100,UNSTOPPABLE);
@@ -896,9 +896,9 @@ void polymorph(int blessing)
     if ((x==Player.x)&&(y==Player.y)) {
         rnd = random_range(NUMMONSTERS);
         strcpy(Str2,"You enjoy your new life as ");
-        strcat(Str2,getarticle(Monsters[rnd].monstring));
+        strcat(Str2,getarticle(Monsters[rnd].name));
         mprint(Str2);
-        mprint(Monsters[rnd].monstring);
+        mprint(Monsters[rnd].name);
         mprint("But your game is over....");
         p_death("autopolymorphosis");
     }
@@ -907,7 +907,7 @@ void polymorph(int blessing)
     else {
         if (m_immunityp(m,OTHER_MAGIC) || (m->level > random_range(12))) {
             strcpy(Str1,"The ");
-            strcat(Str1,m->monstring);
+            strcat(Str1,m->name);
             strcat(Str1," resists the change!");
             m_status_set(m,HOSTILE);
         }
@@ -966,7 +966,7 @@ void hellfire(int x, int y, int blessing)
         else {
             if (m->uniqueness == COMMON) {
                 mprint("and is utterly annihilated. Only a greasy spot remains...");
-                m->corpsestr = "a greasy spot";
+                m->corpseString = "a greasy spot";
                 m->id = 0;
                 free_objlist(m->possessions);
                 m->possessions = NULL;
@@ -1160,9 +1160,9 @@ void inflict_fear(int x, int y)
     else if ((m = Level->site[x][y].creature) != NULL) {
         if (m->uniqueness == COMMON) {
             strcpy(Str2,"The ");
-            strcat(Str2,m->monstring);
+            strcat(Str2,m->name);
         }
-        else strcpy(Str2,m->monstring);
+        else strcpy(Str2,m->name);
         m->speed = max(2,m->speed-1);
         if (m_immunityp(m,FEAR))
             strcat(Str2,"seems enraged!");

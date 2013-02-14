@@ -8,9 +8,9 @@ void m_hit(Monster* m, int dtype)
 {
     if (m->uniqueness == COMMON) {
         strcpy(Str3,"a ");
-        strcat(Str3,m->monstring);
+        strcat(Str3,m->name);
     }
-    else strcpy(Str3,m->monstring);
+    else strcpy(Str3,m->name);
     if ((Player.status[DISPLACED] > 0) && (random_range(2) == 1))
         mprint("The attack was displaced!");
     else  p_damage(random_range(m->dmg),dtype,Str3);
@@ -22,29 +22,27 @@ void tacmonster(Monster* m)
     int i=0;
     drawvision(Player.x,Player.y);
     transcribe_monster_actions(m);
-    while ((i < strlen(m->meleestr)) && (m->hp > 0)) {
+    while ((i < strlen(m->combatManeuvers)) && (m->hp > 0)) {
         if (m->uniqueness == COMMON) {
             strcpy(Str4,"The ");
-            strcat(Str4,m->monstring);
+            strcat(Str4,m->name);
         }
-        else strcpy(Str4,m->monstring);
-        if (m->meleestr[i] == 'A') {
+        else strcpy(Str4,m->name);
+        if (m->combatManeuvers[i] == 'A') {
             strcat(Str4," attacks ");
-            strcat(Str4,actionlocstr(m->meleestr[i+1]));
+            strcat(Str4,actionlocstr(m->combatManeuvers[i+1]));
             if (Verbosity == VERBOSE) mprint(Str4);
-            monster_melee(m,m->meleestr[i+1],0);
+            monster_melee(m,m->combatManeuvers[i+1],0);
         }
-        else if (m->meleestr[i] == 'L') {
+        else if (m->combatManeuvers[i] == 'L') {
             strcat(Str4," lunges ");
-            strcat(Str4,actionlocstr(m->meleestr[i+1]));
+            strcat(Str4,actionlocstr(m->combatManeuvers[i+1]));
             if (Verbosity == VERBOSE) mprint(Str4);
-            monster_melee(m,m->meleestr[i+1],m->level);
+            monster_melee(m,m->combatManeuvers[i+1],m->level);
         }
         i+=2;
     }
 }
-
-
 
 void monster_melee(Monster* m, char hitloc, int bonus)
 {
@@ -55,13 +53,15 @@ void monster_melee(Monster* m, char hitloc, int bonus)
         resetgamestatus(FAST_MOVE);
 
         /* It's lawful to wait to be attacked */
-        if (m->attacked==0) Player.alignment++;
-        m->attacked++;
+        if (m->wasAttackedByPlayer == false) Player.alignment++;
+
+        m->wasAttackedByPlayer = true;
+
         if (m->uniqueness == COMMON) {
             strcpy(Str2,"The ");
-            strcat(Str2,m->monstring);
+            strcat(Str2,m->name);
         }
-        else strcpy(Str2,m->monstring);
+        else strcpy(Str2,m->name);
         if (monster_hit(m,hitloc,bonus))
             switch(m->meleef) {
             case M_NO_OP:
@@ -208,12 +208,12 @@ void monster_melee(Monster* m, char hitloc, int bonus)
 int monster_hit(Monster* m, char hitloc, int bonus)
 {
     int i=0,blocks=FALSE,goodblocks=0,hit,riposte=FALSE;
-    while (i<strlen(Player.meleestr)) {
-        if ((Player.meleestr[i] == 'B') || (Player.meleestr[i] == 'R')) {
+    while (i<strlen(Player.combatManeuvers)) {
+        if ((Player.combatManeuvers[i] == 'B') || (Player.combatManeuvers[i] == 'R')) {
             blocks = TRUE;
-            if (hitloc == Player.meleestr[i+1]) {
+            if (hitloc == Player.combatManeuvers[i+1]) {
                 goodblocks++;
-                if (Player.meleestr[i] == 'R') riposte = TRUE;
+                if (Player.combatManeuvers[i] == 'R') riposte = TRUE;
             }
         }
         i+=2;
@@ -253,18 +253,18 @@ void transcribe_monster_actions(Monster* m)
 
     /* Find which area player blocks and attacks least in */
     i = 0;
-    while (i<strlen(Player.meleestr)) {
-        if ((Player.meleestr[i] == 'B') ||
-                (Player.meleestr[i] == 'R')) {
-            if (Player.meleestr[i+1] == 'H') p_blocks[0]++;
-            if (Player.meleestr[i+1] == 'C') p_blocks[1]++;
-            if (Player.meleestr[i+1] == 'L') p_blocks[2]++;
+    while (i<strlen(Player.combatManeuvers)) {
+        if ((Player.combatManeuvers[i] == 'B') ||
+                (Player.combatManeuvers[i] == 'R')) {
+            if (Player.combatManeuvers[i+1] == 'H') p_blocks[0]++;
+            if (Player.combatManeuvers[i+1] == 'C') p_blocks[1]++;
+            if (Player.combatManeuvers[i+1] == 'L') p_blocks[2]++;
         }
-        else if ((Player.meleestr[i] == 'A') ||
-                 (Player.meleestr[i] == 'L')) {
-            if (Player.meleestr[i+1] == 'H') p_attacks[0]++;
-            if (Player.meleestr[i+1] == 'C') p_attacks[1]++;
-            if (Player.meleestr[i+1] == 'L') p_attacks[2]++;
+        else if ((Player.combatManeuvers[i] == 'A') ||
+                 (Player.combatManeuvers[i] == 'L')) {
+            if (Player.combatManeuvers[i+1] == 'H') p_attacks[0]++;
+            if (Player.combatManeuvers[i+1] == 'C') p_attacks[1]++;
+            if (Player.combatManeuvers[i+1] == 'L') p_attacks[2]++;
         }
         i+=2;
     }
@@ -284,33 +284,33 @@ void transcribe_monster_actions(Monster* m)
         block_loc = 'C';
     else block_loc = 'H';
 
-    m->meleestr = mmstr;
+    m->combatManeuvers = mmstr;
 
     if (m->id != NPC)
-        strcpy(m->meleestr,Monsters[m->id].meleestr);
+        strcpy(m->combatManeuvers,Monsters[m->id].combatManeuvers);
     else {
-        strcpy(m->meleestr,"");
+        strcpy(m->combatManeuvers,"");
         for(i=0; i<m->level; i+=2)
-            strcat(m->meleestr,"L?R?");
+            strcat(m->combatManeuvers,"L?R?");
     }
 
     i = 0;
-    while (i<strlen(m->meleestr)) {
-        if ((m->meleestr[i] == 'A') || (m->meleestr[i] == 'L')) {
-            if (m->meleestr[i+1] == '?') {
+    while (i<strlen(m->combatManeuvers)) {
+        if ((m->combatManeuvers[i] == 'A') || (m->combatManeuvers[i] == 'L')) {
+            if (m->combatManeuvers[i+1] == '?') {
                 if (m->level+random_range(30) > Player.level+random_range(20))
-                    m->meleestr[i+1] = attack_loc;
-                else m->meleestr[i+1] = random_loc();
+                    m->combatManeuvers[i+1] = attack_loc;
+                else m->combatManeuvers[i+1] = random_loc();
             }
-            else if (m->meleestr[i+1] == 'X') m->meleestr[i+1] = random_loc();
+            else if (m->combatManeuvers[i+1] == 'X') m->combatManeuvers[i+1] = random_loc();
         }
-        else if ((m->meleestr[i] == 'B') || (m->meleestr[i] == 'R')) {
-            if (m->meleestr[i+1] == '?') {
+        else if ((m->combatManeuvers[i] == 'B') || (m->combatManeuvers[i] == 'R')) {
+            if (m->combatManeuvers[i+1] == '?') {
                 if (m->level+random_range(30) > Player.level+random_range(20))
-                    m->meleestr[i+1] = block_loc;
-                else m->meleestr[i+1] = random_loc();
+                    m->combatManeuvers[i+1] = block_loc;
+                else m->combatManeuvers[i+1] = random_loc();
             }
-            else if (m->meleestr[i+1] == 'X') m->meleestr[i+1] = random_loc();
+            else if (m->combatManeuvers[i+1] == 'X') m->combatManeuvers[i+1] = random_loc();
         }
         i+=2;
     }

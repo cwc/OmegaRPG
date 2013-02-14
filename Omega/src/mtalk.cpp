@@ -99,9 +99,9 @@ void m_talk_silent(Monster* m)
     int reply = random_range(8);
     if (m->uniqueness == COMMON) {
         strcpy(Str2,"The ");
-        strcat(Str2,m->monstring);
+        strcat(Str2,m->name);
     }
-    else strcpy(Str2,m->monstring);
+    else strcpy(Str2,m->name);
     switch (reply) {
     case 0:
         strcat(Str2," does not reply. ");
@@ -137,9 +137,9 @@ void m_talk_stupid(Monster* m)
     int reply = random_range(4);
     if (m->uniqueness == COMMON) {
         strcpy(Str2,"The ");
-        strcat(Str2,m->monstring);
+        strcat(Str2,m->name);
     }
-    else strcpy(Str2,m->monstring);
+    else strcpy(Str2,m->name);
     switch (reply) {
     case 0:
         strcat(Str2," looks at you with mute incomprehension.");
@@ -163,9 +163,9 @@ void m_talk_greedy(Monster* m)
     int reply = random_range(4);
     if (m->uniqueness == COMMON) {
         strcpy(Str2,"The ");
-        strcat(Str2,m->monstring);
+        strcat(Str2,m->name);
     }
-    else strcpy(Str2,m->monstring);
+    else strcpy(Str2,m->name);
     switch (reply) {
     case 0:
         strcat(Str2," says: Give me a treasure.... ");
@@ -189,9 +189,9 @@ void m_talk_hungry(Monster* m)
     int reply = random_range(4);
     if (m->uniqueness == COMMON) {
         strcpy(Str2,"The ");
-        strcat(Str2,m->monstring);
+        strcat(Str2,m->name);
     }
-    else strcpy(Str2,m->monstring);
+    else strcpy(Str2,m->name);
     switch (reply) {
     case 0:
         strcat(Str2," says: I hunger, foolish adventurer! ");
@@ -268,9 +268,9 @@ void m_talk_titter(Monster* m)
 
     if (m->uniqueness == COMMON) {
         strcpy(Str2,"The ");
-        strcat(Str2,m->monstring);
+        strcat(Str2,m->name);
     }
-    else strcpy(Str2,m->monstring);
+    else strcpy(Str2,m->name);
     strcat(Str2," titters obscenely at you.");
     mprint(Str2);
 }
@@ -289,8 +289,8 @@ void m_talk_thief(Monster* m)
 {
     if (Player.rank[THIEVES]) {
         if (m->level == 2)
-            m->monstring = "sneak thief";
-        else m->monstring = "master thief";
+            m->name = "sneak thief";
+        else m->name = "master thief";
         print1("The cloaked figure makes a gesture which you recognize...");
         print2("...the thieves' guild recognition signal!");
         print3("'Sorry, mate, thought you were a mark....'");
@@ -305,7 +305,7 @@ void m_talk_thief(Monster* m)
 
 void m_talk_assassin(Monster* m)
 {
-    m->monstring = "master assassin";
+    m->name = "master assassin";
     print1("The ominous figure does not reply, but hands you an embossed card:");
     print2("'Guild of Assassins Ops are forbidden to converse with targets.'");
 }
@@ -315,8 +315,8 @@ void m_talk_im(Monster* m)
 {
     pol tmp;
 
-    if (strcmp(m->monstring,"itinerant merchant") != 0) {
-        m->monstring = "itinerant merchant";
+    if (strcmp(m->name,"itinerant merchant") != 0) {
+        m->name = "itinerant merchant";
     }
     if (m->possessions == NULL)
         mprint("The merchant says: Alas! I have nothing to sell!");
@@ -365,9 +365,9 @@ void m_talk_man(Monster* m)
 
     if (m->uniqueness == COMMON) {
         strcpy(Str2,"The ");
-        strcat(Str2,m->monstring);
+        strcat(Str2,m->name);
     }
-    else strcpy(Str2,m->monstring);
+    else strcpy(Str2,m->name);
     switch (random_range(5)) {
     case 0:
         strcat(Str2," asks you for the way home.");
@@ -394,9 +394,9 @@ void m_talk_evil(Monster* m)
 
     if (m->uniqueness == COMMON) {
         strcpy(Str2,"The ");
-        strcat(Str2,m->monstring);
+        strcat(Str2,m->name);
     }
-    else strcpy(Str2,m->monstring);
+    else strcpy(Str2,m->name);
     switch (random_range(14)) {
     case 0:
         strcat(Str2," says: 'THERE CAN BE ONLY ONE!'");
@@ -449,9 +449,9 @@ void m_talk_robot(Monster* m)
 {
     if (m->uniqueness == COMMON) {
         strcpy(Str2,"The ");
-        strcat(Str2,m->monstring);
+        strcat(Str2,m->name);
     }
-    else strcpy(Str2,m->monstring);
+    else strcpy(Str2,m->name);
     switch (random_range(4)) {
     case 0:
         strcat(Str2," says: 'exterminate...Exterminate...EXTERMINATE!!!'");
@@ -487,9 +487,9 @@ void m_talk_burble(Monster* m)
 
     if (m->uniqueness == COMMON) {
         strcpy(Str2,"The ");
-        strcat(Str2,m->monstring);
+        strcat(Str2,m->name);
     }
-    else strcpy(Str2,m->monstring);
+    else strcpy(Str2,m->name);
     strcat(Str2," burbles hatefully at you.");
     mprint(Str2);
 }
@@ -499,9 +499,9 @@ void m_talk_beg(Monster* m)
 {
     if (m->uniqueness == COMMON) {
         strcpy(Str2,"The ");
-        strcat(Str2,m->monstring);
+        strcat(Str2,m->name);
     }
-    else strcpy(Str2,m->monstring);
+    else strcpy(Str2,m->name);
     strcat(Str2," asks you for alms.");
     mprint(Str2);
 }
@@ -511,9 +511,9 @@ void m_talk_hint(Monster* m)
 {
     if (m->uniqueness == COMMON) {
         strcpy(Str2,"The ");
-        strcat(Str2,m->monstring);
+        strcat(Str2,m->name);
     }
-    else strcpy(Str2,m->monstring);
+    else strcpy(Str2,m->name);
     if (m_statusp(m,HOSTILE)) {
         strcat(Str2," only sneers at you. ");
         mprint(Str2);
@@ -572,9 +572,9 @@ void m_talk_seductor(Monster* m)
 {
     if (m->uniqueness == COMMON) {
         strcpy(Str2,"The ");
-        strcat(Str2,m->monstring);
+        strcat(Str2,m->name);
     }
-    else strcpy(Str2,m->monstring);
+    else strcpy(Str2,m->name);
     if (Player.preference == 'n')
     {
         strcat(Str2, " notices your disinterest and leaves with a pout.");
@@ -590,7 +590,7 @@ void m_talk_seductor(Monster* m)
         }
         else {
             strcpy(Str2,"The ");
-            strcat(Str2,m->monstring);
+            strcat(Str2,m->name);
             strcat(Str2," shows you a good time....");
             mprint(Str2);
             gain_experience(500);
@@ -605,9 +605,9 @@ void m_talk_demonlover(Monster* m)
 {
     if (m->uniqueness == COMMON) {
         strcpy(Str2,"The ");
-        strcat(Str2,m->monstring);
+        strcat(Str2,m->name);
     }
-    else strcpy(Str2,m->monstring);
+    else strcpy(Str2,m->name);
     if (Player.preference == 'n')
     {
         strcat(Str2, " notices your disinterest and changes with a snarl...");
@@ -624,9 +624,9 @@ void m_talk_demonlover(Monster* m)
         else {
             if (m->uniqueness == COMMON) {
                 strcpy(Str2,"The ");
-                strcat(Str2,m->monstring);
+                strcat(Str2,m->name);
             }
-            else strcpy(Str2,m->monstring);
+            else strcpy(Str2,m->name);
             strcat(Str2," shows you a good time....");
             mprint(Str2);
             morewait();
@@ -641,19 +641,19 @@ void m_talk_demonlover(Monster* m)
     m_status_reset(m,NEEDY);
     m_status_set(m,HOSTILE);
 
-    if ((m->monchar&0xff) == 's') {
-        m->monchar = 'I'|CLR(RED);
-        m->monstring = "incubus";
+    if ((m->symbol&0xff) == 's') {
+        m->symbol = 'I'|CLR(RED);
+        m->name = "incubus";
     }
     else {
-        m->monchar = 'S'|CLR(RED);
-        m->monstring = "succubus";
+        m->symbol = 'S'|CLR(RED);
+        m->name = "succubus";
     }
     if (m->uniqueness == COMMON) {
         strcpy(Str2,"The ");
-        strcat(Str2,m->monstring);
+        strcat(Str2,m->name);
     }
-    else strcpy(Str2,m->monstring);
+    else strcpy(Str2,m->name);
     strcat(Str2," laughs insanely.");
     mprint(Str2);
     mprint("You now notice the fangs, claws, batwings...");
@@ -734,9 +734,9 @@ void m_talk_animal(Monster* m)
 {
     if (m->uniqueness == COMMON) {
         strcpy(Str2,"The ");
-        strcat(Str2,m->monstring);
+        strcat(Str2,m->name);
     }
-    else strcpy(Str2,m->monstring);
+    else strcpy(Str2,m->name);
     mprint(Str2);
     mprint("shows you a scholarly paper by Dolittle, D. Vet.");
     mprint("which demonstrates that animals don't have speech centers");

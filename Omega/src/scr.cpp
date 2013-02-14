@@ -382,7 +382,6 @@ void nprint1(char *s)
     }
 }
 
-
 /* direct print to second msg line */
 void print2(char *s)
 {
@@ -1006,8 +1005,8 @@ void plotmon(Monster* m)
     if (! offscreen(m->x,m->y)) {
         wmove(Levelw,screenmody(m->y),screenmodx(m->x));
         if (optionp(SHOW_COLOUR))
-            wattrset(Levelw, CHARATTR(m->monchar));
-        waddch(Levelw,(m->monchar&0xff));
+            wattrset(Levelw, CHARATTR(m->symbol));
+        waddch(Levelw,(m->symbol&0xff));
     }
 }
 
@@ -1022,9 +1021,9 @@ void drawmonsters(int display)
                     if (Player.status[TRUESIGHT] || (! m_statusp(ml->m,M_INVISIBLE))) {
                         if (!optionp(SHOW_COLOUR) &&
                                 (ml->m->level > 5) &&
-                                ((ml->m->monchar&0xff) != '@') &&
-                                ((ml->m->monchar&0xff) != '|')) wstandout(Levelw);
-                        putspot(ml->m->x,ml->m->y,ml->m->monchar);
+                                ((ml->m->symbol&0xff) != '@') &&
+                                ((ml->m->symbol&0xff) != '|')) wstandout(Levelw);
+                        putspot(ml->m->x,ml->m->y,ml->m->symbol);
                         if (!optionp(SHOW_COLOUR))
                             wstandend(Levelw);
                     }
@@ -1068,7 +1067,7 @@ Symbol getspot(int x, int y, int showmonster)
             else if (m_statusp(Level->site[x][y].creature,SWIMMING))
                 return(WATER);
             else if (showmonster)
-                return(Level->site[x][y].creature->monchar);
+                return(Level->site[x][y].creature->symbol);
             else return(WATER);
             /* these sites never show anything but their location char's */
         case CLOSED_DOOR:
@@ -1083,7 +1082,7 @@ Symbol getspot(int x, int y, int showmonster)
                 if ((m_statusp(Level->site[x][y].creature,M_INVISIBLE)) &&
                         (! Player.status[TRUESIGHT]))
                     return(getspot(x,y,FALSE));
-                else return (Level->site[x][y].creature->monchar);
+                else return (Level->site[x][y].creature->symbol);
             }
             else return(Level->site[x][y].locchar);
             /* everywhere else, first try to show monster, next show items, next show
@@ -1093,7 +1092,7 @@ Symbol getspot(int x, int y, int showmonster)
                 if ((m_statusp(Level->site[x][y].creature,M_INVISIBLE)) &&
                         (! Player.status[TRUESIGHT]))
                     return(getspot(x,y,FALSE));
-                else return (Level->site[x][y].creature->monchar);
+                else return (Level->site[x][y].creature->symbol);
             }
             else if (Level->site[x][y].things != NULL) {
                 if (Level->site[x][y].things->next != NULL)

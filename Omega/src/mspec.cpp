@@ -6,7 +6,7 @@
 
 void m_sp_mp(Monster* m)
 {
-    if (m->attacked && (random_range(3) == 1)) {
+    if (m->wasAttackedByPlayer && (random_range(3) == 1)) {
         mprint("You feel cursed!");
         p_damage(10,UNSTOPPABLE,"a mendicant priest's curse");
         m_vanish(m);
@@ -145,7 +145,7 @@ void m_sp_spell(Monster* m)
     if (m_statusp(m,HOSTILE) && los_p(Player.x,Player.y,m->x,m->y)) {
         if (m->uniqueness == COMMON) strcpy(action,"The ");
         else strcpy(action,"");
-        strcat(action,m->monstring);
+        strcat(action,m->name);
         strcat(action," casts a spell...");
         mprint(action);
         if (! magic_resist(m->level)) switch (random_range(m->level+7)) {
@@ -206,9 +206,9 @@ void m_sp_spell(Monster* m)
             case 14:
                 if (m->uniqueness == COMMON) {
                     strcpy(Str2,"a ");
-                    strcat(Str2,m->monstring);
+                    strcat(Str2,m->name);
                 }
-                else strcpy(Str2,m->monstring);
+                else strcpy(Str2,m->name);
                 level_drain(m->level,Str2);
                 break;
             case 15:
@@ -225,11 +225,11 @@ void m_sp_spell(Monster* m)
    attack */
 void m_sp_surprise(Monster* m)
 {
-    if (m->attacked) {
+    if (m->wasAttackedByPlayer) {
         if (m_statusp(m,HOSTILE) &&
                 (! Player.status[TRUESIGHT]) &&
                 m_statusp(m,M_INVISIBLE)) {
-            m->monchar = Monsters[m->id].monchar;
+            m->symbol = Monsters[m->id].symbol;
             if (! Player.status[ALERT]) {
                 switch(random_range(4)) {
                 case 0:
@@ -271,9 +271,9 @@ void m_sp_seductor(Monster* m)
     if (m_statusp(m,HOSTILE)) {
         if (m->uniqueness == COMMON) {
             strcpy(Str2,"The ");
-            strcat(Str2,m->monstring);
+            strcat(Str2,m->name);
         }
-        else strcpy(Str2,m->monstring);
+        else strcpy(Str2,m->name);
         strcat(Str2," runs away screaming for help....");
         mprint(Str2);
         m_vanish(m);
@@ -425,18 +425,18 @@ void m_sp_were(Monster* m)
         m->speed = Monsters[mid].speed;
         m->immunity |= Monsters[mid].immunity;
         m->xpv += Monsters[mid].xpv;
-        m->corpseweight = Monsters[mid].corpseweight;
-        m->monchar = Monsters[mid].monchar;
+        m->corpseWeight = Monsters[mid].corpseWeight;
+        m->symbol = Monsters[mid].symbol;
         m->talkf = Monsters[mid].talkf;
         m->meleef = Monsters[mid].meleef;
         m->strikef = Monsters[mid].strikef;
         m->specialf = Monsters[mid].specialf;
         strcpy(Str1,"were-");
-        strcat(Str1,Monsters[mid].monstring);
+        strcat(Str1,Monsters[mid].name);
         strcpy(Str2,"dead were-");
-        strcat(Str2,Monsters[mid].monstring);
-        m->monstring = salloc(Str1);
-        m->corpsestr = salloc(Str2);
+        strcat(Str2,Monsters[mid].name);
+        m->name = salloc(Str1);
+        m->corpseString = salloc(Str2);
         m_status_set( m, ALLOC );
         m->immunity |= pow2(NORMAL_DAMAGE); /* WDT: not +=, rather |=. */
         if (los_p(m->x,m->y,Player.x,Player.y))
@@ -599,8 +599,8 @@ void m_sp_mirror(Monster* m)
                 x = m->x + random_range(13)-6;
                 y = m->y + random_range(13)-6;
                 if (inbounds(x,y)) {
-                    Level->site[x][y].showchar = m->monchar;
-                    putspot(x,y,m->monchar);
+                    Level->site[x][y].showchar = m->symbol;
+                    putspot(x,y,m->symbol);
                 }
             }
     }
@@ -613,12 +613,12 @@ void m_illusion(Monster* m)
     int i = random_range(NUMMONSTERS);
     if (i==NPC || i==HISCORE_NPC || i==ZERO_NPC) i = m->id; /* can't imitate NPC */
     if (Player.status[TRUESIGHT]) {
-        m->monchar = Monsters[m->id].monchar;
-        m->monstring = Monsters[m->id].monstring;
+        m->symbol = Monsters[m->id].symbol;
+        m->name = Monsters[m->id].name;
     }
     else  if (random_range(5) == 1) {
-        m->monchar = Monsters[i].monchar;
-        m->monstring = Monsters[i].monstring;
+        m->symbol = Monsters[i].symbol;
+        m->name = Monsters[i].name;
     }
 }
 
@@ -652,9 +652,9 @@ void m_thief_f(Monster* m)
                     mprint("You feel uneasy for a moment.");
                     if (m->uniqueness == COMMON) {
                         strcpy(Str2,"The ");
-                        strcat(Str2,m->monstring);
+                        strcat(Str2,m->name);
                     }
-                    else strcpy(Str2,m->monstring);
+                    else strcpy(Str2,m->name);
                     strcat(Str2," suddenly runs away for some reason.");
                     mprint(Str2);
                     m_teleport(m);
@@ -686,9 +686,9 @@ void m_aggravate(Monster* m)
     if (m_statusp(m,HOSTILE)) {
         if (m->uniqueness == COMMON) {
             strcpy(Str2,"The ");
-            strcat(Str2,m->monstring);
+            strcat(Str2,m->name);
         }
-        else strcpy(Str2,m->monstring);
+        else strcpy(Str2,m->name);
         strcat(Str2," emits an irritating humming sound.");
         mprint(Str2);
         aggravate();

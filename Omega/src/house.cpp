@@ -199,9 +199,9 @@ void make_house_npc(int i, int j)
     if (nighttime())
         m_status_reset(ml->m,AWAKE);
     else m_status_set(ml->m,AWAKE);
-    if (ml->m->startthing > -1) {
+    if (ml->m->startThing > -1) {
         ob = ((pob) checkmalloc(sizeof(objtype)));
-        *ob = Objects[ml->m->startthing];
+        *ob = Objects[ml->m->startThing];
         m_pickup(ml->m,ob);
     }
 }

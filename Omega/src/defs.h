@@ -471,7 +471,7 @@ typedef int int32;
 #define SWIMMING 4096
 #define POISONOUS 8192
 #define EDIBLE 16384
-#define ALLOC 32768  /* allocated monstring & corpsestr */
+#define ALLOC 32768  /* allocated name & corpseString */
 
 
 /* PLAYER STATUS INDICES */
@@ -1577,7 +1577,7 @@ struct player {
     int rank[NUMRANKS];
     long guildxp[NUMRANKS];
     char name[64];
-    char meleestr[64];
+    char combatManeuvers[64];
     struct object *possessions[MAXITEMS];
     struct object *pack[MAXPACK];
     int packptr;

@@ -38,9 +38,9 @@ void m_blind_strike(Monster* m)
             (distance(m->x,m->y,Player.x,Player.y) < 5)) {
         if (m->uniqueness == COMMON) {
             strcpy(Str2,"The ");
-            strcat(Str2,m->monstring);
+            strcat(Str2,m->name);
         }
-        else strcpy(Str2,m->monstring);
+        else strcpy(Str2,m->name);
         strcat(Str2," gazes at you menacingly");
         mprint(Str2);
         if (! p_immune(GAZE)) {
@@ -60,9 +60,9 @@ void m_strike_sonic(Monster* m)
 {
     if (m->uniqueness == COMMON) {
         strcpy(Str2,"The ");
-        strcat(Str2,m->monstring);
+        strcat(Str2,m->name);
     }
-    else strcpy(Str2,m->monstring);
+    else strcpy(Str2,m->name);
     strcat(Str2," screams at you!");
     mprint(Str2);
     p_damage(m->dmg,OTHER_MAGIC,"a sonic blast");

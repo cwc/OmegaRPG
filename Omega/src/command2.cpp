@@ -252,7 +252,7 @@ void talk(void)
             m = Level->site[Player.x+dx][Player.y+dy].creature;
             menuclear();
             strcpy(Str1,"     Talk to ");
-            strcat(Str1,m->monstring);
+            strcat(Str1,m->name);
             strcat(Str1,":");
             menuprint(Str1);
             menuprint("\na: Greet.");

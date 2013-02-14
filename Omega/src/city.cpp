@@ -560,7 +560,7 @@ void resurrect_guards(void)
             site = getc(fd)^site;
             if (site == 'G') {
                 make_site_monster(i,j,GUARD);
-                Level->site[i][j].creature->monstring = "undead guardsman";
+                Level->site[i][j].creature->name = "undead guardsman";
                 Level->site[i][j].creature->meleef = M_MELEE_SPIRIT;
                 Level->site[i][j].creature->movef = M_MOVE_SPIRIT;
                 Level->site[i][j].creature->strikef = M_STRIKE_MISSILE;

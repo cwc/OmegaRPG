@@ -298,9 +298,9 @@ void bolt(int fx, int fy, int tx, int ty, int hit, int dmg, int dtype)
         if (hitp(hit,target->ac)) {
             if (target->uniqueness == COMMON) {
                 strcpy(Str1,"The ");
-                strcat(Str1,target->monstring);
+                strcat(Str1,target->name);
             }
-            else strcpy(Str1,target->monstring);
+            else strcpy(Str1,target->name);
             switch (dtype) {
                 /* WDT: these sentances really ought to be livened up.  Especially
                  * in full verbose mode. */
@@ -324,9 +324,9 @@ void bolt(int fx, int fy, int tx, int ty, int hit, int dmg, int dtype)
         else {
             if (target->uniqueness == COMMON) {
                 strcpy(Str1,"The ");
-                strcat(Str1,target->monstring);
+                strcat(Str1,target->name);
             }
-            else strcpy(Str1,target->monstring);
+            else strcpy(Str1,target->name);
             switch (dtype) {
             case FLAME:
                 strcat(Str1," was missed by a firebolt!");
@@ -439,9 +439,9 @@ void ball(int fx, int fy, int tx, int ty, int dmg, int dtype)
             if (los_p(Player.x,Player.y,target->x,target->y)) {
                 if (target->uniqueness == COMMON) {
                     strcpy(Str1,"The ");
-                    strcat(Str1,target->monstring);
+                    strcat(Str1,target->name);
                 }
-                else strcpy(Str1,target->monstring);
+                else strcpy(Str1,target->name);
                 switch(dtype) {
                 case FLAME:
                     strcat(Str1," was zorched by a fireball!");
@@ -494,7 +494,7 @@ void mondet(int blessing)
                 plotmon(ml->m);
             else
                 putspot(random_range(Level->level_width), random_range(Level->level_length),
-                        Monsters[random_range(NUMMONSTERS)].monchar);
+                        Monsters[random_range(NUMMONSTERS)].symbol);
         }
     levelrefresh();
     morewait();

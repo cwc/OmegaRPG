@@ -742,7 +742,7 @@ void l_alchemist(void)
                 i = getitem(CORPSE);
                 if ((i != ABORT) && (Player.possessions[i] != NULL)) {
                     obj = Player.possessions[i];
-                    if (Monsters[obj->charge].transformid == -1) {
+                    if (Monsters[obj->charge].transformId == -1) {
                         print1("I don't want such a thing.");
                         if (obj->basevalue > 0)
                             print2("You might be able to sell it to someone else, though.");
@@ -767,7 +767,7 @@ void l_alchemist(void)
                 i = getitem(CORPSE);
                 if ((i != ABORT) && (Player.possessions[i] != NULL)) {
                     obj = Player.possessions[i];
-                    if (Monsters[obj->charge].transformid == -1)
+                    if (Monsters[obj->charge].transformId == -1)
                         print1("Oy vey! You want me to transform such a thing?");
                     else {
                         mlevel = Monsters[obj->charge].level;
@@ -780,7 +780,7 @@ void l_alchemist(void)
                             else {
                                 print1("Voila! A tap of the Philosopher's Stone...");
                                 Player.cash -= max(10,obj->basevalue*2);
-                                *obj = Objects[Monsters[obj->charge].transformid];
+                                *obj = Objects[Monsters[obj->charge].transformId];
                                 if ((obj->id >= STICKID) && (obj->id < STICKID+NUMSTICKS))
                                     obj->charge = 20;
                                 if (obj->plus == 0) obj->plus = mlevel;

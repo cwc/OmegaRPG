@@ -1,28 +1,6 @@
-/* omega, (C) 1987,1988,1989 by Laurence Raphael Brothers */
-/* minit.h */
-/* This file defines and initializes the Monsters Array */
+#pragma once
 
-/* the Monster (from defs.h) looks like:
-
-Monster {
-  struct objectlist *possessions;
-  unsigned char attacked;
-  int aux1,aux2,x,y,click;
-  int id,hp,hit,ac,dmg,sense,wakeup,level,speed;
-  unsigned char sleep,treasure;
-  long xpv;
-  int corpseweight,corpsevalue,transformid,startthing;
-  unsigned char uniqueness;
-  int talkf,movef,meleef,strikef,specialf;
-  long status,immunity;
-  Symbol monchar;
-  char *monstring,*corpsestr,*meleestr;
-};
-
-*/
-
-#ifndef __MONSTERS_H__
-#define __MONSTERS_H__
+/* Define and initialize the list of Monsters */
 
 Monster Monsters[NUMMONSTERS] = {
     { NULL,0,0,0,0,0,0,ML0+0,1,1,10,2,4,1,0,1,50,0,1,1,1,-1,-1,COMMON,M_TALK_STUPID,M_MOVE_FLUTTER,M_MELEE_NORMAL,M_NO_OP,M_NO_OP,MOBILE|HOSTILE|FLYING|POISONOUS,0,'h'|CLR(YELLOW),"hornet","dead hornet","AXAX" },
@@ -329,5 +307,3 @@ Monster Monsters[NUMMONSTERS] = {
     { NULL,0,0,0,0,0,0,ML10+10,1150,90,90,48,10,20,10,2,0,7,6000,40,40,-1,ARTIFACTID+25,UNIQUE_MADE,M_TALK_MAHARAJA,M_MOVE_SMART,M_MELEE_NORMAL,M_MELEE_NORMAL,M_SP_DEMON,MOBILE|HOSTILE,pow2(FLAME)|pow2(COLD)|pow2(ELECTRICITY)|pow2(ACID)|pow2(FEAR)|pow2(SLEEP)|pow2(NEGENERGY)|pow2(THEFT)|pow2(INFECTION),'D'|CLRS(GREY,RED),"The Maharaja","The Maharaja's Skull","L?L?B?B?R?R?R?" }
 
 };
-
-#endif
