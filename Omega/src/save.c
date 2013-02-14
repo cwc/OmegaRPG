@@ -290,9 +290,9 @@ int save_level(FILE *fd, plv level)
 }
 
 
-int save_monsters(FILE *fd, mltype* ml)
+int save_monsters(FILE *fd, MonsterList* ml)
 {
-    mltype* tml;
+    MonsterList* tml;
     int nummonsters=0;
     int ok = 1;
     unsigned char type;
@@ -306,7 +306,7 @@ int save_monsters(FILE *fd, mltype* ml)
     /* Now save monsters */
     for(tml=ml; tml!=NULL; tml=tml->next) {
         if (tml->m->hp > 0) {
-            ok &= (fwrite((char *)tml->m,sizeof(montype),1,fd) > 0);
+            ok &= (fwrite((char *)tml->m,sizeof(Monster),1,fd) > 0);
             if (tml->m->id != HISCORE_NPC) {
                 type = 0x0;
                 /* DAG use pointer compare rather than strcmp; a bit more effecient */
@@ -868,7 +868,7 @@ void restore_level(FILE *fd, int version)
 }
 
 
-void restore_hiscore_npc(montype* npc, int npcid)
+void restore_hiscore_npc(Monster* npc, int npcid)
 {
     int level, behavior;
     long status;
@@ -959,7 +959,7 @@ void restore_hiscore_npc(montype* npc, int npcid)
 
 void restore_monsters(FILE *fd, plv level, int version)
 {
-    mltype* ml=NULL;
+    MonsterList* ml=NULL;
     int i,nummonsters;
     char tempstr[80];
     int temp_x, temp_y;
@@ -970,10 +970,10 @@ void restore_monsters(FILE *fd, plv level, int version)
     fread((char *)&nummonsters,sizeof(int),1,fd);
 
     for(i=0; i<nummonsters; i++) {
-        ml = ((mltype*) checkmalloc(sizeof(mltype)));
-        ml->m = ((montype*) checkmalloc(sizeof(montype)));
+        ml = ((MonsterList*) checkmalloc(sizeof(MonsterList)));
+        ml->m = ((Monster*) checkmalloc(sizeof(Monster)));
         ml->next = NULL;
-        fread((char *)ml->m,sizeof(montype),1,fd);
+        fread((char *)ml->m,sizeof(Monster),1,fd);
         if (ml->m->id == HISCORE_NPC)
             if (version == 80) {
                 temp_x = ml->m->x;

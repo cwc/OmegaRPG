@@ -161,7 +161,7 @@ void load_village(int villagenum, int populate)
 
 void make_guard(int i, int j)
 {
-    mltype* tml = ((mltype*) (checkmalloc(sizeof(mltype))));
+    MonsterList* tml = ((MonsterList*) (checkmalloc(sizeof(MonsterList))));
     tml->m = (Level->site[i][j].creature = make_creature(GUARD));
     tml->m->x = i;
     tml->m->y = j;
@@ -171,7 +171,7 @@ void make_guard(int i, int j)
 
 void make_sheep(int i, int j)
 {
-    mltype* tml = ((mltype*) (checkmalloc(sizeof(mltype))));
+    MonsterList* tml = ((MonsterList*) (checkmalloc(sizeof(MonsterList))));
     tml->m = (Level->site[i][j].creature = make_creature(SHEEP));
     tml->m->x = i;
     tml->m->y = j;
@@ -195,7 +195,7 @@ void make_food_bin(int i, int j)
 
 void make_horse(int i, int j)
 {
-    mltype* tml = ((mltype*) (checkmalloc(sizeof(mltype))));
+    MonsterList* tml = ((MonsterList*) (checkmalloc(sizeof(MonsterList))));
     tml->m = (Level->site[i][j].creature = make_creature(HORSE));
     tml->m->x = i;
     tml->m->y = j;
@@ -206,7 +206,7 @@ void make_horse(int i, int j)
 
 void make_merchant(int i, int j)
 {
-    mltype* tml = ((mltype*) (checkmalloc(sizeof(mltype))));
+    MonsterList* tml = ((MonsterList*) (checkmalloc(sizeof(MonsterList))));
     tml->m = (Level->site[i][j].creature = make_creature(MERCHANT));
     tml->m->x = i;
     tml->m->y = j;

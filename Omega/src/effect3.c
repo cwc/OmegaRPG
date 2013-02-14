@@ -7,7 +7,7 @@
 void summon (int blessing, int id)
 {
     int i,x,y;
-    mltype* tml;
+    MonsterList* tml;
 
     if (id < 0)
     {
@@ -43,7 +43,7 @@ void summon (int blessing, int id)
 
         Level->site[x][y].creature->x = x;
         Level->site[x][y].creature->y = y;
-        tml = checkmalloc(sizeof(mltype));
+        tml = checkmalloc(sizeof(MonsterList));
         tml->m = Level->site[x][y].creature;
 
         if (blessing > 0)
@@ -144,7 +144,7 @@ void cleanse(int blessing)
 
 void annihilate(int blessing)
 {
-    mltype* ml;
+    MonsterList* ml;
     int i;
 
     if (blessing == 0) {
@@ -179,7 +179,7 @@ void annihilate(int blessing)
 
 void sleep_monster(int blessing)
 {
-    /* mltype* ml; */
+    /* MonsterList* ml; */
     int x=Player.x,y=Player.y;
     struct monster *target;
 
@@ -258,7 +258,7 @@ void clairvoyance(int vision)
 
 void aggravate(void)
 {
-    mltype* tm;
+    MonsterList* tm;
 
     for (tm=Level->mlist; tm!=NULL; tm=tm->next) {
         m_status_set(tm->m,AWAKE);

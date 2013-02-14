@@ -1002,7 +1002,7 @@ void putspot(int x, int y, Symbol c)
 
 
 /* regardless of line of sight, etc, draw a monster */
-void plotmon(montype* m)
+void plotmon(Monster* m)
 {
     if (! offscreen(m->x,m->y)) {
         wmove(Levelw,screenmody(m->y),screenmodx(m->x));
@@ -1015,7 +1015,7 @@ void plotmon(montype* m)
 /* if display, displays monsters, otherwise erases them */
 void drawmonsters(int display)
 {
-    mltype* ml;
+    MonsterList* ml;
     for (ml=Level->mlist; ml!=NULL; ml=ml->next) {
         if (ml->m->hp > 0) {
             if (display) {
@@ -1037,7 +1037,7 @@ void drawmonsters(int display)
 }
 
 /* replace monster with what would be displayed if monster weren't there */
-void erase_monster(montype* m)
+void erase_monster(Monster* m)
 {
     if (loc_statusp(m->x,m->y,SEEN))
         putspot(m->x,m->y,getspot(m->x,m->y,FALSE));

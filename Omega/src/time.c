@@ -13,7 +13,7 @@ the minute and 60 minutes to the hour.
 void time_clock(int reset)
 {
     int env;
-    mltype* ml, **prev;
+    MonsterList* ml, **prev;
 
     ++Tick;
 
@@ -84,7 +84,7 @@ void time_clock(int reset)
 
 
 /* remedies occasional defective monsters */
-void fix_phantom(montype* m)
+void fix_phantom(Monster* m)
 {
     if (Level->site[m->x][m->y].creature == NULL) {
         mprint("You hear a sound like a sigh of relief....");

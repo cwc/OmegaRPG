@@ -274,8 +274,8 @@ static int bank_new_customer (WINDOW *w)
 
 static void bank_call_police (void)
 {
-    mltype* ml;
-    montype* mon;
+    MonsterList* ml;
+    Monster* mon;
 
     cinema_scene("A loud siren goes off!", 0, 0);
 
@@ -293,8 +293,8 @@ static void bank_call_police (void)
 
 static int police_are_hostile (void)
 {
-    mltype* ml;
-    montype* mon;
+    MonsterList* ml;
+    Monster* mon;
 
     for (ml = Level->mlist; ml; ml = ml->next)
     {

@@ -210,7 +210,7 @@ void cureforpay(void)
 
 void pacify_guards(void)
 {
-    mltype* ml;
+    MonsterList* ml;
 
     for(ml=Level->mlist; ml!=NULL; ml=ml->next)
         if ((ml->m->id == GUARD) || /*guard*/

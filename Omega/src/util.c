@@ -107,7 +107,7 @@ int unblocked(int x, int y)
 
 
 /* do monsters want to move through a spot */
-int m_unblocked(montype* m, int x, int y)
+int m_unblocked(Monster* m, int x, int y)
 {
     if ((! inbounds(x,y)) || ((x==Player.x) && (y==Player.y)))
         return(FALSE);
@@ -936,9 +936,9 @@ void free_objlist(pol pobjlist)
     }
 }
 
-void free_mons_and_objs(mltype* mlist)
+void free_mons_and_objs(MonsterList* mlist)
 {
-    mltype* tmp;
+    MonsterList* tmp;
 
     while (mlist) {
         free_objlist((tmp = mlist)->m->possessions);

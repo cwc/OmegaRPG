@@ -4,35 +4,35 @@
 
 #include "glob.h"
 
-void m_firebolt(montype* m)
+void m_firebolt(Monster* m)
 {
     fbolt(m->x,m->y,Player.x,Player.y,m->hit,m->dmg);
 }
 
-void m_nbolt(montype* m)
+void m_nbolt(Monster* m)
 {
     nbolt(m->x,m->y,Player.x,Player.y,m->hit,m->dmg);
 }
 
-void m_lball(montype* m)
+void m_lball(Monster* m)
 {
     lball(m->x,m->y,Player.x,Player.y,m->dmg);
 }
 
-void m_fireball(montype* m)
+void m_fireball(Monster* m)
 {
     fball(m->x,m->y,Player.x,Player.y,m->dmg);
 }
 
-void m_snowball(montype* m)
+void m_snowball(Monster* m)
 {
     snowball(m->x,m->y,Player.x,Player.y,m->dmg);
 }
 
-void m_blind_strike(montype* m)
+void m_blind_strike(Monster* m)
 {
 
-    mltype* ml;
+    MonsterList* ml;
     if ((Player.status[BLINDED] == 0) &&
             los_p(m->x,m->y,Player.x,Player.y) &&
             (distance(m->x,m->y,Player.x,Player.y) < 5)) {
@@ -56,7 +56,7 @@ void m_blind_strike(montype* m)
 
 
 
-void m_strike_sonic(montype* m)
+void m_strike_sonic(Monster* m)
 {
     if (m->uniqueness == COMMON) {
         strcpy(Str2,"The ");

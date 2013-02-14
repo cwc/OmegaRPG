@@ -925,7 +925,7 @@ void l_sorcerors(void)
 void l_order(void)
 {
     pob newitem;
-    mltype* ml;
+    MonsterList* ml;
     print1("The Headquarters of the Order of Paladins.");
     morewait();
     if ((Player.rank[ORDER]==PALADIN) &&

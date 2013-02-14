@@ -189,7 +189,7 @@ void i_perm_breathing(pob o)
 
 /* weapons functions */
 
-void weapon_acidwhip(int dmgmod, pob o, montype* m)
+void weapon_acidwhip(int dmgmod, pob o, Monster* m)
 {
     if ((random_range(2) == 1) && (! m_immunityp(m,NORMAL_DAMAGE))) {
         mprint("You entangle the monster!");
@@ -199,7 +199,7 @@ void weapon_acidwhip(int dmgmod, pob o, montype* m)
 
 }
 
-void weapon_scythe(int dmgmod, pob o, montype* m)
+void weapon_scythe(int dmgmod, pob o, Monster* m)
 {
     mprint("Slice!");
     m_death(m);
@@ -210,7 +210,7 @@ void weapon_scythe(int dmgmod, pob o, montype* m)
     }
 }
 
-void weapon_demonblade(int dmgmod, pob o, montype* m)
+void weapon_demonblade(int dmgmod, pob o, Monster* m)
 {
     if (o->blessing > -1) {
         mprint("Demonblade disintegrates with a soft sigh.");
@@ -254,7 +254,7 @@ void weapon_demonblade(int dmgmod, pob o, montype* m)
     }
 }
 
-void weapon_lightsabre(int dmgmod, pob o, montype* m)
+void weapon_lightsabre(int dmgmod, pob o, Monster* m)
 {
     if (! o->known) {
         mprint("Fumbling with the cylinder, you press the wrong stud....");
@@ -274,7 +274,7 @@ void weapon_lightsabre(int dmgmod, pob o, montype* m)
     }
 }
 
-void weapon_tangle(int dmgmod, pob o, montype* m)
+void weapon_tangle(int dmgmod, pob o, Monster* m)
 {
     if ((random_range(2) == 1) && (! m_immunityp(m,NORMAL_DAMAGE))) {
         mprint("You entangle the monster!");
@@ -284,7 +284,7 @@ void weapon_tangle(int dmgmod, pob o, montype* m)
 }
 
 /* if wielding a bow, add bow damage to arrow damage */
-void weapon_arrow(int dmgmod, pob o, montype* m)
+void weapon_arrow(int dmgmod, pob o, Monster* m)
 {
     if ((Player.possessions[O_WEAPON_HAND] != NULL) &&
             (Player.possessions[O_WEAPON_HAND]->id == OB_LONGBOW)) /* ie, using a bow */
@@ -293,7 +293,7 @@ void weapon_arrow(int dmgmod, pob o, montype* m)
 }
 
 /* if wielding a crossbow, add bow damage to arrow damage */
-void weapon_bolt(int dmgmod, pob o, montype* m)
+void weapon_bolt(int dmgmod, pob o, Monster* m)
 {
     if ((Player.possessions[O_WEAPON_HAND] != NULL) &&
             (Player.possessions[O_WEAPON_HAND]->id == OB_CROSSBOW) && /*ie using a crossbow */
@@ -305,7 +305,7 @@ void weapon_bolt(int dmgmod, pob o, montype* m)
 }
 
 
-void weapon_mace_disrupt(int dmgmod, pob o, montype* m)
+void weapon_mace_disrupt(int dmgmod, pob o, Monster* m)
 {
     if (m->meleef == M_MELEE_SPIRIT) {
         mprint("The monster crumbles away to dust!");
@@ -314,14 +314,14 @@ void weapon_mace_disrupt(int dmgmod, pob o, montype* m)
     else p_hit(m,Player.dmg+dmgmod,UNSTOPPABLE);
 }
 
-void weapon_normal_hit(int dmgmod, pob o, montype* m)
+void weapon_normal_hit(int dmgmod, pob o, Monster* m)
 {
     p_hit(m,Player.dmg+dmgmod,NORMAL_DAMAGE);
 }
 
 
 /* will be updated eventually */
-void weapon_bare_hands(int dmgmod, montype* m)
+void weapon_bare_hands(int dmgmod, Monster* m)
 {
 
     p_hit(m,Player.dmg+dmgmod,NORMAL_DAMAGE);
@@ -361,7 +361,7 @@ void i_mace_disrupt(pob o)
 }
 
 
-void weapon_vorpal(int dmgmod, pob o, montype* m)
+void weapon_vorpal(int dmgmod, pob o, Monster* m)
 {
     if ((random_range(10) < 3) && (! m_immunityp(m,NORMAL_DAMAGE))) {
         o->known = 2;
@@ -373,7 +373,7 @@ void weapon_vorpal(int dmgmod, pob o, montype* m)
     else weapon_normal_hit(dmgmod,o,m);
 }
 
-void weapon_desecrate(int dmgmod, pob o, montype* m)
+void weapon_desecrate(int dmgmod, pob o, Monster* m)
 {
     o->known = 2;
     if (Player.alignment < 0) {
@@ -396,7 +396,7 @@ void weapon_desecrate(int dmgmod, pob o, montype* m)
 }
 
 
-void weapon_firestar(int dmgmod, pob o, montype* m)
+void weapon_firestar(int dmgmod, pob o, Monster* m)
 {
     if (random_range(3) == 1) {
         o->known = 2;
@@ -405,7 +405,7 @@ void weapon_firestar(int dmgmod, pob o, montype* m)
     if (m->hp > 0) weapon_normal_hit(dmgmod,o,m);
 }
 
-void weapon_defend(int dmgmod, pob o, montype* m)
+void weapon_defend(int dmgmod, pob o, Monster* m)
 {
     if ((Player.alignment < 0) && (o->blessing > 0)) {
         mprint("The Holy Defender screams in your hands....");
@@ -427,7 +427,7 @@ void weapon_defend(int dmgmod, pob o, montype* m)
     weapon_normal_hit(dmgmod,o,m);
 }
 
-void weapon_victrix(int dmgmod, pob o, montype* m)
+void weapon_victrix(int dmgmod, pob o, Monster* m)
 {
     if (m->meleef == M_MELEE_SPIRIT) {
         mprint("Your opponent dissipates in a harmless cloud of vapors...");

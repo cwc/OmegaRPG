@@ -400,7 +400,7 @@ void p_movefunction(int movef)
 
 
 /* execute some move function for a monster */
-void m_movefunction(montype* m, int movef)
+void m_movefunction(Monster* m, int movef)
 {
     /* loc functs above traps should be activated whether levitating or not */
     if (! m_statusp(m,FLYING) && ! m_statusp(m, INTANGIBLE))

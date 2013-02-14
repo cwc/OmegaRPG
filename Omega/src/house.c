@@ -181,9 +181,9 @@ void load_house(int kind, int populate)
 /* makes a log npc for houses and hovels */
 void make_house_npc(int i, int j)
 {
-    mltype* ml = ((mltype*) checkmalloc(sizeof(mltype)));
+    MonsterList* ml = ((MonsterList*) checkmalloc(sizeof(MonsterList)));
     pob ob;
-    ml->m = ((montype*) checkmalloc(sizeof(montype)));
+    ml->m = ((Monster*) checkmalloc(sizeof(Monster)));
     *(ml->m) = Monsters[NPC];
     make_log_npc(ml->m);
     if (ml->m->id == NPC) mprint("You detect signs of life in this house.");
@@ -210,8 +210,8 @@ void make_house_npc(int i, int j)
 /* makes a hiscore npc for mansions */
 void make_mansion_npc(int i, int j)
 {
-    mltype* ml = ((mltype*) checkmalloc(sizeof(mltype)));
-    ml->m = ((montype*) checkmalloc(sizeof(montype)));
+    MonsterList* ml = ((MonsterList*) checkmalloc(sizeof(MonsterList)));
+    ml->m = ((Monster*) checkmalloc(sizeof(Monster)));
     *(ml->m) = Monsters[NPC];
     make_hiscore_npc(ml->m,random_range(14) + 1);
     mprint("You detect signs of life in this house.");

@@ -29,7 +29,7 @@ namespace Omega {
 #ifdef __cplusplus
 	};
 #else
-	} montype;
+	} Monster;
 #endif
 
 #ifdef __cplusplus
@@ -42,7 +42,7 @@ namespace Omega {
 #ifdef __cplusplus
 	};
 #else
-	} mltype;
+	} MonsterList;
 #endif
 
 #ifdef __cplusplus

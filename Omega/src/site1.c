@@ -311,13 +311,13 @@ void l_statue_wake(void)
 void wake_statue(int x, int y, int first)
 {
     int i;
-    mltype* tml;
+    MonsterList* tml;
     if (Level->site[x][y].locchar == STATUE) {
         if (! first) mprint("Another statue awakens!");
         else mprint("A statue springs to life!");
         Level->site[x][y].locchar = FLOOR;
         lset(x, y, CHANGED);
-        tml = ((mltype*) checkmalloc(sizeof(mltype)));
+        tml = ((MonsterList*) checkmalloc(sizeof(MonsterList)));
         tml->m =
             (Level->site[x][y].creature = m_create(x,y,0,difficulty()+1));
         m_status_set(Level->site[x][y].creature,HOSTILE);
