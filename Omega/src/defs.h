@@ -9,6 +9,7 @@ definitions in the following section. */
 
 #ifdef WIN32
 #include <windows.h>
+#include <ShlObj.h>
 #include <malloc.h>
 
 #undef MOUSE_MOVED // Will be redefined when curses is included

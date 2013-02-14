@@ -89,7 +89,8 @@ FILE *omegarc_check(void)
 {
     FILE *fd;
 
-    sprintf(Str1, "%s/.omegarc", getenv("HOME"));
+	getOmegaRCPath();
+
     if ((fd = fopen(Str1,"r")) != NULL) {
         print2("Use .omegarc in home directory? [yn] ");
         if (ynq2()!='y') {
@@ -133,14 +134,25 @@ int initstats(void)
     return FALSE;
 }
 
+void getOmegaRCPath()
+{
+#ifndef WIN32
+    sprintf(Str1, "%s/.omegarc", getenv("HOME"));
+#else
+	SHGetFolderPathA(NULL, CSIDL_LOCAL_APPDATA, NULL, 0, Str1);
+	strcat(Str1, "\.omegarc");
+#endif
+}
+
 void save_omegarc(void)
 {
     int i=VERSION;
     FILE *fd;
     change_to_user_perms();
-    sprintf(Str1, "%s/.omegarc", getenv("HOME"));
+	
+	getOmegaRCPath();
 
-    fd = fopen(Str1,"w");
+	fd = fopen(Str1,"w");
     if (fd == NULL)
         print1("Sorry, couldn't save .omegarc for some reason.");
     else {

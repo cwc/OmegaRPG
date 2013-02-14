@@ -1132,3 +1132,5 @@ void make_horse( int,int );
 void make_merchant( int,int );
 void make_sheep( int,int );
 void special_village_site( int,int,int );
+
+void getOmegaRCPath();
