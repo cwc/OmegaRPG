@@ -84,20 +84,20 @@ void make_country_monsters(Symbol terrain)
     }
     for(i=0; i<nummonsters; i++) {
         tml = ((MonsterList*) checkmalloc(sizeof(MonsterList)));
-        tml->m = ((Monster*) checkmalloc(sizeof(Monster)));
-        if (monsters == NULL) tml->m =
+        tml->monster = ((Monster*) checkmalloc(sizeof(Monster)));
+        if (monsters == NULL) tml->monster =
                 m_create(random_range(Level->level_width),random_range(Level->level_length),true,difficulty());
         else {
-            tml->m = make_creature(*(monsters+random_range(10)));
-            tml->m->x = random_range(Level->level_width);
-            tml->m->y = random_range(Level->level_length);
+            tml->monster = make_creature(*(monsters+random_range(10)));
+            tml->monster->x = random_range(Level->level_width);
+            tml->monster->y = random_range(Level->level_length);
         }
-        Level->site[tml->m->x][tml->m->y].creature = tml->m;
-        tml->m->sense = Level->level_width;
-        if (m_statusp(tml->m,ONLYSWIM)) {
-            Level->site[tml->m->x][tml->m->y].locchar = WATER;
-            Level->site[tml->m->x][tml->m->y].p_locf = L_WATER;
-            lset(tml->m->x, tml->m->y, CHANGED);
+        Level->site[tml->monster->x][tml->monster->y].creature = tml->monster;
+        tml->monster->sense = Level->level_width;
+        if (m_statusp(tml->monster,ONLYSWIM)) {
+            Level->site[tml->monster->x][tml->monster->y].locchar = WATER;
+            Level->site[tml->monster->x][tml->monster->y].p_locf = L_WATER;
+            lset(tml->monster->x, tml->monster->y, CHANGED);
         }
 
         tml->next = ml;
@@ -394,7 +394,7 @@ void populate_level(int monstertype)
         }
 
         tml->next = ((MonsterList*) checkmalloc(sizeof(MonsterList)));
-        tml->next->m = Level->site[i][j].creature;
+        tml->next->monster = Level->site[i][j].creature;
         tml = tml->next;
     }
 
@@ -419,7 +419,7 @@ void wandercheck(void)
         findspace(&x,&y,-1);
         tml = ((MonsterList*) checkmalloc(sizeof(MonsterList)));
         tml->next = Level->mlist;
-        tml->m = Level->site[x][y].creature = m_create(x,y,WANDERING,difficulty());
+        tml->monster = Level->site[x][y].creature = m_create(x,y,WANDERING,difficulty());
         Level->mlist = tml;
     }
 }
@@ -435,7 +435,7 @@ void make_site_monster(int i, int j, int mid)
     else Level->site[i][j].creature = (m = m_create(i,j,WANDERING,difficulty()));
     m->x = i;
     m->y = j;
-    ml->m = m;
+    ml->monster = m;
     ml->next = Level->mlist;
     Level->mlist = ml;
 }

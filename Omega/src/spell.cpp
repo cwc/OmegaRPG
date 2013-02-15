@@ -307,7 +307,7 @@ void s_ritual(void)
                     mprint("A smoky form begins to coalesce....");
                     summon(-1,-1);
                     mprint("Fortunately, it seems confined to the pentagram.");
-                    m_status_reset(Level->mlist->m,MOBILE);
+                    m_status_reset(Level->mlist->monster,MOBILE);
                     break;
                 case RS_OMEGA_DAIS: /* blue omega room */
                     mprint("The Lords of Destiny look upon you....");

@@ -621,7 +621,7 @@ void load_temple(int deity, int populate)
     /* Main Temple is peaceful for player of same sect,druids always peaceful. */
     if ((Player.patron == deity) || (deity == DRUID))
         for(ml=Level->mlist; ml!=NULL; ml=ml->next)
-            m_status_reset(ml->m,HOSTILE);
+            m_status_reset(ml->monster,HOSTILE);
     map_close(holy);
     /*  initrand(-2, 0); */ /* FIXED! 12/30/98 */
 }
@@ -663,7 +663,7 @@ void make_high_priest(int i, int j, int deity)
     m->x = i;
     m->y = j;
     Level->site[i][j].creature = m;
-    ml->m = m;
+    ml->monster = m;
     ml->next = Level->mlist;
     Level->mlist = ml;
 }

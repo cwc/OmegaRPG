@@ -706,8 +706,8 @@ void m_sp_merchant(Monster* m)
             mprint("The merchant screams: 'Help! Murder! Guards! Help!'");
             mprint("You hear the sound of police whistles and running feet.");
             for (ml=Level->mlist; ml!=NULL; ml=ml->next) {
-                m_status_set(ml->m,AWAKE);
-                m_status_set(ml->m,HOSTILE);
+                m_status_set(ml->monster,AWAKE);
+                m_status_set(ml->monster,HOSTILE);
             }
             m->specialf = M_NO_OP;
         }
@@ -721,10 +721,10 @@ void m_sp_court(Monster* m)
     if (m_statusp(m,HOSTILE)) {
         mprint("A storm of spells hits you!");
         for(ml=Level->mlist; ml!=NULL; ml=ml->next) {
-            m_status_set(ml->m,HOSTILE);
-            m_sp_spell(ml->m);
-            if (ml->m->specialf == M_SP_COURT)
-                ml->m->specialf = M_SP_SPELL;
+            m_status_set(ml->monster,HOSTILE);
+            m_sp_spell(ml->monster);
+            if (ml->monster->specialf == M_SP_COURT)
+                ml->monster->specialf = M_SP_SPELL;
         }
     }
 }
@@ -739,13 +739,13 @@ void m_sp_lair(Monster* m)
         mprint("You are struck by a quantity of firebolts.");
         morewait();
         for(ml=Level->mlist; ml!=NULL; ml=ml->next)
-            if (ml->m->hp > 0 && ml->m->specialf == M_SP_LAIR) {
-                m_status_set(ml->m,HOSTILE);
-                fbolt(ml->m->x,ml->m->y,Player.x,Player.y,100,100);
-                if (ml->m->id == DRAGON_LORD)
-                    ml->m->specialf = M_SP_DRAGONLORD;
+            if (ml->monster->hp > 0 && ml->monster->specialf == M_SP_LAIR) {
+                m_status_set(ml->monster,HOSTILE);
+                fbolt(ml->monster->x,ml->monster->y,Player.x,Player.y,100,100);
+                if (ml->monster->id == DRAGON_LORD)
+                    ml->monster->specialf = M_SP_DRAGONLORD;
                 else
-                    ml->m->specialf = M_STRIKE_FBOLT;
+                    ml->monster->specialf = M_STRIKE_FBOLT;
             }
     }
 }

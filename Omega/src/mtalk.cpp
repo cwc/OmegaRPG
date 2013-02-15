@@ -83,7 +83,7 @@ void m_talk_druid(Monster* m)
         if (ynq() != 'n') {
             mprint("'I certainly hope so!' says the ArchDruid.");
             for (curr = Level->mlist; curr; curr = curr->next)
-                m_status_reset(curr->m, HOSTILE);
+                m_status_reset(curr->monster, HOSTILE);
             m_vanish(m);
         }
         else {

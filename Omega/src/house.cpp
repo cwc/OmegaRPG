@@ -183,26 +183,26 @@ void make_house_npc(int i, int j)
 {
     MonsterList* ml = ((MonsterList*) checkmalloc(sizeof(MonsterList)));
     pob ob;
-    ml->m = ((Monster*) checkmalloc(sizeof(Monster)));
-    *(ml->m) = Monsters[NPC];
-    make_log_npc(ml->m);
-    if (ml->m->id == NPC) mprint("You detect signs of life in this house.");
+    ml->monster = ((Monster*) checkmalloc(sizeof(Monster)));
+    *(ml->monster) = Monsters[NPC];
+    make_log_npc(ml->monster);
+    if (ml->monster->id == NPC) mprint("You detect signs of life in this house.");
     else mprint("An eerie shiver runs down your spine as you enter....");
     /* if not == NPC, then we got a ghost off the npc list */
-    ml->m->x = i;
-    ml->m->y = j;
-    Level->site[i][j].creature = ml->m;
-    ml->m->click = (Tick + 1) % 50;
+    ml->monster->x = i;
+    ml->monster->y = j;
+    Level->site[i][j].creature = ml->monster;
+    ml->monster->click = (Tick + 1) % 50;
     ml->next = Level->mlist;
     Level->mlist = ml;
-    m_status_set(ml->m,HOSTILE);
+    m_status_set(ml->monster,HOSTILE);
     if (nighttime())
-        m_status_reset(ml->m,AWAKE);
-    else m_status_set(ml->m,AWAKE);
-    if (ml->m->startThing > -1) {
+        m_status_reset(ml->monster,AWAKE);
+    else m_status_set(ml->monster,AWAKE);
+    if (ml->monster->startThing > -1) {
         ob = ((pob) checkmalloc(sizeof(objtype)));
-        *ob = Objects[ml->m->startThing];
-        ml->m->m_pickup(ob);
+        *ob = Objects[ml->monster->startThing];
+        ml->monster->m_pickup(ob);
     }
 }
 
@@ -211,19 +211,19 @@ void make_house_npc(int i, int j)
 void make_mansion_npc(int i, int j)
 {
     MonsterList* ml = ((MonsterList*) checkmalloc(sizeof(MonsterList)));
-    ml->m = ((Monster*) checkmalloc(sizeof(Monster)));
-    *(ml->m) = Monsters[NPC];
-    make_hiscore_npc(ml->m,random_range(14) + 1);
+    ml->monster = ((Monster*) checkmalloc(sizeof(Monster)));
+    *(ml->monster) = Monsters[NPC];
+    make_hiscore_npc(ml->monster,random_range(14) + 1);
     mprint("You detect signs of life in this house.");
-    ml->m->x = i;
-    ml->m->y = j;
-    Level->site[i][j].creature = ml->m;
-    ml->m->click = (Tick + 1) % 50;
+    ml->monster->x = i;
+    ml->monster->y = j;
+    Level->site[i][j].creature = ml->monster;
+    ml->monster->click = (Tick + 1) % 50;
     ml->next = Level->mlist;
     Level->mlist = ml;
-    m_status_set(ml->m,HOSTILE);
+    m_status_set(ml->monster,HOSTILE);
     if (nighttime())
-        m_status_reset(ml->m,AWAKE);
-    else m_status_set(ml->m,AWAKE);
+        m_status_reset(ml->monster,AWAKE);
+    else m_status_set(ml->monster,AWAKE);
 }
 

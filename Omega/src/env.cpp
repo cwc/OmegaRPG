@@ -69,7 +69,7 @@ void load_arena(void)
     Arena_Monster->m_pickup(box);
     m_status_set(Arena_Monster,AWAKE);
     Level->mlist = (MonsterList*) checkmalloc(sizeof(MonsterList));
-    Level->mlist->m = Arena_Monster;
+    Level->mlist->monster = Arena_Monster;
     Level->mlist->next = NULL;
     /* hehehehe cackled the dungeon master.... */
     print2("Your opponent holds the only way you can leave!");
@@ -202,7 +202,7 @@ void make_prime(int i, int j)
     m->x = i;
     m->y = j;
     Level->site[i][j].creature = m;
-    ml->m = m;
+    ml->monster = m;
     ml->next = Level->mlist;
     Level->mlist = ml;
 
@@ -322,7 +322,7 @@ void make_archmage(int i, int j)
     m->x = i;
     m->y = j;
     Level->site[i][j].creature = m;
-    ml->m = m;
+    ml->monster = m;
     ml->next = Level->mlist;
     Level->mlist = ml;
     m->specialf = M_SP_COURT;

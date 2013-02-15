@@ -213,24 +213,24 @@ void pacify_guards(void)
     MonsterList* ml;
 
     for(ml=Level->mlist; ml!=NULL; ml=ml->next)
-        if ((ml->m->id == GUARD) || /*guard*/
-                ((ml->m->id == HISCORE_NPC) && (ml->m->aux2 == 15))) {/* justiciar */
-            m_status_reset(ml->m,HOSTILE);
-            ml->m->specialf = M_NO_OP;
-            if (ml->m->id == GUARD && ml->m->hp > 0 && ml->m->aux1 > 0) {
-                if (Level->site[ml->m->x][ml->m->y].creature == ml->m)
-                    Level->site[ml->m->x][ml->m->y].creature = NULL;
-                ml->m->x = ml->m->aux1;
-                ml->m->y = ml->m->aux2;
-                Level->site[ml->m->x][ml->m->y].creature = ml->m;
+        if ((ml->monster->id == GUARD) || /*guard*/
+                ((ml->monster->id == HISCORE_NPC) && (ml->monster->aux2 == 15))) {/* justiciar */
+            m_status_reset(ml->monster,HOSTILE);
+            ml->monster->specialf = M_NO_OP;
+            if (ml->monster->id == GUARD && ml->monster->hp > 0 && ml->monster->aux1 > 0) {
+                if (Level->site[ml->monster->x][ml->monster->y].creature == ml->monster)
+                    Level->site[ml->monster->x][ml->monster->y].creature = NULL;
+                ml->monster->x = ml->monster->aux1;
+                ml->monster->y = ml->monster->aux2;
+                Level->site[ml->monster->x][ml->monster->y].creature = ml->monster;
             }
-            else if (ml->m->id == HISCORE_NPC && ml->m->hp > 0 &&
+            else if (ml->monster->id == HISCORE_NPC && ml->monster->hp > 0 &&
                      Current_Environment == E_CITY) {
-                if (Level->site[ml->m->x][ml->m->y].creature == ml->m)
-                    Level->site[ml->m->x][ml->m->y].creature = NULL;
-                ml->m->x = 40;
-                ml->m->y = 62;
-                Level->site[ml->m->x][ml->m->y].creature = ml->m;
+                if (Level->site[ml->monster->x][ml->monster->y].creature == ml->monster)
+                    Level->site[ml->monster->x][ml->monster->y].creature = NULL;
+                ml->monster->x = 40;
+                ml->monster->y = 62;
+                Level->site[ml->monster->x][ml->monster->y].creature = ml->monster;
             }
         }
     if (Current_Environment == E_CITY)

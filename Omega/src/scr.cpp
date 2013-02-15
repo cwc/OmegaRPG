@@ -1015,21 +1015,21 @@ void drawmonsters(int display)
 {
     MonsterList* ml;
     for (ml=Level->mlist; ml!=NULL; ml=ml->next) {
-        if (ml->m->hp > 0) {
+        if (ml->monster->hp > 0) {
             if (display) {
-                if (view_los_p(Player.x,Player.y,ml->m->x,ml->m->y)) {
-                    if (Player.status[TRUESIGHT] || (! m_statusp(ml->m,M_INVISIBLE))) {
+                if (view_los_p(Player.x,Player.y,ml->monster->x,ml->monster->y)) {
+                    if (Player.status[TRUESIGHT] || (! m_statusp(ml->monster,M_INVISIBLE))) {
                         if (!optionp(SHOW_COLOUR) &&
-                                (ml->m->level > 5) &&
-                                ((ml->m->symbol&0xff) != '@') &&
-                                ((ml->m->symbol&0xff) != '|')) wstandout(Levelw);
-                        putspot(ml->m->x,ml->m->y,ml->m->symbol);
+                                (ml->monster->level > 5) &&
+                                ((ml->monster->symbol&0xff) != '@') &&
+                                ((ml->monster->symbol&0xff) != '|')) wstandout(Levelw);
+                        putspot(ml->monster->x,ml->monster->y,ml->monster->symbol);
                         if (!optionp(SHOW_COLOUR))
                             wstandend(Levelw);
                     }
                 }
             }
-            else erase_monster(ml->m);
+            else erase_monster(ml->monster);
         }
     }
 }

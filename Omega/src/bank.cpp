@@ -281,7 +281,7 @@ static void bank_call_police (void)
 
     for (ml = Level->mlist; ml; ml = ml->next)
     {
-        mon = ml->m;
+        mon = ml->monster;
         if (GUARD == mon->id)
         {
             mon->sense *= 2;
@@ -298,7 +298,7 @@ static int police_are_hostile (void)
 
     for (ml = Level->mlist; ml; ml = ml->next)
     {
-        mon = ml->m;
+        mon = ml->monster;
         if (GUARD == mon->id && m_statusp(mon, HOSTILE))
             return true;
     }

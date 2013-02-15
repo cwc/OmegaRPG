@@ -299,36 +299,36 @@ int save_monsters(FILE *fd, MonsterList* ml)
 
     /* First count monsters */
     for(tml=ml; tml!=NULL; tml=tml->next)
-        if (tml->m->hp > 0) nummonsters++;
+        if (tml->monster->hp > 0) nummonsters++;
 
     ok &= (fwrite((char *)&nummonsters,sizeof(int),1,fd) > 0);
 
     /* Now save monsters */
     for(tml=ml; tml!=NULL; tml=tml->next) {
-        if (tml->m->hp > 0) {
-            ok &= (fwrite((char *)tml->m,sizeof(Monster),1,fd) > 0);
-            if (tml->m->id != HISCORE_NPC) {
+        if (tml->monster->hp > 0) {
+            ok &= (fwrite((char *)tml->monster,sizeof(Monster),1,fd) > 0);
+            if (tml->monster->id != HISCORE_NPC) {
                 type = 0x0;
                 /* DAG use pointer compare rather than strcmp; a bit more effecient */
-                if (tml->m->name != Monsters[tml->m->id].name)
+                if (tml->monster->name != Monsters[tml->monster->id].name)
                     type |= 0x1;
-                if (tml->m->corpseString != Monsters[tml->m->id].corpseString)
+                if (tml->monster->corpseString != Monsters[tml->monster->id].corpseString)
                     type |= 0x2;
                 /* DAG expect from now (version 9000) on that type will always be  */
                 /*     0x3 (both) saved, but leave this way as it may not, and this  */
                 /*     preserves save-file compatibility without requiring code changes */
                 ok &= (fwrite((char *)&type,sizeof(unsigned char),1,fd) > 0);
                 if (type&1)
-                    ok &= (fprintf(fd,"%s\n",tml->m->name) >= 0);
+                    ok &= (fprintf(fd,"%s\n",tml->monster->name) >= 0);
                 if (type&2)
-                    ok &= (fprintf(fd,"%s\n",tml->m->corpseString) >= 0);
+                    ok &= (fprintf(fd,"%s\n",tml->monster->corpseString) >= 0);
                 /* WDT: line moved from here... */
             }	/* else it'll be reloaded from the hiscore file on restore */
             /* WDT: to here.  This bug fix is Sheldon Simm's suggestion
              * to fix the well-known 'Star Gem' bug; it should allow the
              * possessions of hiscore NPCs to be restored from the savefile.
              * See also the complementary change in restore_monsters. */
-            ok &= save_itemlist(fd,tml->m->possessions);
+            ok &= save_itemlist(fd,tml->monster->possessions);
         }
     }
     return ok;
@@ -970,55 +970,55 @@ void restore_monsters(FILE *fd, plv level, int version)
 
     for(i=0; i<nummonsters; i++) {
         ml = ((MonsterList*) checkmalloc(sizeof(MonsterList)));
-        ml->m = ((Monster*) checkmalloc(sizeof(Monster)));
+        ml->monster = ((Monster*) checkmalloc(sizeof(Monster)));
         ml->next = NULL;
-        fread((char *)ml->m,sizeof(Monster),1,fd);
-        if (ml->m->id == HISCORE_NPC)
+        fread((char *)ml->monster,sizeof(Monster),1,fd);
+        if (ml->monster->id == HISCORE_NPC)
             if (version == 80) {
-                temp_x = ml->m->x;
-                temp_y = ml->m->y;
-                make_hiscore_npc(ml->m, ml->m->aux2);
-                ml->m->x = temp_x;
-                ml->m->y = temp_y;
+                temp_x = ml->monster->x;
+                temp_y = ml->monster->y;
+                make_hiscore_npc(ml->monster, ml->monster->aux2);
+                ml->monster->x = temp_x;
+                ml->monster->y = temp_y;
             }
             else
-                restore_hiscore_npc(ml->m, ml->m->aux2);
+                restore_hiscore_npc(ml->monster, ml->monster->aux2);
         else {
             fread((char *)&type,sizeof(unsigned char),1,fd);
             if ( type )
             {
                 /* DAG  enforce that if either one of name or corpseString are */
                 /*      alloced, both are */
-                m_status_set( ml->m, ALLOC );
+                m_status_set( ml->monster, ALLOC );
                 if (type&1) {
                     filescanstring(fd,tempstr);
-                    ml->m->name = salloc(tempstr);
+                    ml->monster->name = salloc(tempstr);
                 }
                 else
-                    ml->m->name = salloc( Monsters[ml->m->id].name );
+                    ml->monster->name = salloc( Monsters[ml->monster->id].name );
 
                 if (type&2) {
                     filescanstring(fd,tempstr);
-                    ml->m->corpseString = salloc(tempstr);
+                    ml->monster->corpseString = salloc(tempstr);
                 }
                 else
-                    ml->m->corpseString = salloc( Monsters[ml->m->id].corpseString );
+                    ml->monster->corpseString = salloc( Monsters[ml->monster->id].corpseString );
             }
             else
             {
-                ml->m->corpseString = Monsters[ml->m->id].corpseString;
-                ml->m->name = Monsters[ml->m->id].name;
+                ml->monster->corpseString = Monsters[ml->monster->id].corpseString;
+                ml->monster->name = Monsters[ml->monster->id].name;
             }
             /* WDT: As suggested by Sheldon Simms, I'm moving this line... */
             if ( version <= 80 )
-                ml->m->possessions = restore_itemlist(fd,version);
-            ml->m->combatManeuvers = Monsters[ml->m->id].combatManeuvers;
+                ml->monster->possessions = restore_itemlist(fd,version);
+            ml->monster->combatManeuvers = Monsters[ml->monster->id].combatManeuvers;
         }
         /* WDT: ...to here, so that all creatures will have their stuff
          * restored to them.  Savefile versioning added by David Given. */
         if ( version > 80 )
-            ml->m->possessions = restore_itemlist(fd,version);
-        level->site[ml->m->x][ml->m->y].creature = ml->m;
+            ml->monster->possessions = restore_itemlist(fd,version);
+        level->site[ml->monster->x][ml->monster->y].creature = ml->monster;
         ml->next = level->mlist;
         level->mlist = ml;
     }

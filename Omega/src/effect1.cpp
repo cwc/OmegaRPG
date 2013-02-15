@@ -488,10 +488,10 @@ void mondet(int blessing)
 {
     MonsterList* ml;
     for (ml=Level->mlist; ml!=NULL; ml=ml->next)
-        if (ml->m->hp > 0) /* FIXED 12/30/98 DG */
+        if (ml->monster->hp > 0) /* FIXED 12/30/98 DG */
         {
             if (blessing > -1)
-                plotmon(ml->m);
+                plotmon(ml->monster);
             else
                 putspot(random_range(Level->level_width), random_range(Level->level_length),
                         Monsters[random_range(NUMMONSTERS)].symbol);

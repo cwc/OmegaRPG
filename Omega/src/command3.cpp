@@ -1066,13 +1066,13 @@ void dismount_steed(void)
     else {
         resetgamestatus(MOUNTED);;
         ml = ((MonsterList*) checkmalloc(sizeof(MonsterList)));
-        ml->m = ((Monster*) checkmalloc(sizeof(Monster)));
-        *(ml->m) = Monsters[HORSE];
-        ml->m->x = Player.x;
-        ml->m->y = Player.y;
-        ml->m->status = MOBILE+SWIMMING;
+        ml->monster = ((Monster*) checkmalloc(sizeof(Monster)));
+        *(ml->monster) = Monsters[HORSE];
+        ml->monster->x = Player.x;
+        ml->monster->y = Player.y;
+        ml->monster->status = MOBILE+SWIMMING;
         ml->next = Level->mlist;
-        Level->site[Player.x][Player.y].creature = ml->m;
+        Level->site[Player.x][Player.y].creature = ml->monster;
         Level->mlist = ml;
     }
     calc_melee();

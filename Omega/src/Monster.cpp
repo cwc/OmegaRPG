@@ -271,13 +271,13 @@ void Monster::m_death()
                     /* promote one of the city guards to be justiciar */
                     ml = City->mlist;
                     while ((! found) && (ml != NULL)) {
-                        found = ((ml->m->id == GUARD) && (ml->m->hp > 0));
+                        found = ((ml->monster->id == GUARD) && (ml->monster->hp > 0));
                         if (! found) ml=ml->next;
                     }
                     if (ml != NULL) {
                         if (curr) {
                             mprint("materializes, sheds a tear, picks up the badge, and leaves.");
-                            ml->m->m_pickup(curr->thing);
+                            ml->monster->m_pickup(curr->thing);
                             if (prev)
                                 prev->next = curr->next;
                             else
@@ -287,14 +287,14 @@ void Monster::m_death()
                         else
                             mprint("materializes, sheds a tear, and leaves.");
                         mprint("A new justiciar has been promoted!");
-                        x = ml->m->x;
-                        y = ml->m->y;
+                        x = ml->monster->x;
+                        y = ml->monster->y;
                         make_hiscore_npc(this, 15);
-                        ml->m->x = x;
-                        ml->m->y = y;
-                        ml->m->click = (Tick + 1) % 60;
-                        m_status_reset(ml->m,AWAKE);
-                        m_status_reset(ml->m,HOSTILE);
+                        ml->monster->x = x;
+                        ml->monster->y = y;
+                        ml->monster->click = (Tick + 1) % 60;
+                        m_status_reset(ml->monster,AWAKE);
+                        m_status_reset(ml->monster,HOSTILE);
                     }
                     else {
                         mprint("materializes, sheds a tear, and leaves.");

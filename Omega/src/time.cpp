@@ -53,27 +53,27 @@ void time_clock(int reset)
         prev = &(Level->mlist);
         ml = *prev;
         while (ml)
-            if (ml->m->hp > 0) {
+            if (ml->monster->hp > 0) {
                 /* following is a hack until I discover source of phantom monsters */
-                if (Level->site[ml->m->x][ml->m->y].creature != ml->m)
-                    fix_phantom(ml->m);
-                if (Tick == ml->m->click) {
-                    ml->m->click += ml->m->speed;
-                    while (ml->m->click > 60) ml->m->click -= 60;
-                    ml->m->m_pulse();
+                if (Level->site[ml->monster->x][ml->monster->y].creature != ml->monster)
+                    fix_phantom(ml->monster);
+                if (Tick == ml->monster->click) {
+                    ml->monster->click += ml->monster->speed;
+                    while (ml->monster->click > 60) ml->monster->click -= 60;
+                    ml->monster->m_pulse();
                 }
                 prev = &(ml->next);
                 ml = ml->next;
             }
-            else if (ml->m != Arena_Monster) {
+            else if (ml->monster != Arena_Monster) {
                 *prev = ml->next;
                 /* DAG free the name & corpseString if allocated */
-                if ( m_statusp( ml->m, ALLOC ) )
+                if ( m_statusp( ml->monster, ALLOC ) )
                 {
-                    free( ml->m->name );
-                    free( ml->m->corpseString );
+                    free( ml->monster->name );
+                    free( ml->monster->corpseString );
                 }
-                free((char *) ml->m);
+                free((char *) ml->monster);
                 free((char *) ml);
                 ml = *prev;
             }

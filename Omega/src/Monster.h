@@ -79,7 +79,7 @@ typedef chtype Symbol;
 
 	class MonsterList {
 	public:
-		Monster* m;
+		Monster* monster;
 		MonsterList* next;
 	};
 

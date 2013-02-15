@@ -75,7 +75,7 @@ void indoors_random_event(void)
         print3("A mysterious healing flux settles over the level.");
         morewait();
         for (ml=Level->mlist; ml!=NULL; ml=ml->next)
-            if (ml->m->hp > 0) ml->m->hp = Monsters[ml->m->id].hp;
+            if (ml->monster->hp > 0) ml->monster->hp = Monsters[ml->monster->id].hp;
         Player.hp = max(Player.hp,Player.maxhp);
         break;
     case 5:
@@ -1173,12 +1173,12 @@ void alert_guards(void)
     MonsterList* ml;
     int suppress = 0;
     for(ml=Level->mlist; ml!=NULL; ml=ml->next)
-        if (((ml->m->id == GUARD) ||
-                ((ml->m->id == HISCORE_NPC) && (ml->m->aux2 == 15))) && /*justiciar*/
-                (ml->m->hp > 0)) {
+        if (((ml->monster->id == GUARD) ||
+                ((ml->monster->id == HISCORE_NPC) && (ml->monster->aux2 == 15))) && /*justiciar*/
+                (ml->monster->hp > 0)) {
             foundguard=true;
-            m_status_set(ml->m,AWAKE);
-            m_status_set(ml->m,HOSTILE);
+            m_status_set(ml->monster,AWAKE);
+            m_status_set(ml->monster,HOSTILE);
         }
     if (foundguard) {
         mprint("You hear a whistle and the sound of running feet!");

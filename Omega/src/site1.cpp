@@ -318,7 +318,7 @@ void wake_statue(int x, int y, int first)
         Level->site[x][y].locchar = FLOOR;
         lset(x, y, CHANGED);
         tml = ((MonsterList*) checkmalloc(sizeof(MonsterList)));
-        tml->m =
+        tml->monster =
             (Level->site[x][y].creature = m_create(x,y,0,difficulty()+1));
         m_status_set(Level->site[x][y].creature,HOSTILE);
         tml->next = Level->mlist;

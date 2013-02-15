@@ -937,11 +937,11 @@ void l_order(void)
         print1("The previous Justiciar steps down in your favor.");
         print2("You are now the Justiciar of Rampart and the Order!");
         strcpy(Justiciar,Player.name);
-        for (ml = Level->mlist; ml && (ml->m->id != HISCORE_NPC ||
-                                       ml->m->aux2 != 15); ml = ml->next)
+        for (ml = Level->mlist; ml && (ml->monster->id != HISCORE_NPC ||
+                                       ml->monster->aux2 != 15); ml = ml->next)
             /* just scan for current Justicar */;
         if (ml) {
-            ml->m->m_remove(); /* signals "death" -- no credit to player, though */
+            ml->monster->m_remove(); /* signals "death" -- no credit to player, though */
         }
         Justiciarlevel = Player.level;
         morewait();

@@ -362,8 +362,8 @@ City = Level;
        /* to prevent players from being molested by vicious monsters on */
        /* the streets */
 for(ml=Level->mlist; ml!=NULL; ml=ml->next) {
-    m_status_reset(ml->m,AWAKE);
-    ml->m->wakeup = 2;
+    m_status_reset(ml->monster,AWAKE);
+    ml->monster->wakeup = 2;
 }
 initrand(E_RESTORE, 0);
 }
@@ -529,16 +529,16 @@ void assign_city_function(int x, int y)
 void make_justiciar(int i, int j)
 {
     MonsterList* ml = ((MonsterList*) checkmalloc(sizeof(MonsterList)));
-    ml->m = ((Monster*) checkmalloc(sizeof(Monster)));
-    *(ml->m) = Monsters[NPC];
-    make_hiscore_npc(ml->m,15);
-    ml->m->x = i;
-    ml->m->y = j;
-    Level->site[i][j].creature = ml->m;
-    ml->m->click = (Tick + 1) % 60;
+    ml->monster = ((Monster*) checkmalloc(sizeof(Monster)));
+    *(ml->monster) = Monsters[NPC];
+    make_hiscore_npc(ml->monster,15);
+    ml->monster->x = i;
+    ml->monster->y = j;
+    Level->site[i][j].creature = ml->monster;
+    ml->monster->click = (Tick + 1) % 60;
     ml->next = Level->mlist;
     Level->mlist = ml;
-    m_status_reset(ml->m,AWAKE);
+    m_status_reset(ml->monster,AWAKE);
 }
 
 

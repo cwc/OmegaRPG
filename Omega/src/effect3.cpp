@@ -44,12 +44,12 @@ void summon (int blessing, int id)
         Level->site[x][y].creature->x = x;
         Level->site[x][y].creature->y = y;
         tml = (MonsterList*) checkmalloc(sizeof(MonsterList));
-        tml->m = Level->site[x][y].creature;
+        tml->monster = Level->site[x][y].creature;
 
         if (blessing > 0)
-            m_status_reset(tml->m,HOSTILE);
+            m_status_reset(tml->monster,HOSTILE);
         else if (blessing < 0)
-            m_status_set(tml->m,HOSTILE);
+            m_status_set(tml->monster,HOSTILE);
 
         tml->next = Level->mlist;
         Level->mlist = tml;
@@ -166,8 +166,8 @@ void annihilate(int blessing)
         else {
             mprint("Thousands of bolts of lightning flash throughout the level!!!");
             for(ml=Level->mlist; ml!=NULL; ml=ml->next)
-                if (ml->m != NULL && ml->m->hp > 0)
-                    ml->m->m_death();
+                if (ml->monster != NULL && ml->monster->hp > 0)
+                    ml->monster->m_death();
         }
     }
     else {
@@ -191,8 +191,8 @@ void sleep_monster(int blessing)
     else if (blessing > 0) {
       mprint("A silence pervades the area.");
       for (ml=Level->mlist;ml!=NULL;ml=ml->next) {
-        m_status_reset(ml->m,AWAKE);
-        ml->m->wakeup = 0;
+        m_status_reset(ml->monster,AWAKE);
+        ml->monster->wakeup = 0;
       }
     }
     */
@@ -261,11 +261,10 @@ void aggravate(void)
     MonsterList* tm;
 
     for (tm=Level->mlist; tm!=NULL; tm=tm->next) {
-        m_status_set(tm->m,AWAKE);
-        m_status_set(tm->m,HOSTILE);
+        m_status_set(tm->monster,AWAKE);
+        m_status_set(tm->monster,HOSTILE);
     }
 }
-
 
 void learnspell(int blessing)
 {

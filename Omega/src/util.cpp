@@ -941,14 +941,14 @@ void free_mons_and_objs(MonsterList* mlist)
     MonsterList* tmp;
 
     while (mlist) {
-        free_objlist((tmp = mlist)->m->possessions);
+        free_objlist((tmp = mlist)->monster->possessions);
         /* DAG free the name & corpseString if allocated */
-        if ( m_statusp( tmp->m, ALLOC ) )
+        if ( m_statusp( tmp->monster, ALLOC ) )
         {
-            free( tmp->m->name );
-            free( tmp->m->corpseString );
+            free( tmp->monster->name );
+            free( tmp->monster->corpseString );
         }
-        free(tmp->m);
+        free(tmp->monster);
         mlist = mlist->next;
         free(tmp);
     }

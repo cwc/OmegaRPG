@@ -578,11 +578,11 @@ void cavern_level(void)
             findspace(&tx,&ty,-1);
             Level->mlist = ((MonsterList*) checkmalloc(sizeof(MonsterList)));
             Level->mlist->next = NULL;
-            Level->mlist->m =
+            Level->mlist->monster =
                 Level->site[tx][ty].creature =
                     ((Monster*) make_creature(GOBLIN_KING)); /* goblin king */
-            Level->mlist->m->x = tx;
-            Level->mlist->m->y = ty;
+            Level->mlist->monster->x = tx;
+            Level->mlist->monster->y = ty;
         }
     }
     else if (Current_Environment == E_VOLCANO) {
@@ -590,11 +590,11 @@ void cavern_level(void)
             findspace(&tx,&ty,-1);
             Level->mlist = ((MonsterList*) checkmalloc(sizeof(MonsterList)));
             Level->mlist->next = NULL;
-            Level->mlist->m =
+            Level->mlist->monster =
                 Level->site[tx][ty].creature =
                     ((Monster*) make_creature(DEMON_EMP)); /* The demon emp */
-            Level->mlist->m->x = tx;
-            Level->mlist->m->y = ty;
+            Level->mlist->monster->x = tx;
+            Level->mlist->monster->y = ty;
         }
     }
 }
@@ -636,11 +636,11 @@ void sewer_level(void)
             findspace(&tx,&ty,-1);
             Level->mlist = ((MonsterList*) checkmalloc(sizeof(MonsterList)));
             Level->mlist->next = NULL;
-            Level->mlist->m =
+            Level->mlist->monster =
                 Level->site[tx][ty].creature =
                     ((Monster*) make_creature(GREAT_WYRM)); /* The Great Wyrm */
-            Level->mlist->m->x = tx;
-            Level->mlist->m->y = ty;
+            Level->mlist->monster->x = tx;
+            Level->mlist->monster->y = ty;
         }
     }
 }
