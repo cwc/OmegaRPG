@@ -109,7 +109,7 @@ void l_trap_door(void)
                 morewait();
                 p_damage(Level->depth*difficulty(),UNSTOPPABLE,"a rockslide");
             }
-            change_level(Level->depth,Level->depth+1,FALSE);
+            change_level(Level->depth,Level->depth+1,false);
             resetgamestatus(MOUNTED);
             showflags();
             roomcheck();
@@ -125,7 +125,7 @@ void l_trap_door(void)
                 morewait();
                 p_damage(Level->depth*difficulty(),UNSTOPPABLE,"a rockslide");
             }
-            change_level(Level->depth,Level->depth+1,FALSE);
+            change_level(Level->depth,Level->depth+1,false);
             roomcheck();
         }
     }

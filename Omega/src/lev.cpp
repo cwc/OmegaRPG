@@ -86,7 +86,7 @@ void make_country_monsters(Symbol terrain)
         tml = ((MonsterList*) checkmalloc(sizeof(MonsterList)));
         tml->m = ((Monster*) checkmalloc(sizeof(Monster)));
         if (monsters == NULL) tml->m =
-                m_create(random_range(Level->level_width),random_range(Level->level_length),TRUE,difficulty());
+                m_create(random_range(Level->level_width),random_range(Level->level_length),true,difficulty());
         else {
             tml->m = make_creature(*(monsters+random_range(10)));
             tml->m->x = random_range(Level->level_width);
@@ -382,7 +382,7 @@ void populate_level(int monstertype)
         if (monsterid != RANDOM)
             Level->site[i][j].creature = make_creature(monsterid);
         else
-            Level->site[i][j].creature = m_create(i,j,TRUE,difficulty());
+            Level->site[i][j].creature = m_create(i,j,true,difficulty());
 
         Level->site[i][j].creature->x = i;
         Level->site[i][j].creature->y = j;
@@ -563,7 +563,7 @@ Monster* make_creature(int mid)
                 ob = (pob) (create_object(newmonster->level));
                 if (ob->uniqueness != COMMON) {
                     Objects[ob->id].uniqueness = UNIQUE_UNMADE;
-                    free_obj(ob, TRUE);
+                    free_obj(ob, true);
                     ob = NULL;
                 }
             } while (!ob);

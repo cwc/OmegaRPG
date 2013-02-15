@@ -38,7 +38,7 @@ char dump_buf[ 100 ];
 char spaces[] = "                                             "
                 "                                             ";
 
-short do_dump_stat_imm = TRUE;
+short do_dump_stat_imm = true;
 
 char *legion_ranks[ 6 ] =
 {
@@ -221,89 +221,89 @@ short dump_carried( FILE *dumpfile )
     /* reset "checksum" */
     dumpcheck = 0;
 
-    if ( !dump( dumpfile, "-- Possessions (Carried) --\n\n", FALSE ) )
-        return FALSE;
+    if ( !dump( dumpfile, "-- Possessions (Carried) --\n\n", false ) )
+        return false;
 
     strcpy( dump_buf, "a) Ready hand     : " );
     strcat_carry_item( dump_buf, O_READY_HAND );
-    if ( !dump( dumpfile, dump_buf, TRUE ) )
-        return FALSE;
+    if ( !dump( dumpfile, dump_buf, true ) )
+        return false;
 
     strcpy( dump_buf, "b) Weapon hand    : " );
     strcat_carry_item( dump_buf, O_WEAPON_HAND );
-    if ( !dump( dumpfile, dump_buf, TRUE ) )
-        return FALSE;
+    if ( !dump( dumpfile, dump_buf, true ) )
+        return false;
 
     strcpy( dump_buf, "c) Left shoulder  : " );
     strcat_carry_item( dump_buf, O_LEFT_SHOULDER );
-    if ( !dump( dumpfile, dump_buf, TRUE ) )
-        return FALSE;
+    if ( !dump( dumpfile, dump_buf, true ) )
+        return false;
 
     strcpy( dump_buf, "d) Right shoulder : " );
     strcat_carry_item( dump_buf, O_RIGHT_SHOULDER );
-    if ( !dump( dumpfile, dump_buf, TRUE ) )
-        return FALSE;
+    if ( !dump( dumpfile, dump_buf, true ) )
+        return false;
 
     strcpy( dump_buf, "e) Belt           : " );
     strcat_carry_item( dump_buf, O_BELT1 );
-    if ( !dump( dumpfile, dump_buf, TRUE ) )
-        return FALSE;
+    if ( !dump( dumpfile, dump_buf, true ) )
+        return false;
 
     strcpy( dump_buf, "f) Belt           : " );
     strcat_carry_item( dump_buf, O_BELT2 );
-    if ( !dump( dumpfile, dump_buf, TRUE ) )
-        return FALSE;
+    if ( !dump( dumpfile, dump_buf, true ) )
+        return false;
 
     strcpy( dump_buf, "g) Belt           : " );
     strcat_carry_item( dump_buf, O_BELT3 );
-    if ( !dump( dumpfile, dump_buf, TRUE ) )
-        return FALSE;
+    if ( !dump( dumpfile, dump_buf, true ) )
+        return false;
 
     strcpy( dump_buf, "h) Shield         : " );
     strcat_carry_item( dump_buf, O_SHIELD );
-    if ( !dump( dumpfile, dump_buf, TRUE ) )
-        return FALSE;
+    if ( !dump( dumpfile, dump_buf, true ) )
+        return false;
 
     strcpy( dump_buf, "i) Armor          : " );
     strcat_carry_item( dump_buf, O_ARMOR );
-    if ( !dump( dumpfile, dump_buf, TRUE ) )
-        return FALSE;
+    if ( !dump( dumpfile, dump_buf, true ) )
+        return false;
 
     strcpy( dump_buf, "j) Boots          : " );
     strcat_carry_item( dump_buf, O_BOOTS );
-    if ( !dump( dumpfile, dump_buf, TRUE ) )
-        return FALSE;
+    if ( !dump( dumpfile, dump_buf, true ) )
+        return false;
 
     strcpy( dump_buf, "k) Cloak          : " );
     strcat_carry_item( dump_buf, O_CLOAK );
-    if ( !dump( dumpfile, dump_buf, TRUE ) )
-        return FALSE;
+    if ( !dump( dumpfile, dump_buf, true ) )
+        return false;
 
     strcpy( dump_buf, "l) Finger         : " );
     strcat_carry_item( dump_buf, O_RING1 );
-    if ( !dump( dumpfile, dump_buf, TRUE ) )
-        return FALSE;
+    if ( !dump( dumpfile, dump_buf, true ) )
+        return false;
 
     strcpy( dump_buf, "m) Finger         : " );
     strcat_carry_item( dump_buf, O_RING2 );
-    if ( !dump( dumpfile, dump_buf, TRUE ) )
-        return FALSE;
+    if ( !dump( dumpfile, dump_buf, true ) )
+        return false;
 
     strcpy( dump_buf, "n) Finger         : " );
     strcat_carry_item( dump_buf, O_RING3 );
-    if ( !dump( dumpfile, dump_buf, TRUE ) )
-        return FALSE;
+    if ( !dump( dumpfile, dump_buf, true ) )
+        return false;
 
     strcpy( dump_buf, "o) Finger         : " );
     strcat_carry_item( dump_buf, O_RING4 );
-    if ( !dump( dumpfile, dump_buf, TRUE ) )
-        return FALSE;
+    if ( !dump( dumpfile, dump_buf, true ) )
+        return false;
 
     sprintf( dump_buf, "\n[Verification: %8.8lx]\n\n", dumpcheck );
-    if ( !dump( dumpfile, dump_buf, FALSE ) )
-        return FALSE;
+    if ( !dump( dumpfile, dump_buf, false ) )
+        return false;
 
-    return TRUE;
+    return true;
 }
 
 short dump_pack( FILE *dumpfile )
@@ -315,22 +315,22 @@ short dump_pack( FILE *dumpfile )
         /* reset "checksum" */
         dumpcheck = 0;
 
-        if ( !dump( dumpfile, "-- Possessions (In Pack) --\n\n", FALSE ) )
-            return FALSE;
+        if ( !dump( dumpfile, "-- Possessions (In Pack) --\n\n", false ) )
+            return false;
 
         for( i = 0; i < Player.packptr; i++ )
         {
             sprintf( dump_buf, "%c) %s\n", i + 'A', itemid( Player.pack[ i ] ) );
-            if ( !dump( dumpfile, dump_buf, TRUE ) )
-                return FALSE;
+            if ( !dump( dumpfile, dump_buf, true ) )
+                return false;
         }
 
         sprintf( dump_buf, "\n[Verification: %8.8lx]\n\n", dumpcheck );
-        if ( !dump( dumpfile, dump_buf, FALSE ) )
-            return FALSE;
+        if ( !dump( dumpfile, dump_buf, false ) )
+            return false;
     }
 
-    return TRUE;
+    return true;
 }
 
 short dump_condo( FILE *dumpfile )
@@ -342,39 +342,39 @@ short dump_condo( FILE *dumpfile )
         /* reset "checksum" */
         dumpcheck = 0;
 
-        if ( !dump( dumpfile, "-- Possessions (In Condo) --\n\n", FALSE ) )
-            return FALSE;
+        if ( !dump( dumpfile, "-- Possessions (In Condo) --\n\n", false ) )
+            return false;
 
         for( ol = Condoitems; ol; ol = ol->next )
         {
             sprintf( dump_buf, "%s\n", itemid( ol->thing ) );
-            if ( !dump( dumpfile, dump_buf, TRUE ) )
-                return FALSE;
+            if ( !dump( dumpfile, dump_buf, true ) )
+                return false;
         }
 
         sprintf( dump_buf, "\n[Verification: %8.8lx]\n\n", dumpcheck );
-        if ( !dump( dumpfile, dump_buf, FALSE ) )
-            return FALSE;
+        if ( !dump( dumpfile, dump_buf, false ) )
+            return false;
     }
 
-    return TRUE;
+    return true;
 }
 
 short dump_possessions( FILE *dumpfile )
 {
     if ( !dump_carried( dumpfile ) )
-        return FALSE;
+        return false;
 
     if ( !dump_pack( dumpfile ) )
-        return FALSE;
+        return false;
 
     if ( gamestatusp( SOLD_CONDO ) )
     {
         if ( !dump_condo( dumpfile ) )
-            return FALSE;
+            return false;
     }
 
-    return TRUE;
+    return true;
 }
 
 #define RANK_FIELD_WIDTH 41
@@ -401,16 +401,16 @@ short dump_ranks( FILE *dumpfile )
     /* reset "checksum" */
     dumpcheck = 0;
 
-    if ( !dump( dumpfile, "-- Current Ranks --\n\n", FALSE ) )
-        return FALSE;
+    if ( !dump( dumpfile, "-- Current Ranks --\n\n", false ) )
+        return false;
 
     if ( Player.rank[ LEGION ] > 0 )
     {
         strcpy( dump_buf, legion_rank_string( Player.rank[ LEGION ] ) );
         cp = fill_rank_field( dump_buf );
         sprintf( cp, "Exp: %ld\n", Player.guildxp[ LEGION ] );
-        if ( !dump( dumpfile, dump_buf, TRUE ) )
-            return FALSE;
+        if ( !dump( dumpfile, dump_buf, true ) )
+            return false;
     }
 
     if ( Player.rank[ ARENA ] != 0 )
@@ -425,8 +425,8 @@ short dump_ranks( FILE *dumpfile )
         {
             strcat( dump_buf, "\n" );
         }
-        if ( !dump( dumpfile, dump_buf, TRUE ) )
-            return FALSE;
+        if ( !dump( dumpfile, dump_buf, true ) )
+            return false;
     }
 
     if ( Player.rank[ COLLEGE ] > 0 )
@@ -434,8 +434,8 @@ short dump_ranks( FILE *dumpfile )
         strcpy( dump_buf, college_rank_string( Player.rank[ COLLEGE ] ) );
         cp = fill_rank_field( dump_buf );
         sprintf( cp, "Exp: %ld\n", Player.guildxp[ COLLEGE ] );
-        if ( !dump( dumpfile, dump_buf, TRUE ) )
-            return FALSE;
+        if ( !dump( dumpfile, dump_buf, true ) )
+            return false;
     }
 
     strcpy( dump_buf, nobility_rank_string( Player.rank[ NOBILITY ] ) );
@@ -454,8 +454,8 @@ short dump_ranks( FILE *dumpfile )
         sprintf( cp, "%d%s quest completed\n", Player.rank[ NOBILITY ] - 1,
                  ordinal( Player.rank[ NOBILITY ] - 1 ) );
     }
-    if ( !dump( dumpfile, dump_buf, TRUE ) )
-        return FALSE;
+    if ( !dump( dumpfile, dump_buf, true ) )
+        return false;
 
     if ( Player.rank[ CIRCLE ] != 0 )
     {
@@ -469,8 +469,8 @@ short dump_ranks( FILE *dumpfile )
         {
             strcat( dump_buf, "\n" );
         }
-        if ( !dump( dumpfile, dump_buf, TRUE ) )
-            return FALSE;
+        if ( !dump( dumpfile, dump_buf, true ) )
+            return false;
     }
 
     if ( Player.rank[ ORDER ] != 0 )
@@ -485,8 +485,8 @@ short dump_ranks( FILE *dumpfile )
         {
             strcat( dump_buf, "\n" );
         }
-        if ( !dump( dumpfile, dump_buf, TRUE ) )
-            return FALSE;
+        if ( !dump( dumpfile, dump_buf, true ) )
+            return false;
     }
 
     if ( Player.rank[ THIEVES ] > 0 )
@@ -494,8 +494,8 @@ short dump_ranks( FILE *dumpfile )
         strcpy( dump_buf, thieves_rank_string( Player.rank[ THIEVES ] ) );
         cp = fill_rank_field( dump_buf );
         sprintf( cp, "Exp: %ld\n", Player.guildxp[ THIEVES ] );
-        if ( !dump( dumpfile, dump_buf, TRUE ) )
-            return FALSE;
+        if ( !dump( dumpfile, dump_buf, true ) )
+            return false;
     }
 
     if ( Player.rank[ PRIESTHOOD ] > 0 )
@@ -503,8 +503,8 @@ short dump_ranks( FILE *dumpfile )
         strcpy( dump_buf, priesthood_rank_string( Player.rank[ PRIESTHOOD ], Player.patron ) );
         cp = fill_rank_field( dump_buf );
         sprintf( cp, "Exp: %ld\n", Player.guildxp[ PRIESTHOOD ] );
-        if ( !dump( dumpfile, dump_buf, TRUE ) )
-            return FALSE;
+        if ( !dump( dumpfile, dump_buf, true ) )
+            return false;
     }
 
     if ( Player.rank[ MONKS ] > 0 )
@@ -512,20 +512,20 @@ short dump_ranks( FILE *dumpfile )
         strcpy(dump_buf, monk_rank_string(Player.rank[MONKS]));
         cp = fill_rank_field(dump_buf);
         sprintf(cp, "Exp: %ld\n", Player.guildxp[MONKS]);
-        if (!dump(dumpfile, dump_buf, TRUE)) return FALSE;
+        if (!dump(dumpfile, dump_buf, true)) return false;
     }
 
     if ( Player.rank[ ADEPT ] > 0 )
     {
-        if ( !dump( dumpfile, "********** An Adept of Omega **********\n", TRUE ) )
-            return FALSE;
+        if ( !dump( dumpfile, "********** An Adept of Omega **********\n", true ) )
+            return false;
     }
 
     sprintf( dump_buf, "\n[Verification: %8.8lx]\n\n", dumpcheck );
-    if ( !dump( dumpfile, dump_buf, FALSE ) )
-        return FALSE;
+    if ( !dump( dumpfile, dump_buf, false ) )
+        return false;
 
-    return TRUE;
+    return true;
 }
 
 int dump_col;
@@ -539,8 +539,8 @@ short dump_in_columns( FILE *dumpfile, int col_width, char *s )
     {
         strcat( dump_buf, s );
         strcat( dump_buf, "\n" );
-        if ( !dump( dumpfile, dump_buf, TRUE ) )
-            return FALSE;
+        if ( !dump( dumpfile, dump_buf, true ) )
+            return false;
 
         dump_col = 0;
     }
@@ -560,7 +560,7 @@ short dump_in_columns( FILE *dumpfile, int col_width, char *s )
         dump_buf[ dump_col ] = '\0';
     }
 
-    return TRUE;
+    return true;
 }
 
 short end_dump_in_columns( FILE *dumpfile )
@@ -568,14 +568,14 @@ short end_dump_in_columns( FILE *dumpfile )
     if ( dump_col > 0 )
     {
         strcat( dump_buf, "\n" );
-        if ( !dump( dumpfile, dump_buf, TRUE ) )
-            return FALSE;
+        if ( !dump( dumpfile, dump_buf, true ) )
+            return false;
     }
 
-    if ( !dump( dumpfile, "\n", FALSE ) )
-        return FALSE;
+    if ( !dump( dumpfile, "\n", false ) )
+        return false;
 
-    return TRUE;
+    return true;
 }
 
 short dump_stati( FILE *dumpfile )
@@ -586,153 +586,153 @@ short dump_stati( FILE *dumpfile )
     dumpcheck = 0;
     dump_col = 0;
 
-    if ( !dump( dumpfile, "-- Current Stati --\n\n", FALSE ) )
-        return FALSE;
+    if ( !dump( dumpfile, "-- Current Stati --\n\n", false ) )
+        return false;
 
     if ( Player.status[ BLINDED ] )
     {
         numstati++;
         if ( !dump_in_columns( dumpfile, 20, "Blinded" ) )
-            return FALSE;
+            return false;
     }
 
     if ( Player.status[ SLOWED ] )
     {
         numstati++;
         if ( !dump_in_columns( dumpfile, 20, "Slowed" ) )
-            return FALSE;
+            return false;
     }
 
     if ( Player.status[ HASTED ] )
     {
         numstati++;
         if ( !dump_in_columns( dumpfile, 20, "Hasted" ) )
-            return FALSE;
+            return false;
     }
 
     if ( Player.status[ DISPLACED ] )
     {
         numstati++;
         if ( !dump_in_columns( dumpfile, 20, "Displaced" ) )
-            return FALSE;
+            return false;
     }
 
     if ( Player.status[ SLEPT ] )
     {
         numstati++;
         if ( !dump_in_columns( dumpfile, 20, "Slept" ) )
-            return FALSE;
+            return false;
     }
 
     if ( Player.status[ DISEASED ] )
     {
         numstati++;
         if ( !dump_in_columns( dumpfile, 20, "Diseased" ) )
-            return FALSE;
+            return false;
     }
 
     if ( Player.status[ POISONED ] )
     {
         numstati++;
         if ( !dump_in_columns( dumpfile, 20, "Poisoned" ) )
-            return FALSE;
+            return false;
     }
 
     if ( Player.status[ BREATHING ] )
     {
         numstati++;
         if ( !dump_in_columns( dumpfile, 20, "Breathing" ) )
-            return FALSE;
+            return false;
     }
 
     if ( Player.status[ INVISIBLE ] )
     {
         numstati++;
         if ( !dump_in_columns( dumpfile, 20, "Invisible" ) )
-            return FALSE;
+            return false;
     }
 
     if ( Player.status[ REGENERATING ] )
     {
         numstati++;
         if ( !dump_in_columns( dumpfile, 20, "Regenerating" ) )
-            return FALSE;
+            return false;
     }
 
     if ( Player.status[ VULNERABLE ] )
     {
         numstati++;
         if ( !dump_in_columns( dumpfile, 20, "Vulnerable" ) )
-            return FALSE;
+            return false;
     }
 
     if ( Player.status[ BERSERK ] )
     {
         numstati++;
         if ( !dump_in_columns( dumpfile, 20, "Berserk" ) )
-            return FALSE;
+            return false;
     }
 
     if ( Player.status[ IMMOBILE ] )
     {
         numstati++;
         if ( !dump_in_columns( dumpfile, 20, "Immobile" ) )
-            return FALSE;
+            return false;
     }
 
     if ( Player.status[ ALERT ] )
     {
         numstati++;
         if ( !dump_in_columns( dumpfile, 20, "Alert" ) )
-            return FALSE;
+            return false;
     }
 
     if ( Player.status[ AFRAID ] )
     {
         numstati++;
         if ( !dump_in_columns( dumpfile, 20, "Afraid" ) )
-            return FALSE;
+            return false;
     }
 
     if ( Player.status[ ACCURATE ] )
     {
         numstati++;
         if ( !dump_in_columns( dumpfile, 20, "Accurate" ) )
-            return FALSE;
+            return false;
     }
 
     if ( Player.status[ HERO ] )
     {
         numstati++;
         if ( !dump_in_columns( dumpfile, 20, "Heroic" ) )
-            return FALSE;
+            return false;
     }
 
     if ( Player.status[ LEVITATING ] )
     {
         numstati++;
         if ( !dump_in_columns( dumpfile, 20, "Levitating" ) )
-            return FALSE;
+            return false;
     }
 
     if ( numstati )
     {
         /* dump last row of stati */
         if ( !end_dump_in_columns( dumpfile ) )
-            return FALSE;
+            return false;
 
         sprintf( dump_buf, "[Verification: %8.8lx]\n\n", dumpcheck );
-        if ( !dump( dumpfile, dump_buf, FALSE ) )
-            return FALSE;
+        if ( !dump( dumpfile, dump_buf, false ) )
+            return false;
     }
     else
     {
         sprintf( dump_buf, "(None)\n\n" );
-        if ( !dump( dumpfile, dump_buf, FALSE ) )
-            return FALSE;
+        if ( !dump( dumpfile, dump_buf, false ) )
+            return false;
     }
 
-    return TRUE;
+    return true;
 }
 
 short dump_immunities( FILE *dumpfile )
@@ -743,111 +743,111 @@ short dump_immunities( FILE *dumpfile )
     dumpcheck = 0;
     dump_col = 0;
 
-    if ( !dump( dumpfile, "-- Current Immunities --\n\n", FALSE ) )
-        return FALSE;
+    if ( !dump( dumpfile, "-- Current Immunities --\n\n", false ) )
+        return false;
 
     if ( p_immune( NORMAL_DAMAGE ) )
     {
         numimmunities++;
         if ( !dump_in_columns( dumpfile, 26, "Normal Damage" ) )
-            return FALSE;
+            return false;
     }
 
     if ( p_immune( FLAME ) )
     {
         numimmunities++;
         if ( !dump_in_columns( dumpfile, 26, "Flame" ) )
-            return FALSE;
+            return false;
     }
 
     if ( p_immune( ELECTRICITY ) )
     {
         numimmunities++;
         if ( !dump_in_columns( dumpfile, 26, "Electricity" ) )
-            return FALSE;
+            return false;
     }
 
     if ( p_immune( COLD ) )
     {
         numimmunities++;
         if ( !dump_in_columns( dumpfile, 26, "Cold" ) )
-            return FALSE;
+            return false;
     }
 
     if ( p_immune( POISON ) )
     {
         numimmunities++;
         if ( !dump_in_columns( dumpfile, 26, "Poison" ) )
-            return FALSE;
+            return false;
     }
 
     if ( p_immune( ACID ) )
     {
         numimmunities++;
         if ( !dump_in_columns( dumpfile, 26, "Acid" ) )
-            return FALSE;
+            return false;
     }
 
     if ( p_immune( FEAR ) )
     {
         numimmunities++;
         if ( !dump_in_columns( dumpfile, 26, "Fear" ) )
-            return FALSE;
+            return false;
     }
 
     if ( p_immune( SLEEP ) )
     {
         numimmunities++;
         if ( !dump_in_columns( dumpfile, 26, "Sleep" ) )
-            return FALSE;
+            return false;
     }
 
     if ( p_immune( NEGENERGY ) )
     {
         numimmunities++;
         if ( !dump_in_columns( dumpfile, 26, "Negative Energies" ) )
-            return FALSE;
+            return false;
     }
 
     if ( p_immune( THEFT ) )
     {
         numimmunities++;
         if ( !dump_in_columns( dumpfile, 26, "Theft" ) )
-            return FALSE;
+            return false;
     }
 
     if ( p_immune( GAZE ) )
     {
         numimmunities++;
         if ( !dump_in_columns( dumpfile, 26, "Gaze" ) )
-            return FALSE;
+            return false;
     }
 
     if ( p_immune( INFECTION ) )
     {
         numimmunities++;
         if ( !dump_in_columns( dumpfile, 26, "Infection" ) )
-            return FALSE;
+            return false;
     }
 
     if ( numimmunities )
     {
         /* dump last row of immunities */
         if ( !end_dump_in_columns( dumpfile ) )
-            return FALSE;
+            return false;
 
         sprintf( dump_buf, "[Verification: %8.8lx]\n\n", dumpcheck );
-        if ( !dump( dumpfile, dump_buf, FALSE ) )
-            return FALSE;
+        if ( !dump( dumpfile, dump_buf, false ) )
+            return false;
     }
     else
     {
         sprintf( dump_buf, "(None)\n\n" );
-        if ( !dump( dumpfile, dump_buf, FALSE ) )
-            return FALSE;
+        if ( !dump( dumpfile, dump_buf, false ) )
+            return false;
     }
 
-    return TRUE;
+    return true;
 }
 
 short cheated_death;
@@ -860,33 +860,33 @@ short dump_options( FILE *dumpfile )
         /* reset "checksum" */
         dumpcheck = 0;
 
-        if ( !dump( dumpfile, "\n-- Cheats --\n\n", FALSE ) )
-            return FALSE;
+        if ( !dump( dumpfile, "\n-- Cheats --\n\n", false ) )
+            return false;
 
         if ( gamestatusp( CHEATED ) )
         {
-            if ( !dump( dumpfile, "Entered Wizard Mode\n", TRUE ) )
-                return FALSE;
+            if ( !dump( dumpfile, "Entered Wizard Mode\n", true ) )
+                return false;
         }
 
         if ( cheated_death )
         {
-            if ( !dump( dumpfile, "Refused to die\n", TRUE ) )
-                return FALSE;
+            if ( !dump( dumpfile, "Refused to die\n", true ) )
+                return false;
         }
 
         if ( cheated_savegame )
         {
-            if ( !dump( dumpfile, "Restored from save file after death\n", TRUE ) )
-                return FALSE;
+            if ( !dump( dumpfile, "Restored from save file after death\n", true ) )
+                return false;
         }
 
         sprintf( dump_buf, "[Verification: %8.8lx]\n\n", dumpcheck );
-        if ( !dump( dumpfile, dump_buf, FALSE ) )
-            return FALSE;
+        if ( !dump( dumpfile, dump_buf, false ) )
+            return false;
     }
 
-    return TRUE;
+    return true;
 }
 
 short dump_basic( FILE *dumpfile )
@@ -902,8 +902,8 @@ short dump_basic( FILE *dumpfile )
     strcpy( dump_buf, "[*] " );
     strcat( dump_buf, VERSIONSTRING );
     strcat( dump_buf, " character dump [*]\n\n" );
-    if ( !dump( dumpfile, dump_buf, FALSE ) )
-        return FALSE;
+    if ( !dump( dumpfile, dump_buf, false ) )
+        return false;
 
     curcol = sprintf( dump_buf, "Name      : %s\n", Player.name );
     if ( gamestatusp( CHEATED ) )
@@ -914,24 +914,24 @@ short dump_basic( FILE *dumpfile )
             cp = &(dump_buf[ 70 ]);
         strcpy( cp, " (WIZARD)\n" );
     }
-    if ( !dump( dumpfile, dump_buf, TRUE ) )
-        return FALSE;
+    if ( !dump( dumpfile, dump_buf, true ) )
+        return false;
 
     sprintf( dump_buf, "Level     : %s [%d]\n", levelname( Player.level ), Player.level );
-    if ( !dump( dumpfile, dump_buf, TRUE ) )
-        return FALSE;
+    if ( !dump( dumpfile, dump_buf, true ) )
+        return false;
 
     sprintf( dump_buf, "Alignment : %s\n\n", alignment_string( Player.alignment ) );
-    if ( !dump( dumpfile, dump_buf, TRUE ) )
-        return FALSE;
+    if ( !dump( dumpfile, dump_buf, true ) )
+        return false;
 
     /*
       sprintf( dump_buf, "Str : %5d [%d]%n%*sHP       : %5d [%d]%n%*sHit     : %d\n",
       Player.str, Player.maxstr, &curcol, 26 - curcol, spaces,
       Player.hp,  Player.maxhp,  &curcol, 57 - curcol, spaces,
       Player.hit );
-      if ( !dump( dumpfile, dump_buf, TRUE ) )
-      return FALSE;
+      if ( !dump( dumpfile, dump_buf, true ) )
+      return false;
     */
 
     curcol = sprintf( dump_buf, "Str : %5d [%d]", Player.str, Player.maxstr );
@@ -943,8 +943,8 @@ short dump_basic( FILE *dumpfile )
     for ( ; curcol < 57; curcol++ )
         *cp++ = ' ';
     sprintf( cp, "Hit     : %d\n", Player.hit );
-    if ( !dump( dumpfile, dump_buf, TRUE ) )
-        return FALSE;
+    if ( !dump( dumpfile, dump_buf, true ) )
+        return false;
 
     curcol = sprintf( dump_buf, "Con : %5d [%d]", Player.con, Player.maxcon );
     cp = strrchr( dump_buf, '\0' );
@@ -955,24 +955,24 @@ short dump_basic( FILE *dumpfile )
     for ( ; curcol < 57; curcol++ )
         *cp++ = ' ';
     sprintf( cp, "Damage  : %d\n", Player.dmg );
-    if ( !dump( dumpfile, dump_buf, TRUE ) )
-        return FALSE;
+    if ( !dump( dumpfile, dump_buf, true ) )
+        return false;
 
     curcol = sprintf( dump_buf, "Dex : %5d [%d]", Player.dex, Player.maxdex );
     cp = strrchr( dump_buf, '\0' );
     for ( ; curcol < 57; curcol++ )
         *cp++ = ' ';
     sprintf( cp, "Defense : %d\n", Player.defense );
-    if ( !dump( dumpfile, dump_buf, TRUE ) )
-        return FALSE;
+    if ( !dump( dumpfile, dump_buf, true ) )
+        return false;
 
     curcol = sprintf( dump_buf, "Agi : %5d [%d]", Player.agi, Player.maxagi );
     cp = strrchr( dump_buf, '\0' );
     for ( ; curcol < 26; curcol++ )
         *cp++ = ' ';
     sprintf( cp, "Exp      : %-10ld          Armor   : %d\n", Player.xp,  Player.absorption );
-    if ( !dump( dumpfile, dump_buf, TRUE ) )
-        return FALSE;
+    if ( !dump( dumpfile, dump_buf, true ) )
+        return false;
 
     curcol = sprintf( dump_buf, "Int : %5d [%d]", Player.iq, Player.maxiq );
     cp = strrchr( dump_buf, '\0' );
@@ -980,16 +980,16 @@ short dump_basic( FILE *dumpfile )
         *cp++ = ' ';
     sprintf( cp, "Carry    : %-10d          Speed   : %d.%d\n",
              Player.itemweight, 5 / Player.speed, 500 / Player.speed % 100 );
-    if ( !dump( dumpfile, dump_buf, TRUE ) )
-        return FALSE;
+    if ( !dump( dumpfile, dump_buf, true ) )
+        return false;
 
     curcol = sprintf( dump_buf, "Pow : %5d [%d]", Player.pow, Player.maxpow );
     cp = strrchr( dump_buf, '\0' );
     for ( ; curcol < 26; curcol++ )
         *cp++ = ' ';
     sprintf( cp, "Capacity : %d\n\n", Player.maxweight );
-    if ( !dump( dumpfile, dump_buf, TRUE ) )
-        return FALSE;
+    if ( !dump( dumpfile, dump_buf, true ) )
+        return false;
 
     total_balance = 0;
     for( account = bank; account; account = account->next_account )
@@ -999,22 +999,22 @@ short dump_basic( FILE *dumpfile )
     }
 
     sprintf( dump_buf, "Cash (carried/bank) : %ld / %ld\n", Player.cash, total_balance );
-    if ( !dump( dumpfile, dump_buf, TRUE ) )
-        return FALSE;
+    if ( !dump( dumpfile, dump_buf, true ) )
+        return false;
 
     sprintf( dump_buf, "Current Point Total : %ld\n", calc_points() );
-    if ( !dump( dumpfile, dump_buf, TRUE ) )
-        return FALSE;
+    if ( !dump( dumpfile, dump_buf, true ) )
+        return false;
 
     sprintf( dump_buf, "Elapsed Game Time   : %s\n\n", elapsed_time_string( Time ) );
-    if ( !dump( dumpfile, dump_buf, TRUE ) )
-        return FALSE;
+    if ( !dump( dumpfile, dump_buf, true ) )
+        return false;
 
     sprintf( dump_buf, "[Verification: %8.8lx]\n\n", dumpcheck );
-    if ( !dump( dumpfile, dump_buf, FALSE ) )
-        return FALSE;
+    if ( !dump( dumpfile, dump_buf, false ) )
+        return false;
 
-    return TRUE;
+    return true;
 }
 
 short dump( FILE *dumpfile, char *s, short do_check )
@@ -1022,17 +1022,17 @@ short dump( FILE *dumpfile, char *s, short do_check )
     if ( do_check )
     {
         if( !build_check( &dumpcheck, s ) )
-            return FALSE;
+            return false;
     }
 
     if ( EOF == fputs( s, dumpfile ) )
     {
         fclose( dumpfile );
         why = "failed write";
-        return FALSE;
+        return false;
     }
 
-    return TRUE;
+    return true;
 }
 
 short build_check( long *check, char *s )
@@ -1062,11 +1062,11 @@ short build_check( long *check, char *s )
         if ( ++count > 80 )
         {
             why = "checksum unterminated string";
-            return FALSE;
+            return false;
         }
     }
 
-    return TRUE;
+    return true;
 }
 
 int alignment_level_index( int alignment )

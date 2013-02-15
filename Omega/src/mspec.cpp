@@ -102,7 +102,7 @@ void m_sp_demon (Monster* m)
             break; /* inner circle demon */
         default:
             mid = 0;
-            assert(FALSE); /* bomb on error */
+            assert(false); /* bomb on error */
         }
 
         summon(-1, mid);
@@ -483,7 +483,7 @@ void m_sp_lw(Monster* m)
 
 void m_sp_angel(Monster* m)
 {
-    int mid,hostile = FALSE;
+    int mid,hostile = false;
     switch(m->aux1) {
     case ATHENA:
     case ODIN:
@@ -548,7 +548,7 @@ void m_sp_raise(Monster* m)
                         summon(-1,Level->site[x][y].things->thing->charge);
                         t = Level->site[x][y].things;
                         Level->site[x][y].things = Level->site[x][y].things->next;
-                        free_obj( t->thing, TRUE );
+                        free_obj( t->thing, true );
                         free((char *) t);
                     }
 }

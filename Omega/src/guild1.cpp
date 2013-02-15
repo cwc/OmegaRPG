@@ -99,7 +99,7 @@ void l_merc_guild(void)
                              "legion has set up for you. The password is \"loyalty\". Don't lose your card!", 0);
 
                 /* gain bank card for salary account */
-                account = bank_create_account(TRUE, 0, "loyalty");
+                account = bank_create_account(true, 0, "loyalty");
                 account->balance = 500;
 
                 Objects[OB_DEBIT_CARD].known = 1;
@@ -158,7 +158,7 @@ void l_merc_guild(void)
             Commandantbehavior = fixnpc(4);
             save_hiscore_npc(8);
 
-            Spells[S_REGENERATE].known = TRUE;
+            Spells[S_REGENERATE].known = true;
             Player.rank[LEGION] = COMMANDANT;
             Player.str += 2;
             Player.con += 2;
@@ -206,7 +206,7 @@ void l_merc_guild(void)
             print1("You have been taught the spell of heroism!");
             print2("You are given advanced training, and a raise.");
 
-            Spells[S_HERO].known = TRUE;
+            Spells[S_HERO].known = true;
             Player.rank[LEGION]=COLONEL;
             Player.str++;
             Player.con++;
@@ -429,7 +429,7 @@ void l_arena(void)
         print1("OK, we're arranging a match....");
         morewait();
         Arena_Monster = ((Monster*) checkmalloc(sizeof(Monster)));
-        Arena_Victory = FALSE;
+        Arena_Victory = false;
         switch(Arena_Opponent) {
         case 0:
             *Arena_Monster = Monsters[GEEK];
@@ -540,9 +540,9 @@ void l_arena(void)
         change_environment(E_ARENA);
         print1("Let the battle begin....");
 
-        time_clock(TRUE);
+        time_clock(true);
         while (Current_Environment == E_ARENA)
-            time_clock(FALSE);
+            time_clock(false);
 
         /* DAG all this nasty mess cleaned up...  */
         /* one process with m_status_set( Arena_Monster, ALLOC) */

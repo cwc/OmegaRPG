@@ -8,7 +8,7 @@ void p_movefunction(int movef)
 {
     /* loc functs above traps should be activated whether levitating or not */
     drawvision(Player.x,Player.y);
-    sign_print(Player.x,Player.y,FALSE);
+    sign_print(Player.x,Player.y,false);
     if (Player.status[SHADOWFORM])
         switch(movef) {	/* player in shadow form is unable to do most things */
         case L_CHAOS:
@@ -476,7 +476,7 @@ void sign_print(int x, int y, int signp)
 {
     if ((Level->site[x][y].p_locf >= CITYSITEBASE) &&
             (Level->site[x][y].p_locf < CITYSITEBASE+NUMCITYSITES))
-        CitySiteList[Level->site[x][y].p_locf - CITYSITEBASE][0] = TRUE;
+        CitySiteList[Level->site[x][y].p_locf - CITYSITEBASE][0] = true;
     switch(Level->site[x][y].p_locf) {
     case L_CHARITY:
         print1("You notice a sign: The Rampart Orphanage And Hospice For The Needy.");

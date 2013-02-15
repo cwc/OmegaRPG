@@ -1046,7 +1046,7 @@ void s_shadowform( void );
 void s_sleep( void );
 void s_summon( void );
 void s_teleport( void );
-void s_truesight( void );
+void s_TRUESIGHT( void );
 void s_warp( void );
 void s_wish( void );
 void showknownspells( int, int );

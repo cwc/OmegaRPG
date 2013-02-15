@@ -402,7 +402,7 @@ void give(void)
             else if (index == CASHVALUE) give_money(m);
             else if (! cursed(Player.possessions[index])) {
                 obj = copy_obj(  Player.possessions[index] );
-                obj->used = FALSE;
+                obj->used = false;
                 conform_lost_objects(1,Player.possessions[index]);
                 obj->number = 1;
                 print2("Given: ");
@@ -500,7 +500,7 @@ void upstairs(void)
                 change_environment(E_CITY);
             else change_environment(E_COUNTRYSIDE);
         }
-        else change_level(Level->depth,Level->depth-1,FALSE);
+        else change_level(Level->depth,Level->depth-1,false);
         roomcheck();
     }
     setgamestatus(SKIP_MONSTERS);
@@ -519,7 +519,7 @@ void downstairs(void)
             print2("You manage to get your horse downstairs.");
         if (Current_Environment == Current_Dungeon) {
             print1("You descend a level.");
-            change_level(Level->depth,Level->depth+1,FALSE);
+            change_level(Level->depth,Level->depth+1,false);
             roomcheck();
         }
         else if ((Current_Environment == E_CITY) ||
@@ -535,7 +535,7 @@ void downstairs(void)
 /* have to redefine in odefs for next full recompile */
 void setoptions(void)
 {
-    int slot = 1,to,done = FALSE;
+    int slot = 1,to,done = false;
     int response;
 
     clearmsg();
@@ -616,7 +616,7 @@ void setoptions(void)
             break;
         case ESCAPE:
             clearmsg();
-            done = TRUE;
+            done = true;
             break;
         default:
             print3("That response is meaningless for this option.");
@@ -935,7 +935,7 @@ void bash_item(void)
 void save(int force)
 {
     char fname[100];
-    int pos, ok = TRUE;
+    int pos, ok = true;
 
     clearmsg();
     if (gamestatusp(ARENA_MODE)) {
@@ -946,7 +946,7 @@ void save(int force)
         else {
             print3("Can't save the game in the arena!");
             setgamestatus(SKIP_MONSTERS);
-            ok = FALSE;
+            ok = false;
         }
     }
     else if (Current_Environment == E_ABYSS) {
@@ -955,7 +955,7 @@ void save(int force)
         else {
             print3("Can't save the game in the Adept's Challenge!");
             setgamestatus(SKIP_MONSTERS);
-            ok = FALSE;
+            ok = false;
         }
     }
     else if (Current_Environment == E_TACTICAL_MAP) {
@@ -965,7 +965,7 @@ void save(int force)
             /* WDT MARK!  I understand this, but it's wrong. */
             print3("Can't save the game in the tactical map!");
             setgamestatus(SKIP_MONSTERS);
-            ok = FALSE;
+            ok = false;
         }
     }
 
@@ -990,7 +990,7 @@ void save(int force)
         if (fname[pos]) {
             sprintf(Str1, "Illegal character '%c' in filename - Save aborted.", fname[pos]);
             print1(Str1);
-            ok = FALSE;
+            ok = false;
         }
 
         // Check destination filename length
@@ -999,7 +999,7 @@ void save(int force)
             sprintf(Str1, "Save name longer than %d characters - Save aborted.",
                     FNAME_MAX_LEN);
             print1(Str1);
-            ok = FALSE;
+            ok = false;
         }
 
         if (ok) {
@@ -1117,7 +1117,7 @@ void moveplayer(int dx, int dy)
 /* handle a h,j,k,l, etc. */
 void movepincountry(int dx, int dy)
 {
-    int i,takestime = TRUE;
+    int i,takestime = true;
     if ((Player.maxweight < Player.itemweight) &&
             random_range(2) &&
             (! Player.status[LEVITATING])) {
@@ -1135,7 +1135,7 @@ void movepincountry(int dx, int dy)
                 print2("were kept in your steed's saddlebags!");
                 for(i=0; i<MAXPACK; i++) {
                     if (Player.pack[i] != NULL)
-                        free_obj( Player.pack[i], TRUE );
+                        free_obj( Player.pack[i], true );
                     Player.pack[i] = NULL;
                 }
                 Player.packptr = 0;
@@ -1162,7 +1162,7 @@ void movepincountry(int dx, int dy)
                 Player.y += dy;
                 if ((! gamestatusp(MOUNTED))&&(Player.possessions[O_BOOTS] != NULL)) {
                     if (Player.possessions[O_BOOTS]->usef == I_BOOTS_7LEAGUE) {
-                        takestime = FALSE;
+                        takestime = false;
                         if (Player.possessions[O_BOOTS]->blessing < 0) {
                             print1("Whooah! -- Your boots launch you into the sky....");
                             print2("You come down in a strange location....");

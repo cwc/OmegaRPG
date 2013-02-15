@@ -492,7 +492,7 @@ void tenminute_status_check(void)
 /* Increase in level at appropriate experience gain */
 void gain_level(void)
 {
-    int gained=FALSE;
+    int gained=false;
     int hp_gain; /* FIXED! 12/30/98 */
 
     if (gamestatusp(SUPPRESS_PRINTING))
@@ -500,7 +500,7 @@ void gain_level(void)
     while (expval(Player.level+1) <= Player.xp) {
         if (!gained)
             morewait();
-        gained = TRUE;
+        gained = true;
         Player.level++;
         print1("You have attained a new experience level!");
         print2("You are now ");
@@ -636,9 +636,9 @@ void p_drown(void)
                         if (Level->site[Player.x][Player.y].p_locf != L_WATER)
                         {
                             p_drop_at(Player.x,Player.y,Player.pack[i]->number,Player.pack[i]);
-                            free_obj( Player.pack[i], TRUE );
+                            free_obj( Player.pack[i], true );
                         } else
-                            free_obj( Player.pack[i], TRUE );
+                            free_obj( Player.pack[i], true );
                     }
                     Player.pack[i] = NULL;
                 }
@@ -788,10 +788,10 @@ void tacplayer(Monster *m)
 /* checks to see if player hits with hitmod vs. monster m at location hitloc */
 int player_hit(int hitmod, char hitloc, Monster *m)
 {
-    int i=0,blocks=FALSE,goodblocks=0,hit;
+    int i=0,blocks=false,goodblocks=0,hit;
     if (m->hp < 1) {
         mprint("Unfortunately, your opponent is already dead!");
-        return(FALSE);
+        return(false);
     }
     else {
         if (hitloc == 'X') hitloc = random_loc();
@@ -800,7 +800,7 @@ int player_hit(int hitmod, char hitloc, Monster *m)
 
         while (i<strlen(m->combatManeuvers)) {
             if ((m->combatManeuvers[i] == 'B') || (m->combatManeuvers[i] == 'R')) {
-                blocks = TRUE;
+                blocks = true;
                 if (hitloc == m->combatManeuvers[i+1])
                     goodblocks++;
             }
@@ -824,7 +824,7 @@ int player_hit(int hitmod, char hitloc, Monster *m)
 
 
 /* This function is used to undo all items temporarily, should
-always be used in pairs with on being TRUE and FALSE, and may cause
+always be used in pairs with on being true and false, and may cause
 anomalous stats and item-usage if used indiscriminately */
 
 void toggle_item_use(int on)
@@ -834,10 +834,10 @@ void toggle_item_use(int on)
     setgamestatus(SUPPRESS_PRINTING);
     if (on)
         for(i=0; i<MAXITEMS; i++) {
-            used[i] = FALSE;
+            used[i] = false;
             if (Player.possessions[i] != NULL) {
-                if ((used[i] = Player.possessions[i]->used) == TRUE) {
-                    Player.possessions[i]->used = FALSE;
+                if ((used[i] = Player.possessions[i]->used) == true) {
+                    Player.possessions[i]->used = false;
                     item_use(Player.possessions[i]);
                 }
             }
@@ -845,7 +845,7 @@ void toggle_item_use(int on)
     else {
         for(i=1; i<MAXITEMS; i++)
             if (used[i]) {
-                Player.possessions[i]->used = TRUE;
+                Player.possessions[i]->used = true;
                 item_use(Player.possessions[i]);
             }
         calc_melee();
@@ -901,7 +901,7 @@ void enter_site(Symbol site)
 /* Switches context dungeon/countryside/city, etc */
 void change_environment(char new_environment)
 {
-    int i, emerging = FALSE;
+    int i, emerging = false;
 
     Player.sx = -1;
     Player.sy = -1; /* reset sanctuary if there was one */
@@ -943,7 +943,7 @@ void change_environment(char new_environment)
               (new_environment == E_VILLAGE)))
     {
         setPlayerXY( LastTownLocX, LastTownLocY);
-        emerging = TRUE;
+        emerging = true;
     }
 
     Current_Environment = new_environment;
@@ -970,7 +970,7 @@ void change_environment(char new_environment)
 
     case E_CIRCLE:
         setPlayerXY(32, 14);
-        load_circle(TRUE);
+        load_circle(true);
         if (Objects[OB_STARGEM].uniqueness == UNIQUE_TAKEN)
         {
             print1("A bemused voice says:");
@@ -1015,14 +1015,14 @@ void change_environment(char new_environment)
         setPlayerXY(32, 2);
         LastCountryLocX = 6;
         LastCountryLocY = 1;
-        load_court(TRUE);
+        load_court(true);
         ScreenOffset = 0;
         ScreenXOffset = 0;
         show_screen();
         break;
 
     case E_MANSION:
-        load_house(E_MANSION, TRUE);
+        load_house(E_MANSION, true);
         setPlayerXY(2, 8);
         ScreenOffset = 0;
         ScreenXOffset = 0;
@@ -1030,7 +1030,7 @@ void change_environment(char new_environment)
         break;
 
     case E_HOUSE:
-        load_house(E_HOUSE, TRUE);
+        load_house(E_HOUSE, true);
         setPlayerXY(2, 13);
         ScreenOffset = 0;
         ScreenXOffset = 0;
@@ -1038,7 +1038,7 @@ void change_environment(char new_environment)
         break;
 
     case E_HOVEL:
-        load_house(E_HOVEL, TRUE);
+        load_house(E_HOVEL, true);
         setPlayerXY(2, 9);
         ScreenOffset = 0;
         ScreenXOffset = 0;
@@ -1047,7 +1047,7 @@ void change_environment(char new_environment)
 
     case E_DLAIR:
         setPlayerXY(0, 8);
-        load_dlair(gamestatusp(KILLED_DRAGONLORD), TRUE);
+        load_dlair(gamestatusp(KILLED_DRAGONLORD), true);
         ScreenOffset = 0;
         ScreenXOffset = 0;
         show_screen();
@@ -1055,7 +1055,7 @@ void change_environment(char new_environment)
 
     case E_STARPEAK:
         setPlayerXY(2, 9);
-        load_speak(gamestatusp(KILLED_LAWBRINGER), TRUE);
+        load_speak(gamestatusp(KILLED_LAWBRINGER), true);
         ScreenOffset = 0;
         ScreenXOffset = 0;
         show_screen();
@@ -1063,14 +1063,14 @@ void change_environment(char new_environment)
 
     case E_MAGIC_ISLE:
         setPlayerXY(62, 14);
-        load_misle(gamestatusp(KILLED_EATER), TRUE);
+        load_misle(gamestatusp(KILLED_EATER), true);
         ScreenOffset = 0;
         ScreenXOffset = 0;
         show_screen();
         break;
 
     case E_TEMPLE:
-        load_temple(Country[Player.x][Player.y].aux, TRUE);
+        load_temple(Country[Player.x][Player.y].aux, true);
         setPlayerXY(32, 15);
         ScreenOffset = 0;
         ScreenXOffset = 0;
@@ -1080,13 +1080,13 @@ void change_environment(char new_environment)
     case E_CITY:
         if (emerging) {
             print1("You emerge onto the street.");
-            emerging = FALSE;
+            emerging = false;
         }
         else {
             print1("You pass through the massive gates of Rampart, the city.");
             setPlayerXY(62, 20);
         }
-        if (City == NULL) load_city(TRUE);
+        if (City == NULL) load_city(true);
 #ifdef SAVE_LEVELS
         else
             msdos_changelevel(Level,new_environment,0);
@@ -1129,8 +1129,8 @@ void change_environment(char new_environment)
                 break;
             }
         }
-        if ((! emerging) || (TempLevel == NULL)) load_village(Villagenum, TRUE);
-        else if (TempLevel->environment != E_VILLAGE) load_village(Villagenum, TRUE);
+        if ((! emerging) || (TempLevel == NULL)) load_village(Villagenum, true);
+        else if (TempLevel->environment != E_VILLAGE) load_village(Villagenum, true);
 #ifndef SAVE_LEVELS
         else Level = TempLevel;
 #else
@@ -1141,7 +1141,7 @@ void change_environment(char new_environment)
 #endif
         if (emerging) {
             print1("You emerge onto the street.");
-            emerging = FALSE;
+            emerging = false;
         }
         else
             print1("You enter a small rural village.");
@@ -1169,7 +1169,7 @@ void change_environment(char new_environment)
             Level = NULL;
             Current_Dungeon = E_CAVES;
         }
-        change_level(0,1,FALSE);
+        change_level(0,1,false);
         break;
     case E_VOLCANO:
         print1("You pass down through the glowing crater.");
@@ -1190,7 +1190,7 @@ void change_environment(char new_environment)
             Level = NULL;
             Current_Dungeon = E_VOLCANO;
         }
-        change_level(0,1,FALSE);
+        change_level(0,1,false);
         break;
     case E_ASTRAL:
         print1("You are in a weird flickery maze.");
@@ -1209,7 +1209,7 @@ void change_environment(char new_environment)
             Level = NULL;
             Current_Dungeon = E_ASTRAL;
         }
-        change_level(0,1,FALSE);
+        change_level(0,1,false);
         break;
     case E_CASTLE:
         print1("You cross the drawbridge. Strange forms move beneath the water.");
@@ -1229,7 +1229,7 @@ void change_environment(char new_environment)
             Level = NULL;
             Current_Dungeon = E_CASTLE;
         }
-        change_level(0,1,FALSE);
+        change_level(0,1,false);
         break;
     case E_SEWERS:
         print1("You pry open a manhole and descend into the sewers below.");
@@ -1247,7 +1247,7 @@ void change_environment(char new_environment)
             Level = NULL;
             Current_Dungeon = E_SEWERS;
         }
-        change_level(0,1,FALSE);
+        change_level(0,1,false);
         break;
     case E_COUNTRYSIDE:
         print1("You return to the fresh air of the open countryside.");
@@ -1306,7 +1306,7 @@ void change_environment(char new_environment)
             Level = NULL;
             Current_Dungeon = E_PALACE;
         }
-        change_level(0,1,FALSE);
+        change_level(0,1,false);
         break;
     case E_NEVER_NEVER_LAND:
     default:
@@ -1321,5 +1321,5 @@ void change_environment(char new_environment)
     if (Current_Environment != E_COUNTRYSIDE)
         showroom(Level->site[Player.x][Player.y].roomnumber);
     else
-        terrain_check(FALSE);
+        terrain_check(false);
 }

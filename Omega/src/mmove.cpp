@@ -173,7 +173,7 @@ void m_follow_move(Monster* m)
 /* allows monsters to fall into pools, revealed traps, etc */
 void m_confused_move(Monster* m)
 {
-    int i,nx,ny,done=FALSE;
+    int i,nx,ny,done=false;
     erase_monster(m);
     for (i=0; ((i<8)&&(! done)); i++) {
         nx = m->x+random_range(3)-1;
@@ -181,7 +181,7 @@ void m_confused_move(Monster* m)
         if (unblocked(nx,ny) &&
                 ((nx != Player.x) ||
                  (ny != Player.y))) {
-            done = TRUE;
+            done = true;
             movemonster(m,nx,ny);
         }
     }
@@ -189,7 +189,7 @@ void m_confused_move(Monster* m)
 
 void m_random_move(Monster* m)
 {
-    int i,nx,ny,done=FALSE;
+    int i,nx,ny,done=false;
     erase_monster(m);
     for (i=0; ((i<8)&&(! done)); i++) {
         nx = m->x+random_range(3)-1;
@@ -197,7 +197,7 @@ void m_random_move(Monster* m)
         if (m_unblocked(m,nx,ny) &&
                 ((nx != Player.x) ||
                  (ny != Player.y))) {
-            done = TRUE;
+            done = true;
             movemonster(m,nx,ny);
         }
     }
@@ -223,7 +223,7 @@ void m_teleport(Monster* m)
     erase_monster(m);
     if (m_statusp(m,AWAKE)) {
         Level->site[m->x][m->y].creature = NULL;
-        putspot(m->x,m->y,getspot(m->x,m->y,FALSE));
+        putspot(m->x,m->y,getspot(m->x,m->y,false));
         findspace(&(m->x),&(m->y),-1);
         Level->site[m->x][m->y].creature = m;
     }
@@ -254,7 +254,7 @@ void m_move_leash(Monster* m)
         }
         else if (los_p(Player.x,Player.y,m->x,m->y)) {
             mprint("You see the dog jerked back by its chain!");
-            plotspot(m->x, m->y, FALSE);
+            plotspot(m->x, m->y, false);
         }
         else mprint("You hear a strangled sort of yelp!");
         Level->site[m->x][m->y].creature = NULL;

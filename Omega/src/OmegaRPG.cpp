@@ -134,7 +134,7 @@ void OmegaRPG::startGame() {
     {
         /* monsters initialized in game_restore if game is being restored */
         /* items initialized in game_restore if game is being restored */
-        inititem(TRUE);
+        inititem(true);
         Date = random_range(360);
         Phase = random_range(24);
 
@@ -161,7 +161,7 @@ void OmegaRPG::startGame() {
     }
     else
     {
-        terrain_check(FALSE);
+        terrain_check(false);
     }
 
     if (optionp(SHOW_COLOUR))
@@ -178,17 +178,17 @@ void OmegaRPG::startGame() {
     // Game cycle
     if (!this->Continuing())
     {
-        time_clock(TRUE);
+        time_clock(true);
     }
 
-    while (TRUE) {
+    while (true) {
         if (Current_Environment == E_COUNTRYSIDE)
         {
             p_country_process();
         }
         else
         {
-            time_clock(FALSE);
+            time_clock(false);
         }
     }
 }

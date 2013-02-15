@@ -82,7 +82,7 @@ void l_chaos(void)
         print2("A mysterious force protects you from the Chaos!");
         print3("Wow.... You feel a bit smug.");
         gain_experience(500);
-        saved = TRUE;
+        saved = true;
     }
     else {
         print2("Uh oh....");
@@ -188,7 +188,7 @@ void l_abyss(void)
                 print1("The All-In-One must have taken pity on you.");
                 print2("A transdimensional portal appears...");
                 morewait();
-                change_level(Level->depth,Level->depth+1,FALSE);
+                change_level(Level->depth,Level->depth+1,false);
                 gain_experience(2000);
                 Player.alignment -= 50;
             }
@@ -221,7 +221,7 @@ void l_abyss(void)
                 print2("You built up some velocity during your fall, though....");
                 morewait();
                 p_damage(i*5,NORMAL_DAMAGE,"a fall through the abyss");
-                change_level(Level->depth,Level->depth+i,FALSE);
+                change_level(Level->depth,Level->depth+i,false);
                 gain_experience(i*i*50);
             }
         }
@@ -288,7 +288,7 @@ void l_lift(void)
                      (response=='d' ?
                       Level->depth+levelnum :
                       Level->depth-levelnum),
-                     FALSE);
+                     false);
         roomcheck();
     }
 }
@@ -402,7 +402,7 @@ void l_rubble(void)
 /* Drops all portcullises in 5 moves */
 void l_portcullis_trap(void)
 {
-    int i,j,slam=FALSE;
+    int i,j,slam=false;
 
     print3("Click.");
     morewait();
@@ -418,7 +418,7 @@ void l_portcullis_trap(void)
                     morewait();
                     p_damage(random_range(1000),NORMAL_DAMAGE,"a portcullis");
                 }
-                slam = TRUE;
+                slam = true;
             }
         }
     if (slam) print3("You hear heavy walls slamming down!");
@@ -427,7 +427,7 @@ void l_portcullis_trap(void)
 /* drops every portcullis on level, then kills itself and all similar traps. */
 void l_drop_every_portcullis(void)
 {
-    int i,j,slam=FALSE;
+    int i,j,slam=false;
 
     print3("Click.");
     morewait();
@@ -447,7 +447,7 @@ void l_drop_every_portcullis(void)
                     morewait();
                     p_damage(random_range(1000),NORMAL_DAMAGE,"a portcullis");
                 }
-                slam = TRUE;
+                slam = true;
             }
         }
     if (slam) print3("You hear heavy walls slamming down!");
@@ -457,14 +457,14 @@ void l_drop_every_portcullis(void)
 
 void l_raise_portcullis(void)
 {
-    int i,j,open=FALSE;
+    int i,j,open=false;
     for(j=0; j<Level->level_length; j++)
         for(i=0; i<Level->level_width; i++) {
             if (Level->site[i][j].locchar == PORTCULLIS) {
                 Level->site[i][j].locchar = FLOOR;
                 lset(i, j, CHANGED);
                 putspot(i,j,FLOOR);
-                open = TRUE;
+                open = true;
             }
         }
     if (open) print1("You hear the sound of steel on stone!");
@@ -680,7 +680,7 @@ void l_earth_station(void)
 
 void stationcheck(void)
 {
-    int stationsleft=FALSE;
+    int stationsleft=false;
     int i,j;
     morewait();
     clearmsg();
@@ -693,7 +693,7 @@ void stationcheck(void)
                     (Level->site[i][j].locchar == HEDGE) ||
                     (Level->site[i][j].locchar == WHIRLWIND) ||
                     (Level->site[i][j].locchar == FIRE))
-                stationsleft=TRUE;
+                stationsleft=true;
     if (! stationsleft) {
         print1("There is a noise like a wild horse's neigh.");
         print2("You spin around, and don't see anyone around at all");
@@ -715,7 +715,7 @@ void stationcheck(void)
 
 void l_void_station(void)
 {
-    int i,something=FALSE;
+    int i,something=false;
     if (cinema_confirm("You're about to Peter Pan into an endless void.")=='y') {
         if (Level->mlist == NULL) {
             print2("You fall forever. Eventually you die of starvation.");
@@ -734,7 +734,7 @@ void l_void_station(void)
             if (! something)
                 for(i=0; ((i<MAXITEMS)&&(!something)); i++)
                     if (Player.possessions[i] != NULL)
-                        something = TRUE;
+                        something = true;
             if (something) {
                 print1("The flow of power is disrupted by something!");
                 print2("The power is unbalanced! You lose control!");
@@ -877,7 +877,7 @@ void l_throne(void)
             print1("The throne emits an eerie violet-black radiance.");
             print2("You find, to your horror, that you cannot get up!");
             print3("You feel an abstract sucking sensation...");
-            for(i=0; i<NUMSPELLS; i++) Spells[i].known = FALSE;
+            for(i=0; i<NUMSPELLS; i++) Spells[i].known = false;
             Player.pow = 3;
             Player.mana = 0;
             Player.hp = 1;
@@ -935,7 +935,7 @@ void l_throne(void)
                         morewait();
                         print1("You hear a distant voice....");
                         print2("'You may now tread the path of High Magic.'");
-                        Spells[S_WISH].known = TRUE;
+                        Spells[S_WISH].known = true;
                     }
                     break;
                 case 17:
@@ -1087,7 +1087,7 @@ void l_voidstone(void)
         print1("You feel negated.");
         morewait();
         Player.mana = 0;
-        toggle_item_use(TRUE);
+        toggle_item_use(true);
         for(i=0; i<NUMSTATI; i++)
             Player.status[i] = 0;
         for(i=0; i<MAXITEMS; i++)
@@ -1096,7 +1096,7 @@ void l_voidstone(void)
                 Player.possessions[i]->plus = 0;
                 Player.possessions[i]->usef = I_NOTHING;
             }
-        toggle_item_use(FALSE);
+        toggle_item_use(false);
         calc_melee();
     }
     else print1("You back away from the strange rock.");

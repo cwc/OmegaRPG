@@ -374,7 +374,7 @@ struct object Objects[TOTALITEMS] = {
 
     { BOOTID+6,30,0,0,0,0,0,1,6,2700,0,0,0,0,COMMON,I_BOOTS_7LEAGUE,7,BOOTS,"?","seven league boots","umpteen league boots" },
 
-    { RINGID+0,1,0,0,0,0,0,1,10,400,0,0,0,0,COMMON,I_PERM_TRUESIGHT,3,RING,"?","ring of truesight","ring of blindness" },
+    { RINGID+0,1,0,0,0,0,0,1,10,400,0,0,0,0,COMMON,I_PERM_TRUESIGHT,3,RING,"?","ring of TRUESIGHT","ring of blindness" },
 
     { RINGID+1,1,0,0,0,0,0,1,10,1,0,0,-1,0,COMMON,I_PERM_BURDEN,0,RING,"?","ring of burden","ring of burden" },
 

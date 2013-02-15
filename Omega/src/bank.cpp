@@ -257,13 +257,13 @@ static int bank_new_customer (WINDOW *w)
         {
             waddstr(w, "yes");
             wrefresh(w);
-            return FALSE; /* new customer == false */
+            return false; /* new customer == false */
         }
         else if ('N' == response)
         {
             waddstr(w, "no");
             wrefresh(w);
-            return TRUE; /* new customer == true */
+            return true; /* new customer == true */
         }
         else if (ESCAPE == response)
         {
@@ -300,10 +300,10 @@ static int police_are_hostile (void)
     {
         mon = ml->m;
         if (GUARD == mon->id && m_statusp(mon, HOSTILE))
-            return TRUE;
+            return true;
     }
 
-    return FALSE;
+    return false;
 }
 
 static pob bank_open_account (WINDOW *w)
@@ -359,7 +359,7 @@ static pob bank_open_account (WINDOW *w)
             wrefresh(w);
 
             getyx(w, cy, cx);
-            pwlen = input_password(w, 9, cx, pw_buf1, FALSE);
+            pwlen = input_password(w, 9, cx, pw_buf1, false);
             if (pwlen) break;
 
             mvwaddstr(w, 11, 2, "Null passwords are not allowed. Try again.");
@@ -378,7 +378,7 @@ static pob bank_open_account (WINDOW *w)
             wrefresh(w);
 
             getyx(w, cy, cx);
-            pwlen = input_password(w, 10, cx, pw_buf2, FALSE);
+            pwlen = input_password(w, 10, cx, pw_buf2, false);
             if (pwlen) break;
 
             mvwaddstr(w, 12, 2, "Null passwords are not allowed. Try again.");
@@ -466,7 +466,7 @@ static pob bank_open_account (WINDOW *w)
 
                 wrefresh(w);
 
-                account = bank_create_account(TRUE, 0, pw_buf1);
+                account = bank_create_account(true, 0, pw_buf1);
                 account->balance = amount;
 
                 Objects[OB_DEBIT_CARD].known = 1;
@@ -636,7 +636,7 @@ static bank_account *bank_password (WINDOW *w, pob * out_card, int * abort)
     char pw_buf [16];
 
     account = 0;
-    *abort = FALSE;
+    *abort = false;
 
     while (1)
     {
@@ -650,7 +650,7 @@ static bank_account *bank_password (WINDOW *w, pob * out_card, int * abort)
         {
             clearmsg();
             cinema_scene("You realize that you can't use the autoteller without a bank card.", 0, 0);
-            *abort = TRUE;
+            *abort = true;
             return 0;
         }
 
@@ -709,11 +709,11 @@ static bank_account *bank_password (WINDOW *w, pob * out_card, int * abort)
     wrefresh(w);
 
     getyx(w, cy, cx);
-    input_password(w, cy, cx, pw_buf, TRUE);
+    input_password(w, cy, cx, pw_buf, true);
 
     if (ESCAPE == pw_buf[0])
     {
-        *abort = TRUE;
+        *abort = true;
         return 0;
     }
 
@@ -1048,7 +1048,7 @@ void l_bank (void)
 
         /* if user says no account, maybe he wants to open one */
 
-        if (TRUE == is_new_customer)
+        if (true == is_new_customer)
         {
             pob card;
             card = bank_open_account(Bankw);
@@ -1059,7 +1059,7 @@ void l_bank (void)
 
                 cinema_scene("The autoteller produces your new bank card...", 0, 0);
                 gain_item(card);
-                is_new_customer = FALSE;
+                is_new_customer = false;
 
                 for (idx = 5; idx < 18; ++idx)
                     mvwaddstr(Bankw, idx, 2, blank_line);
@@ -1068,7 +1068,7 @@ void l_bank (void)
             }
         }
 
-        if (FALSE == is_new_customer)
+        if (false == is_new_customer)
         {
             pob card;
             int abort;
@@ -1119,7 +1119,7 @@ void bank_init (void)
     account_number_next = random_range(INT_MAX);
     account_number_incr = 5 + random_range(100);
 
-    bank_create_account(FALSE, random_range(CASH_BALANCE), CASH_PASSWORD);
+    bank_create_account(false, random_range(CASH_BALANCE), CASH_PASSWORD);
 
     shuffle(account_num, NUM_NPC_ACCOUNTS);
 
@@ -1127,7 +1127,7 @@ void bank_init (void)
     {
         int which;
         which = account_num[i];
-        bank_create_account(FALSE,
+        bank_create_account(false,
                             random_range(npc_account_balances[which]),
                             npc_account_passwords[which]);
     }
@@ -1142,7 +1142,7 @@ int bank_random_account_number (void)
     num_accounts = 0;
     for (account = bank; account; account = account->next_account)
     {
-        if (FALSE == account->player)
+        if (false == account->player)
             ++num_accounts;
     }
 
@@ -1151,7 +1151,7 @@ int bank_random_account_number (void)
     num_accounts = 0;
     for (account = bank; account; account = account->next_account)
     {
-        if (FALSE == account->player)
+        if (false == account->player)
         {
             if (which == num_accounts) break;
             ++num_accounts;

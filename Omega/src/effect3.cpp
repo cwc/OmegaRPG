@@ -117,10 +117,10 @@ void cleanse(int blessing)
                 if (Player.possessions[i] != NULL) {
                     if ((Player.possessions[i]->used) &&
                             (Player.possessions[i]->blessing < 0)) {
-                        Player.possessions[i]->used = FALSE;
+                        Player.possessions[i]->used = false;
                         item_use(Player.possessions[i]);
                         Player.possessions[i]->blessing = 0;
-                        Player.possessions[i]->used = TRUE;
+                        Player.possessions[i]->used = true;
                         item_use(Player.possessions[i]);
                     }
                 }
@@ -269,20 +269,20 @@ void aggravate(void)
 
 void learnspell(int blessing)
 {
-    int i,spell,done=FALSE;
+    int i,spell,done=false;
     if (blessing < 0) {
         for(i=NUMSPELLS; ((i>-1) && (! done)); i--)
             if (Spells[i].known) {
-                done = TRUE;
-                Objects[OB_SPELLS_SCROLL].known = TRUE;
+                done = true;
+                Objects[OB_SPELLS_SCROLL].known = true;
                 mprint("You feel forgetful.");
-                Spells[i].known = FALSE;
+                Spells[i].known = false;
             }
         if (i == ABORT)
             mprint("You feel fortunate.");
     }
     else {
-        Objects[OB_SPELLS_SCROLL].known = TRUE;
+        Objects[OB_SPELLS_SCROLL].known = true;
         spell = random_range(NUMSPELLS);
         print1("Spell Research");
         if ((random_range(4*Spells[spell].powerdrain)+
@@ -296,7 +296,7 @@ void learnspell(int blessing)
             }
             else {
                 print2("...is added to your repertoire");
-                Spells[spell].known = TRUE;
+                Spells[spell].known = true;
                 gain_experience(Spells[spell].powerdrain*10);
             }
         }
@@ -464,7 +464,7 @@ void disintegrate(int x, int y)
         if (!view_los_p(Player.x, Player.y, x, y))
             resetgamestatus(SUPPRESS_PRINTING);
         else
-            plotspot(x, y, TRUE);
+            plotspot(x, y, true);
     }
 }
 
@@ -545,7 +545,7 @@ void apport(int blessing)
         setspot(&x,&y);
         if (Level->site[x][y].things != NULL) {
             pickup_at(x,y);
-            plotspot(x, y, TRUE);
+            plotspot(x, y, true);
         }
         else mprint("There's nothing there to apport!");
     }
@@ -687,7 +687,7 @@ void strategic_teleport(int blessing)
     screencheck(Player.x,Player.y);
     drawvision(Player.x,Player.y);
     if (Current_Environment == E_COUNTRYSIDE)
-        terrain_check(FALSE);
+        terrain_check(false);
 }
 
 
@@ -729,8 +729,8 @@ void level_return(void)
     if (Current_Environment == Current_Dungeon) {
         mprint("The vortex of mana carries you off!");
         if (Level->depth > 1)
-            change_level(Level->depth,1,FALSE);
-        else change_level(Level->depth,deepest[Current_Environment],FALSE);
+            change_level(Level->depth,1,false);
+        else change_level(Level->depth,deepest[Current_Environment],false);
     }
     else if (Current_Environment == E_COUNTRYSIDE) {
         mprint("A mysterious force wafts you back home!");
@@ -746,12 +746,12 @@ void level_return(void)
 
 void cure(int blessing)
 {
-    int happened = FALSE;
+    int happened = false;
     if (blessing > -1) {
         if (Player.status[DISEASED]) {
             Player.status[DISEASED]=0;
             mprint("You feel hygienic!");
-            happened = TRUE;
+            happened = true;
         }
         if (Player.status[POISONED]) {
             Player.status[POISONED] -= 5+blessing*10;
@@ -761,11 +761,11 @@ void cure(int blessing)
                 Player.status[POISONED] = 0;
                 mprint("The poison has been purged from your system.");
             }
-            happened = TRUE;
+            happened = true;
         }
         if (Player.status[BLINDED]) {
             Player.status[BLINDED]=0;
-            happened = TRUE;
+            happened = true;
             mprint("Cobwebs clear from before your eyes.");
         }
         if (! happened) mprint("Nothing much happens.");
@@ -809,14 +809,14 @@ void dispel(int blessing)
                 if (o != NULL)
                     if ((o->used) && (o->blessing < 0)) {
                         if (blessing+1 + o->blessing >=0) {
-                            o->used = FALSE;
+                            o->used = false;
                             setgamestatus(SUPPRESS_PRINTING);
                             item_use(o);
                             resetgamestatus(SUPPRESS_PRINTING);
                             mprint("You hear a sighing sound from");
                             mprint(itemid(o));
                             o->blessing = 0;
-                            o->used = TRUE;
+                            o->used = true;
                             setgamestatus(SUPPRESS_PRINTING);
                             item_use(o);
                             resetgamestatus(SUPPRESS_PRINTING);

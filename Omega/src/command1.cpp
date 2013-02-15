@@ -196,7 +196,7 @@ void p_process(void)
             rename_player();
             break;
         case 'S':
-            save(FALSE);
+            save(false);
             break;
         case 'T':
             tunnel();
@@ -356,35 +356,35 @@ void p_country_process(void)
 
     drawvision(Player.x,Player.y);
     do {
-        no_op = FALSE;
+        no_op = false;
         Cmd = mgetc();
         clear_if_necessary();
         switch (Cmd) {
         case ' ':
         case 13:
-            no_op = TRUE;
+            no_op = true;
             break;
         case 7:
             wizard();
             break; /* ^g */
         case 12:
             xredraw();
-            no_op = TRUE;
+            no_op = true;
             break; /* ^l */
 #if !defined(WIN32)
         case 16:
             bufferprint();
-            no_op = TRUE;
+            no_op = true;
             break; /* ^p */
 #else
         case 15:
             bufferprint();
-            no_op = TRUE;
+            no_op = true;
             break; /* ^o */
 #endif
         case 18:
             redraw();
-            no_op = TRUE;
+            no_op = true;
             break; /* ^r */
         case 23:
             if (gamestatusp(CHEATED)) drawscreen();
@@ -435,7 +435,7 @@ void p_country_process(void)
             rename_player();
             break;
         case 'S':
-            save(FALSE);
+            save(false);
             break;
         case 'V':
             version();
@@ -448,11 +448,11 @@ void p_country_process(void)
             break; /* RAC - char editor */
         case '/':
             charid();
-            no_op = TRUE;
+            no_op = true;
             break;
         case '?':
             help();
-            no_op = TRUE;
+            no_op = true;
             break;
         case '4':
         case 'h':
@@ -488,7 +488,7 @@ void p_country_process(void)
             break;
         default:
             commanderror();
-            no_op = TRUE;
+            no_op = true;
             break;
         }
     } while (no_op);

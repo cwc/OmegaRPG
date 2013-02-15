@@ -21,7 +21,7 @@ void load_village(int villagenum, int populate)
 
     initrand(Current_Environment, villagenum);
 
-    assign_village_function(0,0,TRUE);
+    assign_village_function(0,0,true);
 
 #ifndef SAVE_LEVELS
     Level = ((plv) checkmalloc(sizeof(levtype)));
@@ -99,7 +99,7 @@ void load_village(int villagenum, int populate)
                     make_sheep(i,j);
                 break;
             case 'x':
-                assign_village_function(i,j,FALSE);
+                assign_village_function(i,j,false);
                 break;
             case 'X':
                 Level->site[i][j].locchar = FLOOR;

@@ -12,7 +12,7 @@
 
 void editstats(void)
 {
-    int slot = 1, to, done = FALSE;
+    int slot = 1, to, done = false;
     int response, num;
 
     clearmsg();
@@ -47,7 +47,7 @@ void editstats(void)
             break;
         case ESCAPE:
             clearmsg();
-            done = TRUE;
+            done = true;
             break;
         case ' ':
             print1("enter new value:");

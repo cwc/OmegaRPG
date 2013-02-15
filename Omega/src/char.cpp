@@ -21,10 +21,10 @@ char* getlogin() {
 bool initplayer(void)
 {
     int i;
-    int oldchar=FALSE;
+    int oldchar=false;
     FILE *fd;
     char *lname;
-    int ret_value = FALSE;
+    int ret_value = false;
 
     lname = getlogin();
 
@@ -68,7 +68,7 @@ bool initplayer(void)
             morewait();
         }
         else {
-            oldchar = TRUE;
+            oldchar = true;
             fread((char *)&Player,sizeof(Player),1,fd);
             fread((char *)&Searchnum,sizeof(int),1,fd);
             fread((char *)&Verbosity,sizeof(char),1,fd);
@@ -133,7 +133,7 @@ int initstats(void)
         strcpy(savedg,msgscanstring());
 
         game_restore(savedg);
-        return TRUE;
+        return true;
     }
     else {
         clearmsg(); /* RM 04-19-2000 loading patch - fix the display */
@@ -144,7 +144,7 @@ int initstats(void)
             save_omegarc();
     }
     xredraw();
-    return FALSE;
+    return false;
 }
 
 void getOmegaRCPath()

@@ -6,7 +6,7 @@
 
 void l_armorer(void)
 {
-    int done = FALSE;
+    int done = false;
     char action;
     if (hour() == 12)
         print3("Unfortunately, this is Julie's lunch hour -- try again later.");
@@ -22,7 +22,7 @@ void l_armorer(void)
             else if (action == 'w')
                 buyfromstock(WEAPONID,23);
             else
-                done = TRUE;
+                done = true;
         }
     }
     xredraw();
@@ -63,7 +63,7 @@ void buyfromstock(int base, int numitems)
         if (ynq1() == 'y') {
             if (Player.cash < 2*true_item_value(newitem)) {
                 print2("Why not try again some time you have the cash?");
-                free_obj( newitem, TRUE );
+                free_obj( newitem, true );
             }
             else {
                 Player.cash -= 2*true_item_value(newitem);
@@ -71,7 +71,7 @@ void buyfromstock(int base, int numitems)
                 gain_item(newitem);
             }
         }
-        else free_obj( newitem, TRUE );
+        else free_obj( newitem, true );
     }
 }
 
@@ -94,7 +94,7 @@ void l_club(void)
                     clearmsg();
                     print1("will transport you down to the lowest level");
                     print2("you have explored, and vice versa.");
-                    Spells[S_RETURN].known = TRUE;
+                    Spells[S_RETURN].known = true;
                     Player.cash -= 100;
                     setgamestatus(CLUB_MEMBER);
                     dataprint();
@@ -126,7 +126,7 @@ void l_club(void)
 
 void l_gym(void)
 {
-    int done=TRUE;
+    int done=true;
     int trained=0;
     int physicalSum;
     clearmsg();
@@ -148,7 +148,7 @@ void l_gym(void)
             mlongprint(Gymcredit);
             nprint1(" Au");
         }
-        done = FALSE;
+        done = false;
         menuclear();
         menuprint("Train for 2000 Au. Choose:\n");
         menuprint("\na: work out in the weight room");
@@ -178,7 +178,7 @@ void l_gym(void)
                 print1("You towel yourself off, and find the exit.");
             else
                 print1("A refreshing bath, and you're on your way.");
-            done = TRUE;
+            done = true;
             break;
         }
     } while (! done);
@@ -218,7 +218,7 @@ void statue_random(int x, int y)
         print1("The statue crumbles with a clatter of gravel.");
         Level->site[x][y].locchar = RUBBLE;
         Level->site[x][y].p_locf = L_RUBBLE;
-        plotspot(x, y, TRUE);
+        plotspot(x, y, true);
         lset(x, y, CHANGED);
         break;
     case 2:
@@ -228,7 +228,7 @@ void statue_random(int x, int y)
         print1("The statue crumbles with a clatter of gravel.");
         Level->site[x][y].locchar = RUBBLE;
         Level->site[x][y].p_locf = L_RUBBLE;
-        plotspot(x, y, TRUE);
+        plotspot(x, y, true);
         lset(x, y, CHANGED);
         make_site_treasure(x,y,difficulty());
         break;
@@ -305,7 +305,7 @@ void l_statue_wake(void)
     int i;
     int x=Player.x,y=Player.y;
     for(i=0; i<9; i++)
-        wake_statue(x+Dirs[0][i],y+Dirs[1][i],TRUE);
+        wake_statue(x+Dirs[0][i],y+Dirs[1][i],true);
 }
 
 void wake_statue(int x, int y, int first)
@@ -323,14 +323,14 @@ void wake_statue(int x, int y, int first)
         m_status_set(Level->site[x][y].creature,HOSTILE);
         tml->next = Level->mlist;
         Level->mlist = tml;
-        for(i=0; i<8; i++) wake_statue(x+Dirs[0][i],y+Dirs[1][i],FALSE);
+        for(i=0; i<8; i++) wake_statue(x+Dirs[0][i],y+Dirs[1][i],false);
     }
 }
 
 
 void l_casino(void)
 {
-    int i,done = FALSE,a,b,c,match;
+    int i,done = false,a,b,c,match;
     char response;
     print1("Rampart Mithril Nugget Casino.");
     if (random_range(10)==1)
@@ -455,7 +455,7 @@ void l_casino(void)
                     }
                 }
             }
-            else done = TRUE;
+            else done = true;
         }
     }
 }
@@ -575,7 +575,7 @@ void l_tavern(void)
                         if (! CitySiteList[L_BROTHEL-CITYSITEBASE][0])
                         {
                             print2("He nudge-nudges you, and says, 'You should visit the House of the Eclipse'");
-                            CitySiteList[L_BROTHEL-CITYSITEBASE][0] = TRUE;
+                            CitySiteList[L_BROTHEL-CITYSITEBASE][0] = true;
                         }
                         else
                             print2("He says, 'Did you enjoy your visit to the House of the Eclipse?', wink-wink.");
@@ -599,8 +599,8 @@ void l_tavern(void)
                                 Player.cash -= 10;
                                 print1("He tells you how to find the thieves's guild");
                                 print2("and how to find the House of the Eclipse.");
-                                CitySiteList[L_BROTHEL-CITYSITEBASE][0] = TRUE;
-                                CitySiteList[L_THIEVES_GUILD-CITYSITEBASE][0] = TRUE;
+                                CitySiteList[L_BROTHEL-CITYSITEBASE][0] = true;
+                                CitySiteList[L_THIEVES_GUILD-CITYSITEBASE][0] = true;
                             }
                             dataprint();
                         }
@@ -696,14 +696,14 @@ void l_tavern(void)
                 Player.status[DISEASED] = 0;
                 Player.food = 40;
                 /* reduce temporary stat gains to max stat levels */
-                toggle_item_use(TRUE);
+                toggle_item_use(true);
                 Player.str = min(Player.str,Player.maxstr);
                 Player.con = min(Player.con,Player.maxcon);
                 Player.agi = min(Player.agi,Player.maxagi);
                 Player.dex = min(Player.dex,Player.maxdex);
                 Player.iq = min(Player.iq,Player.maxiq);
                 Player.pow = min(Player.pow,Player.maxpow);
-                toggle_item_use(FALSE);
+                toggle_item_use(false);
                 timeprint();
                 dataprint();
                 showflags();
@@ -723,7 +723,7 @@ void l_tavern(void)
 
 void l_alchemist(void)
 {
-    int i,done=FALSE,mlevel;
+    int i,done=false,mlevel;
     char response;
     pob obj;
     print1("Ambrosias' Potions et cie.");
@@ -738,7 +738,7 @@ void l_alchemist(void)
             response = (char) mcigetc();
             if (response == 'a') {
                 clearmsg();
-                done = TRUE;
+                done = true;
                 i = getitem(CORPSE);
                 if ((i != ABORT) && (Player.possessions[i] != NULL)) {
                     obj = Player.possessions[i];
@@ -763,7 +763,7 @@ void l_alchemist(void)
             }
             else if (response == 'b') {
                 clearmsg();
-                done = TRUE;
+                done = true;
                 i = getitem(CORPSE);
                 if ((i != ABORT) && (Player.possessions[i] != NULL)) {
                     obj = Player.possessions[i];
@@ -792,7 +792,7 @@ void l_alchemist(void)
                 }
                 else print2("So nu?");
             }
-            else done = TRUE;
+            else done = true;
         }
 }
 
@@ -838,8 +838,8 @@ void l_dpw(void)
 void l_library(void)
 {
     char response;
-    int studied=FALSE;
-    int done=FALSE,fee = 1000;
+    int studied=false;
+    int done=false,fee = 1000;
     print1("Rampart Public Library.");
     if (nighttime())
         print2("CLOSED");
@@ -860,12 +860,12 @@ void l_library(void)
             if (ynq1()=='y') {
                 if (Player.cash < fee) {
                     print2("No payee, No studee.");
-                    done = TRUE;
+                    done = true;
                 }
                 else {
                     Player.cash -= fee;
                     do {
-                        studied = TRUE;
+                        studied = true;
                         dataprint();
                         menuclear();
                         menuprint("Peruse a scroll:\n");
@@ -924,17 +924,17 @@ void l_library(void)
                             }
                         }
                         else if (response == ESCAPE) {
-                            done = TRUE;
+                            done = true;
                             print1("That was an expensive browse...");
                         }
                         else
-                            studied = FALSE;
+                            studied = false;
                     } while (!studied);
                 }
                 xredraw();
             }
             else {
-                done = TRUE;
+                done = true;
                 if (studied)
                     print2("Come back anytime we're open, 7am to 8pm.");
                 else
@@ -947,7 +947,7 @@ void l_library(void)
 
 void l_pawn_shop(void)
 {
-    int i,j,k,limit,number,done = FALSE;
+    int i,j,k,limit,number,done = false;
     char item,action;
 
     if (nighttime())
@@ -960,7 +960,7 @@ void l_pawn_shop(void)
                 if (Objects[Pawnitems[0]->id].uniqueness > UNIQUE_UNMADE)
                     Objects[Pawnitems[0]->id].uniqueness = UNIQUE_UNMADE;
                 /* could turn up anywhere, really :) */
-                free_obj( Pawnitems[0], TRUE );
+                free_obj( Pawnitems[0], true );
                 Pawnitems[0] = NULL;
             }
             for (i=0; i<PAWNITEMS-1; i++)
@@ -970,7 +970,7 @@ void l_pawn_shop(void)
                 if (Pawnitems[i] == NULL)
                     do {
                         if (Pawnitems[i] != NULL)
-                            free_obj( Pawnitems[i], TRUE );
+                            free_obj( Pawnitems[i], true );
                         Pawnitems[i] = create_object(5);
                         Pawnitems[i]->known = 2;
                     } while ((Pawnitems[i]->objchar == CASH) ||
@@ -992,7 +992,7 @@ void l_pawn_shop(void)
             showmenu();
             action = (char) mcigetc();
             if (action == ESCAPE)
-                done = TRUE;
+                done = true;
             else if (action == 'b') {
                 print2("Purchase which item? [ESCAPE to quit] ");
                 item = ' ';
@@ -1007,7 +1007,7 @@ void l_pawn_shop(void)
                     else if (true_item_value(Pawnitems[i]) <= 0) {
                         print1("Hmm, how did that junk get on my shelves?");
                         print2("I'll just remove it.");
-                        free_obj( Pawnitems[i], TRUE );
+                        free_obj( Pawnitems[i], true );
                         Pawnitems[i] = NULL;
                     }
                     else {
@@ -1055,11 +1055,11 @@ void l_pawn_shop(void)
                             number = getnumber(Player.possessions[i]->number);
                             if ((number >= Player.possessions[i]->number) &&
                                     Player.possessions[i]->used) {
-                                Player.possessions[i]->used = FALSE;
+                                Player.possessions[i]->used = false;
                                 item_use(Player.possessions[i]);
                             }
                             Player.cash += number * item_value(Player.possessions[i]) / 2;
-                            free_obj( Pawnitems[0], TRUE );
+                            free_obj( Pawnitems[0], true );
                             for(j=0; j<PAWNITEMS - 1; j++)
                                 Pawnitems[j] = Pawnitems[j+1];
                             Pawnitems[PAWNITEMS - 1] = copy_obj( Player.possessions[i] );
@@ -1085,7 +1085,7 @@ void l_pawn_shop(void)
                             number = getnumber(Player.pack[i]->number);
                             if (number > 0) {
                                 Player.cash += number * item_value(Player.pack[i]) / 2;
-                                free_obj( Pawnitems[0], TRUE );
+                                free_obj( Pawnitems[0], true );
                                 for(j=0; j<PAWNITEMS - 1; j++)
                                     Pawnitems[j] = Pawnitems[j+1];
                                 Pawnitems[PAWNITEMS - 1] = copy_obj( Player.pack[i] );
@@ -1093,7 +1093,7 @@ void l_pawn_shop(void)
                                 Pawnitems[PAWNITEMS - 1]->known = 2;
                                 Player.pack[i]->number -= number;
                                 if (Player.pack[i]->number < 1) {
-                                    free_obj( Player.pack[i], TRUE );
+                                    free_obj( Player.pack[i], true );
                                     Player.pack[i] = NULL;
                                 }
                                 dataprint();

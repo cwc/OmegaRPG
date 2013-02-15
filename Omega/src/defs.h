@@ -697,7 +697,7 @@ typedef int int32;
 /* total number of player options */
 #define NUMOPTIONS 10
 
-/* number of options with TRUE/FALSE values */
+/* number of options with true/false values */
 #define NUMTFOPTIONS 9
 
 /* The slot number of the two options not in Player.options */
@@ -1702,7 +1702,3 @@ typedef oltype *pol;
 #define optionset(o) (Player.options |= (o))
 #define optionreset(o) (Player.options &= ~(o))
 
-#ifndef TRUE
-#define TRUE 1
-#define FALSE 0
-#endif

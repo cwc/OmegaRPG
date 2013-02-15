@@ -57,7 +57,7 @@ void make_country_screen(Symbol terrain)
 #endif
     clear_level(Level);
     Level->environment = E_TACTICAL_MAP;
-    Level->generated = TRUE;
+    Level->generated = true;
 
     Level->level_length = TACTICAL_LENGTH;
     Level->level_width = TACTICAL_WIDTH;
@@ -355,7 +355,7 @@ void room_level(void)
    have buildaux field == baux */
 void room_corridor(int fx, int fy, int tx, int ty, int baux)
 {
-    int dx,dy,continuing = TRUE;
+    int dx,dy,continuing = true;
 
     dx = sign(tx-fx);
     dy = sign(ty-fy);
@@ -477,7 +477,7 @@ void maze_level (void)
                     break; /* Elemental Master */
                 default:
                     mid = ELEM_MASTER;
-                    assert(FALSE); /* bomb if this happens */
+                    assert(false); /* bomb if this happens */
                 }
 
                 if (5 == Level->depth)

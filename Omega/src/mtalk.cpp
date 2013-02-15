@@ -244,7 +244,7 @@ void m_talk_guard(Monster* m)
             print1("You should visit the tourist information booth and get their guidebook.");
             print2("The booth is located near the entrance to the city.");
             morewait();
-            CitySiteList[L_TOURIST-CITYSITEBASE][0] = TRUE;
+            CitySiteList[L_TOURIST-CITYSITEBASE][0] = true;
         }
         else if (Player.rank[ORDER]>0)
             print1("'Greetings comrade! May you always tread the paths of Law.'");
@@ -347,7 +347,7 @@ void m_talk_im(Monster* m)
         else
         {
             mprint("Sorry I couldn't help you.");
-            free_obj( m->possessions->thing, TRUE );
+            free_obj( m->possessions->thing, true );
         }
         tmp = m->possessions;
         m->possessions = tmp->next;
@@ -708,7 +708,7 @@ void m_talk_servant(Monster* m)
     if (ynq()=='y') {
         print1("Show me.");
         show_screen();
-        drawmonsters(TRUE);
+        drawmonsters(true);
         setspot(&x,&y);
         if (Level->site[x][y].creature != NULL) {
             if (Level->site[x][y].creature->id == target) {

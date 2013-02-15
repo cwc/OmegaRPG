@@ -26,18 +26,18 @@ void i_knowledge(pob o)
 
 static int is_capital_letter (char ch)
 {
-    if (ch >= 'A' && ch <= 'Z') return TRUE;
-    return FALSE;
+    if (ch >= 'A' && ch <= 'Z') return true;
+    return false;
 }
 
 static int is_vowel (char ch)
 {
-    if ('a' == ch) return TRUE;
-    if ('e' == ch) return TRUE;
-    if ('i' == ch) return TRUE;
-    if ('o' == ch) return TRUE;
-    if ('u' == ch) return TRUE;
-    return FALSE;
+    if ('a' == ch) return true;
+    if ('e' == ch) return true;
+    if ('i' == ch) return true;
+    if ('o' == ch) return true;
+    if ('u' == ch) return true;
+    return false;
 }
 
 void i_jane_t (pob o)
@@ -94,7 +94,7 @@ void i_jane_t (pob o)
     default:
         /* bomb on error */
         range_beg = range_end = 0;
-        assert(FALSE);
+        assert(false);
     }
 
     menuclear();
@@ -322,9 +322,9 @@ void i_azoth(pob o)
             heal(10);
             cleanse(1);
             Player.mana = calcmana()*3;
-            toggle_item_use(TRUE);
+            toggle_item_use(true);
             Player.str = (Player.maxstr++)*3;
-            toggle_item_use(FALSE);
+            toggle_item_use(false);
         }
     }
 }
@@ -614,7 +614,7 @@ void i_pick(pob o)
 {
     int dir;
     int ox,oy;
-    o->used = FALSE;
+    o->used = false;
     if ((! o->known) && (! Player.rank[THIEVES]))
         mprint("You have no idea what do with a piece of twisted metal.");
     else {
@@ -654,7 +654,7 @@ void i_key(pob o)
 {
     int dir;
     int ox,oy;
-    o->used = FALSE;
+    o->used = false;
     mprint("Unlock door: ");
     dir = getdir();
     if (dir == ABORT)

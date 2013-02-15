@@ -22,7 +22,7 @@ int save_game(char *savestr)
 #ifdef SAVE_LEVELS
     int tmpdepth;
 #endif
-    int i,writeok=TRUE;
+    int i,writeok=true;
     plv current, save;
 
 #if !defined(WIN32)
@@ -37,7 +37,7 @@ int save_game(char *savestr)
         else
         {
             mprint(" File already exists.");
-            writeok = FALSE;
+            writeok = false;
         }
     else
     {
@@ -50,7 +50,7 @@ int save_game(char *savestr)
             if (access(savestr, W_OK) == -1)
             {
                 mprint(" Unable to save to that directory.");
-                writeok = FALSE;
+                writeok = false;
             }
             savestr[slashpos] = '/';
         }
@@ -60,7 +60,7 @@ int save_game(char *savestr)
     if (writeok) {
         fd = fopen(savestr,"wb");
         if (fd == NULL) {
-            writeok = FALSE;
+            writeok = false;
             mprint(" Error opening file.");
         }
     }
@@ -95,7 +95,7 @@ int save_game(char *savestr)
         for (i = 0, current = save; current; current = current->next, i++)
             ;
         if (!fwrite((char *)&i,sizeof(int),1,fd))
-            writeok = FALSE;
+            writeok = false;
 #ifdef SAVE_LEVELS
         Level = msdos_changelevel(NULL,Current_Environment,tmpdepth);
 #endif
@@ -421,18 +421,18 @@ int save_country(FILE *fd)
 }
 
 
-/* returns TRUE if the given version can be restored by this version */
+/* returns true if the given version can be restored by this version */
 int ok_outdated(int version)
 {
     /* currently all backwards compatibility is broken, so fail ok_outdated()
        until we actually re-install some type of backwards compatibility. DAG */
 
-    return FALSE;
+    return false;
 }
 
 /* read player data, city level, dungeon level,
    check on validity of save file, etc.
-   return TRUE if game restored, FALSE otherwise */
+   return true if game restored, false otherwise */
 
 int restore_game(char *savestr)
 {
@@ -445,7 +445,7 @@ int restore_game(char *savestr)
         print1("Unable to access save file: ");
         nprint1(savestr);
         morewait();
-        return FALSE;
+        return false;
     }
 #endif
     change_to_user_perms();
@@ -458,7 +458,7 @@ int restore_game(char *savestr)
         nprint2(savestr);
         morewait();
         change_to_game_perms();
-        return(FALSE);
+        return(false);
     }
     else {
         print1("Restoring...");
@@ -479,7 +479,7 @@ int restore_game(char *savestr)
             nprint2(".");
             mnumprint( (version/100)%100);
             morewait();
-            return(FALSE);
+            return(false);
         }
         restore_player(fd, version);
         restore_country(fd, version);
@@ -503,7 +503,7 @@ int restore_game(char *savestr)
         ScreenOffset = -1000;	/* to force a redraw */
         setgamestatus(SKIP_MONSTERS);
         change_to_game_perms();
-        return(TRUE);
+        return(true);
     }
 }
 
@@ -623,7 +623,7 @@ void restore_player(FILE *fd, int version)
     fread((char *)level_seed,sizeof(int),E_MAX + 1,fd);
 
     /* Set up the strings for the id's */
-    inititem(FALSE);
+    inititem(false);
 
     for(i=0; i<MAXITEMS; i++)
         Player.possessions[i] = restore_item(fd, version);
@@ -711,15 +711,15 @@ pob restore_item(FILE *fd, int version)
 pol restore_itemlist(FILE *fd, int version)
 {
     pol ol=NULL,cur=NULL,newObject=NULL;
-    int i,numitems,firsttime=TRUE;
+    int i,numitems,firsttime=true;
     fread((char *)&numitems,sizeof(int),1,fd);
     for(i=0; i<numitems; i++) {
         newObject = ((pol) checkmalloc(sizeof(oltype)));
         newObject->thing = restore_item(fd, version);
         newObject->next = NULL;
-        if (firsttime==TRUE) {
+        if (firsttime==true) {
             ol = cur = newObject;
-            firsttime = FALSE;
+            firsttime = false;
         }
         else {
             cur->next = newObject;
@@ -747,7 +747,7 @@ void restore_level(FILE *fd, int version)
 
     width = Level->level_width;
     length = Level->level_length;
-    Level->generated = TRUE;
+    Level->generated = true;
     temp_env = Current_Environment;
     Current_Environment = Level->environment;
     switch(Level->environment) {
@@ -755,10 +755,10 @@ void restore_level(FILE *fd, int version)
         load_country();
         break;
     case E_CITY:
-        load_city(FALSE);
+        load_city(false);
         break;
     case E_VILLAGE:
-        load_village(Country[LastCountryLocX][LastCountryLocY].aux, FALSE);
+        load_village(Country[LastCountryLocX][LastCountryLocY].aux, false);
         break;
     case E_CAVES:
         initrand(Current_Environment, Level->depth);
@@ -801,25 +801,25 @@ void restore_level(FILE *fd, int version)
     case E_HOVEL:
     case E_MANSION:
     case E_HOUSE:
-        load_house(Level->environment, FALSE);
+        load_house(Level->environment, false);
         break;
     case E_DLAIR:
-        load_dlair(gamestatusp(KILLED_DRAGONLORD), FALSE);
+        load_dlair(gamestatusp(KILLED_DRAGONLORD), false);
         break;
     case E_STARPEAK:
-        load_speak(gamestatusp(KILLED_LAWBRINGER), FALSE);
+        load_speak(gamestatusp(KILLED_LAWBRINGER), false);
         break;
     case E_MAGIC_ISLE:
-        load_misle(gamestatusp(KILLED_EATER), FALSE);
+        load_misle(gamestatusp(KILLED_EATER), false);
         break;
     case E_TEMPLE:
-        load_temple(Country[LastCountryLocX][LastCountryLocY].aux, FALSE);
+        load_temple(Country[LastCountryLocX][LastCountryLocY].aux, false);
         break;
     case E_CIRCLE:
-        load_circle(FALSE);
+        load_circle(false);
         break;
     case E_COURT:
-        load_court(FALSE);
+        load_court(false);
         break;
     default:
         print3("This dungeon not implemented!");
@@ -942,7 +942,7 @@ void restore_hiscore_npc(Monster* npc, int npcid)
     default:
         /* bomb on error */
         level = behavior = 0;
-        assert(FALSE);
+        assert(false);
     }
     npc->name = salloc(Str2);
     strcpy(Str1,"The body of ");

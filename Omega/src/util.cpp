@@ -77,9 +77,9 @@ int offscreen(int x, int y)
 int hitp(int hit, int ac)
 {
     int roll = random_range(20);
-    if (roll == 0) return(TRUE);
-    else if (roll == 19) return(FALSE);
-    else return((roll < (hit - ac)) ? TRUE : FALSE );
+    if (roll == 0) return(true);
+    else if (roll == 19) return(false);
+    else return((roll < (hit - ac)) ? true : false );
 }
 
 /* number of moves from x1,y1 to x2,y2 */
@@ -100,9 +100,9 @@ int unblocked(int x, int y)
             (Level->site[x][y].locchar == CLOSED_DOOR) ||
             loc_statusp(x,y,SECRET) ||
             ((x==Player.x) && (y==Player.y)))
-        return(FALSE);
+        return(false);
     else
-        return(TRUE);
+        return(true);
 }
 
 
@@ -110,9 +110,9 @@ int unblocked(int x, int y)
 int m_unblocked(Monster* m, int x, int y)
 {
     if ((! inbounds(x,y)) || ((x==Player.x) && (y==Player.y)))
-        return(FALSE);
+        return(false);
     else if ((Level->site[x][y].creature != NULL) ||
-             (Level->site[x][y].locchar == SPACE)) return(FALSE);
+             (Level->site[x][y].locchar == SPACE)) return(false);
     else if (m_statusp(m,ONLYSWIM))
         return(Level->site[x][y].locchar == WATER);
     else if (loc_statusp(x,y,SECRET)) {
@@ -126,14 +126,14 @@ int m_unblocked(Monster* m, int x, int y)
                 mprint("You hear a door creak open, and then close again.");
             /* smart monsters would close secret doors behind them if the */
             /* player didn't see them using it */
-            return(TRUE);
+            return(true);
         }
         else
             return(m_statusp(m,INTANGIBLE));
     }
     else if ((Level->site[x][y].locchar == FLOOR) ||
              (Level->site[x][y].locchar == OPEN_DOOR))
-        return(TRUE);
+        return(true);
     else if ((Level->site[x][y].locchar == PORTCULLIS) ||
              (Level->site[x][y].locchar == WALL) ||
              (Level->site[x][y].locchar == STATUE))
@@ -148,13 +148,13 @@ int m_unblocked(Monster* m, int x, int y)
             mprint("You hear a door creak open.");
             Level->site[x][y].locchar = OPEN_DOOR;
             lset(x, y, CHANGED);
-            return(TRUE);
+            return(true);
         }
         else if (random_range(m->dmg) > random_range(100)) {
             mprint("You hear a door shattering.");
             Level->site[x][y].locchar = RUBBLE;
             lset(x, y, CHANGED);
-            return(TRUE);
+            return(true);
         }
         else return(m_statusp(m,INTANGIBLE));
     }
@@ -172,7 +172,7 @@ int m_unblocked(Monster* m, int x, int y)
         return((m->movef == M_MOVE_CONFUSED) ||
                m_statusp(m,INTANGIBLE) ||
                m_statusp(m,FLYING));
-    else return(TRUE);
+    else return(true);
 }
 
 
@@ -180,16 +180,16 @@ int m_unblocked(Monster* m, int x, int y)
 /* can you see through a spot? */
 int view_unblocked(int x, int y)
 {
-    if (! inbounds(x,y)) return(FALSE);
+    if (! inbounds(x,y)) return(false);
     else if ((Level->site[x][y].locchar == WALL) ||
              (Level->site[x][y].locchar == STATUE) ||
              (Level->site[x][y].locchar == HEDGE) ||
              (Level->site[x][y].locchar == FIRE) ||
              (Level->site[x][y].locchar == CLOSED_DOOR) ||
              loc_statusp(x,y,SECRET))
-        return(FALSE);
+        return(false);
     else
-        return(TRUE);
+        return(true);
 }
 
 /* do_los moves pyx along a lineofsight from x1 to x2 */
@@ -243,10 +243,10 @@ void do_los(Symbol pyx, int *x1, int *y1, int x2, int y2)
         }
         Level->site[*x1][*y1].showchar = pyx;
         plotchar(pyx,*x1,*y1);
-        plotspot(ox,oy,TRUE);
+        plotspot(ox,oy,true);
         usleep(50000);
     } while ((*x1 != x2 || *y1 != y2) && !blocked);
-    plotspot(*x1,*y1,TRUE);
+    plotspot(*x1,*y1,true);
     levelrefresh();
 }
 
@@ -299,7 +299,7 @@ void do_object_los(Symbol pyx, int *x1, int *y1, int x2, int y2)
             error += 2*step;
             blocked = !unblocked(*x1,*y1);
         }
-        plotspot(ox,oy,TRUE);
+        plotspot(ox,oy,true);
         if (unblocked(*x1,*y1)) {
             plotchar(pyx,*x1,*y1);
             Level->site[*x1][*y1].showchar = pyx;
@@ -310,7 +310,7 @@ void do_object_los(Symbol pyx, int *x1, int *y1, int x2, int y2)
         *x1 = ox;
         *y1 = oy;
     }
-    plotspot(*x1,*y1,TRUE);
+    plotspot(*x1,*y1,true);
     levelrefresh();
 }
 
@@ -342,7 +342,7 @@ int los_p(int x1, int y1, int x2, int y2)
         delta = 2*abs(x2 - x1);
     }
     if (major == -1)	/* x1,y2 already == x2,y2 */
-        return TRUE;
+        return true;
     error = 0;
     do {
         x1 += Dirs[0][major];
@@ -392,7 +392,7 @@ int view_los_p(int x1, int y1, int x2, int y2)
         delta = 2*abs(x2 - x1);
     }
     if (major == -1)	/* x1,y2 already == x2,y2 */
-        return TRUE;
+        return true;
     error = 0;
     do {
         x1 += Dirs[0][major];
@@ -583,12 +583,12 @@ sets x,y there. There must *be* floor space somewhere on level */
 
 static int spaceok (int x_idx, int y_idx, int baux)
 {
-    if (FLOOR != Level->site[x_idx][y_idx].locchar) return FALSE;
-    if (Level->site[x_idx][y_idx].creature) return FALSE;
-    if (loc_statusp(x_idx, y_idx, SECRET)) return FALSE;
-    if (Level->site[x_idx][y_idx].buildaux == baux) return FALSE;
+    if (FLOOR != Level->site[x_idx][y_idx].locchar) return false;
+    if (Level->site[x_idx][y_idx].creature) return false;
+    if (loc_statusp(x_idx, y_idx, SECRET)) return false;
+    if (Level->site[x_idx][y_idx].buildaux == baux) return false;
 
-    return TRUE;
+    return true;
 }
 
 static int findspace_method_one (int * x_idx, int * y_idx, struct level * lev, int baux)
@@ -600,10 +600,10 @@ static int findspace_method_one (int * x_idx, int * y_idx, struct level * lev, i
         *x_idx = random_range(lev->level_width);
         *y_idx = random_range(lev->level_length);
         if (spaceok(*x_idx, *y_idx, baux))
-            return TRUE;
+            return true;
     }
 
-    return FALSE;
+    return false;
 }
 
 static int findspace_method_two (int * x_out, int * y_out, struct level * lev, int baux)
@@ -814,12 +814,12 @@ static int findspace_method_two (int * x_out, int * y_out, struct level * lev, i
         }
     }
 
-    return FALSE;
+    return false;
 
 found_space:
     *x_out = x_idx;
     *y_out = y_idx;
-    return TRUE;
+    return true;
 }
 
 void findspace (int * x_out, int * y_out, int baux)
@@ -833,14 +833,14 @@ void findspace (int * x_out, int * y_out, int baux)
         return;
 
     /* this could theoretically happen but if it does, it's an error */
-    assert(FALSE);
+    assert(false);
 }
 
 /* is prefix a prefix of s? */
 int strprefix(char *prefix, char *s)
 {
-    int i=0,matched=TRUE;
-    if (strlen(prefix) > strlen(s)) return(FALSE);
+    int i=0,matched=true;
+    if (strlen(prefix) > strlen(s)) return(false);
     else {
         while (matched && (i<strlen(prefix))) {
             matched = (prefix[i] == s[i]);
@@ -856,7 +856,7 @@ int strprefix(char *prefix, char *s)
 /* is character c a member of string s */
 int strmem(char c, char *s)
 {
-    int i,found=FALSE;
+    int i,found=false;
     for(i=0; ((i<strlen(s)) && (! found)); i++)
         found = (s[i] == c);
     return(found);
@@ -899,7 +899,7 @@ DirectJoin:
 /* returns true if its ok to get rid of a level */
 int ok_to_free(plv level)
 {
-    if (level == NULL) return(FALSE);
+    if (level == NULL) return(false);
     else return((level->environment != E_CITY) &&
                     (level->environment != E_VILLAGE) &&
                     (level->environment != Current_Dungeon));
@@ -930,7 +930,7 @@ void free_objlist(pol pobjlist)
     pol tmp;
 
     while (pobjlist) {
-        free_obj( (tmp = pobjlist)->thing, TRUE );
+        free_obj( (tmp = pobjlist)->thing, true );
         pobjlist = pobjlist->next;
         free(tmp);
     }
@@ -996,7 +996,7 @@ void *checkmalloc(unsigned int bytes)
     else {
         print1("Out of memory!  Saving and quitting.");
         morewait();
-        save(TRUE);
+        save(true);
         endgraf();
         exit(0);
     }

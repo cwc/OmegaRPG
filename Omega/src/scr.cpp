@@ -87,7 +87,7 @@ static void show_screen_level (int top, int left, int bottom, int right)
             int c;
 
             if (loc_statusp(i, j, SEEN))
-                c = getspot(i, j, FALSE);
+                c = getspot(i, j, false);
             else
                 c = SPACE;
 
@@ -199,7 +199,7 @@ int mcigetc(void)
     int c;
 
 #if defined(WIN32)
-    keypad(Msgw,TRUE);
+    keypad(Msgw,true);
 #endif
     c = wgetch(Msgw);
     if ((c>=(int)'A') && (c<=(int)'Z'))
@@ -823,7 +823,7 @@ void drawplayer(void)
     else
     {
         if (inbounds(lastx, lasty) && !offscreen(lastx, lasty))
-            plotspot(lastx, lasty, (Player.status[BLINDED] > 0 ? FALSE : TRUE));
+            plotspot(lastx, lasty, (Player.status[BLINDED] > 0 ? false : true));
 
         wmove(Levelw, screenmody(Player.y), screenmodx(Player.x));
 
@@ -846,7 +846,7 @@ void setlastxy(int new_x, int new_y) /* used when changing environments */
 
 int litroom(int x, int y)
 {
-    if (Level->site[x][y].roomnumber < ROOMBASE) return(FALSE);
+    if (Level->site[x][y].roomnumber < ROOMBASE) return(false);
     else return(loc_statusp(x,y,LIT) ||
                     Player.status[ILLUMINATION]);
 }
@@ -877,8 +877,8 @@ void drawvision(int x, int y)
                             dodrawspot(x+i,y+j);
             }
             drawplayer();
-            drawmonsters(FALSE); /* erase all monsters */
-            drawmonsters(TRUE);  /* draw those now visible */
+            drawmonsters(false); /* erase all monsters */
+            drawmonsters(true);  /* draw those now visible */
         }
         if ((! gamestatusp(FAST_MOVE)) || (! optionp(JUMPMOVE)))
             omshowcursor(Player.x,Player.y);
@@ -923,7 +923,7 @@ void drawspot(int x, int y)
 {
     Symbol c;
     if (inbounds(x,y)) {
-        c = getspot(x,y,FALSE);
+        c = getspot(x,y,false);
         if (c != Level->site[x][y].showchar)
             if (view_los_p(Player.x,Player.y,x,y)) {
                 lset(x,y,SEEN);
@@ -940,7 +940,7 @@ void dodrawspot(int x, int y)
 {
     Symbol c;
     if (inbounds(x,y)) {
-        c = getspot(x,y,FALSE);
+        c = getspot(x,y,false);
         if (c != Level->site[x][y].showchar) {
             lset(x,y,SEEN);
             Level->site[x][y].showchar = c;
@@ -1038,7 +1038,7 @@ void drawmonsters(int display)
 void erase_monster(Monster* m)
 {
     if (loc_statusp(m->x,m->y,SEEN))
-        putspot(m->x,m->y,getspot(m->x,m->y,FALSE));
+        putspot(m->x,m->y,getspot(m->x,m->y,false));
     else blotspot(m->x,m->y);
 }
 
@@ -1081,7 +1081,7 @@ Symbol getspot(int x, int y, int showmonster)
             if (showmonster && (Level->site[x][y].creature != NULL)) {
                 if ((m_statusp(Level->site[x][y].creature,M_INVISIBLE)) &&
                         (! Player.status[TRUESIGHT]))
-                    return(getspot(x,y,FALSE));
+                    return(getspot(x,y,false));
                 else return (Level->site[x][y].creature->symbol);
             }
             else return(Level->site[x][y].locchar);
@@ -1091,7 +1091,7 @@ Symbol getspot(int x, int y, int showmonster)
             if (showmonster && (Level->site[x][y].creature != NULL)) {
                 if ((m_statusp(Level->site[x][y].creature,M_INVISIBLE)) &&
                         (! Player.status[TRUESIGHT]))
-                    return(getspot(x,y,FALSE));
+                    return(getspot(x,y,false));
                 else return (Level->site[x][y].creature->symbol);
             }
             else if (Level->site[x][y].things != NULL) {
@@ -1212,7 +1212,7 @@ void menuaddch(char c)
 
 void morewait(void)
 {
-    int display=TRUE;
+    int display=true;
     int c;
     if (gamestatusp(SUPPRESS_PRINTING))
         return;
@@ -1231,7 +1231,7 @@ void morewait(void)
 
 int stillonblock(void)
 {
-    int display=TRUE;
+    int display=true;
     int c;
     do {
         wclear(Morew);
@@ -1321,7 +1321,7 @@ void draw_explosion(Symbol pyx, int x, int y)
         usleep(150000);
     }
     for(i=0; i<9; i++)
-        plotspot(x+Dirs[0][i],y+Dirs[1][i],TRUE);
+        plotspot(x+Dirs[0][i],y+Dirs[1][i],true);
     wrefresh(Levelw);
 }
 
@@ -1382,7 +1382,7 @@ void drawscreen(void)
  * direct input. */
 int getnumber(int range)
 {
-    int done=FALSE,value=1;
+    int done=false,value=1;
     int atom;
 
     if (range==1) return(1);
@@ -1395,7 +1395,7 @@ int getnumber(int range)
             while ((atom != '<')&&(atom != '>')&&(atom!=ESCAPE));
             if ((atom=='>') && (value < range)) value++;
             else if ((atom=='<') && (value > 1)) value--;
-            else if (atom==ESCAPE) done = TRUE;
+            else if (atom==ESCAPE) done = true;
 #else
             atom=mcigetc();
             switch (atom)
@@ -1428,7 +1428,7 @@ int getnumber(int range)
                 break;
             case ESCAPE:
                 clearmsg();
-                done = TRUE;
+                done = true;
                 break;
             }
 #endif
@@ -1490,7 +1490,7 @@ long parsenum (char *message)
     int i,x,y,mult=1;
     long num=0;
     char byte=' ';
-    int entering_digits = TRUE;
+    int entering_digits = true;
 
     cinema_display(message, "enter a number or ESC: ", NULL);
     while (entering_digits) {
@@ -1803,7 +1803,7 @@ void screencheck(int y)
         ScreenOffset = y - (ScreenLength/2);
         show_screen();
         if (Current_Environment != E_COUNTRYSIDE)
-            drawmonsters(TRUE);
+            drawmonsters(true);
         if (!offscreen(Player.x,Player.y))
             drawplayer();
     }
@@ -1856,7 +1856,7 @@ void screencheck(int x, int y)
     if ( change == 1 ) {
         show_screen();
         if (Current_Environment != E_COUNTRYSIDE)
-            drawmonsters(TRUE);
+            drawmonsters(true);
         if (!offscreen(Player.x,Player.y))
             drawplayer();
     }
@@ -1882,7 +1882,7 @@ void lightspot(int x, int y)
     lset(x,y,LIT);
     lset(x,y,SEEN);
     lset(x, y, CHANGED);
-    c = getspot(x,y,FALSE);
+    c = getspot(x,y,false);
     Level->site[x][y].showchar = c;
     putspot(x,y,c);
 }
@@ -1921,7 +1921,7 @@ void display_possessions(void)
 {
     int i;
     for(i=0; i<MAXITEMS; i++)
-        display_inventory_slot(i,FALSE);
+        display_inventory_slot(i,false);
 }
 
 

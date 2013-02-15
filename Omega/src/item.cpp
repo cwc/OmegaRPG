@@ -8,7 +8,7 @@ pob create_object(int itemlevel)
 {
     pob newObject;
     int  r;
-    int ok = FALSE;
+    int ok = false;
 
     while (! ok) {
         newObject = ((pob) checkmalloc(sizeof(objtype)));
@@ -32,7 +32,7 @@ pob create_object(int itemlevel)
                || (random_range(100)==23)));
         if (!ok)
         {
-            free_obj( newObject, TRUE );
+            free_obj( newObject, true );
         }
     }
     if (newObject->uniqueness == UNIQUE_UNMADE)
@@ -707,12 +707,11 @@ int twohandedp(int id)
     case OB_HEWER:
     case OB_GIANT_CLUB:
     case OB_SCYTHE_DEATH:
-        return(TRUE);
+        return(true);
     default:
-        return(FALSE);
+        return(false);
     }
 }
-
 
 void item_use(pob o)
 {

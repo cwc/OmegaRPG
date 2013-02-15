@@ -76,7 +76,7 @@ int ZapDay= -1;                      /* staff of enchantment use marker */
 int HelmHour= -1;                     /* helm of teleportation use marker*/
 int HelmDay= -1;                     /* helm of teleportation use marker*/
 int Constriction=0;                   /* Dragonlord Attack State */
-int Blessing=FALSE;                   /* Altar Blessing State */
+int Blessing=false;                   /* Altar Blessing State */
 int LastDay= -1;                      /* DPW date of dole */
 int LastFreeGymDay = -1;              // Date of last free gym session
 int RitualHour= -1;                   /* last use of ritual magic */
@@ -132,9 +132,9 @@ long Hiscore = 0L;
 int Chaoslordlevel = 0,Lawlordlevel = 0,Chaos = 0,Law = 0;
 
 /* New globals which used to be statics */
-int twiddle = FALSE;
-int saved=FALSE;
-int onewithchaos=FALSE;
+int twiddle = false;
+int saved=false;
+int onewithchaos=false;
 int club_hinthour = 0;
 int winnings = 0;
 int tavern_hinthour = -1;
@@ -182,7 +182,7 @@ int game_restore(char *savefile)
     change_to_user_perms();
     unlink(savefile);
     change_to_game_perms();
-    return(TRUE);
+    return(true);
 }
 
 /* Start up game with new dungeons; start with player in city */
@@ -195,8 +195,8 @@ void init_world(void)
         level_seed[env] = RANDFUNCTION();
     load_country();
     for(i=0; i<NUMCITYSITES; i++)
-        CitySiteList[i][0] = FALSE;
-    load_city(TRUE);
+        CitySiteList[i][0] = false;
+    load_city(true);
     Level = City;
     Current_Environment = E_CITY;
     setPlayerXY(62, 20);

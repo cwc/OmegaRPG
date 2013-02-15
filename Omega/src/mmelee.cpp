@@ -207,13 +207,13 @@ void monster_melee(Monster* m, char hitloc, int bonus)
 /* checks to see if player hits with hitmod vs. monster m at location hitloc */
 int monster_hit(Monster* m, char hitloc, int bonus)
 {
-    int i=0,blocks=FALSE,goodblocks=0,hit,riposte=FALSE;
+    int i=0,blocks=false,goodblocks=0,hit,riposte=false;
     while (i<strlen(Player.combatManeuvers)) {
         if ((Player.combatManeuvers[i] == 'B') || (Player.combatManeuvers[i] == 'R')) {
-            blocks = TRUE;
+            blocks = true;
             if (hitloc == Player.combatManeuvers[i+1]) {
                 goodblocks++;
-                if (Player.combatManeuvers[i] == 'R') riposte = TRUE;
+                if (Player.combatManeuvers[i] == 'R') riposte = true;
             }
         }
         i+=2;

@@ -10,7 +10,7 @@
 
 void l_thieves_guild(void)
 {
-    int fee,count,i,number,done=FALSE,dues=1000;
+    int fee,count,i,number,done=false,dues=1000;
     char c,action;
     pob lockpick;
     print1("You have penetrated to the Lair of the Thieves' Guild.");
@@ -33,7 +33,7 @@ void l_thieves_guild(void)
             save_hiscore_npc(7);
             clearmsg();
             print1("You learn the Spell of Shadowform.");
-            Spells[S_SHADOWFORM].known = TRUE;
+            Spells[S_SHADOWFORM].known = true;
             morewait();
             clearmsg();
             Player.rank[THIEVES]=SHADOWLORD;
@@ -54,9 +54,9 @@ void l_thieves_guild(void)
             menuprint("ESCAPE: Leave this Den of Iniquity.");
             showmenu();
             action = mgetc();
-            if (action == ESCAPE) done = TRUE;
+            if (action == ESCAPE) done = true;
             else if (action == 'a') {
-                done = TRUE;
+                done = true;
                 if (Player.rank[THIEVES]> 0)
                     print2("You are already a member!");
                 else if (Player.alignment > 10)
@@ -84,7 +84,7 @@ void l_thieves_guild(void)
                             print1("As a special bonus, you get a free lockpick.");
                             print2("You are taught the spell of Object Detection.");
                             morewait();
-                            Spells[S_OBJ_DET].known = TRUE;
+                            Spells[S_OBJ_DET].known = true;
                             lockpick = ((pob) checkmalloc(sizeof(objtype)));
                             *lockpick = Objects[OB_LOCK_PICK]; /* lock pick */
                             gain_item(lockpick);
@@ -122,7 +122,7 @@ void l_thieves_guild(void)
                         morewait();
                         clearmsg();
                         print1("The Justiciar's office is just south of the gaol.");
-                        Spells[S_APPORT].known = TRUE;
+                        Spells[S_APPORT].known = true;
                         Player.rank[THIEVES]=TMASTER;
                         Player.maxagi++;
                         Player.maxdex++;
@@ -136,7 +136,7 @@ void l_thieves_guild(void)
                     else  {
                         print1("You are now a ranking Thief of the Guild!");
                         print2("You learn the Spell of Invisibility.");
-                        Spells[S_INVISIBLE].known = TRUE;
+                        Spells[S_INVISIBLE].known = true;
                         Player.rank[THIEVES]=THIEF;
                         Player.agi++;
                         Player.maxagi++;
@@ -148,7 +148,7 @@ void l_thieves_guild(void)
                     else {
                         print1("You are now an Apprentice Thief!");
                         print2("You are taught the Spell of Levitation.");
-                        Spells[S_LEVITATE].known = TRUE;
+                        Spells[S_LEVITATE].known = true;
                         Player.rank[THIEVES]=ATHIEF;
                         Player.dex++;
                         Player.maxdex++;
@@ -221,7 +221,7 @@ void l_thieves_guild(void)
                                 number = getnumber(Player.possessions[i]->number);
                                 if ((number >= Player.possessions[i]->number) &&
                                         Player.possessions[i]->used) {
-                                    Player.possessions[i]->used = FALSE;
+                                    Player.possessions[i]->used = false;
                                     item_use(Player.possessions[i]);
                                 }
                                 Player.cash += number*2*item_value(Player.possessions[i])/3;
@@ -272,7 +272,7 @@ void l_thieves_guild(void)
 void l_college(void)
 {
     char action;
-    int done=FALSE,enrolled = FALSE;
+    int done=false,enrolled = false;
     print1("The Collegium Magii. Founded 16937, AOF.");
     if (nighttime())
         print2("The Registration desk is closed at night....");
@@ -306,7 +306,7 @@ void l_college(void)
             menuprint("ESCAPE: Leave these hallowed halls.\n");
             showmenu();
             action = mgetc();
-            if (action == ESCAPE) done = TRUE;
+            if (action == ESCAPE) done = true;
             else if (action == 'a') {
                 if (Player.rank[COLLEGE] > 0)
                     print2("You are already enrolled!");
@@ -320,7 +320,7 @@ void l_college(void)
                     if (Player.iq > 17) {
                         print2("You are given a scholarship!");
                         morewait();
-                        enrolled=TRUE;
+                        enrolled=true;
                     }
                     else {
                         print1("Tuition is 1000Au. ");
@@ -330,7 +330,7 @@ void l_college(void)
                                 print2("You don't have the funds!");
                             else {
                                 Player.cash -= 1000;
-                                enrolled = TRUE;
+                                enrolled = true;
                                 dataprint();
                             }
                         }
@@ -394,7 +394,7 @@ void l_college(void)
                         clearmsg();
                         print1("Your position allows you to research 4 spells.");
                         Spellsleft +=4;
-                        Spells[S_RITUAL].known = TRUE;
+                        Spells[S_RITUAL].known = true;
                         Player.rank[COLLEGE] = PRECEPTOR;
                         Player.maxiq += 1;
                         Player.iq += 1;
@@ -412,7 +412,7 @@ void l_college(void)
                         clearmsg();
                         print1("Thesis research credit is 2 spells.");
                         Spellsleft+=2;
-                        Spells[S_IDENTIFY].known = TRUE;
+                        Spells[S_IDENTIFY].known = true;
                         Player.rank[COLLEGE] = STUDENT;
                         Player.maxiq += 1;
                         Player.iq += 1;
@@ -455,7 +455,7 @@ void l_college(void)
 void l_monastery(void)
 {
     char action;
-    int done=FALSE,enrolled = FALSE;
+    int done=false,enrolled = false;
     print1("Tholian Monastery of Rampart. Founded 12031, AOF.");
     print2("Welcome to our humble hovel.");
     if (nighttime())
@@ -463,7 +463,7 @@ void l_monastery(void)
     else {
         while (! done) {
             menuclear();
-            menuprint("Find your True Course:\n\n");
+            menuprint("Find your true Course:\n\n");
             menuprint("a: Discover the Way.\n");
             menuprint("b: Meditate on the Path.\n");
             menuprint("c: Meditate on Knowledge.\n");
@@ -472,7 +472,7 @@ void l_monastery(void)
             showmenu();
             action = mgetc();
             if (action == ESCAPE) {
-                done = TRUE;
+                done = true;
                 calc_melee();
             }
             else if (action == 'a') {
@@ -490,7 +490,7 @@ void l_monastery(void)
                     if (Player.pow > 17) {
                         print2("Your spirit is strong. You may study the Path with us.");
                         morewait();
-                        enrolled=TRUE;
+                        enrolled=true;
                     }
                     else {
                         print1("A substantial cash sacrifice will cleanse your spirit.. ");
@@ -504,7 +504,7 @@ void l_monastery(void)
                             }
                             else {
                                 Player.cash = 0;
-                                enrolled = TRUE;
+                                enrolled = true;
                                 dataprint();
                             }
                         }
@@ -573,7 +573,7 @@ void l_monastery(void)
                         morewait();
                         clearmsg();
                         print1("The Eater may be found on a desert isle somewhere.");
-                        Spells[S_REGENERATE].known = TRUE;
+                        Spells[S_REGENERATE].known = true;
                         Player.rank[MONKS] = MONK_MASTER_TEARS;
                         Player.maxhp += (Player.maxpow * 2);
                         Player.maxpow += 2;
@@ -595,8 +595,8 @@ void l_monastery(void)
                         morewait();
                         clearmsg();
                         Studiesleft +=4;
-                        Spells[S_RITUAL].known = TRUE;
-                        Spells[S_RESTORE].known = TRUE;
+                        Spells[S_RITUAL].known = true;
+                        Spells[S_RESTORE].known = true;
                         Player.status[ILLUMINATION] = 1500;  /* enlightened */
                         Player.rank[MONKS] = MONK_MASTER_PAINS;
                         Player.maxhp += Player.maxpow;
@@ -615,7 +615,7 @@ void l_monastery(void)
                         morewait();
                         clearmsg();
                         Studiesleft +=2;
-                        Spells[S_HASTE].known = TRUE;
+                        Spells[S_HASTE].known = true;
                         Player.rank[MONKS] = MONK_MASTER_SIGHS;
                         Player.maxhp += Player.maxpow;
                         Player.maxcon += 1;
@@ -633,7 +633,7 @@ void l_monastery(void)
                         morewait();
                         clearmsg();
                         Studiesleft +=2;
-                        Spells[S_HEAL].known = TRUE;
+                        Spells[S_HEAL].known = true;
                         Player.rank[MONKS] = MONK_MASTER;
                         Player.maxhp += Player.maxpow;
                         Player.maxcon += 1;
@@ -651,7 +651,7 @@ void l_monastery(void)
                         morewait();
                         clearmsg();
                         Studiesleft +=2;
-                        Spells[S_CURE].known = TRUE;
+                        Spells[S_CURE].known = true;
                         Player.rank[MONKS] = MONK_MONK;
                         Player.maxhp += Player.maxpow;
                         Player.maxcon += 1;
@@ -707,7 +707,7 @@ void l_monastery(void)
                     morewait();
                     clearmsg();
                     morewait();
-                    toggle_item_use(TRUE);
+                    toggle_item_use(true);
                     Player.cash = 0;
                     Player.hp = Player.maxhp;
                     Player.str = Player.maxstr;
@@ -718,7 +718,7 @@ void l_monastery(void)
                     Player.pow = Player.maxpow;
                     for (i=0; i<NUMSTATI; i++)
                         if (Player.status[i]<1000) Player.status[i]=0;
-                    toggle_item_use(FALSE);
+                    toggle_item_use(false);
                     Player.food = 43;
                     print2("Your body and mind are whole.");
                     if (random_range(2) == 1) {
@@ -741,7 +741,7 @@ void l_monastery(void)
 void l_sorcerors(void)
 {
     char action;
-    int done=FALSE,fee;
+    int done=false,fee;
     long total;
     print1("The Circle of Sorcerors.");
     if (Player.rank[CIRCLE] == -1) {
@@ -766,7 +766,7 @@ void l_sorcerors(void)
                 print1("You learn the Spell of Disintegration!");
                 morewait();
                 clearmsg();
-                Spells[S_DISINTEGRATE].known = TRUE;
+                Spells[S_DISINTEGRATE].known = true;
                 Player.rank[CIRCLE] = PRIME;
                 Player.maxpow += 10;
                 Player.pow += 10;
@@ -779,7 +779,7 @@ void l_sorcerors(void)
             menuprint("ESCAPE: Leave these Chambers of Power.\n");
             showmenu();
             action = mgetc();
-            if (action == ESCAPE) done = TRUE;
+            if (action == ESCAPE) done = true;
             else if (action == 'a') {
                 if (Player.rank[CIRCLE] > 0)
                     print2("You are already an initiate!");
@@ -809,7 +809,7 @@ void l_sorcerors(void)
                             morewait();
                             clearmsg();
                             print1("You learn the Spell of Magic Missiles.");
-                            Spells[S_MISSILE].known = TRUE;
+                            Spells[S_MISSILE].known = true;
                             Player.cash -= fee;
                             dataprint();
                             Player.rank[CIRCLE] = INITIATE;
@@ -841,7 +841,7 @@ void l_sorcerors(void)
                     bless(-1);
                     print3("Die, false sorceror!");
                     p_damage(25,UNSTOPPABLE,"a sorceror's curse");
-                    done = TRUE;
+                    done = true;
                 }
                 else if (Player.rank[CIRCLE]==PRIME)
                     print2("You are at the pinnacle of mastery in the Circle.");
@@ -861,7 +861,7 @@ void l_sorcerors(void)
                         clearmsg();
                         print1("To advance you must return with the LawBringer's Crown!");
                         print2("The LawBringer resides on Star Peak.");
-                        Spells[S_DISRUPT].known = TRUE;
+                        Spells[S_DISRUPT].known = true;
                         Player.rank[CIRCLE] = HIGHSORCEROR;
                         Player.maxpow += 5;
                         Player.pow += 5;
@@ -873,7 +873,7 @@ void l_sorcerors(void)
                     else  {
                         print1("You are now a member of the Circle of Sorcerors!");
                         print2("You learn the Spell of Ball Lightning!");
-                        Spells[S_LBALL].known = TRUE;
+                        Spells[S_LBALL].known = true;
                         Player.rank[CIRCLE] = SORCEROR;
                         Player.maxpow += 2;
                         Player.pow+=2;
@@ -885,7 +885,7 @@ void l_sorcerors(void)
                     else  {
                         print1("You are now a member of the Circle of Enchanters!");
                         print2("You learn the Spell of Firebolts.");
-                        Spells[S_FIREBOLT].known = TRUE;
+                        Spells[S_FIREBOLT].known = true;
                         Player.rank[CIRCLE] = ENCHANTER;
                         Player.maxpow+=2;
                         Player.pow+=2;
@@ -893,7 +893,7 @@ void l_sorcerors(void)
                 }
             }
             else if (action == 'c') {
-                done = TRUE;
+                done = true;
                 fee = Player.level*100;
                 if (Player.rank[CIRCLE]) fee = fee / 2;
                 clearmsg();
@@ -1053,7 +1053,7 @@ void l_order(void)
                 print1("The Oracle will send you to the Astral Plane if you");
                 print2("prove yourself worthy to her.");
                 morewait();
-                Spells[S_HERO].known = TRUE;
+                Spells[S_HERO].known = true;
                 Player.rank[ORDER] = PALADIN;
             }
         }

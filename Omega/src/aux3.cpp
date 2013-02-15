@@ -202,18 +202,18 @@ void outdoors_random_event(void)
             morewait();
             mprint("You feel average...");
             morewait();
-            toggle_item_use(TRUE); /* FIXED! 12/30/98 */
+            toggle_item_use(true); /* FIXED! 12/30/98 */
             Player.str = Player.maxstr = Player.con = Player.maxcon =
                                              Player.dex = Player.maxdex = Player.agi = Player.maxagi =
                                                      Player.iq = Player.maxiq = Player.pow = Player.maxpow =
                                                              ((Player.maxstr+Player.maxcon+Player.maxdex+Player.maxagi+
                                                                      Player.maxiq+Player.maxpow+12)/6);
-            toggle_item_use(FALSE); /* FIXED! 12/30/98 */
+            toggle_item_use(false); /* FIXED! 12/30/98 */
         }
         else if (num < 30) {
             mprint("Your entire body glows with an eerie flickering light.");
             morewait();
-            toggle_item_use(TRUE); /* FIXED! 12/30/98 */
+            toggle_item_use(true); /* FIXED! 12/30/98 */
             for(i=1; i<MAXITEMS; i++)
                 if (Player.possessions[i] != NULL) {
                     Player.possessions[i]->plus++;
@@ -221,7 +221,7 @@ void outdoors_random_event(void)
                         Player.possessions[i]->charge+=10;
                     Player.possessions[i]->blessing+=10;
                 }
-            toggle_item_use(FALSE); /* FIXED! 12/30/98 */
+            toggle_item_use(false); /* FIXED! 12/30/98 */
             cleanse(1);
             mprint("You feel filled with energy!");
             morewait();
@@ -289,7 +289,7 @@ void outdoors_random_event(void)
             Player.xp = 0;
             Player.level = 0;
             for (i=0; i<NUMRANKS; i++) Player.rank[i] = 0;
-            for (i=0; i<NUMSPELLS; i++) Spells[i].known = FALSE;
+            for (i=0; i<NUMSPELLS; i++) Spells[i].known = false;
             rename_player();
         }
         else {
@@ -396,15 +396,15 @@ int magic_resist(int hostile_magic)
             mprint("Thinking fast, you defend youself with a counterspell!");
             Player.mana -= hostile_magic * hostile_magic;
             dataprint();
-            return(TRUE);
+            return(true);
         }
     }
     if (Player.level/4 + Player.status[PROTECTION] + random_range(20) >
             hostile_magic + random_range(30)) {
         mprint("You resist the spell!");
-        return(TRUE);
+        return(true);
     }
-    else return(FALSE);
+    else return(false);
 }
 
 
@@ -860,13 +860,13 @@ static int sitenums[] = {	/* the order matches sitenames[] */
 
 void showknownsites(int first, int last)
 {
-    int i,printed=FALSE;
+    int i,printed=false;
 
     menuclear();
     menuprint("\nPossible Sites:\n");
     for (i = first; i <= last; i++)
         if (CitySiteList[sitenums[i] - CITYSITEBASE][0]) {
-            printed = TRUE;
+            printed = true;
             menuprint(sitenames[i]);
             menuprint("\n");
         }
@@ -961,7 +961,7 @@ int parsecitysite()
 /* are there hostile monsters within 2 moves? */
 int hostilemonstersnear(void)
 {
-    int i,j,hostile = FALSE;
+    int i,j,hostile = false;
 
     for (i=Player.x-2; ((i<Player.x+3)&&(! hostile)); i++)
         for (j=Player.y-2; ((j<Player.y+3)&&(! hostile)); j++)
@@ -976,7 +976,7 @@ int hostilemonstersnear(void)
 /* if alignment of stone is alignment of player, gets done sooner */
 int stonecheck(int alignment)
 {
-    int *stone,match=FALSE,cycle=FALSE,i;
+    int *stone,match=false,cycle=false,i;
 
     if (alignment == 1) {
         stone = &Lawstone;
@@ -988,7 +988,7 @@ int stonecheck(int alignment)
     }
     else {
         stone = &Mindstone;
-        match = FALSE;
+        match = false;
     }
     *stone += random_range(4) + (match ? random_range(4) : 0);
     switch((*stone)++) {
@@ -1023,7 +1023,7 @@ int stonecheck(int alignment)
         print3("Your pack has disintegrated!");
         for(i=0; i<MAXPACK; i++)
             if (Player.pack[i] != NULL) {
-                free_obj( Player.pack[i], TRUE );
+                free_obj( Player.pack[i], true );
                 Player.pack[i] = NULL;
             }
         Player.packptr = 0;
@@ -1109,7 +1109,7 @@ int stonecheck(int alignment)
         print2("You feel forgetful.");
         for(i=0; i<NUMSPELLS; i++)
             if (Spells[i].known) {
-                Spells[i].known = FALSE;
+                Spells[i].known = false;
                 break;
             }
         break;
@@ -1153,7 +1153,7 @@ int stonecheck(int alignment)
         print1("The stone glows cosmic!");
         print2("The stone's energy field quiets for a moment...");
         *stone = 50;
-        cycle = TRUE;
+        cycle = true;
         break;
     default:
         print1("The stone glows polka-dot (?!?!?!?)");
@@ -1169,14 +1169,14 @@ int stonecheck(int alignment)
 
 void alert_guards(void)
 {
-    int foundguard=FALSE;
+    int foundguard=false;
     MonsterList* ml;
     int suppress = 0;
     for(ml=Level->mlist; ml!=NULL; ml=ml->next)
         if (((ml->m->id == GUARD) ||
                 ((ml->m->id == HISCORE_NPC) && (ml->m->aux2 == 15))) && /*justiciar*/
                 (ml->m->hp > 0)) {
-            foundguard=TRUE;
+            foundguard=true;
             m_status_set(ml->m,AWAKE);
             m_status_set(ml->m,HOSTILE);
         }

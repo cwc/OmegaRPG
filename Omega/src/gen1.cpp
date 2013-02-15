@@ -29,7 +29,7 @@ void clear_level(struct level *dungeon_level)
 {
     int i,j;
     if (dungeon_level != NULL) {
-        dungeon_level->generated = FALSE;
+        dungeon_level->generated = false;
         dungeon_level->numrooms = 0;
         dungeon_level->level_length = 0;
         dungeon_level->level_width = 0;
@@ -58,7 +58,7 @@ void clear_level(struct level *dungeon_level)
 
 /* Looks for level tolevel in current dungeon which is named by
 Dungeon, which may be NULL. If the level is found, and rewrite_level
-is FALSE, and the level has already been generated, nothing happens
+is false, and the level has already been generated, nothing happens
 beyond Level being set correctly. Otherwise the level is recreated
 from scratch */
 
@@ -98,7 +98,7 @@ void change_level (char fromlevel, char tolevel, char rewrite_level)
         initrand(Current_Environment, tolevel);
         Level->environment = Current_Environment;
         Level->depth = tolevel;
-        Level->generated = TRUE;
+        Level->generated = true;
 
         switch (Current_Environment)
         {
@@ -157,7 +157,7 @@ void change_level (char fromlevel, char tolevel, char rewrite_level)
 
         default:
             print3("This dungeon not implemented!");
-            assert(FALSE);
+            assert(false);
             break;
         }
 
@@ -487,14 +487,14 @@ char *roomname(int index)
 /* if can't find them, just drops player anywhere.... */
 void find_stairs(char fromlevel, char tolevel)
 {
-    int i,j,found=FALSE;
+    int i,j,found=false;
     Symbol sitechar;
     if (fromlevel > tolevel) sitechar = STAIRS_DOWN;
     else sitechar = STAIRS_UP;
     for(i=0; i<Level->level_width; i++)
         for(j=0; j<Level->level_length; j++)
             if ((Level->site[i][j].locchar == sitechar) && (! found)) {
-                found = TRUE;
+                found = true;
                 Player.x = i;
                 Player.y = j;
                 break;
@@ -648,7 +648,7 @@ void sewer_level(void)
 
 void sewer_corridor(int x, int y, int dx, int dy, Symbol locchar)
 {
-    int continuing = TRUE;
+    int continuing = true;
     makedoor(x,y);
     x+=dx;
     y+=dy;

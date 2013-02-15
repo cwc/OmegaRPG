@@ -6,7 +6,7 @@
 /* enchant */
 void enchant(int delta)
 {
-    int i,used = FALSE;
+    int i,used = false;
     long change_cash;
 
     if (delta < 0) {
@@ -32,7 +32,7 @@ void enchant(int delta)
         else {
             used = (Player.possessions[i]->used);
             if (used) {
-                Player.possessions[i]->used = FALSE;
+                Player.possessions[i]->used = false;
                 item_use(Player.possessions[i]);
             }
             if (Player.possessions[i]->uniqueness == COMMON)
@@ -44,7 +44,7 @@ void enchant(int delta)
             Player.possessions[i]->charge = -1;
             Player.possessions[i]->usef = I_NOTHING;
             if (used) {
-                Player.possessions[i]->used = TRUE;
+                Player.possessions[i]->used = true;
                 item_use(Player.possessions[i]);
             }
         }
@@ -90,7 +90,7 @@ void enchant(int delta)
                 used = (Player.possessions[i]->used);
                 if (used) {
                     setgamestatus(SUPPRESS_PRINTING);
-                    Player.possessions[i]->used = FALSE;
+                    Player.possessions[i]->used = false;
                     item_use(Player.possessions[i]);
                     resetgamestatus(SUPPRESS_PRINTING);
                 }
@@ -102,7 +102,7 @@ void enchant(int delta)
                         ((delta+1) * (random_range(10) + 1));
                 if (used) {
                     setgamestatus(SUPPRESS_PRINTING);
-                    Player.possessions[i]->used = TRUE;
+                    Player.possessions[i]->used = true;
                     item_use(Player.possessions[i]);
                     resetgamestatus(SUPPRESS_PRINTING);
                 }
@@ -132,7 +132,7 @@ void bless(int blessing)
             used = (Player.possessions[index]->used);
             if (used) {
                 setgamestatus(SUPPRESS_PRINTING);
-                Player.possessions[index]->used = FALSE;
+                Player.possessions[index]->used = false;
                 item_use(Player.possessions[index]);
                 resetgamestatus(SUPPRESS_PRINTING);
             }
@@ -142,7 +142,7 @@ void bless(int blessing)
                     abs(Player.possessions[index]->plus) - 1;
             if (used) {
                 setgamestatus(SUPPRESS_PRINTING);
-                Player.possessions[index]->used = TRUE;
+                Player.possessions[index]->used = true;
                 item_use(Player.possessions[index]);
                 resetgamestatus(SUPPRESS_PRINTING);
             }
@@ -155,10 +155,10 @@ void bless(int blessing)
             morewait();
         }
         else if (index != ABORT) {
-            used = (Player.possessions[index]->used == TRUE);
+            used = (Player.possessions[index]->used == true);
             if (used) {
                 setgamestatus(SUPPRESS_PRINTING);
-                Player.possessions[index]->used = FALSE;
+                Player.possessions[index]->used = false;
                 item_use(Player.possessions[index]);
                 resetgamestatus(SUPPRESS_PRINTING);
             }
@@ -186,7 +186,7 @@ void bless(int blessing)
             }
             if (used && (Player.possessions[index] != NULL)) {
                 setgamestatus(SUPPRESS_PRINTING);
-                Player.possessions[index]->used = TRUE;
+                Player.possessions[index]->used = true;
                 item_use(Player.possessions[index]);
                 resetgamestatus(SUPPRESS_PRINTING);
             }
@@ -264,7 +264,7 @@ void bolt(int fx, int fy, int tx, int ty, int hit, int dmg, int dtype)
         boltchar=('o' | CLR(WHITE));
         break;
     default:
-        assert(FALSE); /* this should never happen, right? WDT */
+        assert(false); /* this should never happen, right? WDT */
     }
     clearmsg();
 
@@ -350,7 +350,7 @@ void bolt(int fx, int fy, int tx, int ty, int hit, int dmg, int dtype)
                 mprint("The hedge is blasted away!");
                 Level->site[xx][yy].p_locf = L_NO_OP;
                 Level->site[xx][yy].locchar = FLOOR;
-                plotspot(xx, yy, TRUE);
+                plotspot(xx, yy, true);
                 lset(xx, yy, CHANGED);
             }
             else mprint("The hedge is unaffected.");
@@ -467,7 +467,7 @@ void ball(int fx, int fy, int tx, int ty, int dmg, int dtype)
                     mprint("The hedge is blasted away!");
                     Level->site[ex][ey].p_locf = L_NO_OP;
                     Level->site[ex][ey].locchar = FLOOR;
-                    plotspot(ex,ey,TRUE);
+                    plotspot(ex,ey,true);
                     lset(ex, ey, CHANGED);
                 }
                 else mprint("The hedge is unaffected.");
@@ -478,7 +478,7 @@ void ball(int fx, int fy, int tx, int ty, int dmg, int dtype)
                 mprint("The water is vaporised!");
                 Level->site[ex][ey].p_locf = L_NO_OP;
                 Level->site[ex][ey].locchar = FLOOR;
-                plotspot(ex,ey,TRUE);
+                plotspot(ex,ey,true);
                 lset(ex, ey, CHANGED);
             }
     }
@@ -673,7 +673,7 @@ void wish(int blessing)
         if (Spells[i].known)
             Spells[i].powerdrain =
                 (max(1,Spells[i].powerdrain/2));
-        else Spells[i].known = TRUE;
+        else Spells[i].known = true;
     }
     else if (strcmp(wishstr,"Health")==0) {
         print2("You feel vigorous");
@@ -835,7 +835,7 @@ void acquire(int blessing)
                 newthing->known = 2;
                 Objects[id].known = 1;
             }
-            newthing->used = FALSE;
+            newthing->used = false;
             gain_item(newthing);
         }
         else
