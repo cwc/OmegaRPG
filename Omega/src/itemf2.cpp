@@ -185,8 +185,6 @@ void i_perm_breathing(pob o)
     }
 }
 
-
-
 /* weapons functions */
 
 void weapon_acidwhip(int dmgmod, pob o, Monster* m)
@@ -202,7 +200,7 @@ void weapon_acidwhip(int dmgmod, pob o, Monster* m)
 void weapon_scythe(int dmgmod, pob o, Monster* m)
 {
     mprint("Slice!");
-    m_death(m);
+    m->m_death();
     if (! Player.rank[ADEPT]) {
         mprint("Ooops!");
         mprint("You accidentally touch yourself on the backswing....");
@@ -229,7 +227,7 @@ void weapon_demonblade(int dmgmod, pob o, Monster* m)
             Player.str++;
             if( Player.pow < Player.maxpow )
                 Player.pow = min(Player.maxpow,Player.pow+m->level);
-            m_death(m);
+            m->m_death();
             mprint("You feel a surge of raw power from Demonblade!");
         }
         else p_hit(m,Player.dmg+dmgmod,NORMAL_DAMAGE);
@@ -265,11 +263,11 @@ void weapon_lightsabre(int dmgmod, pob o, Monster* m)
         /* test prevents confusing immunity messages.... */
         if (! m_immunityp(m,NORMAL_DAMAGE)) {
             mprint("Vzzzzmmm!");
-            m_damage(m,20,NORMAL_DAMAGE);
+            m->m_damage(20,NORMAL_DAMAGE);
         }
         if ((m->hp>0) && (! m_immunityp(m,FLAME))) {
             mprint("Zzzzap!");
-            m_damage(m,20,FLAME);
+            m->m_damage(20,FLAME);
         }
     }
 }
@@ -304,12 +302,11 @@ void weapon_bolt(int dmgmod, pob o, Monster* m)
     else p_hit(m,o->plus+o->dmg,NORMAL_DAMAGE);
 }
 
-
 void weapon_mace_disrupt(int dmgmod, pob o, Monster* m)
 {
     if (m->meleef == M_MELEE_SPIRIT) {
         mprint("The monster crumbles away to dust!");
-        m_death(m);
+        m->m_death();
     }
     else p_hit(m,Player.dmg+dmgmod,UNSTOPPABLE);
 }
@@ -319,14 +316,12 @@ void weapon_normal_hit(int dmgmod, pob o, Monster* m)
     p_hit(m,Player.dmg+dmgmod,NORMAL_DAMAGE);
 }
 
-
 /* will be updated eventually */
 void weapon_bare_hands(int dmgmod, Monster* m)
 {
 
     p_hit(m,Player.dmg+dmgmod,NORMAL_DAMAGE);
 }
-
 
 void i_demonblade(pob o)
 {
@@ -360,7 +355,6 @@ void i_mace_disrupt(pob o)
     mprint("That's a damned heavy mace!");
 }
 
-
 void weapon_vorpal(int dmgmod, pob o, Monster* m)
 {
     if ((random_range(10) < 3) && (! m_immunityp(m,NORMAL_DAMAGE))) {
@@ -368,7 +362,7 @@ void weapon_vorpal(int dmgmod, pob o, Monster* m)
         if (random_range(2) == 1)
             mprint("One Two! One Two! And through and through!");
         else mprint("Your vorpal blade goes snicker-snack!");
-        m_death(m);
+        m->m_death();
     }
     else weapon_normal_hit(dmgmod,o,m);
 }
@@ -431,7 +425,7 @@ void weapon_victrix(int dmgmod, pob o, Monster* m)
 {
     if (m->meleef == M_MELEE_SPIRIT) {
         mprint("Your opponent dissipates in a harmless cloud of vapors...");
-        m_death(m);
+        m->m_death();
     }
     else weapon_normal_hit(dmgmod,o,m);
 }

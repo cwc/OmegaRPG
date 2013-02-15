@@ -202,7 +202,7 @@ void make_house_npc(int i, int j)
     if (ml->m->startThing > -1) {
         ob = ((pob) checkmalloc(sizeof(objtype)));
         *ob = Objects[ml->m->startThing];
-        m_pickup(ml->m,ob);
+        ml->m->m_pickup(ob);
     }
 }
 

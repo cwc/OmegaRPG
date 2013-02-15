@@ -398,73 +398,68 @@ void p_movefunction(int movef)
     }
 }
 
-
 /* execute some move function for a monster */
 void m_movefunction(Monster* m, int movef)
 {
     /* loc functs above traps should be activated whether levitating or not */
     if (! m_statusp(m,FLYING) && ! m_statusp(m, INTANGIBLE))
         switch(movef) {
-
             /* miscellaneous */
         case L_NO_OP:
-            m_no_op(m);
             break;
         case L_WATER:
-            m_water(m);
+            m->m_water();
             break;
         case L_LAVA:
-            m_lava(m);
+            m->m_lava();
             break;
         case L_FIRE:
-            m_fire(m);
+            m->m_fire();
             break;
         case L_MAGIC_POOL:
-            m_water(m);
+            m->m_water();
             break;
         case L_ABYSS:
-            m_abyss(m);
+            m->m_abyss();
             break;
-
         case L_TRAP_DART:
-            m_trap_dart(m);
+            m->m_trap_dart();
             break;
         case L_TRAP_PIT:
-            m_trap_pit(m);
+            m->m_trap_pit();
             break;
         case L_TRAP_DOOR:
-            m_trap_door(m);
+            m->m_trap_door();
             break;
         case L_TRAP_SNARE:
-            m_trap_snare(m);
+            m->m_trap_snare();
             break;
         case L_TRAP_BLADE:
-            m_trap_blade(m);
+            m->m_trap_blade();
             break;
         case L_TRAP_FIRE:
-            m_trap_fire(m);
+            m->m_trap_fire();
             break;
         case L_TRAP_TELEPORT:
-            m_trap_teleport(m);
+            m->m_trap_teleport();
             break;
         case L_TRAP_DISINTEGRATE:
-            m_trap_disintegrate(m);
+            m->m_trap_disintegrate();
             break;
         case L_TRAP_MANADRAIN:
-            m_trap_manadrain(m);
+            m->m_trap_manadrain();
             break;
         case L_TRAP_SLEEP_GAS:
-            m_trap_sleepgas(m);
+            m->m_trap_sleepgas();
             break;
         case L_TRAP_ACID:
-            m_trap_acid(m);
+            m->m_trap_acid();
             break;
         case L_TRAP_ABYSS:
-            m_trap_abyss(m);
+            m->m_trap_abyss();
             break;
-
         case L_ALTAR:
-            m_altar(m);
+            m->m_altar();
             break;
         }
 }

@@ -66,7 +66,7 @@ void load_arena(void)
     Arena_Monster->x = 60;
     Arena_Monster->y = 7;
     Arena_Monster->sense = 50;
-    m_pickup(Arena_Monster,box);
+    Arena_Monster->m_pickup(box);
     m_status_set(Arena_Monster,AWAKE);
     Level->mlist = (MonsterList*) checkmalloc(sizeof(MonsterList));
     Level->mlist->m = Arena_Monster;

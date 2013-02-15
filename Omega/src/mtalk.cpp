@@ -673,7 +673,7 @@ void m_talk_horse(Monster* m)
     else {
         mprint("The horse lets you pat his nose. Want to ride him? [yn] ");
         if (ynq()=='y') {
-            m_remove(m);
+            m->m_remove();
             setgamestatus(MOUNTED);
             calc_melee();
             mprint("You are now equitating!");
@@ -690,7 +690,6 @@ void m_talk_parrot(Monster* m)
 {
     mprint("Polly wanna cracker?");
 }
-
 
 void m_talk_servant(Monster* m)
 {
@@ -715,12 +714,12 @@ void m_talk_servant(Monster* m)
                 mprint("The Servant launches itself towards its enemy.");
                 mprint("In a blaze of combat, the Servants annihilate each other!");
                 gain_experience(m->xpv);
-                m_death(Level->site[x][y].creature);
+                Level->site[x][y].creature->m_death();
                 Level->site[m->x][m->y].creature = NULL;
                 m->x = x;
                 m->y = y;
                 Level->site[x][y].creature = m;
-                m_death(Level->site[x][y].creature);
+                Level->site[x][y].creature->m_death();
             }
             else mprint("Right. Tell me about it. Idiot!");
         }
@@ -840,7 +839,6 @@ void m_talk_merchant(Monster* m)
     }
 }
 
-
 void m_talk_prime(Monster* m)
 {
     if (!m_statusp(m,HOSTILE)) {
@@ -848,7 +846,7 @@ void m_talk_prime(Monster* m)
             print1("The Prime nods brusquely at you, removes a gem from his");
             print2("sleeve, places it on the floor, and vanishes wordlessly.");
             morewait();
-            m_dropstuff(m);
+            m->m_dropstuff();
             m_vanish(m);
         }
         else {

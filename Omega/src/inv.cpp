@@ -394,7 +394,7 @@ void givemonster(Monster* m, pob o)
         else strcpy(Str3,m->name);
 
         if (m_statusp(m,GREEDY) || m_statusp(m,NEEDY)) {
-            m_pickup(m,o);
+            m->m_pickup(o);
             strcat(Str3," takes your gift");
             print1(Str3);
             Player.alignment++;
@@ -424,7 +424,7 @@ void givemonster(Monster* m, pob o)
                     nprint1("...and chokes on the poisoned ration!");
                     morewait();
                     m_status_set(m,HOSTILE);
-                    m_damage(m,100,POISON);
+                    m->m_damage(100,POISON);
                 }
                 else nprint1("...and now seems satiated.");
                 morewait();

@@ -582,7 +582,7 @@ void m_sp_mb(Monster* m)
             Player.hp = max(Player.hp,++Player.maxhp);
         }
         /* DAG -- to fix the explode but not die manaburst bug */
-        m_remove( m );
+        m->m_remove();
     }
 }
 
@@ -660,7 +660,7 @@ void m_thief_f(Monster* m)
                     m_teleport(m);
                     m->movef = M_MOVE_SCAREDY;
                     m->specialf = M_MOVE_SCAREDY;
-                    m_pickup(m,Player.possessions[i]);
+                    m->m_pickup(Player.possessions[i]);
                     conform_unused_object(Player.possessions[i]);
                     Player.possessions[i] = NULL;
                 }

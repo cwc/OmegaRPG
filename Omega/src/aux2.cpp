@@ -98,7 +98,7 @@ void p_hit (Monster *m,int dmg,int dtype)
         }
     }
 
-    m_damage(m,dmult * random_range(dmg),dtype);
+    m->m_damage(dmult * random_range(dmg),dtype);
     if ((Verbosity != TERSE) && (random_range(10)==3) && (m->hp > 0))
         mprint("It laughs at the injury and fights on!");
 }

@@ -164,7 +164,7 @@ void i_juggernaut(pob o)
                     else
                         not_seen++;
                     setgamestatus(SUPPRESS_PRINTING);
-                    m_death(Level->site[x][y].creature);
+                    Level->site[x][y].creature->m_death();
                     resetgamestatus(SUPPRESS_PRINTING);
                 }
                 plotspot(x, y, false);
@@ -294,7 +294,7 @@ void i_antioch(pob o)
             Level->site[x][y].p_locf = L_TRAP_DOOR;
             lset(x, y, CHANGED);
             if (Level->site[x][y].creature != NULL) {
-                m_death(Level->site[x][y].creature);
+                Level->site[x][y].creature->m_death();
                 print2("You are covered with gore.");
             }
             Level->site[x][y].things = NULL;

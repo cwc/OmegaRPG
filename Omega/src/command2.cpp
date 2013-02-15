@@ -267,7 +267,7 @@ void talk(void)
                     (response != ESCAPE));
             switch(response) {
             case 'a':
-                monster_talk(m);
+                m->monster_talk();
                 break;
             case 'b':
                 threaten(m);

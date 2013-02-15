@@ -554,7 +554,7 @@ Monster* make_creature(int mid)
                 Objects[newmonster->startThing].uniqueness <= UNIQUE_MADE) {
             ob = ((pob) checkmalloc(sizeof(objtype)));
             *ob = Objects[newmonster->startThing];
-            m_pickup(newmonster,ob);
+            newmonster->m_pickup(ob);
         }
         /* DAG -- monster with treasure of 1 would be same as 0, shouldn't be. */
         treasures = random_range(newmonster->treasure +1);
@@ -567,7 +567,7 @@ Monster* make_creature(int mid)
                     ob = NULL;
                 }
             } while (!ob);
-            m_pickup(newmonster,ob);
+            newmonster->m_pickup(ob);
         }
     }
     newmonster->click = (Tick + 1) % 50;

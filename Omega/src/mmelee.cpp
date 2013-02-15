@@ -147,11 +147,11 @@ void monster_melee(Monster* m, char hitloc, int bonus)
                     switch(random_range(10)) {
                     case 0:
                         strcat(Str2," blundered severely.");
-                        m_damage(m,m->dmg,UNSTOPPABLE);
+                        m->m_damage(m->dmg,UNSTOPPABLE);
                         break;
                     case 1:
                         strcat(Str2," tripped while attacking.");
-                        m_dropstuff(m);
+                        m->m_dropstuff();
                         break;
                     case 2:
                         strcat(Str2," seems seriously confused.");
@@ -170,11 +170,11 @@ void monster_melee(Monster* m, char hitloc, int bonus)
                     break;
                 case 2:
                     strcat(Str2," blundered severely.");
-                    m_damage(m,m->dmg,UNSTOPPABLE);
+                    m->m_damage(m->dmg,UNSTOPPABLE);
                     break;
                 case 3:
                     strcat(Str2," tripped while attacking.");
-                    m_dropstuff(m);
+                    m->m_dropstuff();
                     break;
                 case 4:
                     strcat(Str2," seems seriously confused.");

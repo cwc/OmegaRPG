@@ -60,7 +60,7 @@ void time_clock(int reset)
                 if (Tick == ml->m->click) {
                     ml->m->click += ml->m->speed;
                     while (ml->m->click > 60) ml->m->click -= 60;
-                    m_pulse(ml->m);
+                    ml->m->m_pulse();
                 }
                 prev = &(ml->next);
                 ml = ml->next;
@@ -82,7 +82,6 @@ void time_clock(int reset)
     }
 }
 
-
 /* remedies occasional defective monsters */
 void fix_phantom(Monster* m)
 {
@@ -94,7 +93,7 @@ void fix_phantom(Monster* m)
         mprint("You hear a puff of displaced air....");
         findspace(&(m->x),&(m->y),-1);
         Level->site[m->x][m->y].creature = m;
-        m_death(m);
+        m->m_death();
 
         /* PGM: shouldn't this be
          * m_remove? m_death causes an experience gain.*/

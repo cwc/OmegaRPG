@@ -951,11 +951,10 @@ void restore_hiscore_npc(Monster* npc, int npcid)
     m_status_set( npc, ALLOC );
     if (!m_statusp(npc, HOSTILE)) {
         status = npc->status;
-        determine_npc_behavior(npc,level,behavior);
+        npc->determine_npc_behavior(level,behavior);
         npc->status = status;
     }
 }
-
 
 void restore_monsters(FILE *fd, plv level, int version)
 {

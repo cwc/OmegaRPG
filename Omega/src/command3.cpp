@@ -823,7 +823,7 @@ void pickpocket(void)
                     mprint("As a punitive fine, the guard takes all your money.");
                     {
                         pob o = detach_money(Player.cash);
-                        m_pickup(m,o);
+                        m->m_pickup(o);
                     }
                     dataprint();
                 }

@@ -152,7 +152,7 @@ void annihilate(int blessing)
         for(i=0; i<9; i++)
             if (Level->site[Player.x+Dirs[0][i]][Player.y+Dirs[1][i]].creature !=
                     NULL)
-                m_death(Level->site[Player.x+Dirs[0][i]][Player.y+Dirs[1][i]].creature);
+                Level->site[Player.x+Dirs[0][i]][Player.y+Dirs[1][i]].creature->m_death();
     }
     if (blessing > 0) {
         if (Current_Environment == E_COUNTRYSIDE) {
@@ -167,7 +167,7 @@ void annihilate(int blessing)
             mprint("Thousands of bolts of lightning flash throughout the level!!!");
             for(ml=Level->mlist; ml!=NULL; ml=ml->next)
                 if (ml->m != NULL && ml->m->hp > 0)
-                    m_death(ml->m);
+                    ml->m->m_death();
         }
     }
     else {
@@ -356,7 +356,7 @@ void disrupt(int x, int y, int amount)
             if (! m_immunityp(target,NORMAL_DAMAGE)) {
                 strcat(Str1," was blasted!");
                 mprint(Str1);
-                m_damage(target,amount,NORMAL_DAMAGE);
+                target->m_damage(amount,NORMAL_DAMAGE);
                 target->wakeup = 0;
             }
             else {
@@ -398,7 +398,7 @@ void disintegrate(int x, int y)
             else strcpy(Str1,target->name);
             strcat(Str1," disintegrates!");
             mprint(Str1);
-            m_damage(target,100,UNSTOPPABLE);
+            target->m_damage(100,UNSTOPPABLE);
             if (target->hp > 0) mprint("It was partially protected by its armor.");
         }
         else if (Level->site[x][y].locchar == ALTAR) {
@@ -973,11 +973,10 @@ void hellfire(int x, int y, int blessing)
             }
             else
                 mprint("and dies, cursing your name and the uncaring gods....");
-            m_death(m);
+            m->m_death();
         }
     }
 }
-
 
 void drain(int blessing)
 {
@@ -993,7 +992,7 @@ void drain(int blessing)
     else if ((m=Level->site[x][y].creature) != NULL) {
         if ((blessing > -1) && (! m_immunityp(m,NEGENERGY))) {
             mprint("The monster seems weaker...");
-            m_damage(m,m->level*m->level,NEGENERGY);
+            m->m_damage(m->level*m->level,NEGENERGY);
             m->hit = max(m->hit - m->level, 1);
             m->dmg = max(m->dmg - m->level*m->level, 1);
             m->ac = max(m->ac - m->level, 1);
@@ -1168,7 +1167,7 @@ void inflict_fear(int x, int y)
             strcat(Str2,"seems enraged!");
         else {
             strcat(Str2,"is terrorized!");
-            m_dropstuff(m);
+            m->m_dropstuff();
             if (m_statusp(m,MOBILE))
                 m->movef = M_MOVE_SCAREDY;
         }

@@ -655,40 +655,8 @@ void m_move_leash( Monster * );
 
 char *mancorpse( void );
 char *angeltype( int,int );
-void determine_npc_behavior( Monster*,int,int );
-void m_abyss( Monster * );
-void m_altar( Monster * );
-void m_damage( Monster *,int,int );
-void m_remove( Monster * );
-void m_death( Monster * );
-void m_dropstuff( Monster * );
-void m_fire( Monster * );
-void m_lava( Monster * );
-void m_no_op( Monster * );
-void m_pickup( Monster *,struct object * );
-void m_pulse( Monster * );
-void m_trap_abyss( Monster * );
-void m_trap_acid( Monster * );
-void m_trap_blade( Monster * );
-void m_trap_dart( Monster * );
-void m_trap_disintegrate( Monster * );
-void m_trap_door( Monster * );
-void m_trap_fire( Monster * );
-void m_trap_manadrain( Monster * );
-void m_trap_pit( Monster * );
-void m_trap_sleepgas( Monster * );
-void m_trap_snare( Monster * );
-void m_trap_teleport( Monster * );
-void m_water( Monster * );
-void make_hiscore_npc( Monster*,int );
-void make_log_npc( Monster * );
-void monster_action( Monster *,int );
-void monster_move( Monster * );
-void monster_special( Monster * );
-void monster_strike( Monster * );
-void monster_talk( Monster * );
-void movemonster( Monster *,int,int );
-void strengthen_death( Monster * );
+void make_hiscore_npc(Monster*, int);
+void make_log_npc(Monster*);
 
 /* move.c functions */
 

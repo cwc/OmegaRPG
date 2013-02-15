@@ -887,7 +887,7 @@ void surrender(Monster *m)
     }
     if (m->id == GUARD) {
         if (m_statusp(m,HOSTILE))
-            monster_talk(m);
+            m->monster_talk();
         else {
             print2("The guard (bored): Have you broken a law? [yn] ");
             if (ynq2() == 'y') {
@@ -993,15 +993,15 @@ void threaten(Monster *m)
         do response = (char) mcigetc();
         while ((response != 'k')&&(response != 'r')&&(response !='f'));
         if (response == 'k') {
-            m_death(m);
+            m->m_death();
             print2("You treacherous rogue!");
             Player.alignment -= 13;
         }
         else if (response == 'r') {
             Player.alignment-=2;
             print2("It drops its treasure and flees.");
-            m_dropstuff(m);
-            m_remove( m );
+            m->m_dropstuff();
+            m->m_remove();
         }
         else {
             Player.alignment+=2;
@@ -1011,7 +1011,7 @@ void threaten(Monster *m)
                 print2("'...If it doesn't come back, hunt it down and kill it.'");
             }
             print3("It departs with a renewed sense of its own mortality.");
-            m_remove( m );
+            m->m_remove( );
         }
     }
 }

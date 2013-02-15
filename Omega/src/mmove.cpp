@@ -34,7 +34,7 @@ void m_simple_move(Monster* m)
         else strcpy(Str2,m->name);
         if (m->possessions != NULL) {
             strcat(Str2," drops its treasure and flees!");
-            m_dropstuff(m);
+            m->m_dropstuff();
         }
         else strcat(Str2," flees!");
         mprint(Str2);
@@ -44,26 +44,26 @@ void m_simple_move(Monster* m)
             (Player.status[INVISIBLE] > 0)) m_random_move(m);
     else {
         if (m_unblocked(m,m->x+dx,m->y+dy))
-            movemonster(m,m->x+dx,m->y+dy);
+            m->movemonster(m->x+dx,m->y+dy);
         else if (dx == 0) {
             if (m_unblocked(m,m->x+1,m->y+dy))
-                movemonster(m,m->x+1,m->y+dy);
+                m->movemonster(m->x+1,m->y+dy);
             else if (m_unblocked(m,m->x-1,m->y+dy))
-                movemonster(m,m->x-1,m->y+dy);
+                m->movemonster(m->x-1,m->y+dy);
         }
 
         else if (dy == 0) {
             if (m_unblocked(m,m->x+dx,m->y+1))
-                movemonster(m,m->x+dx,m->y+1);
+                m->movemonster(m->x+dx,m->y+1);
             else if (m_unblocked(m,m->x+dx,m->y-1))
-                movemonster(m,m->x+dx,m->y-1);
+                m->movemonster(m->x+dx,m->y-1);
         }
 
         else {
             if (m_unblocked(m,m->x+dx,m->y))
-                movemonster(m,m->x+dx,m->y);
+                m->movemonster(m->x+dx,m->y);
             else if (m_unblocked(m,m->x,m->y+dy))
-                movemonster(m,m->x,m->y+dy);
+                m->movemonster(m->x,m->y+dy);
         }
     }
 }
@@ -86,26 +86,26 @@ void m_scaredy_move(Monster* m)
     if (Player.status[INVISIBLE]) m_random_move(m);
     else {
         if (m_unblocked(m,m->x+dx,m->y+dy))
-            movemonster(m,m->x+dx,m->y+dy);
+            m->movemonster(m->x+dx,m->y+dy);
         else if (dx == 0) {
             if (m_unblocked(m,m->x+1,m->y+dy))
-                movemonster(m,m->x+1,m->y+dy);
+                m->movemonster(m->x+1,m->y+dy);
             else if (m_unblocked(m,m->x-1,m->y+dy))
-                movemonster(m,m->x-1,m->y+dy);
+                m->movemonster(m->x-1,m->y+dy);
         }
 
         else if (dy == 0) {
             if (m_unblocked(m,m->x+dx,m->y+1))
-                movemonster(m,m->x+dx,m->y+1);
+                m->movemonster(m->x+dx,m->y+1);
             else if (m_unblocked(m,m->x+dx,m->y-1))
-                movemonster(m,m->x+dx,m->y-1);
+                m->movemonster(m->x+dx,m->y-1);
         }
 
         else {
             if (m_unblocked(m,m->x+dx,m->y))
-                movemonster(m,m->x+dx,m->y);
+                m->movemonster(m->x+dx,m->y);
             else if (m_unblocked(m,m->x,m->y+dy))
-                movemonster(m,m->x,m->y+dy);
+                m->movemonster(m->x,m->y+dy);
         }
     }
 }
@@ -126,7 +126,7 @@ void m_spirit_move(Monster* m)
     if (Player.status[INVISIBLE] > 0 || !m_unblocked(m, m->x+dx, m->y+dy))
         m_random_move(m);
     else
-        movemonster(m,m->x+dx,m->y+dy);
+        m->movemonster(m->x+dx,m->y+dy);
 }
 
 
@@ -156,7 +156,7 @@ void m_flutter_move(Monster* m)
                 ny = ty;
             }
         }
-        movemonster(m,nx,ny);
+        m->movemonster(nx,ny);
     }
 }
 
@@ -182,7 +182,7 @@ void m_confused_move(Monster* m)
                 ((nx != Player.x) ||
                  (ny != Player.y))) {
             done = true;
-            movemonster(m,nx,ny);
+            m->movemonster(nx,ny);
         }
     }
 }
@@ -198,11 +198,10 @@ void m_random_move(Monster* m)
                 ((nx != Player.x) ||
                  (ny != Player.y))) {
             done = true;
-            movemonster(m,nx,ny);
+            m->movemonster(nx,ny);
         }
     }
 }
-
 
 /* monster removed from play */
 void m_vanish(Monster* m)
@@ -214,7 +213,7 @@ void m_vanish(Monster* m)
     else strcpy(Str2,m->name);
     strcat(Str2," vanishes in the twinkling of an eye!");
     mprint(Str2);
-    m_remove( m );/* signals "death" -- no credit to player, though */
+    m->m_remove();/* signals "death" -- no credit to player, though */
 }
 
 /* monster still in play */

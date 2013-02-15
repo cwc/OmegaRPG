@@ -941,7 +941,7 @@ void l_order(void)
                                        ml->m->aux2 != 15); ml = ml->next)
             /* just scan for current Justicar */;
         if (ml) {
-            m_remove(ml->m); /* signals "death" -- no credit to player, though */
+            ml->m->m_remove(); /* signals "death" -- no credit to player, though */
         }
         Justiciarlevel = Player.level;
         morewait();
