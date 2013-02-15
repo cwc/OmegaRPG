@@ -153,9 +153,6 @@
     <ClCompile Include="..\..\..\Omega\src\mmelee.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Omega\src\mmove.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Omega\src\mon.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

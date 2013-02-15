@@ -635,22 +635,6 @@ void monster_melee( Monster *,char,int );
 void tacmonster( Monster * );
 void transcribe_monster_actions( Monster * );
 
-/* mmove.c functions */
-
-void m_confused_move( Monster * );
-void m_flutter_move( Monster * );
-void m_follow_move( Monster * );
-void m_move_animal( Monster * );
-void m_normal_move( Monster * );
-void m_random_move( Monster * );
-void m_scaredy_move( Monster * );
-void m_simple_move( Monster * );
-void m_smart_move( Monster * );
-void m_spirit_move( Monster * );
-void m_teleport( Monster * );
-void m_vanish( Monster * );
-void m_move_leash( Monster * );
-
 /* mon.c functions */
 
 char *mancorpse( void );

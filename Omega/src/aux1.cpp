@@ -944,7 +944,7 @@ void surrender(Monster *m)
             print1("It continues to attack you. ");
         else {
             print1("The monster leaves, chuckling to itself....");
-            m_teleport(m);
+            m->m_teleport();
         }
     }
     dataprint();

@@ -9,7 +9,7 @@ void m_sp_mp(Monster* m)
     if (m->wasAttackedByPlayer && (random_range(3) == 1)) {
         mprint("You feel cursed!");
         p_damage(10,UNSTOPPABLE,"a mendicant priest's curse");
-        m_vanish(m);
+        m->m_vanish();
     }
     else if (! m_statusp(m,NEEDY)) {
         mprint("The mendicant priest makes a mystical gesture....");
@@ -17,7 +17,7 @@ void m_sp_mp(Monster* m)
         Player.alignment += 5;
         if (Player.alignment > 20)
             Player.hp = max(Player.hp,Player.maxhp);
-        m_vanish(m);
+        m->m_vanish();
     }
 }
 
@@ -122,7 +122,7 @@ void m_sp_acid_cloud(Monster* m)
 void m_sp_escape(Monster* m)
 {
     if (m_statusp(m,HOSTILE))
-        m_vanish(m);
+        m->m_vanish();
 }
 
 
@@ -276,7 +276,7 @@ void m_sp_seductor(Monster* m)
         else strcpy(Str2,m->name);
         strcat(Str2," runs away screaming for help....");
         mprint(Str2);
-        m_vanish(m);
+        m->m_vanish();
         summon(-1,-1);
         summon(-1,-1);
         summon(-1,-1);
@@ -657,7 +657,7 @@ void m_thief_f(Monster* m)
                     else strcpy(Str2,m->name);
                     strcat(Str2," suddenly runs away for some reason.");
                     mprint(Str2);
-                    m_teleport(m);
+                    m->m_teleport();
                     m->movef = M_MOVE_SCAREDY;
                     m->specialf = M_MOVE_SCAREDY;
                     m->m_pickup(Player.possessions[i]);

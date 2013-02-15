@@ -84,7 +84,7 @@ void m_talk_druid(Monster* m)
             mprint("'I certainly hope so!' says the ArchDruid.");
             for (curr = Level->mlist; curr; curr = curr->next)
                 m_status_reset(curr->monster, HOSTILE);
-            m_vanish(m);
+            m->m_vanish();
         }
         else {
             mprint("'Idiot.' mutters the ArchDruid.");
@@ -295,7 +295,7 @@ void m_talk_thief(Monster* m)
         print2("...the thieves' guild recognition signal!");
         print3("'Sorry, mate, thought you were a mark....'");
         morewait();
-        m_vanish(m);
+        m->m_vanish();
     }
     else m_talk_man(m);
 
@@ -355,7 +355,7 @@ void m_talk_im(Monster* m)
         if (NULL != m->possessions)
         {
             mprint("Well then, I must be off. Good day.");
-            m_vanish(m);
+            m->m_vanish();
         }
     }
 }
@@ -547,7 +547,7 @@ void m_talk_gf(Monster* m)
     Player.hp = max(Player.hp,Player.maxhp);
     Player.mana = max(Player.mana,calcmana());
     mprint("You feel mellow.");
-    m_vanish(m);
+    m->m_vanish();
 }
 
 void m_talk_ef(Monster* m)
@@ -597,7 +597,7 @@ void m_talk_seductor(Monster* m)
             Player.con++;
         }
     }
-    m_vanish(m);
+    m->m_vanish();
 }
 
 
@@ -769,7 +769,7 @@ void m_talk_archmage(Monster* m)
         mprint("before sitting on the throne.");
         if (Level->site[m->x][m->y].p_locf == L_THRONE) {
             mprint("The Archmage smiles and makes an arcane gesture....");
-            m_vanish(m);
+            m->m_vanish();
         }
     }
     else {
@@ -823,7 +823,7 @@ void m_talk_merchant(Monster* m)
                     mprint("He says: 'You'll want to get to know him before trying to");
                     mprint("ride him. By the way, food for the horse is not included.'");
                     mprint("The merchant runs off toward the bank, cackling gleefully.");
-                    m_vanish(m);
+                    m->m_vanish();
                 }
             }
             else mprint("The merchant tells you to stop wasting his time.");
@@ -847,7 +847,7 @@ void m_talk_prime(Monster* m)
             print2("sleeve, places it on the floor, and vanishes wordlessly.");
             morewait();
             m->m_dropstuff();
-            m_vanish(m);
+            m->m_vanish();
         }
         else {
             print1("The Prime makes an intricate gesture, which leaves behind");
@@ -859,7 +859,7 @@ void m_talk_prime(Monster* m)
                 Player.pow+=Player.rank[CIRCLE];
                 Player.mana += calcmana();
                 gain_experience(1000);
-                m_vanish(m);
+                m->m_vanish();
             }
         }
     }

@@ -75,6 +75,20 @@ typedef chtype Symbol;
 		void monster_strike();
 		void monster_talk();
 		void strengthen_death();
+
+		void m_confused_move();
+		void m_flutter_move();
+		void m_follow_move();
+		void m_move_animal();
+		void m_normal_move();
+		void m_random_move();
+		void m_scaredy_move();
+		void m_simple_move();
+		void m_smart_move();
+		void m_spirit_move();
+		void m_teleport();
+		void m_vanish();
+		void m_move_leash();
 	};
 
 	class MonsterList {

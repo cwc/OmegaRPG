@@ -218,7 +218,7 @@ void weapon_demonblade(int dmgmod, pob o, Monster* m)
     }
     else if (m->specialf == M_SP_DEMON) {
         mprint("The demon flees in terror before your weapon!");
-        m_vanish(m);
+        m->m_vanish();
     }
     else if (m->meleef != M_MELEE_SPIRIT) {
         if (m->level > random_range(10)) {

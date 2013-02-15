@@ -1,5 +1,256 @@
 #include "glob.h"
 
+/* like m_normal_move, but can open doors */
+void Monster::m_smart_move()
+{
+    m_simple_move();
+}
+
+/* not very smart, but not altogether stupid movement */
+void Monster::m_normal_move()
+{
+    m_simple_move();
+}
+
+/* used by both m_normal_move and m_smart_move */
+void Monster::m_simple_move()
+{
+    int dx = sign(Player.x - this->x);
+    int dy = sign(Player.y - this->y);
+
+    erase_monster(this);
+    if (this->hp < Monsters[this->id].hp/4) {
+        dx = - dx;
+        dy = - dy;
+        this->movef = M_MOVE_SCAREDY;
+        if (this->uniqueness == COMMON) {
+            strcpy(Str2,"The ");
+            strcat(Str2,this->name);
+        }
+        else strcpy(Str2,this->name);
+        if (this->possessions != NULL) {
+            strcat(Str2," drops its treasure and flees!");
+            this->m_dropstuff();
+        }
+        else strcat(Str2," flees!");
+        mprint(Str2);
+        this->speed = min(2,this->speed-1);
+    }
+    if ((! m_statusp(this,HOSTILE) && !m_statusp(this, NEEDY)) ||
+            (Player.status[INVISIBLE] > 0)) m_random_move();
+    else {
+        if (m_unblocked(this,this->x+dx,this->y+dy))
+            this->movemonster(this->x+dx,this->y+dy);
+        else if (dx == 0) {
+            if (m_unblocked(this,this->x+1,this->y+dy))
+                this->movemonster(this->x+1,this->y+dy);
+            else if (m_unblocked(this,this->x-1,this->y+dy))
+                this->movemonster(this->x-1,this->y+dy);
+        }
+
+        else if (dy == 0) {
+            if (m_unblocked(this,this->x+dx,this->y+1))
+                this->movemonster(this->x+dx,this->y+1);
+            else if (m_unblocked(this,this->x+dx,this->y-1))
+                this->movemonster(this->x+dx,this->y-1);
+        }
+
+        else {
+            if (m_unblocked(this,this->x+dx,this->y))
+                this->movemonster(this->x+dx,this->y);
+            else if (m_unblocked(this,this->x,this->y+dy))
+                this->movemonster(this->x,this->y+dy);
+        }
+    }
+}
+
+void Monster::m_move_animal()
+{
+    if (m_statusp(this,HOSTILE))
+        m_normal_move();
+    else m_scaredy_move();
+}
+
+/* same as simple move except run in opposite direction */
+void Monster::m_scaredy_move()
+{
+    int dx = -sign(Player.x - this->x);
+    int dy = -sign(Player.y - this->y);
+    erase_monster(this);
+    if (Player.status[INVISIBLE]) m_random_move();
+    else {
+        if (m_unblocked(this,this->x+dx,this->y+dy))
+            this->movemonster(this->x+dx,this->y+dy);
+        else if (dx == 0) {
+            if (m_unblocked(this,this->x+1,this->y+dy))
+                this->movemonster(this->x+1,this->y+dy);
+            else if (m_unblocked(this,this->x-1,this->y+dy))
+                this->movemonster(this->x-1,this->y+dy);
+        }
+
+        else if (dy == 0) {
+            if (m_unblocked(this,this->x+dx,this->y+1))
+                this->movemonster(this->x+dx,this->y+1);
+            else if (m_unblocked(this,this->x+dx,this->y-1))
+                this->movemonster(this->x+dx,this->y-1);
+        }
+
+        else {
+            if (m_unblocked(this,this->x+dx,this->y))
+                this->movemonster(this->x+dx,this->y);
+            else if (m_unblocked(this,this->x,this->y+dy))
+                this->movemonster(this->x,this->y+dy);
+        }
+    }
+}
+
+/* for spirits (and earth creatures) who can ignore blockages because
+   either they are noncorporeal or they can move through stone */
+void Monster::m_spirit_move()
+{
+    int dx = sign(Player.x - this->x);
+    int dy = sign(Player.y - this->y);
+    erase_monster(this);
+    if (this->hp < Monsters[this->id].hp/6) {
+        dx = -dx;
+        dy = -dy;
+    }
+
+    if (Player.status[INVISIBLE] > 0 || !m_unblocked(this, this->x+dx, this->y+dy))
+        m_random_move();
+    else
+        this->movemonster(this->x+dx,this->y+dy);
+}
+
+/* fluttery dumb movement */
+void Monster::m_flutter_move()
+{
+    int trange,range = distance(this->x,this->y,Player.x,Player.y);
+    int i,tx,ty,nx=this->x,ny=this->y;
+    erase_monster(this);
+    if (Player.status[INVISIBLE] > 0) m_random_move();
+    else {
+        for (i=0; i<8; i++) {
+            tx = this->x+Dirs[0][i];
+            ty = this->y+Dirs[1][i];
+            trange = distance(tx,ty,Player.x,Player.y);
+            if (this->hp < Monsters[this->id].hp/6) {
+                if ((trange > range) && m_unblocked(this,tx,ty)) {
+                    range = trange;
+                    nx = tx;
+                    ny = ty;
+                }
+            }
+            else if ((trange <= range) && m_unblocked(this,tx,ty)) {
+                range = trange;
+                nx = tx;
+                ny = ty;
+            }
+        }
+        this->movemonster(nx,ny);
+    }
+}
+
+void Monster::m_follow_move()
+{
+    if (! m_statusp(this,HOSTILE))
+        m_normal_move();
+    else m_scaredy_move();
+}
+
+/* allows monsters to fall into pools, revealed traps, etc */
+void Monster::m_confused_move()
+{
+    int i,nx,ny,done=false;
+    erase_monster(this);
+    for (i=0; ((i<8)&&(! done)); i++) {
+        nx = this->x+random_range(3)-1;
+        ny = this->y+random_range(3)-1;
+        if (unblocked(nx,ny) &&
+                ((nx != Player.x) ||
+                 (ny != Player.y))) {
+            done = true;
+            this->movemonster(nx,ny);
+        }
+    }
+}
+
+void Monster::m_random_move()
+{
+    int i,nx,ny,done=false;
+    erase_monster(this);
+    for (i=0; ((i<8)&&(! done)); i++) {
+        nx = this->x+random_range(3)-1;
+        ny = this->y+random_range(3)-1;
+        if (m_unblocked(this,nx,ny) &&
+                ((nx != Player.x) ||
+                 (ny != Player.y))) {
+            done = true;
+            this->movemonster(nx,ny);
+        }
+    }
+}
+
+/* monster removed from play */
+void Monster::m_vanish()
+{
+    if (this->uniqueness == COMMON) {
+        strcpy(Str2,"The ");
+        strcat(Str2,this->name);
+    }
+    else strcpy(Str2,this->name);
+    strcat(Str2," vanishes in the twinkling of an eye!");
+    mprint(Str2);
+    this->m_remove();/* signals "death" -- no credit to player, though */
+}
+
+/* monster still in play */
+void Monster::m_teleport()
+{
+    erase_monster(this);
+    if (m_statusp(this,AWAKE)) {
+        Level->site[this->x][this->y].creature = NULL;
+        putspot(this->x,this->y,getspot(this->x,this->y,false));
+        findspace(&(this->x),&(this->y),-1);
+        Level->site[this->x][this->y].creature = this;
+    }
+}
+
+void Monster::m_move_leash()
+{
+    m_simple_move();
+    if (this->aux1 == 0) {
+        this->aux1 = this->x;
+        this->aux2 = this->y;
+    }
+    else if (distance(this->x,this->y,this->aux1,this->aux2) > 5) {
+        if (Level->site[this->aux1][this->aux2].creature != NULL) {
+            if (los_p(Player.x,Player.y,this->aux1,this->aux2)) {
+                /* some other monster is where the chain starts */
+                if (Level->site[this->aux1][this->aux2].creature->uniqueness == COMMON) {
+                    strcpy(Str1, "The ");
+                    strcat(Str1, Level->site[this->aux1][this->aux2].creature->name);
+                }
+                else
+                    strcpy(Str1, Level->site[this->aux1][this->aux2].creature->name);
+                strcat(Str1, " releases the dog's chain!");
+                mprint(Str1);
+            }
+            this->movef = M_MOVE_NORMAL;
+            /* otherwise, we'd lose either the dog or the other monster. */
+        }
+        else if (los_p(Player.x,Player.y,this->x,this->y)) {
+            mprint("You see the dog jerked back by its chain!");
+            plotspot(this->x, this->y, false);
+        }
+        else mprint("You hear a strangled sort of yelp!");
+        Level->site[this->x][this->y].creature = NULL;
+        this->x = this->aux1;
+        this->y = this->aux2;
+        Level->site[this->x][this->y].creature = this;
+    }
+}
+
 /*               Revised function                   */
 /* WDT: code contributed by David J. Robertson */
 /* consider one monster's action */
@@ -20,7 +271,7 @@ void Monster::m_pulse()
 
     if (m_statusp(this,AWAKE)) {
         if (m_statusp(this,WANDERING)) {
-            if (m_statusp(this,MOBILE)) m_random_move(this);
+            if (m_statusp(this,MOBILE)) m_random_move();
             if (range <= this->sense && (m_statusp(this, HOSTILE) ||
                                       m_statusp(this, NEEDY)))
                 m_status_reset(this,WANDERING);
@@ -432,39 +683,38 @@ void Monster::monster_action(int action)
         case M_NO_OP:
             break;
         case M_MOVE_NORMAL:
-            m_normal_move(this);
+            m_normal_move();
             break;
         case M_MOVE_FLUTTER:
-            m_flutter_move(this);
+            m_flutter_move();
             break;
         case M_MOVE_FOLLOW:
-            m_follow_move(this);
+            m_follow_move();
             break;
         case M_MOVE_TELEPORT:
-            m_teleport(this);
+            m_teleport();
             break;
         case M_MOVE_RANDOM:
-            m_random_move(this);
+            m_random_move();
             break;
         case M_MOVE_SMART:
-            m_smart_move(this);
+            m_smart_move();
             break;
         case M_MOVE_SPIRIT:
-            m_spirit_move(this);
+            m_spirit_move();
             break;
         case M_MOVE_CONFUSED:
-            m_confused_move(this);
+            m_confused_move();
             break;
         case M_MOVE_SCAREDY:
-            m_scaredy_move(this);
+            m_scaredy_move();
             break;
         case M_MOVE_ANIMAL:
-            m_move_animal(this);
+            m_move_animal();
             break;
         case M_MOVE_LEASH:
-            m_move_leash(this);
+            m_move_leash();
             break;
-
         case M_STRIKE_MISSILE:
             m_nbolt(this);
             break;
@@ -633,7 +883,7 @@ void Monster::monster_action(int action)
             m_sp_escape(this);
             break;
         case M_SP_FLUTTER:
-            m_flutter_move(this);
+            m_flutter_move();
             break;
         case M_SP_EXPLODE:
             m_sp_explode(this);
@@ -817,7 +1067,7 @@ void Monster::m_trap_door()
         Level->site[x][y].locchar = TRAP;
         lset(x, y, CHANGED);
     }
-    m_vanish(this);
+    m_vanish();
 }
 
 void Monster::m_trap_abyss()
@@ -837,7 +1087,7 @@ void Monster::m_trap_abyss()
         lset(x, y, CHANGED);
     }
     setgamestatus(SUPPRESS_PRINTING);
-    m_vanish(this);
+    m_vanish();
     resetgamestatus(SUPPRESS_PRINTING);
 }
 
@@ -921,7 +1171,7 @@ void Monster::m_trap_teleport()
         strcat(Str1," walked into a teleport trap!");
         mprint(Str1);
     }
-    m_teleport(this);
+    m_teleport();
 }
 
 void Monster::m_trap_disintegrate()
@@ -1023,7 +1273,7 @@ void Monster::m_abyss()
         strcat(Str1," fell into the infinite abyss!");
         mprint(Str1);
     }
-    m_vanish(this);
+    m_vanish();
 }
 
 void Monster::m_lava()
