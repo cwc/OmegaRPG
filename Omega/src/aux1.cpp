@@ -179,7 +179,7 @@ int p_moveable(int x, int y)
     }
     else if (Level->site[x][y].creature != NULL) {
         if (! gamestatusp(FAST_MOVE)) {
-            fight_monster(Level->site[x][y].creature);
+            Level->site[x][y].creature->fight_monster();
             resetgamestatus(SKIP_MONSTERS);
             return(false);
         }
@@ -396,49 +396,6 @@ void calc_melee(void)
     showflags();
     dataprint();
 }
-
-
-/* player attacks monster m */
-void fight_monster(Monster *m)
-{
-    int hitmod = 0;
-    int reallyfight = true;
-
-    if (Player.status[AFRAID]) {
-        print3("You are much too afraid to fight!");
-        reallyfight = false;
-    }
-    else if (player_on_sanctuary()) {
-        print3("You restrain yourself from desecrating this holy place.");
-        reallyfight = false;
-    }
-    else if (Player.status[SHADOWFORM]) {
-        print3("Your attack has no effect in your shadowy state.");
-        reallyfight = false;
-    }
-    else if ((Player.status[BERSERK]<1) && (! m_statusp(m,HOSTILE))) {
-        if (optionp(BELLICOSE)) reallyfight = true;
-        else reallyfight = 'y'==cinema_confirm("You're attacking without provokation.");
-    }
-    else reallyfight = true;
-
-    if (reallyfight) {
-
-        if (Lunarity == 1) hitmod += Player.level;
-        else if (Lunarity == -1) hitmod -= (Player.level / 2);
-
-        if (! m->wasAttackedByPlayer) Player.alignment -= 2; /* chaotic action */
-        m_status_set(m,AWAKE);
-        m_status_set(m,HOSTILE);
-        m->wasAttackedByPlayer = true;
-        Player.hit += hitmod;
-        tacplayer(m);
-        Player.hit -= hitmod;
-    }
-}
-
-
-
 
 /* Attempt to break an object o */
 int damage_item(pob o)
@@ -659,43 +616,6 @@ int getdir(void)
     }
 }
 
-
-
-/* functions describes monster m's state for examine function */
-char *mstatus_string(Monster *m)
-{
-    if (m_statusp(m, M_INVISIBLE) && !Player.status[TRUESIGHT])
-        strcpy(Str2, "Some invisible creature");
-    else if (m->uniqueness == COMMON) {
-        if (m->hp < Monsters[m->id].hp / 3)
-            strcpy(Str2,"a grievously injured ");
-        else if (m->hp < Monsters[m->id].hp / 2)
-            strcpy(Str2,"a severely injured ");
-        else if (m->hp < Monsters[m->id].hp)
-            strcpy(Str2,"an injured ");
-        else strcpy(Str2,getarticle(m->name));
-        if (m->level > Monsters[m->id].level) {
-            strcat(Str2," (level ");
-            strcat(Str2,wordnum(m->level+1-Monsters[m->id].level));
-            strcat(Str2,") ");
-        }
-        strcat(Str2,m->name);
-    }
-    else {
-        strcpy(Str2,m->name);
-        if (m->hp < Monsters[m->id].hp / 3)
-            strcat(Str2," who is grievously injured ");
-        else if (m->hp < Monsters[m->id].hp / 2)
-            strcat(Str2," who is severely injured ");
-        else if (m->hp < Monsters[m->id].hp)
-            strcat(Str2," who is injured ");
-    }
-    return(Str2);
-}
-
-
-
-
 /* for the examine function */
 void describe_player(void)
 {
@@ -745,7 +665,7 @@ int goberserk(void)
         if (Level->site[Player.x+Dirs[0][i]][Player.y+Dirs[1][i]].creature
                 != NULL) {
             wentberserk=true;
-            fight_monster(Level->site[Player.x+Dirs[0][i]][Player.y+Dirs[1][i]].creature);
+            Level->site[Player.x+Dirs[0][i]][Player.y+Dirs[1][i]].creature->fight_monster();
             morewait();
         }
     strcpy(Player.combatManeuvers,combatManeuvers);
@@ -865,156 +785,6 @@ void roomcheck(void)
 }
 
 
-/* ask for mercy */
-void surrender(Monster *m)
-{
-    int i;
-    long bestitem,bestvalue;
-
-    switch(random_range(4)) {
-    case 0:
-        print1("You grovel at the monster's feet...");
-        break;
-    case 1:
-        print1("You cry 'uncle'!");
-        break;
-    case 2:
-        print1("You beg for mercy.");
-        break;
-    case 3:
-        print1("You yield to the monster.");
-        break;
-    }
-    if (m->id == GUARD) {
-        if (m_statusp(m,HOSTILE))
-            m->monster_talk();
-        else {
-            print2("The guard (bored): Have you broken a law? [yn] ");
-            if (ynq2() == 'y') {
-                print2("The guard grabs you, and drags you to court.");
-                morewait();
-                send_to_jail();
-            }
-            else print2("Then don't bother me. Scat!");
-        }
-    }
-    else if ((m->talkf==M_NO_OP) ||
-             (m->talkf==M_TALK_STUPID))
-        print3("Your plea is ignored.");
-    else  {
-        morewait();
-        print1("Your surrender is accepted.");
-        if (Player.cash > 0) nprint1(" All your gold is taken....");
-        Player.cash = 0;
-        bestvalue = 0;
-        bestitem = ABORT;
-        for (i=1; i<MAXITEMS; i++)
-            if (Player.possessions[i] != NULL)
-                if (bestvalue < true_item_value(Player.possessions[i])) {
-                    bestitem = i;
-                    bestvalue = true_item_value(Player.possessions[i]);
-                }
-        if (bestitem != ABORT) {
-            print2("You also give away your best item... ");
-            nprint2(itemid(Player.possessions[bestitem]));
-            nprint2(".");
-            morewait();
-            givemonster(m,Player.possessions[bestitem]);
-            morewait(); /* msgs come from givemonster */
-            conform_unused_object(Player.possessions[bestitem]);
-            Player.possessions[bestitem] = NULL;
-        }
-        print2("You feel less experienced... ");
-        Player.xp = max(0,Player.xp - m->xpv);
-        nprint2("The monster seems more experienced!");
-        m->level = (min(10,m->level+1));
-        m->hp += m->level*20;
-        m->hit += m->level;
-        m->dmg += m->level;
-        m->ac += m->level;
-        m->xpv += m->level*10;
-        morewait();
-        clearmsg();
-        if ((m->talkf == M_TALK_EVIL) && random_range(10)) {
-            print1("It continues to attack you, laughing evilly!");
-            m_status_set(m,HOSTILE);
-            m_status_reset(m,GREEDY);
-        }
-        else if (m->id == HORNET || m->id == GUARD)
-            print1("It continues to attack you. ");
-        else {
-            print1("The monster leaves, chuckling to itself....");
-            m->m_teleport();
-        }
-    }
-    dataprint();
-}
-
-
-/* threaten a monster */
-void threaten(Monster *m)
-{
-    char response;
-    switch(random_range(4)) {
-    case 0:
-        mprint("You demand that your opponent surrender!");
-        break;
-    case 1:
-        mprint("You threaten to do bodily harm to it.");
-        break;
-    case 2:
-        mprint("You attempt to bluster it into submission.");
-        break;
-    case 3:
-        mprint("You try to cow it with your awesome presence.");
-        break;
-    }
-    morewait(); /* FIXED! 12/25/98 */
-    if (! m_statusp(m,HOSTILE)) {
-        print3("You only annoy it with your futile demand.");
-        m_status_set(m,HOSTILE);
-    }
-    else if (((m->level*2 > Player.level) && (m->hp > Player.dmg)) ||
-             (m->uniqueness != COMMON))
-        print1("It sneers contemptuously at you.");
-    else if ((m->talkf != M_TALK_GREEDY) &&
-             (m->talkf != M_TALK_HUNGRY) &&
-             (m->talkf != M_TALK_EVIL) &&
-             (m->talkf != M_TALK_MAN) &&
-             (m->talkf != M_TALK_BEG) &&
-             (m->talkf != M_TALK_THIEF) &&
-             (m->talkf != M_TALK_MERCHANT) &&
-             (m->talkf != M_TALK_IM))
-        print1("Your demand is ignored");
-    else {
-        print1("It yields to your mercy.");
-        Player.alignment+=3;
-        print2("Kill it, rob it, or free it? [krf] ");
-        do response = (char) mcigetc();
-        while ((response != 'k')&&(response != 'r')&&(response !='f'));
-        if (response == 'k') {
-            m->m_death();
-            print2("You treacherous rogue!");
-            Player.alignment -= 13;
-        }
-        else if (response == 'r') {
-            Player.alignment-=2;
-            print2("It drops its treasure and flees.");
-            m->m_dropstuff();
-            m->m_remove();
-        }
-        else {
-            Player.alignment+=2;
-            print2("'If you love something set it free ... '");
-            if (random_range(100)==13) {
-                morewait();
-                print2("'...If it doesn't come back, hunt it down and kill it.'");
-            }
-            print3("It departs with a renewed sense of its own mortality.");
-            m->m_remove( );
-        }
-    }
-}
 
 /* name of the player's experience level */
 char *levelname(int level)

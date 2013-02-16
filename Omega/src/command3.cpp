@@ -43,7 +43,7 @@ void examine(void)
         else {
             clearmsg();
             if (Level->site[x][y].creature != NULL)
-                mprint(mstatus_string(Level->site[x][y].creature));
+                mprint(Level->site[x][y].creature->mstatus_string());
             else if ((Player.x == x) && (Player.y ==y))
                 describe_player();
             if (loc_statusp(x,y,SECRET))

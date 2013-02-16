@@ -270,10 +270,10 @@ void talk(void)
                 m->monster_talk();
                 break;
             case 'b':
-                threaten(m);
+                m->threaten();
                 break;
             case 'c':
-                surrender(m);
+                m->surrender();
                 break;
             default:
                 setgamestatus(SKIP_MONSTERS);

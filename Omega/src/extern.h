@@ -33,7 +33,6 @@ void load_abyss( void );
 /* aux1.c functions */
 
 char *levelname( int );
-char *mstatus_string( Monster * );
 char *trapid( int );
 int getdir( void );
 int goberserk( void );
@@ -43,7 +42,6 @@ int player_on_sanctuary( void );
 void calc_melee( void );
 int damage_item( pob );
 void describe_player( void );
-void fight_monster( Monster * );
 void foodcheck( void );
 void gain_experience( int );
 void p_damage( int,int,char * );
@@ -52,8 +50,6 @@ void roomcheck( void );
 void searchat( int,int );
 void setspot( int *,int * );
 void showroom( int );
-void surrender( Monster * );
-void threaten( Monster * );
 void tunnelcheck( void );
 
 /* aux2.c functions */

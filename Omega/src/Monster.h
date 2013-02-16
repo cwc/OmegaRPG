@@ -89,6 +89,11 @@ typedef chtype Symbol;
 		void m_teleport();
 		void m_vanish();
 		void m_move_leash();
+
+		char* mstatus_string();
+		void fight_monster();
+		void surrender();
+		void threaten();
 	};
 
 	class MonsterList {
