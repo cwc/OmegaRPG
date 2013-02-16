@@ -57,11 +57,6 @@ extern char* getlogin();
  * 32 bits. */
 typedef int int32;
 
-/* Implementor should uncomment the following if getopt is not
-   available */
-
-/* #define NOGETOPT */
-
 /* Define the maximum length of a filename on your system.  If you don't */
 /* define, will try to make an educated guess.  If you have one,  */
 /* /usr/include/limits.h is a good place to look for this value. */
