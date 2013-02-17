@@ -94,6 +94,8 @@ typedef chtype Symbol;
 		void fight_monster();
 		void surrender();
 		void threaten();
+
+		bool player_hit(int hitmod, char hitloc);
 	};
 
 	class MonsterList {

@@ -1587,3 +1587,43 @@ void Monster::threaten()
         }
     }
 }
+
+/* checks to see if player hits with hitmod vs. monster m at location hitloc */
+bool Monster::player_hit(int hitmod, char hitloc)
+{
+    int i=0,blocks=false,goodblocks=0;
+	bool hit;
+
+    if (this->hp < 1) {
+        mprint("Unfortunately, your opponent is already dead!");
+        return(false);
+    }
+    else {
+        if (hitloc == 'X') hitloc = random_loc();
+
+        transcribe_monster_actions(this);
+
+        while (i<strlen(this->combatManeuvers)) {
+            if ((this->combatManeuvers[i] == 'B') || (this->combatManeuvers[i] == 'R')) {
+                blocks = true;
+                if (hitloc == this->combatManeuvers[i+1])
+                    goodblocks++;
+            }
+            i+=2;
+        }
+
+        if (! blocks) goodblocks = -1;
+        hit = hitp(Player.hit+hitmod,this->ac+goodblocks*10);
+        if ((! hit) && (goodblocks > 0)) {
+            if (this->uniqueness == COMMON) {
+                strcpy(Str1,"The ");
+                strcat(Str1,this->name);
+            }
+            else strcpy(Str1,this->name);
+            strcat(Str1," blocks it!");
+            if (Verbosity == VERBOSE) mprint(Str1);
+        }
+
+        return hit;
+    }
+}

@@ -59,7 +59,6 @@ long item_value( pob );
 long true_item_value( pob );
 char *actionlocstr( char );
 int p_immune( int );
-int player_hit( int,char,Monster * );
 int statmod( int );
 void break_weapon( void );
 void change_environment( char );

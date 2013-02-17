@@ -746,7 +746,7 @@ void tacplayer(Monster *m)
                 else strcpy(Str1,"You thrust ");
                 strcat(Str1,actionlocstr(Player.combatManeuvers[i+1]));
                 if (Verbosity == VERBOSE) mprint(Str1);
-                if (player_hit(2*statmod(Player.dex),Player.combatManeuvers[i+1],m))
+                if (m->player_hit(2*statmod(Player.dex),Player.combatManeuvers[i+1]))
                     weapon_use(0,Player.possessions[O_WEAPON_HAND],m);
                 else player_miss(m,NORMAL_DAMAGE);
                 break;
@@ -761,7 +761,7 @@ void tacplayer(Monster *m)
                 else strcpy(Str1,"You attack ");
                 strcat(Str1,actionlocstr(Player.combatManeuvers[i+1]));
                 if (Verbosity == VERBOSE) mprint(Str1);
-                if (player_hit(0,Player.combatManeuvers[i+1],m))
+                if (m->player_hit(0,Player.combatManeuvers[i+1]))
                     weapon_use(2*statmod(Player.str),
                                Player.possessions[O_WEAPON_HAND],
                                m);
@@ -772,7 +772,7 @@ void tacplayer(Monster *m)
                 strcpy(Str1,"You lunge ");
                 strcat(Str1,actionlocstr(Player.combatManeuvers[i+1]));
                 if (Verbosity == VERBOSE) mprint(Str1);
-                if (player_hit(Player.level+Player.dex,Player.combatManeuvers[i+1],m))
+                if (m->player_hit(Player.level+Player.dex,Player.combatManeuvers[i+1]))
                     weapon_use(Player.level,Player.possessions[O_WEAPON_HAND],m);
                 else player_miss(m,NORMAL_DAMAGE);
                 break;
@@ -781,47 +781,6 @@ void tacplayer(Monster *m)
         i+=2;
     }
 }
-
-
-
-
-/* checks to see if player hits with hitmod vs. monster m at location hitloc */
-int player_hit(int hitmod, char hitloc, Monster *m)
-{
-    int i=0,blocks=false,goodblocks=0,hit;
-    if (m->hp < 1) {
-        mprint("Unfortunately, your opponent is already dead!");
-        return(false);
-    }
-    else {
-        if (hitloc == 'X') hitloc = random_loc();
-
-        transcribe_monster_actions(m);
-
-        while (i<strlen(m->combatManeuvers)) {
-            if ((m->combatManeuvers[i] == 'B') || (m->combatManeuvers[i] == 'R')) {
-                blocks = true;
-                if (hitloc == m->combatManeuvers[i+1])
-                    goodblocks++;
-            }
-            i+=2;
-        }
-
-        if (! blocks) goodblocks = -1;
-        hit = hitp(Player.hit+hitmod,m->ac+goodblocks*10);
-        if ((! hit) && (goodblocks > 0)) {
-            if (m->uniqueness == COMMON) {
-                strcpy(Str1,"The ");
-                strcat(Str1,m->name);
-            }
-            else strcpy(Str1,m->name);
-            strcat(Str1," blocks it!");
-            if (Verbosity == VERBOSE) mprint(Str1);
-        }
-        return(hit);
-    }
-}
-
 
 /* This function is used to undo all items temporarily, should
 always be used in pairs with on being true and false, and may cause
