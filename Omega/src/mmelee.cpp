@@ -77,7 +77,7 @@ void monster_melee(Monster* m, char hitloc, int bonus)
                 strcat(Str2," hits you.");
                 mprint(Str2);
                 m_hit(m,NORMAL_DAMAGE);
-                if (random_range(5)==3) m_sp_ng(m);
+                if (random_range(5)==3) m->m_sp_ng();
                 break;
             case M_MELEE_FIRE:
                 strcat(Str2," blasts you with fire.");

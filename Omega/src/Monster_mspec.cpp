@@ -4,26 +4,26 @@
 
 #include "glob.h"
 
-void m_sp_mp(Monster* m)
+void Monster::m_sp_mp()
 {
-    if (m->wasAttackedByPlayer && (random_range(3) == 1)) {
+    if (this->wasAttackedByPlayer && (random_range(3) == 1)) {
         mprint("You feel cursed!");
         p_damage(10,UNSTOPPABLE,"a mendicant priest's curse");
-        m->m_vanish();
+        this->m_vanish();
     }
-    else if (! m_statusp(m,NEEDY)) {
+    else if (! m_statusp(this,NEEDY)) {
         mprint("The mendicant priest makes a mystical gesture....");
         mprint("You feel impressed...");
         Player.alignment += 5;
         if (Player.alignment > 20)
             Player.hp = max(Player.hp,Player.maxhp);
-        m->m_vanish();
+        this->m_vanish();
     }
 }
 
-void m_sp_ng(Monster* m)
+void Monster::m_sp_ng()
 {
-    if (distance(m->x,m->y,Player.x,Player.y) < 2)
+    if (distance(this->x,this->y,Player.x,Player.y) < 2)
         if ((random_range(5) == 1) || (Player.status[VULNERABLE]>0)) {
             mprint("The night gaunt grabs you and carries you off!");
             mprint("Its leathery wings flap and flap, and it giggles insanely.");
@@ -33,9 +33,9 @@ void m_sp_ng(Monster* m)
         }
 }
 
-void m_sp_poison_cloud(Monster* m)
+void Monster::m_sp_poison_cloud()
 {
-    if (distance(m->x,m->y,Player.x,Player.y) < 3) {
+    if (distance(this->x,this->y,Player.x,Player.y) < 3) {
         mprint("A cloud of poison gas surrounds you!");
         if (Player.status[BREATHING] > 0)
             mprint("You can breathe freely, however.");
@@ -43,43 +43,42 @@ void m_sp_poison_cloud(Monster* m)
     }
 }
 
-void m_sp_explode(Monster* m)
+void Monster::m_sp_explode()
 {
-    if ((distance(Player.x,Player.y,m->x,m->y)<2) &&
-            (m-> hp > 0) &&
-            (m->hp < Monsters[m->id].hp))
-        fball(m->x,m->y,m->x,m->y,m->hp);
+    if ((distance(Player.x,Player.y,this->x,this->y)<2) &&
+            (this-> hp > 0) &&
+            (this->hp < Monsters[this->id].hp))
+        fball(this->x,this->y,this->x,this->y,this->hp);
 }
 
-
-void m_sp_demon (Monster* m)
+void Monster::m_sp_demon ()
 {
     int mid;
 
     if (random_range(2))
     {
-        if ((m->id != INCUBUS) /* succubi don't give fear */
-                && los_p(m->x, m->y, Player.x, Player.y)
+        if ((this->id != INCUBUS) /* succubi don't give fear */
+                && los_p(this->x, this->y, Player.x, Player.y)
                 && (random_range(30) > (Player.level + 10))
                 && (0 == Player.status[AFRAID]))
         {
             mprint("You are stricken with fear!");
             if (!p_immune(FEAR))
-                Player.status[AFRAID] += m->level;
+                Player.status[AFRAID] += this->level;
             else
                 mprint("You master your reptile brain and stand fast.");
         }
         else
         {
-            m_sp_spell(m);
+            m_sp_spell();
         }
     }
 
-    if ((m->hp < (m->level * 5)) && (m->hp > 1))
+    if ((this->hp < (this->level * 5)) && (this->hp > 1))
     {
         mprint("The demon uses its waning lifeforce to summon help!");
-        m->hp = 1;
-        switch(m->level)
+        this->hp = 1;
+        switch(this->level)
         {
         case 3:
             mid = NIGHT_GAUNT;
@@ -110,51 +109,47 @@ void m_sp_demon (Monster* m)
     }
 }
 
-
-void m_sp_acid_cloud(Monster* m)
+void Monster::m_sp_acid_cloud()
 {
-    if (m_statusp(m,HOSTILE) &&
-            (distance(m->x,m->y,Player.x,Player.y) < 3))
+    if (m_statusp(this,HOSTILE) &&
+            (distance(this->x,this->y,Player.x,Player.y) < 3))
         acid_cloud();
 }
 
-
-void m_sp_escape(Monster* m)
+void Monster::m_sp_escape()
 {
-    if (m_statusp(m,HOSTILE))
-        m->m_vanish();
+    if (m_statusp(this,HOSTILE))
+        this->m_vanish();
 }
 
-
-void m_sp_ghost(Monster* m)
+void Monster::m_sp_ghost()
 {
-    if (m_statusp(m,HOSTILE)) {
+    if (m_statusp(this,HOSTILE)) {
         mprint("The ghost moans horribly....");
         p_damage(1,FEAR,"a ghost-inspired heart attack");
         mprint("You've been terrorized!");
-        if (! p_immune(FEAR)) Player.status[AFRAID] += m->level;
+        if (! p_immune(FEAR)) Player.status[AFRAID] += this->level;
         else mprint("You master your reptile brain and stand fast.");
     }
 }
 
-
 /* random spell cast by monster */
-void m_sp_spell(Monster* m)
+void Monster::m_sp_spell()
 {
     char action[80];
-    if (m_statusp(m,HOSTILE) && los_p(Player.x,Player.y,m->x,m->y)) {
-        if (m->uniqueness == COMMON) strcpy(action,"The ");
+    if (m_statusp(this,HOSTILE) && los_p(Player.x,Player.y,this->x,this->y)) {
+        if (this->uniqueness == COMMON) strcpy(action,"The ");
         else strcpy(action,"");
-        strcat(action,m->name);
+        strcat(action,this->name);
         strcat(action," casts a spell...");
         mprint(action);
-        if (! magic_resist(m->level)) switch (random_range(m->level+7)) {
+        if (! magic_resist(this->level)) switch (random_range(this->level+7)) {
             case 0:
-                nbolt(m->x,m->y,Player.x,Player.y,m->hit,10);
+                nbolt(this->x,this->y,Player.x,Player.y,this->hit,10);
                 break;
             case 1:
                 mprint("It seems stronger...");
-                m->hp += random_range(m->level*m->level);
+                this->hp += random_range(this->level*this->level);
                 break;
             case 2:
                 haste(-1);
@@ -166,36 +161,36 @@ void m_sp_spell(Monster* m)
                 /* WDT: I'd like to make this (and "case 5" below) dependant on
                  * the monster's IQ in some way -- dumb but powerful monsters
                  * deserve what they get :).  No rush. */
-                if (m_immunityp(m, ELECTRICITY) ||
-                        distance(m->x,m->y,Player.x,Player.y) > 2)
-                    lball(m->x,m->y,Player.x,Player.y,20);
+                if (m_immunityp(this, ELECTRICITY) ||
+                        distance(this->x,this->y,Player.x,Player.y) > 2)
+                    lball(this->x,this->y,Player.x,Player.y,20);
                 else
-                    lbolt(m->x,m->y,Player.x,Player.y,m->hit,20);
+                    lbolt(this->x,this->y,Player.x,Player.y,this->hit,20);
                 break;
             case 5:
-                if (m_immunityp(m, COLD) ||
-                        distance(m->x,m->y,Player.x,Player.y) > 2)
-                    snowball(m->x,m->y,Player.x,Player.y,30);
+                if (m_immunityp(this, COLD) ||
+                        distance(this->x,this->y,Player.x,Player.y) > 2)
+                    snowball(this->x,this->y,Player.x,Player.y,30);
                 else
-                    icebolt(m->x,m->y,Player.x,Player.y,m->hit,30);
+                    icebolt(this->x,this->y,Player.x,Player.y,this->hit,30);
                 break;
             case 6:
                 enchant(-1);
                 break;
             case 7:
-                bless(0-m->level);
+                bless(0-this->level);
                 break;
             case 8:
-                p_poison(m->level);
+                p_poison(this->level);
                 break;
             case 9:
-                sleep_player(m->level/2);
+                sleep_player(this->level/2);
                 break;
             case 10:
-                fbolt(m->x,m->y,Player.x,Player.y,m->hit*3,50);
+                fbolt(this->x,this->y,Player.x,Player.y,this->hit*3,50);
                 break;
             case 11:
-                acquire(0-m->level);
+                acquire(0-this->level);
                 break;
             case 12:
                 dispel(-1);
@@ -204,12 +199,12 @@ void m_sp_spell(Monster* m)
                 disrupt(Player.x,Player.y,50);
                 break;
             case 14:
-                if (m->uniqueness == COMMON) {
+                if (this->uniqueness == COMMON) {
                     strcpy(Str2,"a ");
-                    strcat(Str2,m->name);
+                    strcat(Str2,this->name);
                 }
-                else strcpy(Str2,m->name);
-                level_drain(m->level,Str2);
+                else strcpy(Str2,this->name);
+                level_drain(this->level,Str2);
                 break;
             case 15:
             case 16:
@@ -219,17 +214,15 @@ void m_sp_spell(Monster* m)
     }
 }
 
-
-
 /* monsters with this have some way to hide, camouflage, etc until they
    attack */
-void m_sp_surprise(Monster* m)
+void Monster::m_sp_surprise()
 {
-    if (m->wasAttackedByPlayer) {
-        if (m_statusp(m,HOSTILE) &&
+    if (this->wasAttackedByPlayer) {
+        if (m_statusp(this,HOSTILE) &&
                 (! Player.status[TRUESIGHT]) &&
-                m_statusp(m,M_INVISIBLE)) {
-            m->symbol = Monsters[m->id].symbol;
+                m_statusp(this,M_INVISIBLE)) {
+            this->symbol = Monsters[this->id].symbol;
             if (! Player.status[ALERT]) {
                 switch(random_range(4)) {
                 case 0:
@@ -247,57 +240,55 @@ void m_sp_surprise(Monster* m)
                 }
                 morewait();
                 setgamestatus(SKIP_PLAYER);
-                m_status_reset(m,M_INVISIBLE);
+                m_status_reset(this,M_INVISIBLE);
             }
             else {
                 mprint("You alertly sense the presence of an attacker!");
-                m_status_reset(m,M_INVISIBLE);
+                m_status_reset(this,M_INVISIBLE);
             }
         }
     }
 }
 
-void m_sp_whistleblower(Monster* m)
+void Monster::m_sp_whistleblower()
 {
-    if (m_statusp(m,HOSTILE)) {
+    if (m_statusp(this,HOSTILE)) {
         alert_guards();
-        m->specialf = M_MELEE_NORMAL;
+        this->specialf = M_MELEE_NORMAL;
     }
 }
 
-
-void m_sp_seductor(Monster* m)
+void Monster::m_sp_seductor()
 {
-    if (m_statusp(m,HOSTILE)) {
-        if (m->uniqueness == COMMON) {
+    if (m_statusp(this,HOSTILE)) {
+        if (this->uniqueness == COMMON) {
             strcpy(Str2,"The ");
-            strcat(Str2,m->name);
+            strcat(Str2,this->name);
         }
-        else strcpy(Str2,m->name);
+        else strcpy(Str2,this->name);
         strcat(Str2," runs away screaming for help....");
         mprint(Str2);
-        m->m_vanish();
+        this->m_vanish();
         summon(-1,-1);
         summon(-1,-1);
         summon(-1,-1);
     }
-    else if (distance(Player.x,Player.y,m->x,m->y) < 2)
-        m_talk_seductor(m);
+    else if (distance(Player.x,Player.y,this->x,this->y) < 2)
+        m_talk_seductor(this);
 
 }
 
-
-void m_sp_demonlover(Monster* m)
+void Monster::m_sp_demonlover()
 {
-    if (distance(Player.x,Player.y,m->x,m->y) < 2)
-        m_talk_demonlover(m);
+    if (distance(Player.x,Player.y,this->x,this->y) < 2)
+        m_talk_demonlover(this);
 }
 
-void m_sp_eater(Monster* m)
+void Monster::m_sp_eater()
 {
-    if (Player.rank[COLLEGE]) m_status_set(m,HOSTILE);
-    if (m_statusp(m,HOSTILE))
-        if (los_p(m->x,m->y,Player.x,Player.y)) {
+    if (Player.rank[COLLEGE]) m_status_set(this,HOSTILE);
+    if (m_statusp(this,HOSTILE))
+        if (los_p(this->x,this->y,Player.x,Player.y)) {
             mprint("A strange numbing sensation comes over you...");
             morewait();
             Player.mana = Player.mana / 2;
@@ -306,17 +297,16 @@ void m_sp_eater(Monster* m)
             Player.pow--;
             if (--Player.pow < 1) p_death("the Eater of Magic");
         }
-    if (m->hp < 10) {
+    if (this->hp < 10) {
         mprint("The Eater explodes in a burst of mana!");
-        manastorm(m->x,m->y,1000);
+        manastorm(this->x,this->y,1000);
     }
 }
 
-
-void m_sp_dragonlord(Monster* m)
+void Monster::m_sp_dragonlord()
 {
-    if (m_statusp(m,HOSTILE)) {
-        if (distance(m->x,m->y,Player.x,Player.y)<2) {
+    if (m_statusp(this,HOSTILE)) {
+        if (distance(this->x,this->y,Player.x,Player.y)<2) {
             if (! Player.status[IMMOBILE]) {
                 mprint("A gust of wind from the Dragonlord's wings knocks you down!");
                 p_damage(25,NORMAL_DAMAGE,"a gust of wind");
@@ -339,36 +329,35 @@ void m_sp_dragonlord(Monster* m)
                 p_damage(2*Constriction,NORMAL_DAMAGE,"the Dragonlord");
                 Constriction = 0;
             }
-            m_sp_spell(m);
+            m_sp_spell();
         }
         else {
             Constriction = 0;
-            if (view_los_p(m->x,m->y,Player.x,Player.y)) {
+            if (view_los_p(this->x,this->y,Player.x,Player.y)) {
                 if ((! Player.immunity[FEAR]) && (! Player.status[AFRAID])) {
                     mprint("You are awestruck at the sight of the Dragonlord.");
                     Player.status[AFRAID]+=5;
                 }
                 if (random_range(3)) {
-                    m_sp_spell(m);
-                    m_sp_spell(m);
+                    m_sp_spell();
+                    m_sp_spell();
                 }
             }
         }
     }
-    else if (distance(m->x,m->y,Player.x,Player.y)<2)
+    else if (distance(this->x,this->y,Player.x,Player.y)<2)
         mprint("You are extremely impressed at the sight of the Dragonlord.");
 }
 
-
-void m_sp_blackout(Monster* m)
+void Monster::m_sp_blackout()
 {
-    if ((distance(m->x,m->y,Player.x,Player.y) < 4) &&
+    if ((distance(this->x,this->y,Player.x,Player.y) < 4) &&
             (Player.status[BLINDED] == 0)) {
         mprint("The fungus emits a burst of black spores. You've been blinded!");
         if (Player.status[TRUESIGHT] > 0) mprint("The blindness quickly passes.");
         else Player.status[BLINDED]+=4;
     }
-    if (loc_statusp(m->x,m->y,LIT)) {
+    if (loc_statusp(this->x,this->y,LIT)) {
         mprint("The fungus chirps.... ");
         mprint("The area is plunged into darkness.");
         torch_check();
@@ -377,16 +366,15 @@ void m_sp_blackout(Monster* m)
         torch_check();
         torch_check();
         torch_check();
-        spreadroomdark(m->x,m->y,Level->site[m->x][m->y].roomnumber);
+        spreadroomdark(this->x,this->y,Level->site[this->x][this->y].roomnumber);
         levelrefresh();
     }
 }
 
-
-void m_sp_bogthing(Monster* m)
+void Monster::m_sp_bogthing()
 {
     if (Player.status[IMMOBILE] &&
-            (distance(Player.x,Player.y,m->x,m->y) < 2)) {
+            (distance(Player.x,Player.y,this->x,this->y) < 2)) {
         if (! Player.status[AFRAID]) {
             mprint("As the bogthing touches you, you feel a frisson of terror....");
             if (Player.immunity[FEAR]) mprint("which you shake off.");
@@ -404,11 +392,10 @@ void m_sp_bogthing(Monster* m)
     }
 }
 
-
-void m_sp_were(Monster* m)
+void Monster::m_sp_were()
 {
     int mid;
-    if (m_statusp(m,HOSTILE) || (Phase == 6)) {
+    if (m_statusp(this,HOSTILE) || (Phase == 6)) {
         do mid = random_range(ML9-NML_0)+ML1;
         /* log npc, 0th level npc, high score npc or were-creature */
         while (mid == NPC || mid == ZERO_NPC ||
@@ -417,74 +404,71 @@ void m_sp_were(Monster* m)
                 (! m_statusp(&(Monsters[mid]),MOBILE)) ||
                 (! m_statusp(&(Monsters[mid]),HOSTILE))
               );
-        m->id = Monsters[mid].id;
-        m->hp += Monsters[mid].hp;
-        m->status |= Monsters[mid].status;
-        m->ac = Monsters[mid].ac;
-        m->dmg = Monsters[mid].dmg;
-        m->speed = Monsters[mid].speed;
-        m->immunity |= Monsters[mid].immunity;
-        m->xpv += Monsters[mid].xpv;
-        m->corpseWeight = Monsters[mid].corpseWeight;
-        m->symbol = Monsters[mid].symbol;
-        m->talkf = Monsters[mid].talkf;
-        m->meleef = Monsters[mid].meleef;
-        m->strikef = Monsters[mid].strikef;
-        m->specialf = Monsters[mid].specialf;
+        this->id = Monsters[mid].id;
+        this->hp += Monsters[mid].hp;
+        this->status |= Monsters[mid].status;
+        this->ac = Monsters[mid].ac;
+        this->dmg = Monsters[mid].dmg;
+        this->speed = Monsters[mid].speed;
+        this->immunity |= Monsters[mid].immunity;
+        this->xpv += Monsters[mid].xpv;
+        this->corpseWeight = Monsters[mid].corpseWeight;
+        this->symbol = Monsters[mid].symbol;
+        this->talkf = Monsters[mid].talkf;
+        this->meleef = Monsters[mid].meleef;
+        this->strikef = Monsters[mid].strikef;
+        this->specialf = Monsters[mid].specialf;
         strcpy(Str1,"were-");
         strcat(Str1,Monsters[mid].name);
         strcpy(Str2,"dead were-");
         strcat(Str2,Monsters[mid].name);
-        m->name = salloc(Str1);
-        m->corpseString = salloc(Str2);
-        m_status_set( m, ALLOC );
-        m->immunity |= pow2(NORMAL_DAMAGE); /* WDT: not +=, rather |=. */
-        if (los_p(m->x,m->y,Player.x,Player.y))
+        this->name = salloc(Str1);
+        this->corpseString = salloc(Str2);
+        m_status_set( this, ALLOC );
+        this->immunity |= pow2(NORMAL_DAMAGE); /* WDT: not +=, rather |=. */
+        if (los_p(this->x,this->y,Player.x,Player.y))
             mprint("You witness a hideous transformation!");
         else mprint("You hear a distant howl.");
     }
 }
 
-
-void m_sp_servant(Monster* m)
+void Monster::m_sp_servant()
 {
-    if ((m->id == SERV_LAW) && (Player.alignment < 0))
-        m_status_set(m,HOSTILE);
-    else if ((m->id == SERV_CHAOS) && (Player.alignment > 0))
-        m_status_set(m,HOSTILE);
+    if ((this->id == SERV_LAW) && (Player.alignment < 0))
+        m_status_set(this,HOSTILE);
+    else if ((this->id == SERV_CHAOS) && (Player.alignment > 0))
+        m_status_set(this,HOSTILE);
 }
 
-
-void m_sp_av(Monster* m)
+void Monster::m_sp_av()
 {
     if (Player.mana > 0) {
         mprint("You feel a sudden loss of mana!");
-        Player.mana -= (max(0,10-distance(m->x,m->y,Player.x,Player.y)));
+        Player.mana -= (max(0,10-distance(this->x,this->y,Player.x,Player.y)));
         dataprint();
     }
 }
 
-void m_sp_lw(Monster* m)
+void Monster::m_sp_lw()
 {
     if (random_range(2)) {
-        if (Level->site[m->x][m->y].locchar == FLOOR) {
-            Level->site[m->x][m->y].locchar = LAVA;
-            Level->site[m->x][m->y].p_locf = L_LAVA;
-            lset(m->x, m->y, CHANGED);
+        if (Level->site[this->x][this->y].locchar == FLOOR) {
+            Level->site[this->x][this->y].locchar = LAVA;
+            Level->site[this->x][this->y].p_locf = L_LAVA;
+            lset(this->x, this->y, CHANGED);
         }
-        else if (Level->site[m->x][m->y].locchar == WATER) {
-            Level->site[m->x][m->y].locchar = FLOOR;
-            Level->site[m->x][m->y].p_locf = L_NO_OP;
-            lset(m->x, m->y, CHANGED);
+        else if (Level->site[this->x][this->y].locchar == WATER) {
+            Level->site[this->x][this->y].locchar = FLOOR;
+            Level->site[this->x][this->y].p_locf = L_NO_OP;
+            lset(this->x, this->y, CHANGED);
         }
     }
 }
 
-
-void m_sp_angel(Monster* m)
+void Monster::m_sp_angel()
 {
     int mid,hostile = false;
-    switch(m->aux1) {
+    switch(this->aux1) {
     case ATHENA:
     case ODIN:
         hostile = ((Player.patron == HECATE) || (Player.patron == SET));
@@ -498,10 +482,10 @@ void m_sp_angel(Monster* m)
         break;
     }
     if (hostile)
-        m_status_set(m,HOSTILE);
-    if (m_statusp(m,HOSTILE)) {
+        m_status_set(this,HOSTILE);
+    if (m_statusp(this,HOSTILE)) {
         mprint("The angel summons a heavenly host!");
-        switch(m->level) {
+        switch(this->level) {
         case 9:
             mid = HIGH_ANGEL;
             break;
@@ -517,30 +501,28 @@ void m_sp_angel(Monster* m)
         summon(-1,mid);
         summon(-1,mid);
         /* prevent angel from summoning infinitely */
-        m->specialf = M_NO_OP;
+        this->specialf = M_NO_OP;
     }
 }
 
-
 /* Could completely fill up level */
-void m_sp_swarm(Monster* m)
+void Monster::m_sp_swarm()
 {
     if (random_range(5)==1) {
-        if (view_los_p(m->x,m->y,Player.x,Player.y))
+        if (view_los_p(this->x,this->y,Player.x,Player.y))
             mprint("The swarm expands!");
         else mprint("You hear an aggravating humming noise.");
         summon(-1,SWARM);
     }
 }
 
-
 /* raise nearby corpses from the dead.... */
-void m_sp_raise(Monster* m)
+void Monster::m_sp_raise()
 {
     int x,y;
     pol t;
-    for(x=m->x-2; x<=m->x+2; x++)
-        for(y=m->y-2; y<=m->y+2; y++)
+    for(x=this->x-2; x<=this->x+2; x++)
+        for(y=this->y-2; y<=this->y+2; y++)
             if (inbounds(x,y))
                 if (Level->site[x][y].things != NULL)
                     if (Level->site[x][y].things->thing->id == CORPSEID) {
@@ -553,13 +535,11 @@ void m_sp_raise(Monster* m)
                     }
 }
 
-
-
-void m_sp_mb(Monster* m)
+void Monster::m_sp_mb()
 {
-    if (distance(m->x,m->y,Player.x,Player.y)==1) {
+    if (distance(this->x,this->y,Player.x,Player.y)==1) {
         mprint("The manaburst explodes!");
-        if (m_statusp(m,HOSTILE)) {
+        if (m_statusp(this,HOSTILE)) {
             mprint("You get blasted!");
             p_damage(random_range(100),UNSTOPPABLE,"a manaburst");
             mprint("You feel cold all over!");
@@ -582,85 +562,78 @@ void m_sp_mb(Monster* m)
             Player.hp = max(Player.hp,++Player.maxhp);
         }
         /* DAG -- to fix the explode but not die manaburst bug */
-        m->m_remove();
+        this->m_remove();
     }
 }
 
-
-void m_sp_mirror(Monster* m)
+void Monster::m_sp_mirror()
 {
     int i,x,y;
-    if (view_los_p(m->x,m->y,Player.x,Player.y)) {
-        if (random_range(20)+6 < m->level) {
-            summon(-1,m->id);
+    if (view_los_p(this->x,this->y,Player.x,Player.y)) {
+        if (random_range(20)+6 < this->level) {
+            summon(-1,this->id);
             mprint("You hear the sound of a mirror shattering!");
         }
         else for(i=0; i<5; i++) {
-                x = m->x + random_range(13)-6;
-                y = m->y + random_range(13)-6;
+                x = this->x + random_range(13)-6;
+                y = this->y + random_range(13)-6;
                 if (inbounds(x,y)) {
-                    Level->site[x][y].showchar = m->symbol;
-                    putspot(x,y,m->symbol);
+                    Level->site[x][y].showchar = this->symbol;
+                    putspot(x,y,this->symbol);
                 }
             }
     }
 }
 
-
-
-void m_illusion(Monster* m)
+void Monster::m_illusion()
 {
     int i = random_range(NUMMONSTERS);
-    if (i==NPC || i==HISCORE_NPC || i==ZERO_NPC) i = m->id; /* can't imitate NPC */
+    if (i==NPC || i==HISCORE_NPC || i==ZERO_NPC) i = this->id; /* can't imitate NPC */
     if (Player.status[TRUESIGHT]) {
-        m->symbol = Monsters[m->id].symbol;
-        m->name = Monsters[m->id].name;
+        this->symbol = Monsters[this->id].symbol;
+        this->name = Monsters[this->id].name;
     }
     else  if (random_range(5) == 1) {
-        m->symbol = Monsters[i].symbol;
-        m->name = Monsters[i].name;
+        this->symbol = Monsters[i].symbol;
+        this->name = Monsters[i].name;
     }
 }
 
-
-
-void m_huge_sounds(Monster* m)
+void Monster::m_huge_sounds()
 {
-    if (m_statusp(m,AWAKE) &&
-            (! los_p(m->x,m->y,Player.x,Player.y)) &&
+    if (m_statusp(this,AWAKE) &&
+            (! los_p(this->x,this->y,Player.x,Player.y)) &&
             (random_range(10) == 1))
         mprint("The dungeon shakes!");
 }
 
-
-
-void m_thief_f(Monster* m)
+void Monster::m_thief_f()
 {
     int i = stolen_item();
     if (random_range(3) == 1) {
-        if (distance(Player.x,Player.y,m->x,m->y) < 2) {
-            if (p_immune(THEFT) || (Player.level > (m->level*2)+random_range(20)))
+        if (distance(Player.x,Player.y,this->x,this->y) < 2) {
+            if (p_immune(THEFT) || (Player.level > (this->level*2)+random_range(20)))
                 mprint("You feel secure.");
             else {
                 if (i == ABORT)
                     mprint("You feel fortunate.");
                 else if ((Player.possessions[i]->used) ||
-                         (Player.dex < m->level*random_range(10))) {
+                         (Player.dex < this->level*random_range(10))) {
                     mprint("You feel a sharp tug.... You hold on!");
                 }
                 else {
                     mprint("You feel uneasy for a moment.");
-                    if (m->uniqueness == COMMON) {
+                    if (this->uniqueness == COMMON) {
                         strcpy(Str2,"The ");
-                        strcat(Str2,m->name);
+                        strcat(Str2,this->name);
                     }
-                    else strcpy(Str2,m->name);
+                    else strcpy(Str2,this->name);
                     strcat(Str2," suddenly runs away for some reason.");
                     mprint(Str2);
-                    m->m_teleport();
-                    m->movef = M_MOVE_SCAREDY;
-                    m->specialf = M_MOVE_SCAREDY;
-                    m->m_pickup(Player.possessions[i]);
+                    this->m_teleport();
+                    this->movef = M_MOVE_SCAREDY;
+                    this->specialf = M_MOVE_SCAREDY;
+                    this->m_pickup(Player.possessions[i]);
                     conform_unused_object(Player.possessions[i]);
                     Player.possessions[i] = NULL;
                 }
@@ -669,39 +642,35 @@ void m_thief_f(Monster* m)
     }
 }
 
-
-void m_summon(Monster* m)
+void Monster::m_summon()
 {
-    if ((distance(Player.x,Player.y,m->x,m->y) < 2) &&
+    if ((distance(Player.x,Player.y,this->x,this->y) < 2) &&
             (random_range(3) == 1)) {
         summon(0,-1);
         summon(0,-1);
     }
 }
 
-
-void m_aggravate(Monster* m)
+void Monster::m_aggravate()
 {
 
-    if (m_statusp(m,HOSTILE)) {
-        if (m->uniqueness == COMMON) {
+    if (m_statusp(this,HOSTILE)) {
+        if (this->uniqueness == COMMON) {
             strcpy(Str2,"The ");
-            strcat(Str2,m->name);
+            strcat(Str2,this->name);
         }
-        else strcpy(Str2,m->name);
+        else strcpy(Str2,this->name);
         strcat(Str2," emits an irritating humming sound.");
         mprint(Str2);
         aggravate();
-        m_status_reset(m,HOSTILE);
+        m_status_reset(this,HOSTILE);
     }
 }
 
-
-
-void m_sp_merchant(Monster* m)
+void Monster::m_sp_merchant()
 {
     MonsterList* ml;
-    if (m_statusp(m,HOSTILE))
+    if (m_statusp(this,HOSTILE))
         if (Current_Environment == E_VILLAGE) {
             mprint("The merchant screams: 'Help! Murder! Guards! Help!'");
             mprint("You hear the sound of police whistles and running feet.");
@@ -709,32 +678,31 @@ void m_sp_merchant(Monster* m)
                 m_status_set(ml->monster,AWAKE);
                 m_status_set(ml->monster,HOSTILE);
             }
-            m->specialf = M_NO_OP;
+            this->specialf = M_NO_OP;
         }
 }
 
 /* The special function of the various people in the court of the archmage */
 /* and the sorcerors' circle */
-void m_sp_court(Monster* m)
+void Monster::m_sp_court()
 {
     MonsterList* ml;
-    if (m_statusp(m,HOSTILE)) {
+    if (m_statusp(this,HOSTILE)) {
         mprint("A storm of spells hits you!");
         for(ml=Level->mlist; ml!=NULL; ml=ml->next) {
             m_status_set(ml->monster,HOSTILE);
-            m_sp_spell(ml->monster);
+            ml->monster->m_sp_spell();
             if (ml->monster->specialf == M_SP_COURT)
                 ml->monster->specialf = M_SP_SPELL;
         }
     }
 }
 
-
 /* The special function of the dragons in the dragons' lair */
-void m_sp_lair(Monster* m)
+void Monster::m_sp_lair()
 {
     MonsterList* ml;
-    if (m_statusp(m,HOSTILE)) {
+    if (m_statusp(this,HOSTILE)) {
         mprint("You notice a number of dragons waking up....");
         mprint("You are struck by a quantity of firebolts.");
         morewait();
@@ -750,10 +718,9 @@ void m_sp_lair(Monster* m)
     }
 }
 
-
-void m_sp_prime(Monster* m)
+void Monster::m_sp_prime()
 {
-    if (m_statusp(m,HOSTILE)) {
+    if (m_statusp(this,HOSTILE)) {
         mprint("The prime sorceror gestures and a pentacular gate opens!");
         mprint("You are surrounded by demons!");
         summon(-1,DEMON_PRINCE);
@@ -761,5 +728,5 @@ void m_sp_prime(Monster* m)
         summon(-1,DEMON_PRINCE);
         summon(-1,DEMON_PRINCE);
     }
-    m->specialf = M_SP_SPELL;
+    this->specialf = M_SP_SPELL;
 }

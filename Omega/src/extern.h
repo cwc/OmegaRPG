@@ -686,44 +686,6 @@ void stationcheck( void );
 void p_movefunction( int );
 void sign_print( int,int,int );
 
-/* mspec.c functions */
-
-void m_aggravate( Monster * );
-void m_huge_sounds( Monster * );
-void m_illusion( Monster * );
-void m_sp_acid_cloud( Monster * );
-void m_sp_angel( Monster * );
-void m_sp_av( Monster * );
-void m_sp_blackout( Monster * );
-void m_sp_bogthing( Monster * );
-void m_sp_court( Monster * );
-void m_sp_demon( Monster * );
-void m_sp_demonlover( Monster * );
-void m_sp_dragonlord( Monster * );
-void m_sp_eater( Monster * );
-void m_sp_escape( Monster * );
-void m_sp_explode( Monster * );
-void m_sp_ghost( Monster * );
-void m_sp_lair( Monster * );
-void m_sp_lw( Monster * );
-void m_sp_mb( Monster * );
-void m_sp_merchant( Monster * );
-void m_sp_mirror( Monster * );
-void m_sp_mp( Monster * );
-void m_sp_ng( Monster * );
-void m_sp_poison_cloud( Monster * );
-void m_sp_prime( Monster * );
-void m_sp_raise( Monster * );
-void m_sp_seductor( Monster * );
-void m_sp_servant( Monster * );
-void m_sp_spell( Monster * );
-void m_sp_surprise( Monster * );
-void m_sp_swarm( Monster * );
-void m_sp_were( Monster * );
-void m_sp_whistleblower( Monster * );
-void m_summon( Monster * );
-void m_thief_f( Monster * );
-
 /* mstrike.c functions */
 
 void m_blind_strike( Monster * );

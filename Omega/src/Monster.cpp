@@ -841,109 +841,109 @@ void Monster::monster_action(int action)
             break;
 
         case M_SP_BOG:
-            m_sp_bogthing(this);
+            m_sp_bogthing();
             break;
         case M_SP_WERE:
-            m_sp_were(this);
+            m_sp_were();
             break;
         case M_SP_WHISTLEBLOWER:
-            m_sp_whistleblower(this);
+            m_sp_whistleblower();
             break;
         case M_SP_MERCHANT:
-            m_sp_merchant(this);
+            m_sp_merchant();
             break;
         case M_SP_SURPRISE:
-            m_sp_surprise(this);
+            m_sp_surprise();
             break;
         case M_SP_MP:
-            m_sp_mp(this);
+            m_sp_mp();
             break;
         case M_SP_THIEF:
-            m_thief_f(this);
+            m_thief_f();
             break;
         case M_SP_DEMONLOVER:
-            m_sp_demonlover(this);
+            m_sp_demonlover();
             break;
         case M_SP_AGGRAVATE:
-            m_aggravate(this);
+            m_aggravate();
             break;
         case M_SP_POISON_CLOUD:
-            m_sp_poison_cloud(this);
+            m_sp_poison_cloud();
             break;
         case M_SP_HUGE:
-            m_huge_sounds(this);
+            m_huge_sounds();
             break;
         case M_SP_SUMMON:
-            m_summon(this);
+            m_summon();
             break;
         case M_SP_ILLUSION:
-            m_illusion(this);
+            m_illusion();
             break;
         case M_SP_ESCAPE:
-            m_sp_escape(this);
+            m_sp_escape();
             break;
         case M_SP_FLUTTER:
             m_flutter_move();
             break;
         case M_SP_EXPLODE:
-            m_sp_explode(this);
+            m_sp_explode();
             break;
         case M_SP_DEMON:
-            m_sp_demon(this);
+            m_sp_demon();
             break;
         case M_SP_ACID_CLOUD:
-            m_sp_acid_cloud(this);
+            m_sp_acid_cloud();
             break;
         case M_SP_GHOST:
-            m_sp_ghost(this);
+            m_sp_ghost();
             break;
         case M_SP_SPELL:
-            m_sp_spell(this);
+            m_sp_spell();
             break;
         case M_SP_SEDUCTOR:
-            m_sp_seductor(this);
+            m_sp_seductor();
             break;
         case M_SP_EATER:
-            m_sp_eater(this);
+            m_sp_eater();
             break;
         case M_SP_DRAGONLORD:
-            m_sp_dragonlord(this);
+            m_sp_dragonlord();
             break;
         case M_SP_BLACKOUT:
-            m_sp_blackout(this);
+            m_sp_blackout();
             break;
         case M_SP_SWARM:
-            m_sp_swarm(this);
+            m_sp_swarm();
             break;
         case M_SP_ANGEL:
-            m_sp_angel(this);
+            m_sp_angel();
             break;
         case M_SP_SERVANT:
-            m_sp_servant(this);
+            m_sp_servant();
             break;
         case M_SP_AV:
-            m_sp_av(this);
+            m_sp_av();
             break;
         case M_SP_LW:
-            m_sp_lw(this);
+            m_sp_lw();
             break;
         case M_SP_MB:
-            m_sp_mb(this);
+            m_sp_mb();
             break;
         case M_SP_RAISE:
-            m_sp_raise(this);
+            m_sp_raise();
             break;
         case M_SP_MIRROR:
-            m_sp_mirror(this);
+            m_sp_mirror();
             break;
         case M_SP_COURT:
-            m_sp_court(this);
+            m_sp_court();
             break;
         case M_SP_LAIR:
-            m_sp_lair(this);
+            m_sp_lair();
             break;
         case M_SP_PRIME:
-            m_sp_prime(this);
+            m_sp_prime();
             break;
         }
 }

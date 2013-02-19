@@ -98,6 +98,42 @@ typedef chtype Symbol;
 		bool player_hit(int hitmod, char hitloc);
 
 		void m_movefunction(int movef);
+
+		void m_aggravate();
+		void m_huge_sounds();
+		void m_illusion();
+		void m_sp_acid_cloud();
+		void m_sp_angel();
+		void m_sp_av();
+		void m_sp_blackout();
+		void m_sp_bogthing();
+		void m_sp_court();
+		void m_sp_demon();
+		void m_sp_demonlover();
+		void m_sp_dragonlord();
+		void m_sp_eater();
+		void m_sp_escape();
+		void m_sp_explode();
+		void m_sp_ghost();
+		void m_sp_lair();
+		void m_sp_lw();
+		void m_sp_mb();
+		void m_sp_merchant();
+		void m_sp_mirror();
+		void m_sp_mp();
+		void m_sp_ng();
+		void m_sp_poison_cloud();
+		void m_sp_prime();
+		void m_sp_raise();
+		void m_sp_seductor();
+		void m_sp_servant();
+		void m_sp_spell();
+		void m_sp_surprise();
+		void m_sp_swarm();
+		void m_sp_were();
+		void m_sp_whistleblower();
+		void m_summon();
+		void m_thief_f();
 	};
 
 	class MonsterList {
