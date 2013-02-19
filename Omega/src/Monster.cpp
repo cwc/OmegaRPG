@@ -320,7 +320,7 @@ void Monster::movemonster(int newx, int newy)
     this->x = newx;
     this->y = newy;
     Level->site[this->x][this->y].creature = this;
-    m_movefunction(this,Level->site[this->x][this->y].p_locf);
+    m_movefunction(Level->site[this->x][this->y].p_locf);
 }
 
 /* give object o to monster m */
@@ -1626,4 +1626,70 @@ bool Monster::player_hit(int hitmod, char hitloc)
 
         return hit;
     }
+}
+
+/* execute some move function for a monster */
+void Monster::m_movefunction(int movef)
+{
+    /* loc functs above traps should be activated whether levitating or not */
+    if (! m_statusp(this,FLYING) && ! m_statusp(this, INTANGIBLE))
+        switch(movef) {
+            /* miscellaneous */
+        case L_NO_OP:
+            break;
+        case L_WATER:
+            this->m_water();
+            break;
+        case L_LAVA:
+            this->m_lava();
+            break;
+        case L_FIRE:
+            this->m_fire();
+            break;
+        case L_MAGIC_POOL:
+            this->m_water();
+            break;
+        case L_ABYSS:
+            this->m_abyss();
+            break;
+        case L_TRAP_DART:
+            this->m_trap_dart();
+            break;
+        case L_TRAP_PIT:
+            this->m_trap_pit();
+            break;
+        case L_TRAP_DOOR:
+            this->m_trap_door();
+            break;
+        case L_TRAP_SNARE:
+            this->m_trap_snare();
+            break;
+        case L_TRAP_BLADE:
+            this->m_trap_blade();
+            break;
+        case L_TRAP_FIRE:
+            this->m_trap_fire();
+            break;
+        case L_TRAP_TELEPORT:
+            this->m_trap_teleport();
+            break;
+        case L_TRAP_DISINTEGRATE:
+            this->m_trap_disintegrate();
+            break;
+        case L_TRAP_MANADRAIN:
+            this->m_trap_manadrain();
+            break;
+        case L_TRAP_SLEEP_GAS:
+            this->m_trap_sleepgas();
+            break;
+        case L_TRAP_ACID:
+            this->m_trap_acid();
+            break;
+        case L_TRAP_ABYSS:
+            this->m_trap_abyss();
+            break;
+        case L_ALTAR:
+            this->m_altar();
+            break;
+        }
 }

@@ -96,6 +96,8 @@ typedef chtype Symbol;
 		void threaten();
 
 		bool player_hit(int hitmod, char hitloc);
+
+		void m_movefunction(int movef);
 	};
 
 	class MonsterList {

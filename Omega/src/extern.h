@@ -683,7 +683,6 @@ void stationcheck( void );
 
 /* movef.c functions */
 
-void m_movefunction( Monster *,int );
 void p_movefunction( int );
 void sign_print( int,int,int );
 
