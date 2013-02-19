@@ -686,16 +686,6 @@ void stationcheck( void );
 void p_movefunction( int );
 void sign_print( int,int,int );
 
-/* mstrike.c functions */
-
-void m_blind_strike( Monster * );
-void m_fireball( Monster * );
-void m_firebolt( Monster * );
-void m_lball( Monster * );
-void m_nbolt( Monster * );
-void m_snowball( Monster * );
-void m_strike_sonic( Monster * );
-
 /* priest.c functions */
 
 int check_sacrilege( int );

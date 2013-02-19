@@ -169,6 +169,14 @@ typedef chtype Symbol;
 		void m_talk_thief();
 		void m_talk_titter();
 		void m_talk_maharaja();
+
+		void m_blind_strike();
+		void m_fireball();
+		void m_firebolt();
+		void m_lball();
+		void m_nbolt();
+		void m_snowball();
+		void m_strike_sonic();
 	};
 
 	class MonsterList {

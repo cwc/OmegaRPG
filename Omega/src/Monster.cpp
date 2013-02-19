@@ -716,25 +716,25 @@ void Monster::monster_action(int action)
             m_move_leash();
             break;
         case M_STRIKE_MISSILE:
-            m_nbolt(this);
+            m_nbolt();
             break;
         case M_STRIKE_FBOLT:
-            m_firebolt(this);
+            m_firebolt();
             break;
         case M_STRIKE_LBALL:
-            m_lball(this);
+            m_lball();
             break;
         case M_STRIKE_FBALL:
-            m_fireball(this);
+            m_fireball();
             break;
         case M_STRIKE_SNOWBALL:
-            m_snowball(this);
+            m_snowball();
             break;
         case M_STRIKE_BLIND:
-            m_blind_strike(this);
+            m_blind_strike();
             break;
         case M_STRIKE_SONIC:
-            m_strike_sonic(this);
+            m_strike_sonic();
             break;
 
         case M_TALK_HORSE:
