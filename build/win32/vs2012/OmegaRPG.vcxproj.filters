@@ -165,9 +165,6 @@
     <ClCompile Include="..\..\..\Omega\src\mstrike.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Omega\src\mtalk.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Omega\src\newrand.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -217,6 +214,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Omega\src\Monster_mspec.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Omega\src\Monster_mtalk.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

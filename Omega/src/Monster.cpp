@@ -738,106 +738,106 @@ void Monster::monster_action(int action)
             break;
 
         case M_TALK_HORSE:
-            m_talk_horse(this);
+            m_talk_horse();
             break;
         case M_TALK_THIEF:
-            m_talk_thief(this);
+            m_talk_thief();
             break;
         case M_TALK_STUPID:
-            m_talk_stupid(this);
+            m_talk_stupid();
             break;
         case M_TALK_SILENT:
-            m_talk_silent(this);
+            m_talk_silent();
             break;
         case M_TALK_HUNGRY:
-            m_talk_hungry(this);
+            m_talk_hungry();
             break;
         case M_TALK_GREEDY:
-            m_talk_greedy(this);
+            m_talk_greedy();
             break;
         case M_TALK_TITTER:
-            m_talk_titter(this);
+            m_talk_titter();
             break;
         case M_TALK_MP:
-            m_talk_mp(this);
+            m_talk_mp();
             break;
         case M_TALK_IM:
-            m_talk_im(this);
+            m_talk_im();
             break;
         case M_TALK_MAN:
-            m_talk_man(this);
+            m_talk_man();
             break;
         case M_TALK_ROBOT:
-            m_talk_robot(this);
+            m_talk_robot();
             break;
         case M_TALK_EVIL:
-            m_talk_evil(this);
+            m_talk_evil();
             break;
         case M_TALK_GUARD:
-            m_talk_guard(this);
+            m_talk_guard();
             break;
         case M_TALK_MIMSY:
-            m_talk_mimsy(this);
+            m_talk_mimsy();
             break;
         case M_TALK_SLITHY:
-            m_talk_slithy(this);
+            m_talk_slithy();
             break;
         case M_TALK_BURBLE:
-            m_talk_burble(this);
+            m_talk_burble();
             break;
         case M_TALK_BEG:
-            m_talk_beg(this);
+            m_talk_beg();
             break;
         case M_TALK_HINT:
-            m_talk_hint(this);
+            m_talk_hint();
             break;
         case M_TALK_EF:
-            m_talk_ef(this);
+            m_talk_ef();
             break;
         case M_TALK_GF:
-            m_talk_gf(this);
+            m_talk_gf();
             break;
         case M_TALK_SEDUCTOR:
-            m_talk_seductor(this);
+            m_talk_seductor();
             break;
         case M_TALK_DEMONLOVER:
-            m_talk_demonlover(this);
+            m_talk_demonlover();
             break;
         case M_TALK_NINJA:
-            m_talk_ninja(this);
+            m_talk_ninja();
             break;
         case M_TALK_ASSASSIN:
-            m_talk_assassin(this);
+            m_talk_assassin();
             break;
         case M_TALK_SERVANT:
-            m_talk_servant(this);
+            m_talk_servant();
             break;
         case M_TALK_ANIMAL:
-            m_talk_animal(this);
+            m_talk_animal();
             break;
         case M_TALK_SCREAM:
-            m_talk_scream(this);
+            m_talk_scream();
             break;
         case M_TALK_PARROT:
-            m_talk_parrot(this);
+            m_talk_parrot();
             break;
         case M_TALK_HYENA:
-            m_talk_hyena(this);
+            m_talk_hyena();
             break;
         case M_TALK_DRUID:
-            m_talk_druid(this);
+            m_talk_druid();
             break;
         case M_TALK_ARCHMAGE:
-            m_talk_archmage(this);
+            m_talk_archmage();
             break;
         case M_TALK_MERCHANT:
-            m_talk_merchant(this);
+            m_talk_merchant();
             break;
         case M_TALK_PRIME:
-            m_talk_prime(this);
+            m_talk_prime();
             break;
         case M_TALK_MAHARAJA:
-            m_talk_maharaja(this);
+            m_talk_maharaja();
             break;
 
         case M_SP_BOG:

@@ -274,14 +274,13 @@ void Monster::m_sp_seductor()
         summon(-1,-1);
     }
     else if (distance(Player.x,Player.y,this->x,this->y) < 2)
-        m_talk_seductor(this);
-
+        m_talk_seductor();
 }
 
 void Monster::m_sp_demonlover()
 {
     if (distance(Player.x,Player.y,this->x,this->y) < 2)
-        m_talk_demonlover(this);
+        m_talk_demonlover();
 }
 
 void Monster::m_sp_eater()

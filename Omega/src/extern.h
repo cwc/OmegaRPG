@@ -696,43 +696,6 @@ void m_nbolt( Monster * );
 void m_snowball( Monster * );
 void m_strike_sonic( Monster * );
 
-/* mtalk.c functions */
-
-void m_talk_animal( Monster * );
-void m_talk_archmage( Monster * );
-void m_talk_assassin( Monster * );
-void m_talk_beg( Monster * );
-void m_talk_burble( Monster * );
-void m_talk_demonlover( Monster * );
-void m_talk_druid( Monster * );
-void m_talk_ef( Monster * );
-void m_talk_evil( Monster * );
-void m_talk_gf( Monster * );
-void m_talk_greedy( Monster * );
-void m_talk_guard( Monster * );
-void m_talk_hint( Monster * );
-void m_talk_horse( Monster * );
-void m_talk_hungry( Monster * );
-void m_talk_hyena( Monster * );
-void m_talk_im( Monster * );
-void m_talk_man( Monster * );
-void m_talk_merchant( Monster * );
-void m_talk_mimsy( Monster * );
-void m_talk_mp( Monster * );
-void m_talk_ninja( Monster * );
-void m_talk_parrot( Monster * );
-void m_talk_prime( Monster * );
-void m_talk_robot( Monster * );
-void m_talk_scream( Monster * );
-void m_talk_seductor( Monster * );
-void m_talk_servant( Monster * );
-void m_talk_silent( Monster * );
-void m_talk_slithy( Monster * );
-void m_talk_stupid( Monster * );
-void m_talk_thief( Monster * );
-void m_talk_titter( Monster * );
-void m_talk_maharaja( Monster * );
-
 /* priest.c functions */
 
 int check_sacrilege( int );

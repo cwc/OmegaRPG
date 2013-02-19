@@ -5,12 +5,12 @@
 #include "glob.h"
 
 /* The druid's altar is in the northern forest */
-void m_talk_druid(Monster* m)
+void Monster::m_talk_druid()
 {
     int i;
     MonsterList* curr;
 
-    if (! m_statusp(m,HOSTILE)) {
+    if (! m_statusp(this,HOSTILE)) {
         print1("The Archdruid raises a hand in greeting.");
         if (! gamestatusp(SPOKE_TO_DRUID)) {
             setgamestatus(SPOKE_TO_DRUID);
@@ -78,13 +78,13 @@ void m_talk_druid(Monster* m)
         disrupt(Player.x,Player.y,100);
         mprint("This seems to have satiated his desire for vengeance.");
         mprint("'Have you learned your lesson?' The ArchDruid asks. [yn] ");
-        /* WDT: this didn't used to have a 'y'.  I'm not sure what was
+        /* WDT: this didn't used to have a 'y'.  I'this not sure what was
          * intended. */
         if (ynq() != 'n') {
             mprint("'I certainly hope so!' says the ArchDruid.");
             for (curr = Level->mlist; curr; curr = curr->next)
                 m_status_reset(curr->monster, HOSTILE);
-            m->m_vanish();
+            this->m_vanish();
         }
         else {
             mprint("'Idiot.' mutters the ArchDruid.");
@@ -93,15 +93,14 @@ void m_talk_druid(Monster* m)
     }
 }
 
-
-void m_talk_silent(Monster* m)
+void Monster::m_talk_silent()
 {
     int reply = random_range(8);
-    if (m->uniqueness == COMMON) {
+    if (this->uniqueness == COMMON) {
         strcpy(Str2,"The ");
-        strcat(Str2,m->name);
+        strcat(Str2,this->name);
     }
-    else strcpy(Str2,m->name);
+    else strcpy(Str2,this->name);
     switch (reply) {
     case 0:
         strcat(Str2," does not reply. ");
@@ -131,15 +130,15 @@ void m_talk_silent(Monster* m)
     mprint(Str2);
 }
 
-void m_talk_stupid(Monster* m)
+void Monster::m_talk_stupid()
 {
 
     int reply = random_range(4);
-    if (m->uniqueness == COMMON) {
+    if (this->uniqueness == COMMON) {
         strcpy(Str2,"The ");
-        strcat(Str2,m->name);
+        strcat(Str2,this->name);
     }
-    else strcpy(Str2,m->name);
+    else strcpy(Str2,this->name);
     switch (reply) {
     case 0:
         strcat(Str2," looks at you with mute incomprehension.");
@@ -157,15 +156,15 @@ void m_talk_stupid(Monster* m)
     mprint(Str2);
 }
 
-void m_talk_greedy(Monster* m)
+void Monster::m_talk_greedy()
 {
 
     int reply = random_range(4);
-    if (m->uniqueness == COMMON) {
+    if (this->uniqueness == COMMON) {
         strcpy(Str2,"The ");
-        strcat(Str2,m->name);
+        strcat(Str2,this->name);
     }
-    else strcpy(Str2,m->name);
+    else strcpy(Str2,this->name);
     switch (reply) {
     case 0:
         strcat(Str2," says: Give me a treasure.... ");
@@ -183,15 +182,15 @@ void m_talk_greedy(Monster* m)
     mprint(Str2);
 }
 
-void m_talk_hungry(Monster* m)
+void Monster::m_talk_hungry()
 {
 
     int reply = random_range(4);
-    if (m->uniqueness == COMMON) {
+    if (this->uniqueness == COMMON) {
         strcpy(Str2,"The ");
-        strcat(Str2,m->name);
+        strcat(Str2,this->name);
     }
-    else strcpy(Str2,m->name);
+    else strcpy(Str2,this->name);
     switch (reply) {
     case 0:
         strcat(Str2," says: I hunger, foolish adventurer! ");
@@ -209,10 +208,9 @@ void m_talk_hungry(Monster* m)
     mprint(Str2);
 }
 
-
-void m_talk_guard(Monster* m)
+void Monster::m_talk_guard()
 {
-    if (m_statusp(m,HOSTILE)) {
+    if (m_statusp(this,HOSTILE)) {
         print1("'Surrender in the name of the Law!'");
         print2("Do it? [yn] ");
         if (ynq2()=='y') {
@@ -256,118 +254,109 @@ void m_talk_guard(Monster* m)
     }
 }
 
-
-void m_talk_mp(Monster* m)
+void Monster::m_talk_mp()
 {
     mprint("The mendicant priest asks you to spare some treasure for the needy");
 }
 
-
-void m_talk_titter(Monster* m)
+void Monster::m_talk_titter()
 {
 
-    if (m->uniqueness == COMMON) {
+    if (this->uniqueness == COMMON) {
         strcpy(Str2,"The ");
-        strcat(Str2,m->name);
+        strcat(Str2,this->name);
     }
-    else strcpy(Str2,m->name);
+    else strcpy(Str2,this->name);
     strcat(Str2," titters obscenely at you.");
     mprint(Str2);
 }
 
-
-void m_talk_ninja(Monster* m)
+void Monster::m_talk_ninja()
 {
     mprint("The black-garbed figure says apologetically:");
     mprint("'Situree simasita, wakarimasen.'");
 }
 
-
-
-
-void m_talk_thief(Monster* m)
+void Monster::m_talk_thief()
 {
     if (Player.rank[THIEVES]) {
-        if (m->level == 2)
-            m->name = "sneak thief";
-        else m->name = "master thief";
+        if (this->level == 2)
+            this->name = "sneak thief";
+        else this->name = "master thief";
         print1("The cloaked figure makes a gesture which you recognize...");
         print2("...the thieves' guild recognition signal!");
         print3("'Sorry, mate, thought you were a mark....'");
         morewait();
-        m->m_vanish();
+        this->m_vanish();
     }
-    else m_talk_man(m);
+    else m_talk_man();
 
 }
 
-
-
-void m_talk_assassin(Monster* m)
+void Monster::m_talk_assassin()
 {
-    m->name = "master assassin";
+    this->name = "master assassin";
     print1("The ominous figure does not reply, but hands you an embossed card:");
     print2("'Guild of Assassins Ops are forbidden to converse with targets.'");
 }
 
-
-void m_talk_im(Monster* m)
+void Monster::m_talk_im()
 {
     pol tmp;
 
-    if (strcmp(m->name,"itinerant merchant") != 0) {
-        m->name = "itinerant merchant";
+    if (strcmp(this->name,"itinerant merchant") != 0) {
+        this->name = "itinerant merchant";
     }
-    if (m->possessions == NULL)
+    if (this->possessions == NULL)
         mprint("The merchant says: Alas! I have nothing to sell!");
     else {
-        m->possessions->thing->known = 2;
+        this->possessions->thing->known = 2;
         clearmsg();
         mprint("I have a fine");
-        mprint(itemid(m->possessions->thing));
+        mprint(itemid(this->possessions->thing));
         mprint("for only");
-        mlongprint(max(10,4*true_item_value(m->possessions->thing)));
+        mlongprint(max(10,4*true_item_value(this->possessions->thing)));
         mprint("Au.");
         mprint("Want it? [yn] ");
         if (ynq()=='y') {
-            if (Player.cash < (max(10,4*true_item_value(m->possessions->thing)))) {
+            if (Player.cash < (max(10,4*true_item_value(this->possessions->thing)))) {
                 if (Player.alignment > 10) {
                     mprint("Well, I'll let you have it for what you've got.");
                     Player.cash = 0;
-                    gain_item(m->possessions->thing);
+                    gain_item(this->possessions->thing);
                 }
                 else mprint("Beat it, you deadbeat!");
             }
             else {
                 mprint("Here you are. Have a good day.");
-                Player.cash -= max(10,(4*item_value(m->possessions->thing)));
-                gain_item(m->possessions->thing);
+                Player.cash -= max(10,(4*item_value(this->possessions->thing)));
+                gain_item(this->possessions->thing);
             }
         }
         else
         {
             mprint("Sorry I couldn't help you.");
-            free_obj( m->possessions->thing, true );
+            free_obj( this->possessions->thing, true );
         }
-        tmp = m->possessions;
-        m->possessions = tmp->next;
+        tmp = this->possessions;
+        this->possessions = tmp->next;
         free( tmp );
-        if (NULL != m->possessions)
+        if (NULL != this->possessions)
         {
             mprint("Well then, I must be off. Good day.");
-            m->m_vanish();
+            this->m_vanish();
         }
     }
 }
 
-void m_talk_man(Monster* m)
+void Monster::m_talk_man()
 {
 
-    if (m->uniqueness == COMMON) {
+    if (this->uniqueness == COMMON) {
         strcpy(Str2,"The ");
-        strcat(Str2,m->name);
+        strcat(Str2,this->name);
     }
-    else strcpy(Str2,m->name);
+    else strcpy(Str2,this->name);
     switch (random_range(5)) {
     case 0:
         strcat(Str2," asks you for the way home.");
@@ -388,15 +377,14 @@ void m_talk_man(Monster* m)
     mprint(Str2);
 }
 
-
-void m_talk_evil(Monster* m)
+void Monster::m_talk_evil()
 {
 
-    if (m->uniqueness == COMMON) {
+    if (this->uniqueness == COMMON) {
         strcpy(Str2,"The ");
-        strcat(Str2,m->name);
+        strcat(Str2,this->name);
     }
-    else strcpy(Str2,m->name);
+    else strcpy(Str2,this->name);
     switch (random_range(14)) {
     case 0:
         strcat(Str2," says: 'THERE CAN BE ONLY ONE!'");
@@ -444,14 +432,13 @@ void m_talk_evil(Monster* m)
     mprint(Str2);
 }
 
-
-void m_talk_robot(Monster* m)
+void Monster::m_talk_robot()
 {
-    if (m->uniqueness == COMMON) {
+    if (this->uniqueness == COMMON) {
         strcpy(Str2,"The ");
-        strcat(Str2,m->name);
+        strcat(Str2,this->name);
     }
-    else strcpy(Str2,m->name);
+    else strcpy(Str2,this->name);
     switch (random_range(4)) {
     case 0:
         strcat(Str2," says: 'exterminate...Exterminate...EXTERMINATE!!!'");
@@ -469,52 +456,47 @@ void m_talk_robot(Monster* m)
     mprint(Str2);
 }
 
-void m_talk_slithy(Monster* m)
+void Monster::m_talk_slithy()
 {
     mprint("It can't talk -- it's too slithy!");
 }
 
-
-void m_talk_mimsy(Monster* m)
+void Monster::m_talk_mimsy()
 {
     mprint("It can't talk -- it's too mimsy!");
 }
 
-
-
-void m_talk_burble(Monster* m)
+void Monster::m_talk_burble()
 {
 
-    if (m->uniqueness == COMMON) {
+    if (this->uniqueness == COMMON) {
         strcpy(Str2,"The ");
-        strcat(Str2,m->name);
+        strcat(Str2,this->name);
     }
-    else strcpy(Str2,m->name);
+    else strcpy(Str2,this->name);
     strcat(Str2," burbles hatefully at you.");
     mprint(Str2);
 }
 
-
-void m_talk_beg(Monster* m)
+void Monster::m_talk_beg()
 {
-    if (m->uniqueness == COMMON) {
+    if (this->uniqueness == COMMON) {
         strcpy(Str2,"The ");
-        strcat(Str2,m->name);
+        strcat(Str2,this->name);
     }
-    else strcpy(Str2,m->name);
+    else strcpy(Str2,this->name);
     strcat(Str2," asks you for alms.");
     mprint(Str2);
 }
 
-
-void m_talk_hint(Monster* m)
+void Monster::m_talk_hint()
 {
-    if (m->uniqueness == COMMON) {
+    if (this->uniqueness == COMMON) {
         strcpy(Str2,"The ");
-        strcat(Str2,m->name);
+        strcat(Str2,this->name);
     }
-    else strcpy(Str2,m->name);
-    if (m_statusp(m,HOSTILE)) {
+    else strcpy(Str2,this->name);
+    if (m_statusp(this,HOSTILE)) {
         strcat(Str2," only sneers at you. ");
         mprint(Str2);
     }
@@ -522,11 +504,11 @@ void m_talk_hint(Monster* m)
         strcat(Str2," whispers in your ear: ");
         mprint(Str2);
         hint();
-        m->talkf = M_TALK_SILENT;
+        this->talkf = M_TALK_SILENT;
     }
 }
 
-void m_talk_gf(Monster* m)
+void Monster::m_talk_gf()
 {
     mprint("The good fairy glints: Would you like a wish?");
     if (ynq()=='y') {
@@ -547,34 +529,33 @@ void m_talk_gf(Monster* m)
     Player.hp = max(Player.hp,Player.maxhp);
     Player.mana = max(Player.mana,calcmana());
     mprint("You feel mellow.");
-    m->m_vanish();
+    this->m_vanish();
 }
 
-void m_talk_ef(Monster* m)
+void Monster::m_talk_ef()
 {
     mprint("The evil fairy roils: Eat my pixie dust!");
     mprint("She waves her black-glowing wand, which screams thinly....");
-    m->movef=M_MOVE_SMART;
-    m->meleef=M_MELEE_POISON;
-    m->specialf=M_SP_THIEF;
-    m_status_set(m,HOSTILE);
+    this->movef=M_MOVE_SMART;
+    this->meleef=M_MELEE_POISON;
+    this->specialf=M_SP_THIEF;
+    m_status_set(this,HOSTILE);
     acquire(-1);
     bless(-1);
-    sleep_player(m->level/2);
+    sleep_player(this->level/2);
     summon(-1,-1);
     summon(-1,-1);
     summon(-1,-1);
     summon(-1,-1);
 }
 
-
-void m_talk_seductor(Monster* m)
+void Monster::m_talk_seductor()
 {
-    if (m->uniqueness == COMMON) {
+    if (this->uniqueness == COMMON) {
         strcpy(Str2,"The ");
-        strcat(Str2,m->name);
+        strcat(Str2,this->name);
     }
-    else strcpy(Str2,m->name);
+    else strcpy(Str2,this->name);
     if (Player.preference == 'n')
     {
         strcat(Str2, " notices your disinterest and leaves with a pout.");
@@ -590,24 +571,23 @@ void m_talk_seductor(Monster* m)
         }
         else {
             strcpy(Str2,"The ");
-            strcat(Str2,m->name);
+            strcat(Str2,this->name);
             strcat(Str2," shows you a good time....");
             mprint(Str2);
             gain_experience(500);
             Player.con++;
         }
     }
-    m->m_vanish();
+    this->m_vanish();
 }
 
-
-void m_talk_demonlover(Monster* m)
+void Monster::m_talk_demonlover()
 {
-    if (m->uniqueness == COMMON) {
+    if (this->uniqueness == COMMON) {
         strcpy(Str2,"The ");
-        strcat(Str2,m->name);
+        strcat(Str2,this->name);
     }
-    else strcpy(Str2,m->name);
+    else strcpy(Str2,this->name);
     if (Player.preference == 'n')
     {
         strcat(Str2, " notices your disinterest and changes with a snarl...");
@@ -622,11 +602,11 @@ void m_talk_demonlover(Monster* m)
         if (ynq()=='y')
             mprint("You feel fortunate....");
         else {
-            if (m->uniqueness == COMMON) {
+            if (this->uniqueness == COMMON) {
                 strcpy(Str2,"The ");
-                strcat(Str2,m->name);
+                strcat(Str2,this->name);
             }
-            else strcpy(Str2,m->name);
+            else strcpy(Str2,this->name);
             strcat(Str2," shows you a good time....");
             mprint(Str2);
             morewait();
@@ -635,36 +615,35 @@ void m_talk_demonlover(Monster* m)
             morewait();
         }
     }
-    m->talkf = M_TALK_EVIL;
-    m->meleef = M_MELEE_SPIRIT;
-    m->specialf = M_SP_DEMON;
-    m_status_reset(m,NEEDY);
-    m_status_set(m,HOSTILE);
+    this->talkf = M_TALK_EVIL;
+    this->meleef = M_MELEE_SPIRIT;
+    this->specialf = M_SP_DEMON;
+    m_status_reset(this,NEEDY);
+    m_status_set(this,HOSTILE);
 
-    if ((m->symbol&0xff) == 's') {
-        m->symbol = 'I'|CLR(RED);
-        m->name = "incubus";
+    if ((this->symbol&0xff) == 's') {
+        this->symbol = 'I'|CLR(RED);
+        this->name = "incubus";
     }
     else {
-        m->symbol = 'S'|CLR(RED);
-        m->name = "succubus";
+        this->symbol = 'S'|CLR(RED);
+        this->name = "succubus";
     }
-    if (m->uniqueness == COMMON) {
+    if (this->uniqueness == COMMON) {
         strcpy(Str2,"The ");
-        strcat(Str2,m->name);
+        strcat(Str2,this->name);
     }
-    else strcpy(Str2,m->name);
+    else strcpy(Str2,this->name);
     strcat(Str2," laughs insanely.");
     mprint(Str2);
     mprint("You now notice the fangs, claws, batwings...");
 }
 
-
-void m_talk_horse(Monster* m)
+void Monster::m_talk_horse()
 {
-    if (m_statusp(m,HOSTILE))
+    if (m_statusp(this,HOSTILE))
         mprint("The horse neighs angrily at you.");
-    else if (m_statusp(m,HUNGRY))
+    else if (m_statusp(this,HUNGRY))
         mprint("The horse noses curiously at your pack.");
     else if (gamestatusp(MOUNTED))
         mprint("The horse and your steed don't seem to get along.");
@@ -673,7 +652,7 @@ void m_talk_horse(Monster* m)
     else {
         mprint("The horse lets you pat his nose. Want to ride him? [yn] ");
         if (ynq()=='y') {
-            m->m_remove();
+            this->m_remove();
             setgamestatus(MOUNTED);
             calc_melee();
             mprint("You are now equitating!");
@@ -681,20 +660,20 @@ void m_talk_horse(Monster* m)
     }
 }
 
-void m_talk_hyena(Monster* m)
+void Monster::m_talk_hyena()
 {
     mprint("The hyena only laughs at you...");
 }
 
-void m_talk_parrot(Monster* m)
+void Monster::m_talk_parrot()
 {
     mprint("Polly wanna cracker?");
 }
 
-void m_talk_servant(Monster* m)
+void Monster::m_talk_servant()
 {
     int target,x=Player.x,y=Player.y;
-    if (m->id == SERV_LAW) {
+    if (this->id == SERV_LAW) {
         target = SERV_CHAOS;
         mprint("The Servant of Law pauses in thought for a moment.");
         mprint("You are asked: Are there any Servants of Chaos hereabouts? [yn] ");
@@ -713,12 +692,12 @@ void m_talk_servant(Monster* m)
             if (Level->site[x][y].creature->id == target) {
                 mprint("The Servant launches itself towards its enemy.");
                 mprint("In a blaze of combat, the Servants annihilate each other!");
-                gain_experience(m->xpv);
+                gain_experience(this->xpv);
                 Level->site[x][y].creature->m_death();
-                Level->site[m->x][m->y].creature = NULL;
-                m->x = x;
-                m->y = y;
-                Level->site[x][y].creature = m;
+                Level->site[this->x][this->y].creature = NULL;
+                this->x = x;
+                this->y = y;
+                Level->site[x][y].creature = this;
                 Level->site[x][y].creature->m_death();
             }
             else mprint("Right. Tell me about it. Idiot!");
@@ -728,14 +707,13 @@ void m_talk_servant(Monster* m)
     else mprint("The servant shrugs and turns away.");
 }
 
-
-void m_talk_animal(Monster* m)
+void Monster::m_talk_animal()
 {
-    if (m->uniqueness == COMMON) {
+    if (this->uniqueness == COMMON) {
         strcpy(Str2,"The ");
-        strcat(Str2,m->name);
+        strcat(Str2,this->name);
     }
-    else strcpy(Str2,m->name);
+    else strcpy(Str2,this->name);
     mprint(Str2);
     mprint("shows you a scholarly paper by Dolittle, D. Vet.");
     mprint("which demonstrates that animals don't have speech centers");
@@ -743,8 +721,7 @@ void m_talk_animal(Monster* m)
     mprint("It giggles softly to itself and takes back the paper.");
 }
 
-
-void m_talk_scream(Monster* m)
+void Monster::m_talk_scream()
 {
     mprint("A thinly echoing scream reaches your ears....");
     morewait();
@@ -752,13 +729,12 @@ void m_talk_scream(Monster* m)
     morewait();
     mprint("A bird appears and flies three times widdershins around your head.");
     summon(-1,QUAIL);
-    m->talkf = M_TALK_EVIL;
+    this->talkf = M_TALK_EVIL;
 }
 
-
-void m_talk_archmage(Monster* m)
+void Monster::m_talk_archmage()
 {
-    if (m_statusp(m,HOSTILE)) {
+    if (m_statusp(this,HOSTILE)) {
         mprint("The Archmage ignores your attempt at conversation");
         mprint("and concentrates on his spellcasting....");
     }
@@ -767,9 +743,9 @@ void m_talk_archmage(Monster* m)
         mprint("He invites you to attempt the Throne of High Magic");
         mprint("but warns you that it is important to wield the Sceptre");
         mprint("before sitting on the throne.");
-        if (Level->site[m->x][m->y].p_locf == L_THRONE) {
+        if (Level->site[this->x][this->y].p_locf == L_THRONE) {
             mprint("The Archmage smiles and makes an arcane gesture....");
-            m->m_vanish();
+            this->m_vanish();
         }
     }
     else {
@@ -780,9 +756,9 @@ void m_talk_archmage(Monster* m)
     }
 }
 
-void m_talk_maharaja(Monster* m)
+void Monster::m_talk_maharaja()
 {
-    if (m_statusp(m,HOSTILE)) {
+    if (m_statusp(this,HOSTILE)) {
         switch (random_range(4)) {
         case 0:
             mprint("The Maharaja says: 'So Mote it be!'");
@@ -806,10 +782,9 @@ void m_talk_maharaja(Monster* m)
     }
 }
 
-
-void m_talk_merchant(Monster* m)
+void Monster::m_talk_merchant()
 {
-    if (! m_statusp(m,HOSTILE)) {
+    if (! m_statusp(this,HOSTILE)) {
         if (Current_Environment == E_VILLAGE) {
             mprint("The merchant asks you if you want to buy a horse for 250GP.");
             mprint("Pay the merchant? [yn] ");
@@ -823,7 +798,7 @@ void m_talk_merchant(Monster* m)
                     mprint("He says: 'You'll want to get to know him before trying to");
                     mprint("ride him. By the way, food for the horse is not included.'");
                     mprint("The merchant runs off toward the bank, cackling gleefully.");
-                    m->m_vanish();
+                    this->m_vanish();
                 }
             }
             else mprint("The merchant tells you to stop wasting his time.");
@@ -835,19 +810,19 @@ void m_talk_merchant(Monster* m)
     }
     else {
         mprint("The merchant ignores you and screams:");
-        mprint("'Help! Help! I'm being oppressed!'");
+        mprint("'Help! Help! I'this being oppressed!'");
     }
 }
 
-void m_talk_prime(Monster* m)
+void Monster::m_talk_prime()
 {
-    if (!m_statusp(m,HOSTILE)) {
+    if (!m_statusp(this,HOSTILE)) {
         if (Current_Environment == E_CIRCLE) {
             print1("The Prime nods brusquely at you, removes a gem from his");
             print2("sleeve, places it on the floor, and vanishes wordlessly.");
             morewait();
-            m->m_dropstuff();
-            m->m_vanish();
+            this->m_dropstuff();
+            this->m_vanish();
         }
         else {
             print1("The Prime makes an intricate gesture, which leaves behind");
@@ -859,9 +834,9 @@ void m_talk_prime(Monster* m)
                 Player.pow+=Player.rank[CIRCLE];
                 Player.mana += calcmana();
                 gain_experience(1000);
-                m->m_vanish();
+                this->m_vanish();
             }
         }
     }
-    else m_talk_evil(m);
+    else m_talk_evil();
 }
