@@ -19,9 +19,6 @@ char* g_saveFileName = NULL;
 int save_game(char *savestr)
 {
     FILE *fd;
-#ifdef SAVE_LEVELS
-    int tmpdepth;
-#endif
     int i,writeok=true;
     plv current, save;
 
@@ -80,10 +77,6 @@ int save_game(char *savestr)
 
         writeok &= save_player(fd);
         writeok &= save_country(fd);
-#ifdef SAVE_LEVELS
-        tmpdepth = Level->depth;
-        City = msdos_changelevel(Level,E_CITY,0);
-#endif
         writeok &= save_level(fd,City);
 
         if (Current_Environment == E_CITY || Current_Environment == E_COUNTRYSIDE)
@@ -96,9 +89,7 @@ int save_game(char *savestr)
             ;
         if (!fwrite((char *)&i,sizeof(int),1,fd))
             writeok = false;
-#ifdef SAVE_LEVELS
-        Level = msdos_changelevel(NULL,Current_Environment,tmpdepth);
-#endif
+
         for (current = save; current; current = current->next)
             if (current != Level)
                 writeok &= save_level(fd,current);
@@ -486,9 +477,6 @@ int restore_game(char *savestr)
         restore_level(fd, version); /* the city level */
         fread((char *)&i,sizeof(int),1,fd);
         for (; i > 0; i--) {
-#ifdef SAVE_LEVELS
-            msdos_changelevel(Level,0,-1);
-#endif
             restore_level(fd, version);
             if (Level->environment == Current_Dungeon) {
                 Level->next = Dungeon;

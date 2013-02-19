@@ -21,13 +21,6 @@ void signalexit(int);
 void signalsave(int);
 
 /* abyss.c functions */
-
-#ifdef SAVE_LEVELS
-void kill_all_levels( void );
-void kill_levels( char * );
-void msdos_init( void );
-plv msdos_changelevel( plv,int,int );
-#endif
 void load_abyss( void );
 
 /* aux1.c functions */

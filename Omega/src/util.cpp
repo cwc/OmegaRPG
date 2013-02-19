@@ -966,9 +966,8 @@ void free_level(plv level)
                 free_objlist(level->site[i][j].things);
                 level->site[i][j].things = NULL;
             }
-#ifndef SAVE_LEVELS
+
     free(level);
-#endif
 }
 
 /* malloc function that checks its return value - if NULL, tries to free */

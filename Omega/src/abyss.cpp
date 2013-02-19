@@ -13,17 +13,11 @@ void load_abyss(void)
 
     TempLevel = Level;
     if (ok_to_free(TempLevel)) {
-#ifndef SAVE_LEVELS
         free_level(TempLevel);
-#endif
         TempLevel = NULL;
     }
-#ifndef SAVE_LEVELS
+
     Level = ((plv) checkmalloc(sizeof(levtype)));
-#else
-    msdos_changelevel(TempLevel,0,-1);
-    Level = &TheLevel;
-#endif
 
     clear_level(Level);
 
@@ -85,79 +79,3 @@ void load_abyss(void)
     map_close(abyss);
 }
 
-
-#ifdef SAVE_LEVELS
-/* This stuff is in this file because the file was really small. */
-
-void msdos_init(void)
-{
-    int i;
-
-    /* Allocate the inner level of pointers for TheLevel */
-    for (i = 0; i < MAXWIDTH; i++)
-        TheLevel.site[i] = (plc)checkmalloc(MAXLENGTH * sizeof(loctype));
-
-    /* Remove old level files */
-    kill_all_levels();
-}
-
-void kill_all_levels(void)
-{
-    kill_levels("om*.lev");
-}
-
-/* Remove old level files laying around */
-void kill_levels(char *str)
-{
-    int i;
-
-    struct _finddata_t buf;
-
-    sprintf(Str1, "%s%s", Omegalib, str);
-    for (i = _findfirst(Str1, &buf); !i; i = _findnext(i, &buf))
-    {
-        sprintf(Str2, "%s%s", Omegalib, buf.name);
-        remove(Str2);
-    }
-}
-
-static FILE *open_levfile(int env, int depth, int rw)
-{
-    sprintf(Str1,"%som%03d%03d.lev",Omegalib,env,depth);
-    return(fopen(Str1,(rw) ? "wb" : "rb"));
-}
-
-/* Saves oldlevel (unless NULL), and reads in the new level,
-unless depth is < 0. */
-plv msdos_changelevel(plv oldlevel, int newenv, int newdepth)
-{
-    FILE *fp;
-
-    if (oldlevel != NULL)
-    {
-        if (oldlevel->environment == newenv &&
-                oldlevel->depth == newdepth)
-            return(oldlevel);
-        if ((fp = open_levfile(oldlevel->environment,oldlevel->depth,1)) != NULL)
-        {
-            save_level(fp,oldlevel);
-            fclose(fp);
-        }
-        else
-            mprint("Cannot save level!!!");
-        /* Free up monsters and items */
-        free_level(oldlevel);
-    }
-    if (newdepth >= 0)
-    {
-        if ((fp = open_levfile(newenv,newdepth,0)) == NULL)
-            return(NULL);
-
-        restore_level(fp, VERSION);
-        fclose(fp);
-        return(Level);
-    }
-    return(NULL);
-}
-
-#endif

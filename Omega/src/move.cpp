@@ -359,11 +359,9 @@ void l_magic_pool(void)
     lset(Player.x, Player.y, CHANGED);
 }
 
-
 void l_no_op(void)
 {
 }
-
 
 void l_tactical_exit(void)
 {
@@ -371,7 +369,7 @@ void l_tactical_exit(void)
         if (cinema_confirm("You're about to leave this place.") != 'y')
             return;
     }
-    /* Free up monsters and items, and the level, if not SAVE_LEVELS */
+    /* Free up monsters and items, and the level */
     free_level(Level);
     Level = NULL;
     if ((Current_Environment == E_TEMPLE) ||
@@ -379,7 +377,6 @@ void l_tactical_exit(void)
         change_environment(E_COUNTRYSIDE);
     else change_environment(Last_Environment);
 }
-
 
 void l_rubble(void)
 {
@@ -394,10 +391,6 @@ void l_rubble(void)
         morewait();
     }
 }
-
-
-
-
 
 /* Drops all portcullises in 5 moves */
 void l_portcullis_trap(void)

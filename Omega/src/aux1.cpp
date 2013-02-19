@@ -505,13 +505,9 @@ void p_death(char *fromstring)
     morewait();
     display_death(fromstring);
     player_dump();
-#ifdef SAVE_LEVELS
-    kill_all_levels();
-#endif
     endgraf();
     exit(0);
 }
-
 
 /* move the cursor around, like for firing a wand, sets x and y to target */
 void setspot(int *x, int *y)

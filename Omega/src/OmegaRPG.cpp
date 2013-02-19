@@ -107,10 +107,6 @@ void OmegaRPG::startGame() {
         strcpy(Stringbuffer[count], "<nothing>");
     }
 
-#ifdef SAVE_LEVELS
-    msdos_init();
-#endif
-
     if (this->ShowTitle()) {
     	omega_title();
     }

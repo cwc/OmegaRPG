@@ -325,7 +325,6 @@ void fire(void)
     }
 }
 
-
 /* WDT: This function is used in interrupt handling, so it has the potential
  * to mess up the display.  Perhaps I should have a Curses window just for it,
  * so that I could clean up nicely if the user answers 'no' to its question.
@@ -338,17 +337,12 @@ void quit(void)
     if (ynq()=='y') {
         if (Player.rank[ADEPT] == 0) display_quit();
         else display_bigwin();
-#ifdef SAVE_LEVELS
-        kill_all_levels();
-#endif
         endgraf();
         printf("Bye!\n");
         exit(0);
     }
     else resetgamestatus(SKIP_MONSTERS);
 }
-
-
 
 /* rest in 10 second segments so if woken up by monster won't
 die automatically.... */

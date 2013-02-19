@@ -7,7 +7,6 @@
 /* Deallocate current dungeon */
 void free_dungeon(void)
 {
-#ifndef SAVE_LEVELS
     plv tlv;
 
     while (Dungeon != NULL) {
@@ -15,13 +14,6 @@ void free_dungeon(void)
         Dungeon = Dungeon->next;
         free_level(tlv);
     }
-#else
-    if (Dungeon != NULL)
-    {
-        sprintf(Str2,"om%d*.lev",Dungeon->environment);
-        kill_levels(Str2);
-    }
-#endif
 }
 
 /* erase the level w/o deallocating it*/
@@ -68,7 +60,6 @@ void change_level (char fromlevel, char tolevel, char rewrite_level)
     Player.sx = -1;
     Player.sy = -1; /* sanctuary effect dispelled */
 
-#ifndef SAVE_LEVELS
     thislevel = findlevel(Dungeon, tolevel);
     deepest[Current_Environment] = max(deepest[Current_Environment], tolevel);
     if (!thislevel)
@@ -79,18 +70,6 @@ void change_level (char fromlevel, char tolevel, char rewrite_level)
         Level->next = Dungeon;
         Dungeon = Level;
     }
-#else
-    thislevel = msdos_changelevel(Level, Current_Environment, tolevel);
-    deepest[Current_Environment] = max(deepest[Current_Environment], tolevel);
-    if (!thislevel)
-    {
-        thislevel = &TheLevel;
-        clear_level(thislevel);
-        Level = thislevel;
-        Level->next = Dungeon;
-        Dungeon = Level;
-    }
-#endif
 
     Level = thislevel;
     if ((!Level->generated) || rewrite_level)
@@ -181,7 +160,6 @@ void change_level (char fromlevel, char tolevel, char rewrite_level)
     roomcheck();
 }
 
-#ifndef SAVE_LEVELS
 /* tries to find the level of depth levelnum in dungeon; if can't find
    it returns NULL */
 plv findlevel(struct level *dungeon, char levelnum)
@@ -197,13 +175,9 @@ plv findlevel(struct level *dungeon, char levelnum)
         else return(NULL);
     }
 }
-#endif
-
-
 
 /* keep going in one orthogonal direction or another until we hit our */
 /* destination */
-
 void straggle_corridor(int fx, int fy, int tx, int ty, Symbol loc, char rsi)
 {
     int dx,dy;
@@ -215,7 +189,6 @@ void straggle_corridor(int fx, int fy, int tx, int ty, Symbol loc, char rsi)
         else corridor_crawl(&fx,&fy,0,sign(dy),random_range(abs(dy))+1,loc,rsi);
     }
 }
-
 
 void makedoor(int x, int y)
 {

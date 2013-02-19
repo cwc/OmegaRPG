@@ -18,11 +18,6 @@ definitions in the following section. */
 #define usleep(x) sleep(x / 1000000.0)
 
 extern char* getlogin();
-
-#ifdef SAVE_LEVELS
-#	include <sys/timeb.h>
-#	include <io.h>
-#endif
 #else
 // These includes are not supported or supplanted in Windows
 #include <unistd.h>
@@ -1624,12 +1619,7 @@ struct location {
 struct level {
     char depth; /* which level is this */
     struct level *next; /* pointer to next level in dungeon */
-#ifndef SAVE_LEVELS
     struct location site[MAXWIDTH][MAXLENGTH]; /* dungeon data */
-#else
-    /* Over 64K worth of data! */
-    struct location *site[MAXWIDTH]; /* dungeon data */
-#endif
     char generated; /* has the level been made (visited) yet? */
     char numrooms; /* number of rooms on level */
     char tunnelled; /* amount of tunnelling done on this level */

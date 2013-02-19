@@ -36,9 +36,6 @@ struct player Player = {0};           /* the player */
 
 struct terrain Country[COUNTRY_WIDTH][COUNTRY_LENGTH] = {0};/* The countryside */
 
-#ifdef SAVE_LEVELS
-struct level TheLevel;
-#endif
 struct level *City=NULL;              /* The city of Rampart */
 struct level *TempLevel=NULL;         /* Place holder */
 struct level *Level=NULL;             /* Pointer to current Level */
