@@ -60,9 +60,9 @@
     <ClCompile Include="..\..\..\Omega\src\mmelee.cpp" />
     <ClCompile Include="..\..\..\Omega\src\mon.cpp" />
     <ClCompile Include="..\..\..\Omega\src\Monster.cpp" />
+    <ClCompile Include="..\..\..\Omega\src\Monster_mspec.cpp" />
     <ClCompile Include="..\..\..\Omega\src\move.cpp" />
     <ClCompile Include="..\..\..\Omega\src\movef.cpp" />
-    <ClCompile Include="..\..\..\Omega\src\mspec.cpp" />
     <ClCompile Include="..\..\..\Omega\src\mstrike.cpp" />
     <ClCompile Include="..\..\..\Omega\src\mtalk.cpp" />
     <ClCompile Include="..\..\..\Omega\src\newrand.cpp" />
