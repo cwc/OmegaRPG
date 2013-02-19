@@ -57,13 +57,13 @@
     <ClCompile Include="..\..\..\Omega\src\lev.cpp" />
     <ClCompile Include="..\..\..\Omega\src\Main.cpp" />
     <ClCompile Include="..\..\..\Omega\src\map.cpp" />
-    <ClCompile Include="..\..\..\Omega\src\mmelee.cpp" />
+    <ClCompile Include="..\..\..\Omega\src\Monster_mmelee.cpp" />
     <ClCompile Include="..\..\..\Omega\src\mon.cpp" />
     <ClCompile Include="..\..\..\Omega\src\Monster.cpp" />
     <ClCompile Include="..\..\..\Omega\src\Monster_mspec.cpp" />
     <ClCompile Include="..\..\..\Omega\src\move.cpp" />
     <ClCompile Include="..\..\..\Omega\src\movef.cpp" />
-    <ClCompile Include="..\..\..\Omega\src\mstrike.cpp" />
+    <ClCompile Include="..\..\..\Omega\src\Monster_mstrike.cpp" />
     <ClCompile Include="..\..\..\Omega\src\Monster_mtalk.cpp" />
     <ClCompile Include="..\..\..\Omega\src\newrand.cpp" />
     <ClCompile Include="..\..\..\Omega\src\omega.cpp" />

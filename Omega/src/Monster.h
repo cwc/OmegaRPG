@@ -177,6 +177,12 @@ typedef chtype Symbol;
 		void m_nbolt();
 		void m_snowball();
 		void m_strike_sonic();
+
+		int monster_hit(char,int );
+		void m_hit(int );
+		void monster_melee(char,int );
+		void tacmonster();
+		void transcribe_monster_actions();
 	};
 
 	class MonsterList {

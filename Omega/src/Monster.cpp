@@ -291,7 +291,7 @@ void Monster::m_pulse()
                 monster_move();
             else if (m_statusp(this,HOSTILE) && (range ==1)) {
                 resetgamestatus(FAST_MOVE);
-                tacmonster(this);
+                tacmonster();
             }
         }
         /* if monster is greedy, picks up treasure it finds */
@@ -675,7 +675,7 @@ void Monster::monster_action(int action)
         if (distance(this->x,this->y,Player.x,Player.y)<2) {
             meleef = this->meleef;
             this->meleef = action;
-            tacmonster(this);
+            tacmonster();
             this->meleef = meleef;
         }
     }
@@ -1601,7 +1601,7 @@ bool Monster::player_hit(int hitmod, char hitloc)
     else {
         if (hitloc == 'X') hitloc = random_loc();
 
-        transcribe_monster_actions(this);
+        transcribe_monster_actions();
 
         while (i<strlen(this->combatManeuvers)) {
             if ((this->combatManeuvers[i] == 'B') || (this->combatManeuvers[i] == 'R')) {

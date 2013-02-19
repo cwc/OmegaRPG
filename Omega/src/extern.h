@@ -624,11 +624,6 @@ void map_close(map*);
 /* mmelee.c functions */
 
 char random_loc( void );
-int monster_hit( Monster *,char,int );
-void m_hit( Monster *,int );
-void monster_melee( Monster *,char,int );
-void tacmonster( Monster * );
-void transcribe_monster_actions( Monster * );
 
 /* mon.c functions */
 

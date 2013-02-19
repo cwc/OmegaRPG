@@ -4,47 +4,47 @@
 
 #include "glob.h"
 
-void m_hit(Monster* m, int dtype)
+void Monster::m_hit(int dtype)
 {
-    if (m->uniqueness == COMMON) {
+    if (this->uniqueness == COMMON) {
         strcpy(Str3,"a ");
-        strcat(Str3,m->name);
+        strcat(Str3,this->name);
     }
-    else strcpy(Str3,m->name);
+    else strcpy(Str3,this->name);
     if ((Player.status[DISPLACED] > 0) && (random_range(2) == 1))
         mprint("The attack was displaced!");
-    else  p_damage(random_range(m->dmg),dtype,Str3);
+    else  p_damage(random_range(this->dmg),dtype,Str3);
 }
 
 /* execute monster attacks versus player */
-void tacmonster(Monster* m)
+void Monster::tacmonster()
 {
     int i=0;
     drawvision(Player.x,Player.y);
-    transcribe_monster_actions(m);
-    while ((i < strlen(m->combatManeuvers)) && (m->hp > 0)) {
-        if (m->uniqueness == COMMON) {
+    transcribe_monster_actions();
+    while ((i < strlen(this->combatManeuvers)) && (this->hp > 0)) {
+        if (this->uniqueness == COMMON) {
             strcpy(Str4,"The ");
-            strcat(Str4,m->name);
+            strcat(Str4,this->name);
         }
-        else strcpy(Str4,m->name);
-        if (m->combatManeuvers[i] == 'A') {
+        else strcpy(Str4,this->name);
+        if (this->combatManeuvers[i] == 'A') {
             strcat(Str4," attacks ");
-            strcat(Str4,actionlocstr(m->combatManeuvers[i+1]));
+            strcat(Str4,actionlocstr(this->combatManeuvers[i+1]));
             if (Verbosity == VERBOSE) mprint(Str4);
-            monster_melee(m,m->combatManeuvers[i+1],0);
+            monster_melee(this->combatManeuvers[i+1],0);
         }
-        else if (m->combatManeuvers[i] == 'L') {
+        else if (this->combatManeuvers[i] == 'L') {
             strcat(Str4," lunges ");
-            strcat(Str4,actionlocstr(m->combatManeuvers[i+1]));
+            strcat(Str4,actionlocstr(this->combatManeuvers[i+1]));
             if (Verbosity == VERBOSE) mprint(Str4);
-            monster_melee(m,m->combatManeuvers[i+1],m->level);
+            monster_melee(this->combatManeuvers[i+1],this->level);
         }
         i+=2;
     }
 }
 
-void monster_melee(Monster* m, char hitloc, int bonus)
+void Monster::monster_melee(char hitloc, int bonus)
 {
     if (player_on_sanctuary())
         print1("The aegis of your deity protects you!");
@@ -53,17 +53,17 @@ void monster_melee(Monster* m, char hitloc, int bonus)
         resetgamestatus(FAST_MOVE);
 
         /* It's lawful to wait to be attacked */
-        if (m->wasAttackedByPlayer == false) Player.alignment++;
+        if (this->wasAttackedByPlayer == false) Player.alignment++;
 
-        m->wasAttackedByPlayer = true;
+        this->wasAttackedByPlayer = true;
 
-        if (m->uniqueness == COMMON) {
+        if (this->uniqueness == COMMON) {
             strcpy(Str2,"The ");
-            strcat(Str2,m->name);
+            strcat(Str2,this->name);
         }
-        else strcpy(Str2,m->name);
-        if (monster_hit(m,hitloc,bonus))
-            switch(m->meleef) {
+        else strcpy(Str2,this->name);
+        if (monster_hit(hitloc,bonus))
+            switch(this->meleef) {
             case M_NO_OP:
                 strcat(Str2," touches you.");
                 mprint(Str2);
@@ -71,72 +71,72 @@ void monster_melee(Monster* m, char hitloc, int bonus)
             case M_MELEE_NORMAL:
                 strcat(Str2," hits you.");
                 mprint(Str2);
-                m_hit(m,NORMAL_DAMAGE);
+                m_hit(NORMAL_DAMAGE);
                 break;
             case M_MELEE_NG:
                 strcat(Str2," hits you.");
                 mprint(Str2);
-                m_hit(m,NORMAL_DAMAGE);
-                if (random_range(5)==3) m->m_sp_ng();
+                m_hit(NORMAL_DAMAGE);
+                if (random_range(5)==3) this->m_sp_ng();
                 break;
             case M_MELEE_FIRE:
                 strcat(Str2," blasts you with fire.");
                 mprint(Str2);
-                m_hit(m,FLAME);
+                m_hit(FLAME);
                 break;
             case M_MELEE_DRAGON:
                 strcat(Str2," hits you and blasts you with fire.");
                 mprint(Str2);
-                m_hit(m,NORMAL_DAMAGE);
-                m_hit(m,FLAME);
+                m_hit(NORMAL_DAMAGE);
+                m_hit(FLAME);
                 break;
             case M_MELEE_ELEC:
                 strcat(Str2," lashes you with electricity.");
                 mprint(Str2);
-                m_hit(m,ELECTRICITY);
+                m_hit(ELECTRICITY);
                 break;
             case M_MELEE_COLD:
                 strcat(Str2," freezes you with cold.");
                 mprint(Str2);
-                m_hit(m,ELECTRICITY);
+                m_hit(ELECTRICITY);
                 break;
             case M_MELEE_POISON:
                 strcat(Str2," hits you.");
                 mprint(Str2);
-                m_hit(m,NORMAL_DAMAGE);
-                if (random_range(10) < m->level) {
+                m_hit(NORMAL_DAMAGE);
+                if (random_range(10) < this->level) {
                     mprint("You've been poisoned!");
-                    p_poison(m->dmg);
+                    p_poison(this->dmg);
                 }
                 break;
             case M_MELEE_GRAPPLE:
                 strcat(Str2," grabs you.");
                 mprint(Str2);
-                m_hit(m,NORMAL_DAMAGE);
+                m_hit(NORMAL_DAMAGE);
                 Player.status[IMMOBILE]++;
                 break;
             case M_MELEE_SPIRIT:
                 strcat(Str2," touches you.");
                 mprint(Str2);
-                m_hit(m,NORMAL_DAMAGE);
-                drain_life(m->level);
+                m_hit(NORMAL_DAMAGE);
+                drain_life(this->level);
                 break;
             case M_MELEE_DISEASE:
                 strcat(Str2," hits you.");
                 mprint(Str2);
-                m_hit(m,NORMAL_DAMAGE);
-                if (random_range(10) < m->level) {
+                m_hit(NORMAL_DAMAGE);
+                if (random_range(10) < this->level) {
                     mprint("You've been infected!");
-                    disease(m->level);
+                    disease(this->level);
                 }
                 break;
             case M_MELEE_SLEEP:
                 strcat(Str2," hit you.");
                 mprint(Str2);
-                m_hit(m,NORMAL_DAMAGE);
-                if (random_range(10) < m->level) {
+                m_hit(NORMAL_DAMAGE);
+                if (random_range(10) < this->level) {
                     mprint("You feel drowsy");
-                    sleep_player(m->level);
+                    sleep_player(this->level);
                 }
                 break;
             }
@@ -147,15 +147,15 @@ void monster_melee(Monster* m, char hitloc, int bonus)
                     switch(random_range(10)) {
                     case 0:
                         strcat(Str2," blundered severely.");
-                        m->m_damage(m->dmg,UNSTOPPABLE);
+                        this->m_damage(this->dmg,UNSTOPPABLE);
                         break;
                     case 1:
                         strcat(Str2," tripped while attacking.");
-                        m->m_dropstuff();
+                        this->m_dropstuff();
                         break;
                     case 2:
                         strcat(Str2," seems seriously confused.");
-                        m->speed = min(30,m->speed*2);
+                        this->speed = min(30,this->speed*2);
                         break;
                     default:
                         strcat(Str2," missed you.");
@@ -170,15 +170,15 @@ void monster_melee(Monster* m, char hitloc, int bonus)
                     break;
                 case 2:
                     strcat(Str2," blundered severely.");
-                    m->m_damage(m->dmg,UNSTOPPABLE);
+                    this->m_damage(this->dmg,UNSTOPPABLE);
                     break;
                 case 3:
                     strcat(Str2," tripped while attacking.");
-                    m->m_dropstuff();
+                    this->m_dropstuff();
                     break;
                 case 4:
                     strcat(Str2," seems seriously confused.");
-                    m->speed = min(30,m->speed*2);
+                    this->speed = min(30,this->speed*2);
                     break;
                 case 5:
                     strcat(Str2," is seriously ashamed.");
@@ -202,10 +202,8 @@ void monster_melee(Monster* m, char hitloc, int bonus)
     }
 }
 
-
-
-/* checks to see if player hits with hitmod vs. monster m at location hitloc */
-int monster_hit(Monster* m, char hitloc, int bonus)
+/* checks to see if player hits with hitmod vs. monster this at location hitloc */
+int Monster::monster_hit(char hitloc, int bonus)
 {
     int i=0,blocks=false,goodblocks=0,hit,riposte=false;
     while (i<strlen(Player.combatManeuvers)) {
@@ -219,14 +217,14 @@ int monster_hit(Monster* m, char hitloc, int bonus)
         i+=2;
     }
     if (! blocks) goodblocks = -1;
-    hit = hitp(m->hit+bonus,Player.defense+goodblocks*10);
+    hit = hitp(this->hit+bonus,Player.defense+goodblocks*10);
     if ((! hit) && (goodblocks > 0)) {
         if (Verbosity == VERBOSE) mprint("You blocked it!");
         if (riposte) {
             if (Verbosity != TERSE) mprint("You got a riposte!");
-            if (hitp(Player.hit,m->ac)) {
+            if (hitp(Player.hit,this->ac)) {
                 mprint("You hit!");
-                weapon_use(0,Player.possessions[O_WEAPON_HAND],m);
+                weapon_use(0,Player.possessions[O_WEAPON_HAND],this);
             }
             else mprint("You missed.");
         }
@@ -234,13 +232,10 @@ int monster_hit(Monster* m, char hitloc, int bonus)
     return(hit);
 }
 
-
-
 /* decide monster actions in tactical combat mode */
 /* if monster is skilled, it can try see the player's attacks coming and
    try to block appropriately. */
-
-void transcribe_monster_actions(Monster* m)
+void Monster::transcribe_monster_actions()
 {
     int i;
     char attack_loc,block_loc;
@@ -284,33 +279,33 @@ void transcribe_monster_actions(Monster* m)
         block_loc = 'C';
     else block_loc = 'H';
 
-    m->combatManeuvers = mmstr;
+    this->combatManeuvers = mmstr;
 
-    if (m->id != NPC)
-        strcpy(m->combatManeuvers,Monsters[m->id].combatManeuvers);
+    if (this->id != NPC)
+        strcpy(this->combatManeuvers,Monsters[this->id].combatManeuvers);
     else {
-        strcpy(m->combatManeuvers,"");
-        for(i=0; i<m->level; i+=2)
-            strcat(m->combatManeuvers,"L?R?");
+        strcpy(this->combatManeuvers,"");
+        for(i=0; i<this->level; i+=2)
+            strcat(this->combatManeuvers,"L?R?");
     }
 
     i = 0;
-    while (i<strlen(m->combatManeuvers)) {
-        if ((m->combatManeuvers[i] == 'A') || (m->combatManeuvers[i] == 'L')) {
-            if (m->combatManeuvers[i+1] == '?') {
-                if (m->level+random_range(30) > Player.level+random_range(20))
-                    m->combatManeuvers[i+1] = attack_loc;
-                else m->combatManeuvers[i+1] = random_loc();
+    while (i<strlen(this->combatManeuvers)) {
+        if ((this->combatManeuvers[i] == 'A') || (this->combatManeuvers[i] == 'L')) {
+            if (this->combatManeuvers[i+1] == '?') {
+                if (this->level+random_range(30) > Player.level+random_range(20))
+                    this->combatManeuvers[i+1] = attack_loc;
+                else this->combatManeuvers[i+1] = random_loc();
             }
-            else if (m->combatManeuvers[i+1] == 'X') m->combatManeuvers[i+1] = random_loc();
+            else if (this->combatManeuvers[i+1] == 'X') this->combatManeuvers[i+1] = random_loc();
         }
-        else if ((m->combatManeuvers[i] == 'B') || (m->combatManeuvers[i] == 'R')) {
-            if (m->combatManeuvers[i+1] == '?') {
-                if (m->level+random_range(30) > Player.level+random_range(20))
-                    m->combatManeuvers[i+1] = block_loc;
-                else m->combatManeuvers[i+1] = random_loc();
+        else if ((this->combatManeuvers[i] == 'B') || (this->combatManeuvers[i] == 'R')) {
+            if (this->combatManeuvers[i+1] == '?') {
+                if (this->level+random_range(30) > Player.level+random_range(20))
+                    this->combatManeuvers[i+1] = block_loc;
+                else this->combatManeuvers[i+1] = random_loc();
             }
-            else if (m->combatManeuvers[i+1] == 'X') m->combatManeuvers[i+1] = random_loc();
+            else if (this->combatManeuvers[i+1] == 'X') this->combatManeuvers[i+1] = random_loc();
         }
         i+=2;
     }
