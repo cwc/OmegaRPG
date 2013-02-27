@@ -43,6 +43,7 @@ extern char* getlogin();
 #include "colors.h"
 
 #include "Monster.h"
+#include "Village.h"
 
 /* Update the display every turn to center on the player.  Rather heavy
  * on the bandwidth. */
@@ -1480,13 +1481,6 @@ for example. */
 #define O_RING3 14
 #define O_RING4 15
 
-/* How depressingly stupid that there weren't already defined.  WDT. */
-#define VIL_STARVIEW  1
-#define VIL_WOODMERE  2
-#define VIL_STORMWAT  3
-#define VIL_THAUMARI  4
-#define VIL_SKORCH    5
-#define VIL_WHORFEN   6
 
 /* Changing these would currently require changing the maps as well (although
  * there should be no other side effects).  I intend to remove the need for

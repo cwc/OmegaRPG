@@ -738,6 +738,7 @@ void restore_level(FILE *fd, int version)
     Level->generated = true;
     temp_env = Current_Environment;
     Current_Environment = Level->environment;
+	Village village;
     switch(Level->environment) {
     case E_COUNTRYSIDE:
         load_country();
@@ -746,7 +747,7 @@ void restore_level(FILE *fd, int version)
         load_city(false);
         break;
     case E_VILLAGE:
-        load_village(Country[LastCountryLocX][LastCountryLocY].aux, false);
+        village.load_village(Country[LastCountryLocX][LastCountryLocY].aux, false);
         break;
     case E_CAVES:
         initrand(Current_Environment, Level->depth);

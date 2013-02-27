@@ -20,6 +20,7 @@
     <ClInclude Include="..\..\..\Omega\src\monsters.h" />
     <ClInclude Include="..\..\..\Omega\src\objects.h" />
     <ClInclude Include="..\..\..\Omega\src\OmegaRPG.h" />
+    <ClInclude Include="..\..\..\Omega\src\Village.h" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\..\lib\pdcurses.lib" />
@@ -79,7 +80,7 @@
     <ClCompile Include="..\..\..\Omega\src\time.cpp" />
     <ClCompile Include="..\..\..\Omega\src\trap.cpp" />
     <ClCompile Include="..\..\..\Omega\src\util.cpp" />
-    <ClCompile Include="..\..\..\Omega\src\village.cpp" />
+    <ClCompile Include="..\..\..\Omega\src\Village.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D144A6BB-1ED6-4993-9A52-8DA5C8F3AFCC}</ProjectGuid>

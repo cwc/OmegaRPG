@@ -167,8 +167,9 @@ void load_city(int populate)
         break;
     case 'h':
         Level->site[i][j].locchar = FLOOR;
+		Village village;
         if (populate)
-            make_horse(i,j); /* from village.c */
+            village.make_horse(i,j); /* from village.c */
         break;
     case 'j':
         Level->site[i][j].locchar = FLOOR;
