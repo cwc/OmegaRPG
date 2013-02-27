@@ -5,7 +5,7 @@
 #include "glob.h"
 
 /* loads the village level into Level*/
-void Village::load_village(int villagenum, int populate)
+void load_village(int villagenum, int populate)
 {
     int i,j;
     char site;
@@ -153,7 +153,7 @@ void Village::load_village(int villagenum, int populate)
     initrand(E_RESTORE, 0);
 }
 
-void Village::make_guard(int i, int j)
+void make_guard(int i, int j)
 {
     MonsterList* tml = ((MonsterList*) (checkmalloc(sizeof(MonsterList))));
     tml->monster = (Level->site[i][j].creature = make_creature(GUARD));
@@ -163,7 +163,7 @@ void Village::make_guard(int i, int j)
     Level->mlist = tml;
 }
 
-void Village::make_sheep(int i, int j)
+void make_sheep(int i, int j)
 {
     MonsterList* tml = ((MonsterList*) (checkmalloc(sizeof(MonsterList))));
     tml->monster = (Level->site[i][j].creature = make_creature(SHEEP));
@@ -173,7 +173,7 @@ void Village::make_sheep(int i, int j)
     Level->mlist = tml;
 }
 
-void Village::make_food_bin(int i, int j)
+void make_food_bin(int i, int j)
 {
     pol tol;
     int k;
@@ -187,7 +187,7 @@ void Village::make_food_bin(int i, int j)
     }
 }
 
-void Village::make_horse(int i, int j)
+void make_horse(int i, int j)
 {
     MonsterList* tml = ((MonsterList*) (checkmalloc(sizeof(MonsterList))));
     tml->monster = (Level->site[i][j].creature = make_creature(HORSE));
@@ -198,7 +198,7 @@ void Village::make_horse(int i, int j)
 }
 
 
-void Village::make_merchant(int i, int j)
+void make_merchant(int i, int j)
 {
     MonsterList* tml = ((MonsterList*) (checkmalloc(sizeof(MonsterList))));
     tml->monster = (Level->site[i][j].creature = make_creature(MERCHANT));
@@ -209,7 +209,7 @@ void Village::make_merchant(int i, int j)
 }
 
 
-void Village::assign_village_function(int x, int y, int setup)
+void assign_village_function(int x, int y, int setup)
 {
     static int next=0;
     static int permutation[24]; /* number of x's in village map */
@@ -271,29 +271,29 @@ void Village::assign_village_function(int x, int y, int setup)
 
 
 /* WDT HACK!  Remove these literals, replace with VIL_* constants. */
-void Village::special_village_site(int i, int j, int villagenum)
+void special_village_site(int i, int j, int villagenum)
 {
-    if (villagenum == VIL_STARVIEW) {
+    if (villagenum == 1) {
         Level->site[i][j].locchar = ALTAR;
         Level->site[i][j].p_locf = L_LAWSTONE;
     }
-    if (villagenum == VIL_WOODMERE) {
+    if (villagenum == 2) {
         Level->site[i][j].locchar = ALTAR;
         Level->site[i][j].p_locf = L_BALANCESTONE;
     }
-    else if (villagenum == VIL_STORMWAT) {
+    else if (villagenum == 3) {
         Level->site[i][j].locchar = ALTAR;
         Level->site[i][j].p_locf = L_CHAOSTONE;
     }
-    else if (villagenum == VIL_THAUMARI) {
+    else if (villagenum == 4) {
         Level->site[i][j].locchar = ALTAR;
         Level->site[i][j].p_locf = L_MINDSTONE;
     }
-    else if (villagenum == VIL_SKORCH) {
+    else if (villagenum == 5) {
         Level->site[i][j].locchar = ALTAR;
         Level->site[i][j].p_locf = L_SACRIFICESTONE;
     }
-    else if (villagenum == VIL_WHORFEN) {
+    else if (villagenum == 6) {
         Level->site[i][j].locchar = ALTAR;
         Level->site[i][j].p_locf = L_VOIDSTONE;
     }
