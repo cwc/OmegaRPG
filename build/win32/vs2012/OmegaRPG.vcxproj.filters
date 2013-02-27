@@ -47,6 +47,9 @@
     <ClInclude Include="..\..\..\Omega\src\Monster.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Omega\src\Village.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\..\lib\pdcurses.lib">
@@ -201,9 +204,6 @@
     <ClCompile Include="..\..\..\Omega\src\util.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Omega\src\village.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Omega\src\Monster.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -217,6 +217,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Omega\src\Monster_mmelee.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Omega\src\Village.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -30,54 +30,6 @@ void signalsave(int ignore)
     exit(0);
 }
 
-void initSignals() {
-// Always catch ^c and hang-up signals
-#ifdef SIGINT
-    signal(SIGINT,signalquit);
-#endif
-
-#ifdef SIGHUP
-    signal(SIGHUP,signalsave);
-#endif
-
-#ifdef SIGQUIT
-        signal(SIGQUIT,signalexit);
-#endif
-#ifdef SIGILL
-        signal(SIGILL,signalexit);
-#endif
-
-#ifdef SIGIOT
-        signal(SIGIOT,signalexit);
-#endif
-#ifdef SIGABRT
-        signal(SIGABRT,signalexit);
-#endif
-#ifdef SIGEMT
-        signal(SIGEMT,signalexit);
-#endif
-#ifdef SIGBUS
-        signal(SIGBUS,signalexit);
-#endif
-#ifdef SIGSYS
-        signal(SIGSYS,signalexit);
-#endif
-
-#ifdef DEBUG
-        if( DG_debug_flag ) {
-#ifdef SIGTRAP
-            signal(SIGTRAP,signalexit);
-#endif
-#ifdef SIGFPE
-            signal(SIGFPE,signalexit);
-#endif
-#ifdef SIGSEGV
-            signal(SIGSEGV,signalexit);
-#endif
-        }
-#endif
-}
-
 int main(int argc, char *argv[])
 {
     OmegaRPG* game = new OmegaRPG();
@@ -125,6 +77,52 @@ int main(int argc, char *argv[])
         game->SaveFilename(argv[1]);
         game->Continuing(true);
     }
+#endif
+
+// Always catch ^c and hang-up signals
+#ifdef SIGINT
+    signal(SIGINT,signalquit);
+#endif
+
+#ifdef SIGHUP
+    signal(SIGHUP,signalsave);
+#endif
+
+#ifdef SIGQUIT
+        signal(SIGQUIT,signalexit);
+#endif
+#ifdef SIGILL
+        signal(SIGILL,signalexit);
+#endif
+
+#ifdef SIGIOT
+        signal(SIGIOT,signalexit);
+#endif
+#ifdef SIGABRT
+        signal(SIGABRT,signalexit);
+#endif
+#ifdef SIGEMT
+        signal(SIGEMT,signalexit);
+#endif
+#ifdef SIGBUS
+        signal(SIGBUS,signalexit);
+#endif
+#ifdef SIGSYS
+        signal(SIGSYS,signalexit);
+#endif
+
+#ifdef DEBUG
+        if( DG_debug_flag ) {
+#ifdef SIGTRAP
+            signal(SIGTRAP,signalexit);
+#endif
+#ifdef SIGFPE
+            signal(SIGFPE,signalexit);
+#endif
+#ifdef SIGSEGV
+            signal(SIGSEGV,signalexit);
+#endif
+        }
 #endif
 
         game->startGame();
