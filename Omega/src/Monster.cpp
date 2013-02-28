@@ -1611,10 +1611,10 @@ bool Monster::player_hit(int hitmod, char hitloc)
             }
             i+=2;
         }
-
         if (! blocks) goodblocks = -1;
-        hit = hitp(Player.hit+hitmod,this->ac+goodblocks*10);
-        if ((! hit) && (goodblocks > 0)) {
+        hit = hitp(Player.hit+hitmod,this->ac+goodblocks*10) > 0 ? true : false;
+		
+        if ((!hit) && (goodblocks > 0)) {
             if (this->uniqueness == COMMON) {
                 strcpy(Str1,"The ");
                 strcat(Str1,this->name);

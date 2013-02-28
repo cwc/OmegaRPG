@@ -214,7 +214,6 @@ void p_process(void)
             Command_Duration = 10;
             break;
         case ',':
-            Command_Duration = 10;
             nap();
             break;
         case '>':
