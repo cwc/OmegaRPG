@@ -705,7 +705,7 @@ pol restore_itemlist(FILE *fd, int version)
         newObject = ((pol) checkmalloc(sizeof(oltype)));
         newObject->thing = restore_item(fd, version);
         newObject->next = NULL;
-        if (firsttime==true) {
+        if (firsttime > 0) {
             ol = cur = newObject;
             firsttime = false;
         }

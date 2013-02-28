@@ -16,6 +16,9 @@ void load_city(int populate)
     char site;
     map *city;
     map *maze;
+	Village village;
+
+
 
     initrand(E_CITY, 0);
 
@@ -167,9 +170,10 @@ void load_city(int populate)
         break;
     case 'h':
         Level->site[i][j].locchar = FLOOR;
-		Village village;
         if (populate)
+		{
             village.make_horse(i,j); /* from village.c */
+		}
         break;
     case 'j':
         Level->site[i][j].locchar = FLOOR;

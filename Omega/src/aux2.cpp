@@ -795,7 +795,7 @@ void toggle_item_use(int on)
         for(i=0; i<MAXITEMS; i++) {
             used[i] = false;
             if (Player.possessions[i] != NULL) {
-                if ((used[i] = Player.possessions[i]->used) == true) {
+                if ((used[i] = Player.possessions[i]->used) > 0) {
                     Player.possessions[i]->used = false;
                     item_use(Player.possessions[i]);
                 }
@@ -861,6 +861,8 @@ void enter_site(Symbol site)
 void change_environment(char new_environment)
 {
     int i, emerging = false;
+	Village village;
+
 
     Player.sx = -1;
     Player.sy = -1; /* reset sanctuary if there was one */
@@ -1052,12 +1054,12 @@ void change_environment(char new_environment)
         ScreenXOffset =Player.x - (ScreenWidth/2);
         screencheck(Player.x, Player.y);
         show_screen();
-		Village village;
         break;
     case E_VILLAGE:
         if (!emerging) {
             /* different villages per different locations */
-            switch(Country[Player.x][Player.y].aux) {
+
+			switch(Country[Player.x][Player.y].aux) {
 			case Village::VIL_STARVIEW:
                 setPlayerXY( 0, 6 );
                 Villagenum = Village::VIL_STARVIEW;

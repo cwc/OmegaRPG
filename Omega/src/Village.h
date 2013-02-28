@@ -3,8 +3,11 @@
 
 class Village
 {
-public:
+	
+private:
+	MonsterList *tml;
 
+public:
 	
 	enum {
 		VIL_NONE,
