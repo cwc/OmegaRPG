@@ -795,7 +795,7 @@ void toggle_item_use(int on)
         for(i=0; i<MAXITEMS; i++) {
             used[i] = false;
             if (Player.possessions[i] != NULL) {
-                if ((used[i] = Player.possessions[i]->used) == true) {
+                if ((used[i] = Player.possessions[i]->used) > 0) {
                     Player.possessions[i]->used = false;
                     item_use(Player.possessions[i]);
                 }
@@ -861,6 +861,8 @@ void enter_site(Symbol site)
 void change_environment(char new_environment)
 {
     int i, emerging = false;
+	Village village;
+
 
     Player.sx = -1;
     Player.sy = -1; /* reset sanctuary if there was one */
@@ -1056,37 +1058,38 @@ void change_environment(char new_environment)
     case E_VILLAGE:
         if (!emerging) {
             /* different villages per different locations */
-            switch(Country[Player.x][Player.y].aux) {
-            case VIL_STARVIEW:
+
+			switch(Country[Player.x][Player.y].aux) {
+			case Village::VIL_STARVIEW:
                 setPlayerXY( 0, 6 );
-                Villagenum = VIL_STARVIEW;
+                Villagenum = Village::VIL_STARVIEW;
                 break;
             default:
                 print3("Very strange, a nonexistent village.");
-            case VIL_WOODMERE:
+            case Village::VIL_WOODMERE:
                 setPlayerXY( 39, 15 );
-                Villagenum = VIL_WOODMERE;
+                Villagenum = Village::VIL_WOODMERE;
                 break;
-            case VIL_STORMWAT:
+            case Village::VIL_STORMWAT:
                 setPlayerXY( 63, 8 );
-                Villagenum = VIL_STORMWAT;
+                Villagenum = Village::VIL_STORMWAT;
                 break;
-            case VIL_THAUMARI:
+            case Village::VIL_THAUMARI:
                 setPlayerXY( 32, 15 );
-                Villagenum = VIL_THAUMARI;
+                Villagenum = Village::VIL_THAUMARI;
                 break;
-            case VIL_SKORCH:
+            case Village::VIL_SKORCH:
                 setPlayerXY( 2, 8 );
-                Villagenum = VIL_SKORCH;
+                Villagenum = Village::VIL_SKORCH;
                 break;
-            case VIL_WHORFEN:
+            case Village::VIL_WHORFEN:
                 setPlayerXY( 2, 2 );
-                Villagenum = VIL_WHORFEN;
+                Villagenum = Village::VIL_WHORFEN;
                 break;
             }
         }
-        if ((! emerging) || (TempLevel == NULL)) load_village(Villagenum, true);
-        else if (TempLevel->environment != E_VILLAGE) load_village(Villagenum, true);
+        if ((! emerging) || (TempLevel == NULL)) village.load_village(Villagenum, true);
+        else if (TempLevel->environment != E_VILLAGE) village.load_village(Villagenum, true);
         else Level = TempLevel;
 
         if (emerging) {

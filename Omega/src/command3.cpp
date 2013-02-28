@@ -356,6 +356,7 @@ void nap(void)
             resetgamestatus(FAST_MOVE);
             drawvision(Player.x,Player.y);
         }
+		Command_Duration = 10;
     }
     else {
         clearmsg();
