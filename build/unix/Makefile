@@ -33,7 +33,7 @@ copy_data :
 
 clean : 
 	rm -rf $(BUILD_DIR)
-	rm -f data
+	rm -rf data
 	rm -f omega*
 
 rebuild : clean all
