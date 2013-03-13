@@ -1,7 +1,6 @@
 BUILD_DIR := obj
 
 CPP := g++
-CC  := gcc
 LD := g++
 
 CFLAGS :=
@@ -12,17 +11,14 @@ DATA_DIR := ../../data
 OMEGA_SRC_DIR := ../../Omega/src
 
 OMEGA_CPP_SRC := $(wildcard $(OMEGA_SRC_DIR)/*.cpp)
-OMEGA_CPP_OBJS := $(patsubst $(OMEGA_SRC_DIR)/%.cpp, $(BUILD_DIR)/%.opp, $(OMEGA_CPP_SRC))
+OMEGA_CPP_OBJS := $(patsubst $(OMEGA_SRC_DIR)/%.cpp, $(BUILD_DIR)/%.o, $(OMEGA_CPP_SRC))
 
 all : omega
 
 omega : build_dir $(OMEGA_CPP_OBJS) copy_data
 	$(LD) -o $@ $(OMEGA_CPP_OBJS) $(LDFLAGS)
 
-$(BUILD_DIR)/%.o : $(OMEGA_SRC_DIR)/%.c
-	$(CC) $(CFLAGS) -o $@ -c $<
-
-$(BUILD_DIR)/%.opp : $(OMEGA_SRC_DIR)/%.cpp
+$(BUILD_DIR)/%.o : $(OMEGA_SRC_DIR)/%.cpp
 	$(CPP) $(CFLAGS) -o $@ -c $<
 
 build_dir : 
@@ -33,7 +29,7 @@ copy_data :
 
 clean : 
 	rm -rf $(BUILD_DIR)
-	rm -f data
+	rm -rf data
 	rm -f omega*
 
 rebuild : clean all
