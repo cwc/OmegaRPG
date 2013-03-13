@@ -76,6 +76,7 @@ int Constriction=0;                   /* Dragonlord Attack State */
 int Blessing=false;                   /* Altar Blessing State */
 int LastDay= -1;                      /* DPW date of dole */
 int LastFreeGymDay = -1;              // Date of last free gym session
+int LastFreeYogaDay = -1;              /* Last free gifted Yoga session */
 int RitualHour= -1;                   /* last use of ritual magic */
 int RitualRoom= -1;                   /* last room of ritual magic */
 int Lawstone=0;                       /* magic stone counter */
@@ -88,6 +89,7 @@ long Time = 0;                        /* turn number */
 int Tick = 0;                         /* 10 a turn; action coordinator */
 char Stringbuffer[STRING_BUFFER_SIZE][80];	/* last strings printed */
 long Gymcredit = 0;                   /* credit at rampart gym */
+int YogaSessions = 0;				  /* free yoga sessions for the underprivileged */
 int Spellsleft = 0;                   /* research allowance at college */
 int SalaryAmount = 0;                 /* legion salary */
 int SalaryAccount = 0;                /* account number to which legion salary is paid */
