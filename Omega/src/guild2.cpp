@@ -456,11 +456,22 @@ void l_monastery(void)
 {
     char action;
     int done=false,enrolled = false;
+
+    if ( Player.maxpow < 13 && LastFreeYogaDay != Date && YogaSessions < 1 && !nighttime()) {
+        print1("Strengthen your inner spirit, child. Please accept this offer ");
+        print2("to sit in our yoga class, free of charge.");
+        YogaSessions += 1;
+        LastFreeYogaDay = Date;
+        morewait();
+        clearmsg();
+    }
     print1("Tholian Monastery of Rampart. Founded 12031, AOF.");
     print2("Welcome to our humble hovel.");
     if (nighttime())
         print2("The monastery doors are sealed until dawn.");
     else {
+        if( YogaSessions > 0 ) 
+            nprint2(" -- 1 free yoga session");
         while (! done) {
             menuclear();
             menuprint("Find your true Course:\n\n");
@@ -468,6 +479,7 @@ void l_monastery(void)
             menuprint("b: Meditate on the Path.\n");
             menuprint("c: Meditate on Knowledge.\n");
             menuprint("d: Take an extended Meditation.\n");
+            menuprint("e: Sit for a yoga class.\n");
             menuprint("ESCAPE: Re-enter the World.\n");
             showmenu();
             action = mgetc();
@@ -732,7 +744,77 @@ void l_monastery(void)
                 moon_check();
                 timeprint();
             }
+            else if (action == 'e') {	
+                clearmsg();
+                if (Player.cash < 2000 && YogaSessions < 1) {
+                    print1("Yoga class requires a 2000 Au donation");
+                    switch( Player.rank[MONKS] ) {               
+                        case MONK_TRAINEE:
+                        case MONK_MONK:
+                          nprint1(", Brother.");
+                         break;
+                        case MONK_MASTER:
+                        case MONK_MASTER_SIGHS:
+                        case MONK_MASTER_PAINS:
+                        case MONK_MASTER_TEARS:
+                         nprint1(", Master.");
+                            break;
+                        case MONK_GRANDMASTER:
+                           nprint1(", Grandmaster.");
+                          break;
+                        default:
+                           nprint1(", child.");
+                         break;
+                    }
+                } 
+                else {
+                    if( YogaSessions > 0 )
+                        print1("Use your credit to take a class? [yn] ");
+                    else 
+                        print1("Yoga class requires a 2000 Au donation. Pay the fee? [yn] ");
+                    if (ynq1()=='y') {
+                        if (Player.cash < 2000 && YogaSessions < 1) {                
+                            if ( Player.rank[MONKS] >= MONK_GRANDMASTER )
+                                print2("You have not much to give, Grandmaster.");
+                            else if ( Player.rank[MONKS] >= MONK_MASTER )
+                                print2("You have not much to give, Master.");
+                            else if (Player.rank[MONKS]  <= MONK_MONK)
+                                print2("You have not much to give, Brother.");
+                            else
+                                print2("You have not much to give, child.");
+                        } 
+                        else {
+                            if( YogaSessions > 0 )
+                                YogaSessions--;
+                            else 
+                                Player.cash -= 2000;
+                            print1( "You are ushered into the meditation room." );
 
+                            int trained = 0;
+                            /* minimum 20% chance at pow >= 22 */
+                            if ( Player.maxpow >= 22 && Player.maxpow < 30 && random_range ( 10 ) < 2 )
+                                trained++;
+
+                            /* 10% lower chance per level after 13 maxpow */
+                            else if ( Player.maxpow < 22 && random_range( 10 ) < (10 - (Player.maxpow - 12)))
+                                trained++;
+									 
+                            else {
+                                print2("You emerge exhausted and dripping sweat!");
+                                if( Player.pow < Player.maxpow ) 
+                                    Player.pow++;
+                            }
+									
+                            if ( trained ) {
+                                Player.maxpow++;
+                                Player.pow++;
+                                print2( "The yoga instructor stretches your physical and spiritual limits!" );			
+                            }
+                            dataprint();
+                        }
+                    }
+                }
+            }
         }
     }
     xredraw();
