@@ -8,7 +8,3 @@ ipch
 Debug
 .metadata
 omega.exe
-build/win32/vs2012/Pcuser.txt
-build/win32/vs2012/data/
-build/win32/vs2012/vsrz
-build/win32/vs2012/vsrz2
