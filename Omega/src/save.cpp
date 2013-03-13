@@ -152,6 +152,9 @@ int save_player(FILE *fd)
     ok &= (fwrite((char *)&Arena_Opponent,sizeof(int),1,fd) > 0);
     ok &= (fwrite((char *)&Imprisonment,sizeof(int),1,fd) > 0);
     ok &= (fwrite((char *)&Gymcredit,sizeof(long),1,fd) > 0);
+    ok &= (fwrite((char *)&YogaSessions,sizeof(int),1,fd) > 0);
+    ok &= (fwrite((char *)&LastFreeGymDay,sizeof(int),1,fd) > 0);
+    ok &= (fwrite((char *)&LastFreeYogaDay,sizeof(int),1,fd) > 0);
 
     i = 0;
     for( account = bank; account; account = account->next_account ) i++;
@@ -561,7 +564,10 @@ void restore_player(FILE *fd, int version)
     fread((char *)&Arena_Opponent,sizeof(int),1,fd);
     fread((char *)&Imprisonment,sizeof(int),1,fd);
     fread((char *)&Gymcredit,sizeof(long),1,fd);
-
+    fread((char *)&YogaSessions,sizeof(int),1,fd);
+    fread((char *)&LastFreeGymDay,sizeof(int),1,fd);
+    fread((char *)&LastFreeYogaDay,sizeof(int),1,fd);
+	
     // Read bank information
     fread( (char *)&num_accounts, sizeof( int ), 1, fd );
     for( i = 0; i < num_accounts; i++ )

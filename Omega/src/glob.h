@@ -165,6 +165,9 @@ extern int Blessing;
 extern int LastDay;
 /* DPW date of dole */
 
+extern int LastFreeYogaDay;
+/* last gifted Yoga session */
+
 extern int LastFreeGymDay;
 // Date of last free gym session
 
@@ -206,6 +209,10 @@ extern char Stringbuffer[STRING_BUFFER_SIZE][80];
 
 extern long Gymcredit;
 /* credit at rampart gym */
+
+extern int YogaSessions;
+/* yoga credit at the monastery */
+
 
 extern int Spellsleft;
 /* research allowance at college */
