@@ -94,7 +94,7 @@ bool initplayer(void)
     strcpy(Player.combatManeuvers,"CCBC");
     calc_melee();
     ScreenOffset = -1000;	/* to force a redraw */
-    return ret_value; /* RM 04-19-2000: loading patch */ /* DAG */
+    return ret_value > 0; /* RM 04-19-2000: loading patch */ /* DAG */
 }
 
 

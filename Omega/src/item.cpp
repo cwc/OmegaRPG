@@ -11,7 +11,7 @@ Object* create_object(int itemlevel)
     int ok = false;
 
     while (! ok) {
-        newObject = ((Object*) checkmalloc(sizeof(objtype)));
+        newObject = ((Object*) checkmalloc(sizeof(Object)));
         r= random_range(135);
         if (r < 20) make_thing(newObject,-1);
         else if (r < 40) make_food(newObject,-1);

@@ -179,7 +179,7 @@ void Village::make_food_bin(int i, int j)
 
     for(k=0; k<10; k++) {
         tol = ((pol) checkmalloc(sizeof(oltype)));
-        tol->thing = ((pob) checkmalloc(sizeof(objtype)));
+        tol->thing = ((Object*) checkmalloc(sizeof(Object)));
         make_food(tol->thing,15); /* grain */
         tol->next = Level->site[i][j].things;
         Level->site[i][j].things = tol;

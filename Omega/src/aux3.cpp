@@ -252,7 +252,7 @@ void outdoors_random_event(void)
         else if (num < 70) {
             mprint("A tendril of the storm condenses and falls into your hands.");
             morewait();
-            ob = ((Object*) checkmalloc(sizeof(objtype)));
+            ob = ((Object*) checkmalloc(sizeof(Object)));
             make_artifact(ob,-1);
             gain_item(ob);
         }

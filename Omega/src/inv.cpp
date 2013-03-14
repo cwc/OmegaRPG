@@ -239,7 +239,7 @@ char *itemid(Object* obj)
                 strcat(Str4, "the ");
             if (obj->usef == I_NOTHING && Objects[obj->id].usef != I_NOTHING)
                 strcat(Str4, "disenchanted ");
-            if (obj->blessing < 0) {
+            if (obj->isCursed()) {
                 strcat(Str4, "cursed ");
                 strcat(Str4, obj->cursestr);
             }
@@ -1312,7 +1312,7 @@ void drop_from_slot(int slot)
 {
     int n,waitflag;
     if (Player.possessions[slot] != NULL) {
-        if(cursed(Player.possessions[slot]) == true + true)
+        if(Player.possessions[slot]->isCursed() && Player.possessions[slot]->isUsed())
             print3("It sticks to your fingers!");
         else {
             n = get_item_number(Player.possessions[slot]);
@@ -1333,16 +1333,16 @@ void drop_from_slot(int slot)
 void put_to_pack(int slot)
 {
     int waitflag,num = 1;
-    Object* temp,oslot = Player.possessions[slot];
+    Object *temp,*oslot = Player.possessions[slot];
     if (oslot == NULL)
         print3("Slot is empty!");
-    else if (oslot.isCursed() && oslot.isUsed())
+    else if (oslot != NULL && oslot->isCursed() && oslot->isUsed())
         print3("Item is cursed!");
     else {
         num = get_item_number(oslot);
         if (num > 0) {
             temp = split_item(num,oslot);
-            waitflag = (oslot->used && (oslot->number == num));
+            waitflag = (oslot->isUsed() && (oslot->number == num));
             conform_lost_objects(num,oslot);
             if (waitflag) morewait();
             add_to_pack(temp);
@@ -1385,8 +1385,7 @@ void switch_to_slot(int slot)
     /* ie, is cursed and in use */
     if (slot == O_UP_IN_AIR)
         print3("This action makes no sense!");
-    else if (cursed(oslot)==true+true) /* WDT: this is SICK!!!!  true doesn't
-				      * add. */
+    else if (oslot != NULL && oslot->isCursed() && oslot->isUsed()) /* Check both via object methods */
         print3("The object in that slot is cursed -- you can't get rid of it!");
     else {
 

@@ -85,7 +85,7 @@ void l_thieves_guild(void)
                             print2("You are taught the spell of Object Detection.");
                             morewait();
                             Spells[S_OBJ_DET].known = true;
-                            lockpick = ((Object*) checkmalloc(sizeof(objtype)));
+                            lockpick = ((Object*) checkmalloc(sizeof(Object)));
                             *lockpick = Objects[OB_LOCK_PICK]; /* lock pick */
                             gain_item(lockpick);
                             Player.cash -= dues;
@@ -1032,7 +1032,7 @@ void l_order(void)
         clearmsg();
         print1("You are awarded a blessed shield of deflection!");
         morewait();
-        newitem = ((Object*) checkmalloc(sizeof(objtype)));
+        newitem = ((Object*) checkmalloc(sizeof(Object)));
         *newitem = Objects[OB_DEFLECT]; /* shield of deflection */
         newitem->blessing = 9;
         gain_item(newitem);
@@ -1075,7 +1075,7 @@ void l_order(void)
                 Player.rank[ORDER] = GALLANT;
                 Player.guildxp[ORDER] = 1;
                 setgamestatus(MOUNTED);
-                newitem = ((Object*) checkmalloc(sizeof(objtype)));
+                newitem = ((Object*) checkmalloc(sizeof(Object)));
                 *newitem = Objects[OB_SPEAR]; /* spear */
                 newitem->blessing = 9;
                 newitem->plus = 1;
@@ -1119,7 +1119,7 @@ void l_order(void)
                 print1("You are made a Paladin of the Order!");
                 print2("You learn the Spell of Heroism and get Mithril Plate!");
                 morewait();
-                newitem = ((Object*) checkmalloc(sizeof(objtype)));
+                newitem = ((Object*) checkmalloc(sizeof(Object)));
                 *newitem = Objects[OB_MITHRIL_PLATE]; /* mithril plate armor */
                 newitem->blessing = 9;
                 newitem->known = 2;
@@ -1150,7 +1150,7 @@ void l_order(void)
                 print2("You are given a Mace of Disruption!");
                 morewait();
                 clearmsg();
-                newitem = ((Object*) checkmalloc(sizeof(objtype)));
+                newitem = ((Object*) checkmalloc(sizeof(Object)));
                 *newitem = Objects[OB_MACE_DISRUPT]; /* mace of disruption */
                 newitem->known = 2;
                 gain_item(newitem);
@@ -1170,7 +1170,7 @@ void l_order(void)
                 morewait();
                 clearmsg();
                 Player.rank[ORDER] = GUARDIAN;
-                newitem = ((Object*) checkmalloc(sizeof(objtype)));
+                newitem = ((Object*) checkmalloc(sizeof(Object)));
                 *newitem = Objects[OB_ANTIOCH]; /* holy hand grenade. */
                 newitem->known = 2;
                 gain_item(newitem);

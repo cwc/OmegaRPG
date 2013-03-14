@@ -53,7 +53,7 @@ void buyfromstock(int base, int numitems)
     }
     else {
         i = item - 'a';
-        newitem = ((Object*) checkmalloc(sizeof(objtype)));
+        newitem = ((Object*) checkmalloc(sizeof(Object)));
         *newitem = Objects[base+i];
         newitem->known = 2;
         clearmsg();
@@ -481,7 +481,7 @@ void l_commandant (void)
         else
         {
             Player.cash -= num*5;
-            food = (Object*)checkmalloc(sizeof(objtype));
+            food = (Object*)checkmalloc(sizeof(Object));
             *food = Objects[OB_RATION]; /* food ration */
             food->number = num;
 
@@ -1038,7 +1038,7 @@ void l_pawn_shop(void)
                 menuclear();
                 i = getitem_prompt("Sell which item: ", NULL_ITEM);
                 if ((i != ABORT) && (Player.possessions[i] != NULL)) {
-                    if (cursed(Player.possessions[i])) {
+                    if (Player.possessions[i]->isCursed()) {
                         print1("No loans on cursed items! I been burned before....");
                         morewait();
                     }

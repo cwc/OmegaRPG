@@ -118,13 +118,13 @@ bank_account * bank_create_account (int player, int balance, char *password)
     return new_account;
 }
 
-struct object * bank_create_card (int account_number, int type)
+Object* bank_create_card (int account_number, int type)
 {
-    struct object * card;
+    Object* card;
 
     assert(OB_DEBIT_CARD == type || OB_SMART_CARD == type);
 
-    card = (pob) checkmalloc(sizeof(struct object));
+    card = (Object*) checkmalloc(sizeof(Object));
     *card = Objects[type];
     card->aux = account_number;
 
@@ -306,7 +306,7 @@ static int police_are_hostile (void)
     return false;
 }
 
-static pob bank_open_account (WINDOW *w)
+static Object* bank_open_account (WINDOW *w)
 {
     int idx;
     int response;
@@ -496,7 +496,7 @@ static void bank_close_accounts (void)
     bank = 0;
 }
 
-static void bank_break (WINDOW *w, pob card)
+static void bank_break (WINDOW *w, Object* card)
 {
     int response;
     long total_balance;
@@ -628,10 +628,10 @@ static void bank_break (WINDOW *w, pob card)
     }
 }
 
-static bank_account *bank_password (WINDOW *w, pob * out_card, int * abort)
+static bank_account *bank_password (WINDOW *w, Object* * out_card, int * abort)
 {
     int cy, cx;
-    pob card;
+    Object* card;
     bank_account *account;
     char pw_buf [16];
 
@@ -738,7 +738,7 @@ static bank_account *bank_password (WINDOW *w, pob * out_card, int * abort)
     return account;
 }
 
-static void bank_deposit (WINDOW *w, bank_account *account, pob card)
+static void bank_deposit (WINDOW *w, bank_account *account, Object* card)
 {
     int cy, cx;
     long amount;
@@ -825,7 +825,7 @@ static void bank_deposit (WINDOW *w, bank_account *account, pob card)
     wrefresh(w);
 }
 
-static void bank_withdraw (WINDOW *w, bank_account *account, pob card)
+static void bank_withdraw (WINDOW *w, bank_account *account, Object* card)
 {
     int cy, cx;
     long amount;
@@ -917,7 +917,7 @@ static void bank_withdraw (WINDOW *w, bank_account *account, pob card)
     wrefresh(w);
 }
 
-static void bank_transaction (WINDOW *w, bank_account *account, pob card)
+static void bank_transaction (WINDOW *w, bank_account *account, Object* card)
 {
     int idx;
     int cy, cx;
@@ -1050,7 +1050,7 @@ void l_bank (void)
 
         if (true == is_new_customer)
         {
-            pob card;
+            Object* card;
             card = bank_open_account(Bankw);
 
             if (card)
@@ -1070,7 +1070,7 @@ void l_bank (void)
 
         if (false == is_new_customer)
         {
-            pob card;
+            Object* card;
             int abort;
             bank_account *account;
 

@@ -237,7 +237,7 @@ void version(void)
 void fire(void)
 {
     int index,x1,y1,x2,y2;
-    pob obj;
+    Object* obj;
     Monster *m;
 
     clearmsg();
@@ -247,8 +247,8 @@ void fire(void)
     if (index == ABORT)
         setgamestatus(SKIP_MONSTERS);
     else if (index == CASHVALUE) print3("Can't fire money at something!");
-    else if (cursed(Player.possessions[index]) &&
-             Player.possessions[index]->used)
+    else if (Player.possessions[index]->isCursed() &&
+             Player.possessions[index]->isUsed())
         print3("You can't seem to get rid of it!");
     /* load a crossbow */
     else if ((Player.possessions[O_WEAPON_HAND] != NULL) &&
@@ -260,7 +260,7 @@ void fire(void)
         Player.possessions[O_WEAPON_HAND]->aux = LOADED;
     }
     else {
-        if (Player.possessions[index]->used) {
+        if (Player.possessions[index]->isUsed()) {
             Player.possessions[index]->used = false;
             item_use(Player.possessions[index]);
         }
@@ -817,7 +817,7 @@ void pickpocket(void)
                 if (Player.cash > 0) {
                     mprint("As a punitive fine, the guard takes all your money.");
                     {
-                        pob o = detach_money(Player.cash);
+                        Object* o = detach_money(Player.cash);
                         m->m_pickup(o);
                     }
                     dataprint();

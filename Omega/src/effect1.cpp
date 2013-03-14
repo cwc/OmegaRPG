@@ -155,7 +155,7 @@ void bless(int blessing)
             morewait();
         }
         else if (index != ABORT) {
-            used = (Player.possessions[index]->used == true);
+            used = Player.possessions[index]->isUsed();
             if (used) {
                 setgamestatus(SUPPRESS_PRINTING);
                 Player.possessions[index]->used = false;
@@ -706,7 +706,7 @@ void acquire(int blessing)
 {
     char otype;
     int index,id = ABORT;
-    pob newthing;
+    Object* newthing;
 
     if (blessing < 0) {
         index = random_item();
@@ -721,7 +721,7 @@ void acquire(int blessing)
         }
     }
     else {
-        newthing = ((pob) checkmalloc(sizeof(objtype)));
+        newthing = ((Object*) checkmalloc(sizeof(Object)));
         /* DAG this assignment looks unneccessary */
         newthing->id = -1;
         if (gamestatusp(CHEATED))

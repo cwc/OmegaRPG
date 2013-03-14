@@ -9,7 +9,7 @@ void load_arena(void)
 {
     int i,j;
     char site;
-    Object* box=((Object*)checkmalloc(sizeof(objtype)));
+    Object* box=((Object*)checkmalloc(sizeof(Object)));
     map *glad; /* too glad to gladiate */
 
     *box = Objects[OB_GARAGE_OPENER];
@@ -200,7 +200,7 @@ void make_prime(int i, int j)
 
     if (Objects[OB_STARGEM].uniqueness != UNIQUE_TAKEN) {
         ol  = ((pol) checkmalloc(sizeof(oltype)));
-        o  = ((Object*) checkmalloc(sizeof(objtype)));
+        o  = ((Object*) checkmalloc(sizeof(Object)));
         *o = Objects[OB_STARGEM];
         ol->thing = o;
         ol->next = NULL;

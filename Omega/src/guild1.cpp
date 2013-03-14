@@ -86,12 +86,12 @@ void l_merc_guild(void)
                 clearmsg();
 
                 /* gain shortsword */
-                newitem = (Object*) checkmalloc(sizeof(struct object));
+                newitem = (Object*) checkmalloc(sizeof(Object));
                 *newitem = Objects[OB_SHORT_SWORD];
                 gain_item(newitem);
 
                 /* gain leather armor */
-                newitem = (Object*) checkmalloc(sizeof(struct object));
+                newitem = (Object*) checkmalloc(sizeof(Object));
                 *newitem = Objects[OB_LEATHER];
                 gain_item(newitem);
 
@@ -411,10 +411,10 @@ void l_arena(void)
             print2("Here's a wooden sword, and a shield");
             morewait();
             clearmsg();
-            newitem = ((Object*) checkmalloc(sizeof(objtype)));
+            newitem = ((Object*) checkmalloc(sizeof(Object)));
             *newitem = Objects[OB_CLUB]; /* club */
             gain_item(newitem);
-            newitem = ((Object*) checkmalloc(sizeof(objtype)));
+            newitem = ((Object*) checkmalloc(sizeof(Object)));
             *newitem = Objects[OB_LRG_RND_SHIELD]; /* shield */
             gain_item(newitem);
             Player.rank[ARENA] = TRAINEE;
@@ -577,7 +577,7 @@ void l_arena(void)
                     save_hiscore_npc(11);
                     print1("You are awarded the Champion's Spear: Victrix!");
                     morewait();
-                    newitem = ((Object*) checkmalloc(sizeof(objtype)));
+                    newitem = ((Object*) checkmalloc(sizeof(Object)));
                     *newitem = Objects[OB_VICTRIX];
                     gain_item(newitem);
 

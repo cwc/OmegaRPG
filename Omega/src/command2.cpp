@@ -49,7 +49,7 @@ void rest(void)
 void peruse(void)
 {
     int index;
-    struct object *obj;
+    Object *obj;
 
     clearmsg();
 
@@ -80,7 +80,7 @@ void peruse(void)
 void quaff(void)
 {
     int index;
-    struct object *obj;
+    Object *obj;
     clearmsg();
     index = getitem_prompt("Quaff -- ", POTION);
     if (index == ABORT)
@@ -132,7 +132,7 @@ void activate(void)
 void eat (void)
 {
     int index;
-    struct object *obj;
+    Object *obj;
 
     clearmsg();
 
@@ -206,7 +206,7 @@ void drop(void)
     else {
         if (index == CASHVALUE) drop_money();
         else if ((! Player.possessions[index]->used) ||
-                 (! cursed(Player.possessions[index]))) {
+                 (! Player.possessions[index]->isCursed())) {
             if (Player.possessions[index]->number == 1) {
                 p_drop_at(Player.x,Player.y,1,Player.possessions[index]);
                 conform_lost_objects(1,Player.possessions[index]);
@@ -310,7 +310,7 @@ void disarm(void)
                     Player.dex*2+Player.level*3+Player.rank[THIEVES]*10) {
                 print1("You disarmed the trap!");
                 if (random_range(100) < Player.dex+Player.rank[THIEVES]*10) {
-                    o = ((Object*) checkmalloc(sizeof(objtype)));
+                    o = ((Object*) checkmalloc(sizeof(Object)));
                     switch(Level->site[x][y].p_locf) {
                     case L_TRAP_DART:
                         *o=Objects[OB_TRAP_DART];
@@ -400,7 +400,7 @@ void give(void)
             if (index == ABORT)
                 setgamestatus(SKIP_MONSTERS);
             else if (index == CASHVALUE) give_money(m);
-            else if (! cursed(Player.possessions[index])) {
+            else if (! Player.possessions[index]->isCursed()) {
                 obj = copy_obj(  Player.possessions[index] );
                 obj->used = false;
                 conform_lost_objects(1,Player.possessions[index]);
@@ -428,7 +428,7 @@ void give(void)
 void zapwand(void)
 {
     int index;
-    struct object *obj;
+    Object *obj;
 
     clearmsg();
 

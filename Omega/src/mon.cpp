@@ -220,7 +220,7 @@ void make_hiscore_npc(Monster* npc, int npcid)
         break;
     }
     if (st > -1 && Objects[st].uniqueness == UNIQUE_MADE) {
-        ob = ((Object*) checkmalloc(sizeof(objtype)));
+        ob = ((Object*) checkmalloc(sizeof(Object)));
         *ob = Objects[st];
         npc->m_pickup(ob);
     }

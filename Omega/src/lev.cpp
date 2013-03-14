@@ -552,7 +552,7 @@ Monster* make_creature(int mid)
             m_status_set(newmonster,AWAKE);
         if (newmonster->startThing > -1 &&
                 Objects[newmonster->startThing].uniqueness <= UNIQUE_MADE) {
-            ob = ((Object*) checkmalloc(sizeof(objtype)));
+            ob = ((Object*) checkmalloc(sizeof(Object)));
             *ob = Objects[newmonster->startThing];
             newmonster->m_pickup(ob);
         }
@@ -590,7 +590,7 @@ void stock_level(void)
         i = random_range(Level->level_width);
         j = random_range(Level->level_length);
         Level->site[i][j].things = ((pol) checkmalloc(sizeof(oltype)));
-        Level->site[i][j].things->thing = ((Object*) checkmalloc(sizeof(objtype)));
+        Level->site[i][j].things->thing = ((Object*) checkmalloc(sizeof(Object)));
         make_cash(Level->site[i][j].things->thing,difficulty());
         Level->site[i][j].things->next = NULL;
         /* caves have more random cash strewn around */
@@ -598,13 +598,13 @@ void stock_level(void)
             i = random_range(Level->level_width);
             j = random_range(Level->level_length);
             Level->site[i][j].things = ((pol) checkmalloc(sizeof(oltype)));
-            Level->site[i][j].things->thing = ((Object*) checkmalloc(sizeof(objtype)));
+            Level->site[i][j].things->thing = ((Object*) checkmalloc(sizeof(Object)));
             make_cash(Level->site[i][j].things->thing,difficulty());
             Level->site[i][j].things->next = NULL;
             i = random_range(Level->level_width);
             j = random_range(Level->level_length);
             Level->site[i][j].things = ((pol) checkmalloc(sizeof(oltype)));
-            Level->site[i][j].things->thing = ((Object*) checkmalloc(sizeof(objtype)));
+            Level->site[i][j].things->thing = ((Object*) checkmalloc(sizeof(Object)));
             make_cash(Level->site[i][j].things->thing,difficulty());
             Level->site[i][j].things->next = NULL;
         }
@@ -628,7 +628,7 @@ void make_specific_treasure(int i, int j, int itemid)
     if (Objects[itemid].uniqueness == UNIQUE_TAKEN)
         return;
     tmp = ((pol) checkmalloc(sizeof(oltype)));
-    tmp->thing = ((Object*) checkmalloc(sizeof(objtype)));
+    tmp->thing = ((Object*) checkmalloc(sizeof(Object)));
     *(tmp->thing) = Objects[itemid];
     tmp->next = Level->site[i][j].things;
     Level->site[i][j].things = tmp;
