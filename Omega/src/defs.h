@@ -44,6 +44,7 @@ extern char* getlogin();
 
 #include "Monster.h"
 #include "Village.h"
+#include "Object.h"
 
 /* Update the display every turn to center on the player.  Rather heavy
  * on the bandwidth. */
@@ -1562,11 +1563,12 @@ struct player {
     long guildxp[NUMRANKS];
     char name[64];
     char combatManeuvers[64];
-    struct object *possessions[MAXITEMS];
-    struct object *pack[MAXPACK];
+    Object *possessions[MAXITEMS];
+    Object *pack[MAXPACK];
     int packptr;
 };
 
+/*
 struct object {
     int id,weight,plus,charge,dmg,hit,aux,number,fragility;
     long basevalue;
@@ -1578,14 +1580,13 @@ struct object {
     Symbol objchar;
     char *objstr,*truename,*cursestr;
 };
-
+*/
 
 
 struct objectlist {
-    struct object *thing;
+    Object *thing;
     struct objectlist *next;
 };
-
 
 
 /* terrain locations */
@@ -1633,8 +1634,10 @@ typedef loctype *plc;
 typedef struct level levtype;
 typedef levtype *plv;
 
-typedef struct object objtype;
+/*
+typedef Object objtype;
 typedef objtype *pob;
+*/
 
 typedef struct objectlist oltype;
 typedef oltype *pol;

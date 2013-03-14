@@ -288,7 +288,7 @@ void talk(void)
 void disarm(void)
 {
     int x,y,index=0;
-    pob o;
+    Object* o;
 
     clearmsg();
     print1("Disarm -- ");
@@ -310,7 +310,7 @@ void disarm(void)
                     Player.dex*2+Player.level*3+Player.rank[THIEVES]*10) {
                 print1("You disarmed the trap!");
                 if (random_range(100) < Player.dex+Player.rank[THIEVES]*10) {
-                    o = ((pob) checkmalloc(sizeof(objtype)));
+                    o = ((Object*) checkmalloc(sizeof(objtype)));
                     switch(Level->site[x][y].p_locf) {
                     case L_TRAP_DART:
                         *o=Objects[OB_TRAP_DART];
@@ -376,7 +376,7 @@ void give(void)
     int index;
     int dx,dy,dindex=0;
     Monster *m;
-    pob obj;
+    Object* obj;
 
     clearmsg();
 
@@ -637,7 +637,7 @@ void setoptions(void)
 void callitem(void)
 {
     int index;
-    pob obj;
+    Object* obj;
 
     clearmsg();
     setgamestatus(SKIP_MONSTERS);
@@ -853,7 +853,7 @@ void bash_location(void)
 void bash_item(void)
 {
     int item;
-    pob obj;
+    Object* obj;
 
     clearmsg();
     item = getitem_prompt("Destroy an item -- ", NULL_ITEM);

@@ -178,7 +178,7 @@ void load_house(int kind, int populate)
 void make_house_npc(int i, int j)
 {
     MonsterList* ml = ((MonsterList*) checkmalloc(sizeof(MonsterList)));
-    pob ob;
+    Object* ob;
     ml->monster = ((Monster*) checkmalloc(sizeof(Monster)));
     *(ml->monster) = Monsters[NPC];
     make_log_npc(ml->monster);

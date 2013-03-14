@@ -9,7 +9,7 @@ void load_arena(void)
 {
     int i,j;
     char site;
-    pob box=((pob)checkmalloc(sizeof(objtype)));
+    Object* box=((Object*)checkmalloc(sizeof(objtype)));
     map *glad; /* too glad to gladiate */
 
     *box = Objects[OB_GARAGE_OPENER];
@@ -189,7 +189,7 @@ void make_prime(int i, int j)
     MonsterList* ml = ((MonsterList*) checkmalloc(sizeof(MonsterList)));
     Monster* m = ((Monster*) checkmalloc(sizeof(Monster)));
     pol ol;
-    pob o;
+    Object* o;
     make_hiscore_npc(m,10); /* 10 is index for prime */
     m->x = i;
     m->y = j;
@@ -200,7 +200,7 @@ void make_prime(int i, int j)
 
     if (Objects[OB_STARGEM].uniqueness != UNIQUE_TAKEN) {
         ol  = ((pol) checkmalloc(sizeof(oltype)));
-        o  = ((pob) checkmalloc(sizeof(objtype)));
+        o  = ((Object*) checkmalloc(sizeof(objtype)));
         *o = Objects[OB_STARGEM];
         ol->thing = o;
         ol->next = NULL;

@@ -216,6 +216,7 @@ void inititem(int reset)
         shuffle(cloak_ids, 20);
         shuffle(ring_ids, 20);
     }
+    
     for(i=0; i<NUMSCROLLS; i++)
         Objects[SCROLLID+i].objstr = scrollname(i);
     for(i=0; i<NUMPOTIONS; i++)

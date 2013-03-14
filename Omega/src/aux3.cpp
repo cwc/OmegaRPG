@@ -129,7 +129,7 @@ void indoors_random_event(void)
 void outdoors_random_event(void)
 {
     int num,i,j;
-    pob ob;
+    Object* ob;
 
     switch(random_range(300)) {
     case 0:
@@ -167,7 +167,7 @@ void outdoors_random_event(void)
         morewait();
         mprint("Using your herbalist lore you cook a cake of lembas....");
         morewait();
-        ob = ((pob) checkmalloc(sizeof(objtype)));
+        ob = ((Object*) checkmalloc(sizeof(Object)));
         *ob = Objects[OB_LEMBAS];
         gain_item(ob);
         break;
@@ -252,7 +252,7 @@ void outdoors_random_event(void)
         else if (num < 70) {
             mprint("A tendril of the storm condenses and falls into your hands.");
             morewait();
-            ob = ((pob) checkmalloc(sizeof(objtype)));
+            ob = ((Object*) checkmalloc(sizeof(objtype)));
             make_artifact(ob,-1);
             gain_item(ob);
         }

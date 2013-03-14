@@ -6,7 +6,7 @@
 #include "glob.h"
 
 /* amulet of the planes */
-void i_planes(pob o)
+void i_planes(Object* o)
 {
     if (Player.mana < 1) print1("The amulet spits some multicolored sparks.");
     else {
@@ -19,7 +19,7 @@ void i_planes(pob o)
 }
 
 /* amulet of serenity */
-void i_serenity(pob o)
+void i_serenity(Object* o)
 {
     if (Player.mana < 1) print1("The amulet emits a dull ring.");
     /* should the amulet drop_at a real ring? */
@@ -40,7 +40,7 @@ void i_serenity(pob o)
 }
 
 /* the sceptre of high magic */
-void i_sceptre(pob o)
+void i_sceptre(Object* o)
 {
     if (HiMagicUse == Date)
         print1("The Sceptre makes a sort of dull 'thut' noise.");
@@ -65,7 +65,7 @@ void i_sceptre(pob o)
 
 
 /* the star gem */
-void i_stargem(pob o)
+void i_stargem(Object* o)
 {
     if (StarGemUse == Date) {
         print1("The Star Gem glints weakly as if to say:");
@@ -109,7 +109,7 @@ void i_stargem(pob o)
 
 
 /* wand of fear */
-void i_fear(pob o)
+void i_fear(Object* o)
 {
     int x=Player.x,y=Player.y;
     Objects[o->id].known = 1;
@@ -123,7 +123,7 @@ void i_fear(pob o)
 }
 
 
-void i_juggernaut(pob o)
+void i_juggernaut(Object* o)
 {
     int d,x=Player.x,y=Player.y;
     int seen = 1, not_seen = 0;
@@ -187,7 +187,7 @@ void i_juggernaut(pob o)
 }
 
 
-void i_symbol(pob o)
+void i_symbol(Object* o)
 {
     int i;
     if (! o->known)
@@ -227,7 +227,7 @@ void i_symbol(pob o)
 }
 
 
-void i_crystal(pob o)
+void i_crystal(Object* o)
 {
     if (!o->known) print1("You can't figure out how to activate this orb.");
     else {
@@ -254,7 +254,7 @@ void i_crystal(pob o)
     }
 }
 
-void i_antioch(pob o)
+void i_antioch(Object* o)
 {
     int x=Player.x,y=Player.y;
     int count;
@@ -303,7 +303,7 @@ void i_antioch(pob o)
     dispose_lost_objects(1,o);
 }
 
-void i_kolwynia(pob o)
+void i_kolwynia(Object* o)
 {
     int i;
     if (! o->known) {
@@ -321,7 +321,7 @@ void i_kolwynia(pob o)
     dispose_lost_objects(1,o);
 }
 
-void i_enchantment(pob o)
+void i_enchantment(Object* o)
 {
     char response;
     if (ZapHour == hour())
@@ -342,7 +342,7 @@ void i_enchantment(pob o)
     }
 }
 
-void i_helm(pob o)
+void i_helm(Object* o)
 {
     if ( (HelmDay == day()) && ((HelmHour == hour()) ))
         print1("The helm doesn't seem to have recharged yet.");
@@ -360,14 +360,14 @@ void i_helm(pob o)
 }
 
 
-void i_death(pob o)
+void i_death(Object* o)
 {
     clearmsg();
     print1("Bad move...");
     p_death("the Potion of Death");
 }
 
-void i_life(pob o)
+void i_life(Object* o)
 {
     clearmsg();
     print1("Good move.");
@@ -403,7 +403,7 @@ int orbcheck(char element)
 }
 
 /* orb functions */
-void i_orbfire(pob o)
+void i_orbfire(Object* o)
 {
     if (! orbcheck('f')) {
         print1("Bad choice!");
@@ -425,7 +425,7 @@ void i_orbfire(pob o)
 }
 
 
-void i_orbwater(pob o)
+void i_orbwater(Object* o)
 {
     if (! orbcheck('w')) {
         print1("A serious mistake!");
@@ -448,7 +448,7 @@ void i_orbwater(pob o)
 
 
 
-void i_orbearth(pob o)
+void i_orbearth(Object* o)
 {
     int i;
     if (! orbcheck('e')) {
@@ -486,7 +486,7 @@ void i_orbearth(pob o)
 }
 
 
-void i_orbair(pob o)
+void i_orbair(Object* o)
 {
     if (! orbcheck('a')) {
         print1("You lose!");
@@ -509,7 +509,7 @@ void i_orbair(pob o)
 }
 
 
-void i_orbmastery(pob o)
+void i_orbmastery(Object* o)
 {
 
     if (! orbcheck('m')) {
@@ -549,7 +549,7 @@ void i_orbmastery(pob o)
 }
 
 
-void i_orbdead(pob o)
+void i_orbdead(Object* o)
 {
     int i;
     print1("The burnt-out orb drains all your energy!");
@@ -571,13 +571,13 @@ void i_orbdead(pob o)
 
 
 
-void i_dispel(pob o)
+void i_dispel(Object* o)
 {
     dispel((o->blessing > -1) ? o->blessing+random_range(3): o->blessing);
 }
 
 /* DAG implement bag of holding */
-void i_holding(pob o)
+void i_holding(Object* o)
 {
     char c, c1, c2;
     pol ol;
@@ -633,7 +633,7 @@ void i_holding(pob o)
         else
         {
             int i;
-            pob ob;
+            Object* ob;
             i = getitem( NULL_ITEM );
             if (i != ABORT )
             {
@@ -745,7 +745,7 @@ void i_holding(pob o)
 
 
 /* wand of apportation */
-void i_apport(pob o)
+void i_apport(Object* o)
 {
     o->known = max(1,o->known);
     Objects[o->id].known = 1;
@@ -753,7 +753,7 @@ void i_apport(pob o)
 }
 
 /* staff of firebolts */
-void i_firebolt(pob o)
+void i_firebolt(Object* o)
 {
     int x=Player.x,y=Player.y;
     o->known = max(1,o->known);
@@ -767,7 +767,7 @@ void i_firebolt(pob o)
 }
 
 
-void i_disintegrate(pob o)
+void i_disintegrate(Object* o)
 {
     int x=Player.x,y=Player.y;
     o->known = max(1,o->known);
@@ -780,7 +780,7 @@ void i_disintegrate(pob o)
     disintegrate(x,y);
 }
 
-void i_disrupt(pob o)
+void i_disrupt(Object* o)
 {
     int x=Player.x,y=Player.y;
     o->known = max(1,o->known);
@@ -795,7 +795,7 @@ void i_disrupt(pob o)
 
 
 /* staff of lightning bolts */
-void i_lbolt(pob o)
+void i_lbolt(Object* o)
 {
     int x=Player.x,y=Player.y;
     o->known = max(1,o->known);
@@ -809,7 +809,7 @@ void i_lbolt(pob o)
 }
 
 /* wand of magic missiles */
-void i_missile(pob o)
+void i_missile(Object* o)
 {
     int x=Player.x,y=Player.y;
     o->known = max(1,o->known);
@@ -823,7 +823,7 @@ void i_missile(pob o)
 }
 
 /* wand of fire balls */
-void i_fireball(pob o)
+void i_fireball(Object* o)
 {
     int x=Player.x,y=Player.y;
     Objects[o->id].known = 1;
@@ -838,7 +838,7 @@ void i_fireball(pob o)
 
 
 /* wand of snowballs */
-void i_snowball(pob o)
+void i_snowball(Object* o)
 {
     int x=Player.x,y=Player.y;
     Objects[o->id].known = 1;
@@ -852,7 +852,7 @@ void i_snowball(pob o)
 }
 
 /* wand of lightning balls */
-void i_lball(pob o)
+void i_lball(Object* o)
 {
     int x=Player.x,y=Player.y;
     Objects[o->id].known = 1;
@@ -866,7 +866,7 @@ void i_lball(pob o)
 }
 
 /* staff of sleep */
-void i_sleep_other(pob o)
+void i_sleep_other(Object* o)
 {
     Objects[o->id].known = 1;
     o->known = max(1,o->known);
@@ -875,14 +875,14 @@ void i_sleep_other(pob o)
 
 /* rod of summoning */
 /* rod of summoning now always summons as if cursed */
-void i_summon(pob o)
+void i_summon(Object* o)
 {
     Objects[o->id].known = 1;
     o->known = max(1,o->known);
     summon(-1,-1);
 }
 
-void i_hide(pob o)
+void i_hide(Object* o)
 {
     int x=Player.x,y=Player.y;
     Objects[o->id].known = 1;
@@ -891,7 +891,7 @@ void i_hide(pob o)
     hide(x,y);
 }
 
-void i_polymorph(pob o)
+void i_polymorph(Object* o)
 {
     Objects[o->id].known = 1;
     o->known = max(1,o->known);

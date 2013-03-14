@@ -415,7 +415,7 @@ void answer_prayer(void)
 
 void hp_req_test(void)
 {
-    pob o;
+    Object* o;
     switch  (Player.patron) {
     case ODIN:
         if (find_item(&o,OB_SYMBOL_SET,-1))
@@ -488,7 +488,7 @@ void hp_req_print(void)
     }
 }
 
-void make_hp(pob o)
+void make_hp(Object* o)
 {
     print1("A full-scale heavenly choir chants 'Hallelujah' all around you!");
     print2("You notice a change in the symbol you carry....");
