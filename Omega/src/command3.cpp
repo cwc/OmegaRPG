@@ -516,41 +516,27 @@ void charid(void)
 
 void wizard(void)
 {
-    char *lname;
-
     setgamestatus(SKIP_MONSTERS);
     if (gamestatusp(CHEATED)) mprint("You're already in wizard mode!");
     else {
         clearmsg();
-        if (cinema_confirm("You just asked to enter wizard mode.")=='y') {
-            lname = getlogin();
+		print1("You just asked to enter wizard mode.");
+		morewait();
+		clearmsg();
+        if (cinema_confirm("You will invalidate your score if you proceed.")=='y') {
+            mprint("There is a shrieking sound, as of reality being distorted.");
+            strcpy(Str1,"Sheldon");
+            strcat(Str1,", the Wizard of Omega appears before you....");
+            if (Str1[0] >= 'a' && Str1[0] <= 'z')
+                Str1[0] += 'A'-'a'; /* capitalise 1st letter */
+            mprint(Str1);
+            mprint("'Do not meddle in the affairs of Wizards --");
+            if (random_range(2)) mprint("it makes them soggy and hard to light.'");
+            else mprint("for they are subtle, and swift to anger!'");
 
-#if !defined(WIN32)
-            struct passwd *dastuff;
-
-            if (!lname || strlen(lname) == 0)
-            {
-                dastuff = getpwuid(getuid());
-                lname = dastuff->pw_name;
-            }
-#endif
-
-            if (strcmp(lname,WIZARD)==0) {
-                setgamestatus(CHEATED);
-                mprint("Wizard mode set.");
-            }
-            else {
-                mprint("There is a shrieking sound, as of reality being distorted.");
-                strcpy(Str1,WIZARD);
-                strcat(Str1,", the Wizard of Omega appears before you....");
-                if (Str1[0] >= 'a' && Str1[0] <= 'z')
-                    Str1[0] += 'A'-'a'; /* capitalise 1st letter */
-                mprint(Str1);
-                mprint("'Do not meddle in the affairs of Wizards --");
-                if (random_range(2)) mprint("it makes them soggy and hard to light.'");
-                else mprint("for they are subtle, and swift to anger!'");
-            }
-        }
+            mprint("You feel like a cheater.");
+            setgamestatus(CHEATED);
+        } else print2("A sudden tension goes out of the air....");
     }
 }
 

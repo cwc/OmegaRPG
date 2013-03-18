@@ -719,19 +719,7 @@ void bash_location(void)
     else {
         ox = Player.x + Dirs[0][dir];
         oy = Player.y + Dirs[1][dir];
-        if ((Current_Environment == E_CITY) &&
-                (ox == 0) &&
-                (oy == 0)) {
-            print1("Back Door WIZARD Mode!");
-            print2("You will invalidate your score if you proceed.");
-            morewait();
-            if (cinema_confirm("You are about to enable WIZARD Mode.")=='y') {
-                print2("You feel like a cheater.");
-                setgamestatus(CHEATED);
-            }
-            else print2("A sudden tension goes out of the air....");
-        }
-        else {
+
             if (Level->site[ox][oy].locchar == WALL) {
                 print1("You hurl yourself at the wall!");
                 p_damage(Player.str,NORMAL_DAMAGE,"a suicidal urge");
@@ -845,7 +833,6 @@ void bash_location(void)
                 print3("You restrain yourself from total silliness.");
                 setgamestatus(SKIP_MONSTERS);
             }
-        }
     }
 }
 
