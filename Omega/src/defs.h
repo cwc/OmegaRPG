@@ -76,10 +76,6 @@ typedef int int32;
 
 #define TILEFILE "omegatiles.xpm"
 
-/* set WIZARD to maintainers's username */
-
-#define WIZARD "sheldon"
-
 /*---------------------------SYSTEM DEFINITIONS---------------------------*/
 
 /* Don't change anything from here on (unless you know what you're doing) */
