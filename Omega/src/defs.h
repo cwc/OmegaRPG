@@ -25,10 +25,10 @@ extern char* getlogin();
 #include <sys/file.h>
 #include <fcntl.h>
 #include <errno.h>
-#include <signal.h>
 #include <sys/wait.h>
 #endif
 
+#include <signal.h>
 #include <sys/types.h>
 #include <ctype.h>
 #include <limits.h>
