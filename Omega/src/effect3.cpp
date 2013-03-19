@@ -930,6 +930,8 @@ void polymorph(int blessing)
             oimmunity = m->immunity;
             oxpv = m->xpv;
             *m = Monsters[newmonster];
+            m->x = x;
+            m->y = y;
             m->hp = max(m->hp, ohp);
             m->level = max(m->level, olvl);
             m->immunity |= oimmunity;
