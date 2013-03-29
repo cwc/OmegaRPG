@@ -15,12 +15,16 @@
     <ClInclude Include="..\..\..\Omega\src\colors.h" />
     <ClInclude Include="..\..\..\Omega\src\defs.h" />
     <ClInclude Include="..\..\..\Omega\src\extern.h" />
+    <ClInclude Include="..\..\..\Omega\src\Food.h" />
+    <ClInclude Include="..\..\..\Omega\src\GarageDoorOpener.h" />
     <ClInclude Include="..\..\..\Omega\src\glob.h" />
+    <ClInclude Include="..\..\..\Omega\src\Grot.h" />
     <ClInclude Include="..\..\..\Omega\src\Monster.h" />
     <ClInclude Include="..\..\..\Omega\src\monsters.h" />
     <ClInclude Include="..\..\..\Omega\src\Object.h" />
     <ClInclude Include="..\..\..\Omega\src\objects.h" />
     <ClInclude Include="..\..\..\Omega\src\OmegaRPG.h" />
+    <ClInclude Include="..\..\..\Omega\src\Thing.h" />
     <ClInclude Include="..\..\..\Omega\src\Village.h" />
   </ItemGroup>
   <ItemGroup>
@@ -45,8 +49,11 @@
     <ClCompile Include="..\..\..\Omega\src\env.cpp" />
     <ClCompile Include="..\..\..\Omega\src\etc.cpp" />
     <ClCompile Include="..\..\..\Omega\src\file.cpp" />
+    <ClCompile Include="..\..\..\Omega\src\Food.cpp" />
+    <ClCompile Include="..\..\..\Omega\src\GarageDoorOpener.cpp" />
     <ClCompile Include="..\..\..\Omega\src\gen1.cpp" />
     <ClCompile Include="..\..\..\Omega\src\gen2.cpp" />
+    <ClCompile Include="..\..\..\Omega\src\Grot.cpp" />
     <ClCompile Include="..\..\..\Omega\src\guild1.cpp" />
     <ClCompile Include="..\..\..\Omega\src\guild2.cpp" />
     <ClCompile Include="..\..\..\Omega\src\house.cpp" />
@@ -79,6 +86,7 @@
     <ClCompile Include="..\..\..\Omega\src\site2.cpp" />
     <ClCompile Include="..\..\..\Omega\src\spell.cpp" />
     <ClCompile Include="..\..\..\Omega\src\stats.cpp" />
+    <ClCompile Include="..\..\..\Omega\src\Thing.cpp" />
     <ClCompile Include="..\..\..\Omega\src\time.cpp" />
     <ClCompile Include="..\..\..\Omega\src\trap.cpp" />
     <ClCompile Include="..\..\..\Omega\src\util.cpp" />

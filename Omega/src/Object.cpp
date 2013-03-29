@@ -31,7 +31,7 @@ bool Object::isCursed() {
 }
 
 bool Object::isUsed() {
-    return used;
+    return used == 1;
 }
 
 bool Object::isEmpty() {
@@ -44,6 +44,16 @@ bool Object::operator == ( const Object& obj) const {
 
 bool Object::operator == ( const int i) const {
     return i == id;
+}
+
+void Object::initialize() 
+{
+
+}
+
+void Object::use() 
+{
+
 }
 
 

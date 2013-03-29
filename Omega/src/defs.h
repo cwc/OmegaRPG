@@ -46,6 +46,9 @@ extern char* getlogin();
 #include "Monster.h"
 #include "Village.h"
 
+/* Objects */
+#include "Thing.h"
+
 /* Update the display every turn to center on the player.  Rather heavy
  * on the bandwidth. */
 #define CENTER_ON_PLAYER // TODO Make this a user-specifiable option

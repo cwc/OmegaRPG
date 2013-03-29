@@ -29,6 +29,10 @@ public:
     bool isUsed();
     bool isEmpty();
 
+    /* Virtual functions */
+    virtual void use();
+    virtual void initialize();
+
     /* Operator overloads */
     bool operator == ( const Object& ) const;
     bool operator == ( const int ) const;
