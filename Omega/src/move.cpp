@@ -639,7 +639,7 @@ void l_air_station(void)
 
 void l_earth_station(void)
 {
-    pob o;
+    Object* o;
     print1("The tendrilled mass reaches out for you from the muddy ooze.");
     if (find_item(&o,OB_SALT_WATER,-1))
         print2("A splash of salt water does nothing to dissuade the vines.");
@@ -861,7 +861,7 @@ void l_temple_warning(void)
 
 void l_throne(void)
 {
-    pob o;
+    Object* o;
     int i;
     print1("You have come upon a huge ornately appointed throne!");
     print2("Sit in it? [yn] ");

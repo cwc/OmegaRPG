@@ -50,6 +50,9 @@
     <ClInclude Include="..\..\..\Omega\src\Village.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Omega\src\Object.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\..\lib\pdcurses.lib">
@@ -220,6 +223,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Omega\src\Village.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Omega\src\Object.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

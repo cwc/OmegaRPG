@@ -68,7 +68,7 @@ void l_merc_guild(void)
             }
             else
             {
-                pob newitem;
+                Object* newitem;
                 bank_account * account;
 
                 print1("You are tested for strength and stamina...");
@@ -86,12 +86,12 @@ void l_merc_guild(void)
                 clearmsg();
 
                 /* gain shortsword */
-                newitem = (pob) checkmalloc(sizeof(struct object));
+                newitem = (Object*) checkmalloc(sizeof(Object));
                 *newitem = Objects[OB_SHORT_SWORD];
                 gain_item(newitem);
 
                 /* gain leather armor */
-                newitem = (pob) checkmalloc(sizeof(struct object));
+                newitem = (Object*) checkmalloc(sizeof(Object));
                 *newitem = Objects[OB_LEATHER];
                 gain_item(newitem);
 
@@ -269,7 +269,7 @@ void l_merc_guild(void)
 
 void l_castle(void)
 {
-    pob o;
+    Object* o;
     int x, y;
 
     if (Player.level < 3) {
@@ -379,7 +379,7 @@ void l_castle(void)
 void l_arena(void)
 {
     char response;
-    pob newitem;
+    Object* newitem;
     int i,prize,monsterlevel;
     char *melee = NULL;
 
@@ -411,10 +411,10 @@ void l_arena(void)
             print2("Here's a wooden sword, and a shield");
             morewait();
             clearmsg();
-            newitem = ((pob) checkmalloc(sizeof(objtype)));
+            newitem = ((Object*) checkmalloc(sizeof(Object)));
             *newitem = Objects[OB_CLUB]; /* club */
             gain_item(newitem);
-            newitem = ((pob) checkmalloc(sizeof(objtype)));
+            newitem = ((Object*) checkmalloc(sizeof(Object)));
             *newitem = Objects[OB_LRG_RND_SHIELD]; /* shield */
             gain_item(newitem);
             Player.rank[ARENA] = TRAINEE;
@@ -577,7 +577,7 @@ void l_arena(void)
                     save_hiscore_npc(11);
                     print1("You are awarded the Champion's Spear: Victrix!");
                     morewait();
-                    newitem = ((pob) checkmalloc(sizeof(objtype)));
+                    newitem = ((Object*) checkmalloc(sizeof(Object)));
                     *newitem = Objects[OB_VICTRIX];
                     gain_item(newitem);
 

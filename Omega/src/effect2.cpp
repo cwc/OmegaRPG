@@ -583,7 +583,7 @@ void breathe(int blessing)
 }
 
 
-void i_chaos(pob o)
+void i_chaos(Object* o)
 {
     if (Player.alignment < 0) {
         Player.alignment -= random_range(20);
@@ -597,7 +597,7 @@ void i_chaos(pob o)
     Player.alignment -= random_range(20);
 }
 
-void i_law(pob o)
+void i_law(Object* o)
 {
     if (Player.alignment > 0) {
         Player.alignment += random_range(20);

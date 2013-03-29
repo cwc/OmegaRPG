@@ -398,7 +398,7 @@ void calc_melee(void)
 }
 
 /* Attempt to break an object o */
-int damage_item(pob o)
+int damage_item(Object* o)
 {
     /* special case -- break star gem */
     if (o->id == OB_STARGEM) {

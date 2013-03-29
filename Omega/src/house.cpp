@@ -178,7 +178,7 @@ void load_house(int kind, int populate)
 void make_house_npc(int i, int j)
 {
     MonsterList* ml = ((MonsterList*) checkmalloc(sizeof(MonsterList)));
-    pob ob;
+    Object* ob;
     ml->monster = ((Monster*) checkmalloc(sizeof(Monster)));
     *(ml->monster) = Monsters[NPC];
     make_log_npc(ml->monster);
@@ -196,7 +196,7 @@ void make_house_npc(int i, int j)
         m_status_reset(ml->monster,AWAKE);
     else m_status_set(ml->monster,AWAKE);
     if (ml->monster->startThing > -1) {
-        ob = ((pob) checkmalloc(sizeof(objtype)));
+        ob = ((Object*) checkmalloc(sizeof(Object)));
         *ob = Objects[ml->monster->startThing];
         ml->monster->m_pickup(ob);
     }

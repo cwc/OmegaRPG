@@ -133,7 +133,7 @@ char *angeltype(int mid, int deity)
 void make_hiscore_npc(Monster* npc, int npcid)
 {
     int st = -1;
-    pob ob;
+    Object* ob;
     *npc = Monsters[HISCORE_NPC];
     npc->aux2 = npcid;
     /* each of the high score npcs can be created here */
@@ -220,7 +220,7 @@ void make_hiscore_npc(Monster* npc, int npcid)
         break;
     }
     if (st > -1 && Objects[st].uniqueness == UNIQUE_MADE) {
-        ob = ((pob) checkmalloc(sizeof(objtype)));
+        ob = ((Object*) checkmalloc(sizeof(Object)));
         *ob = Objects[st];
         npc->m_pickup(ob);
     }

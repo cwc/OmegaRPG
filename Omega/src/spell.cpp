@@ -209,7 +209,7 @@ void s_fear(void)
    Eventually will be more interesting */
 void s_ritual(void)
 {
-    pob symbol;
+    Object* symbol;
     int i,roomno;
     int x,y;
 
@@ -321,7 +321,7 @@ void s_ritual(void)
                             mprint("Your patrons take pity on you.");
                             if ((Player.rank[PRIESTHOOD]<SPRIEST) &&
                                     (! find_item(&symbol,OB_SYMBOL_DESTINY,-1))) {
-                                symbol = ((pob) checkmalloc(sizeof(objtype)));
+                                symbol = ((Object*) checkmalloc(sizeof(Object)));
                                 *symbol = Objects[OB_SYMBOL_DESTINY];
                                 symbol->known = 2;
                                 symbol->charge = 17;

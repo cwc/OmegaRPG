@@ -906,17 +906,17 @@ int ok_to_free(plv level)
 }
 
 /* DAG frees object; if flag true, final free, free any allocated corpse string */
-void free_obj( pob obj, int flag )
+void free_obj( Object* obj, int flag )
 {
     if ( flag && (obj->id == CORPSEID) && (obj->level & ALLOC) )
         free( obj->objstr );
     free( (char *) obj );
 }
 
-pob copy_obj ( pob obj )
+Object* copy_obj ( Object* obj )
 {
-    pob newObject;
-    newObject = ((pob) checkmalloc(sizeof(objtype)));
+    Object* newObject;
+    newObject = ((Object*) checkmalloc(sizeof(Object)));
     *newObject = *obj;
     if ( (obj->id == CORPSEID) && (obj->level & ALLOC) )
     {
@@ -925,13 +925,13 @@ pob copy_obj ( pob obj )
     return newObject;
 }
 
-void free_objlist(pol pobjlist)
+void free_objlist(pol po)
 {
     pol tmp;
 
-    while (pobjlist) {
-        free_obj( (tmp = pobjlist)->thing, true );
-        pobjlist = pobjlist->next;
+    while (po) {
+        free_obj( (tmp = po)->thing, true );
+        po = po->next;
         free(tmp);
     }
 }
