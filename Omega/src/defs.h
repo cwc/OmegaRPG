@@ -14,7 +14,7 @@ definitions in the following section. */
 
 #undef MOUSE_MOVED // Will be redefined when curses is included
 #define strlen(x) (int)strlen(x) // Squashes numerous warnings
-#define sleep(x) Sleep(x * 1000)
+#define sleep(x) Sleep((DWORD) (x * 1000))
 #define usleep(x) sleep(x / 1000000.0)
 
 extern char* getlogin();
@@ -42,6 +42,7 @@ extern char* getlogin();
 #include "curses.h"
 #include "colors.h"
 
+#include "Object.h"
 #include "Monster.h"
 #include "Village.h"
 
@@ -1558,11 +1559,12 @@ struct player {
     long guildxp[NUMRANKS];
     char name[64];
     char combatManeuvers[64];
-    struct object *possessions[MAXITEMS];
-    struct object *pack[MAXPACK];
+    Object *possessions[MAXITEMS];
+    Object *pack[MAXPACK];
     int packptr;
 };
 
+/*
 struct object {
     int id,weight,plus,charge,dmg,hit,aux,number,fragility;
     long basevalue;
@@ -1574,14 +1576,13 @@ struct object {
     Symbol objchar;
     char *objstr,*truename,*cursestr;
 };
-
+*/
 
 
 struct objectlist {
-    struct object *thing;
+    Object *thing;
     struct objectlist *next;
 };
-
 
 
 /* terrain locations */
@@ -1629,8 +1630,10 @@ typedef loctype *plc;
 typedef struct level levtype;
 typedef levtype *plv;
 
-typedef struct object objtype;
-typedef objtype *pob;
+/*
+typedef Object objtype;
+typedef objtype pob;
+*/
 
 typedef struct objectlist oltype;
 typedef oltype *pol;

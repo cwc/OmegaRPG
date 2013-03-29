@@ -324,7 +324,7 @@ void Monster::movemonster(int newx, int newy)
 }
 
 /* give object o to monster m */
-void Monster::m_pickup(pob o)
+void Monster::m_pickup(Object* o)
 {
     pol tmp = ((pol) checkmalloc(sizeof(oltype)));
     tmp->thing = o;
@@ -378,7 +378,7 @@ void Monster::m_remove()
 // Perform death actions
 void Monster::m_death()
 {
-    pob corpse;
+    Object* corpse;
     MonsterList* ml;
     int x,y,found=false;
     pol curr, prev = NULL;
@@ -439,7 +439,7 @@ void Monster::m_death()
         if (this == Arena_Monster)
             Arena_Victory = true;	/* won this round of arena combat */
         if (random_range(2) || (this->uniqueness != COMMON)) {
-            corpse=((pob) checkmalloc(sizeof(objtype)));
+            corpse=((Object*) checkmalloc(sizeof(Object)));
             make_corpse(corpse,this);
             drop_at(this->x,this->y,corpse);
         }
@@ -1348,7 +1348,7 @@ void Monster::m_altar()
 void Monster::strengthen_death()
 {
     pol ol = ((pol)checkmalloc(sizeof(oltype)));
-    pob scythe = ((pob)checkmalloc(sizeof(objtype)));
+    Object* scythe = ((Object*)checkmalloc(sizeof(Object)));
 
     xpv += min(10000,xpv+1000);
     hit += min(1000,hit+10);

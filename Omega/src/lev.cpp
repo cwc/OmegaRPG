@@ -505,7 +505,7 @@ Monster* m_create(int x, int y, int kind, int level)
 Monster* make_creature(int mid)
 {
     Monster* newmonster = ((Monster*) checkmalloc(sizeof(Monster)));
-    pob ob;
+    Object* ob;
     int i,treasures;
 
     if (mid == -1) mid = random_range(ML9);
@@ -552,7 +552,7 @@ Monster* make_creature(int mid)
             m_status_set(newmonster,AWAKE);
         if (newmonster->startThing > -1 &&
                 Objects[newmonster->startThing].uniqueness <= UNIQUE_MADE) {
-            ob = ((pob) checkmalloc(sizeof(objtype)));
+            ob = ((Object*) checkmalloc(sizeof(Object)));
             *ob = Objects[newmonster->startThing];
             newmonster->m_pickup(ob);
         }
@@ -560,7 +560,7 @@ Monster* make_creature(int mid)
         treasures = random_range(newmonster->treasure +1);
         for(i=0; i<treasures; i++) {
             do {
-                ob = (pob) (create_object(newmonster->level));
+                ob = (Object*) (create_object(newmonster->level));
                 if (ob->uniqueness != COMMON) {
                     Objects[ob->id].uniqueness = UNIQUE_UNMADE;
                     free_obj(ob, true);
@@ -590,7 +590,7 @@ void stock_level(void)
         i = random_range(Level->level_width);
         j = random_range(Level->level_length);
         Level->site[i][j].things = ((pol) checkmalloc(sizeof(oltype)));
-        Level->site[i][j].things->thing = ((pob) checkmalloc(sizeof(objtype)));
+        Level->site[i][j].things->thing = ((Object*) checkmalloc(sizeof(Object)));
         make_cash(Level->site[i][j].things->thing,difficulty());
         Level->site[i][j].things->next = NULL;
         /* caves have more random cash strewn around */
@@ -598,13 +598,13 @@ void stock_level(void)
             i = random_range(Level->level_width);
             j = random_range(Level->level_length);
             Level->site[i][j].things = ((pol) checkmalloc(sizeof(oltype)));
-            Level->site[i][j].things->thing = ((pob) checkmalloc(sizeof(objtype)));
+            Level->site[i][j].things->thing = ((Object*) checkmalloc(sizeof(Object)));
             make_cash(Level->site[i][j].things->thing,difficulty());
             Level->site[i][j].things->next = NULL;
             i = random_range(Level->level_width);
             j = random_range(Level->level_length);
             Level->site[i][j].things = ((pol) checkmalloc(sizeof(oltype)));
-            Level->site[i][j].things->thing = ((pob) checkmalloc(sizeof(objtype)));
+            Level->site[i][j].things->thing = ((Object*) checkmalloc(sizeof(Object)));
             make_cash(Level->site[i][j].things->thing,difficulty());
             Level->site[i][j].things->next = NULL;
         }
@@ -616,7 +616,7 @@ void stock_level(void)
 void make_site_treasure(int i, int j, int itemlevel)
 {
     pol tmp = ((pol) checkmalloc(sizeof(oltype)));
-    tmp->thing = ((pob) create_object(itemlevel));
+    tmp->thing = ((Object*) create_object(itemlevel));
     tmp->next = Level->site[i][j].things;
     Level->site[i][j].things = tmp;
 }
@@ -628,7 +628,7 @@ void make_specific_treasure(int i, int j, int itemid)
     if (Objects[itemid].uniqueness == UNIQUE_TAKEN)
         return;
     tmp = ((pol) checkmalloc(sizeof(oltype)));
-    tmp->thing = ((pob) checkmalloc(sizeof(objtype)));
+    tmp->thing = ((Object*) checkmalloc(sizeof(Object)));
     *(tmp->thing) = Objects[itemid];
     tmp->next = Level->site[i][j].things;
     Level->site[i][j].things = tmp;

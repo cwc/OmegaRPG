@@ -32,7 +32,7 @@ void buyfromstock(int base, int numitems)
 {
     int i;
     char item;
-    pob newitem;
+    Object* newitem;
 
     print2("Purchase which item? [ESCAPE to quit] ");
     menuclear();
@@ -53,7 +53,7 @@ void buyfromstock(int base, int numitems)
     }
     else {
         i = item - 'a';
-        newitem = ((pob) checkmalloc(sizeof(objtype)));
+        newitem = ((Object*) checkmalloc(sizeof(Object)));
         *newitem = Objects[base+i];
         newitem->known = 2;
         clearmsg();
@@ -210,7 +210,7 @@ void l_healer(void)
 
 void statue_random(int x, int y)
 {
-    pob item;
+    Object* item;
     int i,j;
     switch(random_range(difficulty()+4)-1) {
     case 0:
@@ -464,7 +464,7 @@ void l_casino(void)
 void l_commandant (void)
 {
     int num;
-    pob food;
+    Object* food;
 
     print1("Commandant Sonder's Rampart-fried Lyzzard partes. Open 24 hrs.");
     print2("Buy a bucket! Only 5 Au. Make a purchase? [yn] ");
@@ -481,7 +481,7 @@ void l_commandant (void)
         else
         {
             Player.cash -= num*5;
-            food = (pob)checkmalloc(sizeof(objtype));
+            food = (Object*)checkmalloc(sizeof(Object));
             *food = Objects[OB_RATION]; /* food ration */
             food->number = num;
 
@@ -725,7 +725,7 @@ void l_alchemist(void)
 {
     int i,done=false,mlevel;
     char response;
-    pob obj;
+    Object* obj;
     print1("Ambrosias' Potions et cie.");
     if (nighttime())
         print2("Ambrosias doesn't seem to be in right now.");
@@ -1038,7 +1038,7 @@ void l_pawn_shop(void)
                 menuclear();
                 i = getitem_prompt("Sell which item: ", NULL_ITEM);
                 if ((i != ABORT) && (Player.possessions[i] != NULL)) {
-                    if (cursed(Player.possessions[i])) {
+                    if (Player.possessions[i]->isCursed()) {
                         print1("No loans on cursed items! I been burned before....");
                         morewait();
                     }

@@ -760,7 +760,7 @@ void l_hovel(void)
 void l_safe(void)
 {
     char response;
-    pob newitem;
+    Object* newitem;
     int attempt = 0;
     response = cinema_interact("pfqi",
                                "You have discovered a safe!",

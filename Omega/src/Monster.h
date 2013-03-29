@@ -46,7 +46,7 @@ typedef chtype Symbol;
 
 		void m_pulse();
 		void movemonster(int newx, int newy);
-		void m_pickup(struct object*);
+		void m_pickup( Object * );
 		void m_dropstuff();
 		void m_damage(int dmg, int dtype);
 		void m_remove();
