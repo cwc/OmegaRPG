@@ -380,8 +380,6 @@ char *cashstr( void );
 char *itemid( Object* );
 int baditem( int );
 int badobject( char );
-// Replaced with Object methods isCursed() and isUsed()
-//int cursed( Object* );
 int find_and_remove_item( int,int );
 int find_item( Object* *,int,int );
 int get_inventory_slot( void );

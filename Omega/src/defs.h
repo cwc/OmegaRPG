@@ -1564,26 +1564,10 @@ struct player {
     int packptr;
 };
 
-/*
-struct object {
-    int id,weight,plus,charge,dmg,hit,aux,number,fragility;
-    long basevalue;
-    unsigned char known,used;
-    int blessing;
-    unsigned char type,uniqueness;
-    int usef;
-    unsigned char level;
-    Symbol objchar;
-    char *objstr,*truename,*cursestr;
-};
-*/
-
-
 struct objectlist {
     Object *thing;
     struct objectlist *next;
 };
-
 
 /* terrain locations */
 struct terrain {
@@ -1606,7 +1590,6 @@ struct location {
     Monster *creature;
 };
 
-
 struct level {
     char depth; /* which level is this */
     struct level *next; /* pointer to next level in dungeon */
@@ -1621,7 +1604,6 @@ struct level {
     int level_length; /* length of current level */
 };
 
-
 /* random typedef's */
 
 typedef struct location loctype;
@@ -1629,11 +1611,6 @@ typedef loctype *plc;
 
 typedef struct level levtype;
 typedef levtype *plv;
-
-/*
-typedef Object objtype;
-typedef objtype pob;
-*/
 
 typedef struct objectlist oltype;
 typedef oltype *pol;

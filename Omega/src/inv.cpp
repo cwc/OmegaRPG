@@ -1601,20 +1601,6 @@ int item_useable(Object* o, int slot)
     else return(false);
 }
 
-
-/* returns false if not cursed, true if cursed but not used,
-   true + true if cursed and used */
-/*
-int cursed(Object* obj)
-{
-    return((obj == NULL) ?
-           false :
-           ((obj->blessing < 0) ?
-            (obj->used == true) + true :
-            false));
-}
-*/
-
 /* returns true if item with id and charge is found in pack or in
    inventory slot. charge is used to differentiate
    corpses instead of aux, which is their food value. */
@@ -1641,7 +1627,6 @@ int find_item(Object* *o, int id, int chargeval)
                 }
     return(found);
 }
-
 
 /* returns true if item with id and charge is found in pack or in
    inventory slot. Destroys item. charge is used to differentiate
