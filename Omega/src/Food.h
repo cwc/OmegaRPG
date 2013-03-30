@@ -13,7 +13,7 @@ class Food : public Object
 public:
     Food(void);
     ~Food(void);
-    void initalize();
+    void initialize();
     void use();
 };
 
