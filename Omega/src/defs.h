@@ -25,10 +25,10 @@ extern char* getlogin();
 #include <sys/file.h>
 #include <fcntl.h>
 #include <errno.h>
-#include <signal.h>
 #include <sys/wait.h>
 #endif
 
+#include <signal.h>
 #include <sys/types.h>
 #include <ctype.h>
 #include <limits.h>
@@ -1543,7 +1543,6 @@ struct objectlist {
     struct objectlist *next;
 };
 
-
 /* terrain locations */
 struct terrain {
     Symbol base_terrain_type;
@@ -1565,7 +1564,6 @@ struct location {
     Monster *creature;
 };
 
-
 struct level {
     char depth; /* which level is this */
     struct level *next; /* pointer to next level in dungeon */
@@ -1580,7 +1578,6 @@ struct level {
     int level_length; /* length of current level */
 };
 
-
 /* random typedef's */
 
 typedef struct location loctype;
@@ -1588,11 +1585,6 @@ typedef loctype *plc;
 
 typedef struct level levtype;
 typedef levtype *plv;
-
-/*
-typedef Object objtype;
-typedef objtype pob;
-*/
 
 typedef struct objectlist oltype;
 typedef oltype *pol;

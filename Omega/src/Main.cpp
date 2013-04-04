@@ -40,6 +40,10 @@ void initSignals() {
     signal(SIGHUP,signalsave);
 #endif
 
+#ifdef SIGBREAK
+	signal(SIGBREAK, signalquit);
+#endif
+
 #ifdef SIGQUIT
         signal(SIGQUIT,signalexit);
 #endif
@@ -80,6 +84,8 @@ void initSignals() {
 
 int main(int argc, char *argv[])
 {
+    initSignals();
+
     OmegaRPG* game = new OmegaRPG();
 
 #ifndef NOGETOPT
@@ -127,5 +133,5 @@ int main(int argc, char *argv[])
     }
 #endif
 
-        game->startGame();
+    game->startGame();
 }
