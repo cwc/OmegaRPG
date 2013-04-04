@@ -332,7 +332,7 @@ void room_level(void)
         }
     }
     else if (Current_Environment == E_VOLCANO) {
-        if (Level->depth == VOLCANOLEVELS && !gamestatusp(COMPLETED_VOLCANO)) {
+        if (Level->depth == VOLCANOLEVELS && !State.hasCompletedVolcano()) {
             findspace(&tx,&ty,-1);
             Level->mlist = ((MonsterList*) checkmalloc(sizeof(MonsterList)));
             Level->mlist->next = NULL;
@@ -483,7 +483,7 @@ void maze_level (void)
                     Level->site[tx][ty].locchar = STAIRS_DOWN;
                 }
 
-                if (!gamestatusp(COMPLETED_ASTRAL))
+                if (State.hasCompletedAstral() == false)
                 {
                     findspace(&tx, &ty, -1);
                     Level->mlist = (MonsterList*) checkmalloc(sizeof(MonsterList));
@@ -498,7 +498,7 @@ void maze_level (void)
     }
     else if (E_VOLCANO == Current_Environment)
     {
-        if (VOLCANOLEVELS == Level->depth && !gamestatusp(COMPLETED_VOLCANO))
+        if (VOLCANOLEVELS == Level->depth && !State.hasCompletedVolcano())
         {
             findspace(&tx, &ty, -1);
             Level->mlist = (MonsterList*) checkmalloc(sizeof(MonsterList));

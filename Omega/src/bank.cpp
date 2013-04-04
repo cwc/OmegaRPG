@@ -623,7 +623,7 @@ static void bank_break (WINDOW *w, Object* card)
         Player.cash += (total_balance + 1000 + random_range(1000 + total_balance));
 
         bank_close_accounts();
-        setgamestatus(BANK_BROKEN);
+        State.setBankBroken();
         dataprint();
     }
 }
@@ -1023,7 +1023,7 @@ void l_bank (void)
     mvwaddstr(Bankw, 2, 2, "         Welcome to The Bank of Rampart        ");
 
     /* bank working? or not? */
-    if (gamestatusp(BANK_BROKEN))
+    if (State.isBankBroken() == true)
     {
         mvwaddstr(Bankw, 9, 2, "            Autoteller Out of Order            ");
         wrefresh(Bankw);
@@ -1107,7 +1107,7 @@ void l_bank (void)
         }
     }
 
-    if (!gamestatusp(BANK_BROKEN)) clearmsg();
+    if (State.isBankBroken() == false) clearmsg();
 
     xredraw();
 }

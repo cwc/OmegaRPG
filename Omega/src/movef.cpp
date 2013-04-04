@@ -103,11 +103,11 @@ void p_movefunction(int movef)
             break;
         }
     else if ((! Player.status[LEVITATING]) ||
-             gamestatusp(MOUNTED) ||
+             State.isMounted() ||
              (Cmd == '@') || /* @ command activates all effects under player */
              (movef < LEVITATION_AVOIDANCE)) {
         if (movef != L_NO_OP) {
-            resetgamestatus(FAST_MOVE);
+            State.setFastMove(false);
             dataprint();
         }
         switch(movef) {
@@ -521,7 +521,7 @@ void sign_print(int x, int y, int signp)
     case L_CONDO:
         if (signp) {
             print1("You notice a sign:");
-            if (gamestatusp(SOLD_CONDO))
+            if (State.hasPurchasedCondo())
                 print2("Home Sweet Home");
             else print2("Luxury Condominium For Sale; Inquire Within");
         }

@@ -50,7 +50,7 @@ void Monster::monster_melee(char hitloc, int bonus)
         print1("The aegis of your deity protects you!");
     else {
         /* being attacked wakes you up/stops fast move */
-        resetgamestatus(FAST_MOVE);
+        State.setFastMove(false);
 
         /* It's lawful to wait to be attacked */
         if (this->wasAttackedByPlayer == false) Player.alignment++;

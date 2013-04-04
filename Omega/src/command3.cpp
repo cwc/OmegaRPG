@@ -25,7 +25,7 @@ void examine(void)
         mprint("You're blind - you can't examine things.");
         return;
     }
-    setgamestatus(SKIP_MONSTERS);
+    State.setSkipMonsters();
     mprint("Examine --");
     setspot(&x,&y);
     if (inbounds(x,y)) {
@@ -230,7 +230,7 @@ void help(void)
 
 void version(void)
 {
-    setgamestatus(SKIP_MONSTERS);
+    State.setSkipMonsters();
     print3(VERSIONSTRING);
 }
 
@@ -245,7 +245,7 @@ void fire(void)
     print1("Fire/Throw --");
     index = getitem(NULL_ITEM);
     if (index == ABORT)
-        setgamestatus(SKIP_MONSTERS);
+        State.setSkipMonsters();
     else if (index == CASHVALUE) print3("Can't fire money at something!");
     else if (Player.possessions[index]->isCursed() &&
              Player.possessions[index]->isUsed())
@@ -281,17 +281,17 @@ void fire(void)
                     }
                     else {
                         mprint("Your thrown offering is ignored.");
-                        setgamestatus(SUPPRESS_PRINTING);
+                        State.setSuppressPrinting( true );
                         p_drop_at(x1,y1,1,obj);
-                        resetgamestatus(SUPPRESS_PRINTING);
+                        State.setSuppressPrinting( false );
                         conform_lost_objects(1,obj);
                     }
                 }
                 else if (obj->aux == I_SCYTHE) {
                     mprint("It isn't very aerodynamic... you miss.");
-                    setgamestatus(SUPPRESS_PRINTING);
+                    State.setSuppressPrinting( true );
                     p_drop_at(x1,y1,1,obj);
-                    resetgamestatus(SUPPRESS_PRINTING);
+                    State.setSuppressPrinting( false );
                     conform_lost_objects(1,obj);
                 }
                 else if (hitp(Player.hit,m->ac)) {/* ok already, hit the damn thing */
@@ -300,24 +300,24 @@ void fire(void)
                             !random_range(4))
                         dispose_lost_objects(1,obj);
                     else {
-                        setgamestatus(SUPPRESS_PRINTING);
+                        State.setSuppressPrinting( true );
                         p_drop_at(x1,y1,1,obj);
-                        resetgamestatus(SUPPRESS_PRINTING);
+                        State.setSuppressPrinting( false );
                         conform_lost_objects(1,obj);
                     }
                 }
                 else {
                     mprint("You miss it.");
-                    setgamestatus(SUPPRESS_PRINTING);
+                    State.setSuppressPrinting( true );
                     p_drop_at(x1,y1,1,obj);
-                    resetgamestatus(SUPPRESS_PRINTING);
+                    State.setSuppressPrinting( false );
                     conform_lost_objects(1,obj);
                 }
             }
             else {
-                setgamestatus(SUPPRESS_PRINTING);
+                State.setSuppressPrinting( true );
                 p_drop_at(x1,y1,1,obj);
-                resetgamestatus(SUPPRESS_PRINTING);
+                State.setSuppressPrinting( false );
                 conform_lost_objects(1,obj);
                 plotspot(x1,y1,true);
             }
@@ -341,7 +341,7 @@ void quit(void)
         printf("Bye!\n");
         exit(0);
     }
-    else resetgamestatus(SKIP_MONSTERS);
+    else State.setSkipMonsters(false);
 }
 
 /* rest in 10 second segments so if woken up by monster won't
@@ -349,11 +349,11 @@ die automatically.... */
 void nap(void)
 {
     static int naptime;
-    if (gamestatusp(FAST_MOVE)) {
+    if (State.hasFastMove()) {
         if (naptime-- < 1) {
             clearmsg();
             mprint("Yawn. You wake up.");
-            resetgamestatus(FAST_MOVE);
+            State.setFastMove(false);
             drawvision(Player.x,Player.y);
         }
 		Command_Duration = 10;
@@ -368,7 +368,7 @@ void nap(void)
         else naptime *= 6;
         if (naptime > 1) {
             clearmsg();
-            setgamestatus(FAST_MOVE);
+            State.setFastMove();
             mprint("Resting.... ");
         }
     }
@@ -516,8 +516,8 @@ void charid(void)
 
 void wizard(void)
 {
-    setgamestatus(SKIP_MONSTERS);
-    if (gamestatusp(CHEATED)) mprint("You're already in wizard mode!");
+    State.setSkipMonsters();
+    if (State.isCheater()) mprint("You're already in wizard mode!");
     else {
         clearmsg();
 		print1("You just asked to enter wizard mode.");
@@ -535,7 +535,7 @@ void wizard(void)
             else mprint("for they are subtle, and swift to anger!'");
 
             mprint("You feel like a cheater.");
-            setgamestatus(CHEATED);
+            State.setCheater();
         } else print2("A sudden tension goes out of the air....");
     }
 }
@@ -551,11 +551,11 @@ void vault(void)
         if (Player.possessions[O_BOOTS]->usef == I_BOOTS_JUMPING)
             jumper = 2;
     if (Player.status[IMMOBILE] > 0) {
-        resetgamestatus(FAST_MOVE);
+        State.setFastMove(false);
         print3("You are unable to move");
     }
     else {
-        setgamestatus(SKIP_MONSTERS);
+        State.setSkipMonsters();
         mprint("Jump where?");
         setspot(&x,&y);
         
@@ -573,12 +573,12 @@ void vault(void)
         else if (! p_moveable(x,y))
             print3("You can't jump there.");
         else {
-            resetgamestatus(SKIP_MONSTERS);
+            State.setSkipMonsters(false);
             Player.x = x;
             Player.y = y;
             if ((! jumper) && (random_range(30) > Player.agi)) {
                 mprint("Oops -- took a tumble.");
-                setgamestatus(SKIP_PLAYER);
+                State.setSkipPlayer( true );
                 p_damage((Player.itemweight/250),UNSTOPPABLE,"clumsiness");
             }
             p_movefunction(Level->site[Player.x][Player.y].p_locf);
@@ -598,7 +598,7 @@ void tacoptions(void)
     char defatt, *attstr, *defstr; /* for the default setting */
     int draw_again = 1;
 
-    setgamestatus(SKIP_MONSTERS);
+    State.setSkipMonsters();
 
     done = false;
     actionsleft = maneuvers();
@@ -785,7 +785,7 @@ void pickpocket(void)
     index = getdir();
 
     if (index == ABORT)
-        setgamestatus(SKIP_MONSTERS);
+        State.setSkipMonsters();
     else {
         dx = Dirs[0][index];
         dy = Dirs[1][index];
@@ -793,7 +793,7 @@ void pickpocket(void)
         if ((! inbounds(Player.x+dx, Player.y+dy)) ||
                 (Level->site[Player.x+dx][Player.y+dy].creature == NULL)) {
             print3("There's nothing there to steal from!!!");
-            setgamestatus(SKIP_MONSTERS);
+            State.setSkipMonsters();
         }
         else {
             m = Level->site[Player.x+dx][Player.y+dy].creature;
@@ -851,7 +851,7 @@ void pickpocket(void)
 
 void rename_player(void)
 {
-    setgamestatus(SKIP_MONSTERS);
+    State.setSkipMonsters();
     clearmsg();
     mprint("Rename Character: ");
     strcpy(Str1,msgscanstring());
@@ -869,7 +869,7 @@ void rename_player(void)
 
 void abortshadowform(void)
 {
-    setgamestatus(SKIP_MONSTERS);
+    State.setSkipMonsters();
     if (Player.status[SHADOWFORM] && (Player.status[SHADOWFORM]<1000)) {
         mprint("You abort your spell of Shadow Form.");
         Player.immunity[NORMAL_DAMAGE]--;
@@ -889,7 +889,7 @@ void tunnel(void)
     mprint("Tunnel -- ");
     dir = getdir();
     if (dir == ABORT)
-        setgamestatus(SKIP_MONSTERS);
+        State.setSkipMonsters();
     else {
         ox = Player.x + Dirs[0][dir];
         oy = Player.y + Dirs[1][dir];
@@ -897,7 +897,7 @@ void tunnel(void)
             mprint("You have no success as yet.");
         else if (Level->site[ox][oy].locchar != WALL) {
             print3("You can't tunnel through that!");
-            setgamestatus(SKIP_MONSTERS);
+            State.setSkipMonsters();
         }
         else {
             aux = Level->site[ox][oy].aux;
@@ -1038,14 +1038,14 @@ void hunt(Symbol terrain)
 void dismount_steed(void)
 {
     MonsterList* ml;
-    if (! gamestatusp(MOUNTED))
+    if (! State.isMounted())
         print3("You're on foot already!");
     else if (Current_Environment == E_COUNTRYSIDE) {
         if (cinema_confirm("If you leave your steed here he will wander away!")=='y')
-            resetgamestatus(MOUNTED);
+            State.setMounted(false);
     }
     else {
-        resetgamestatus(MOUNTED);;
+        State.setMounted(false);
         ml = ((MonsterList*) checkmalloc(sizeof(MonsterList)));
         ml->monster = ((Monster*) checkmalloc(sizeof(Monster)));
         *(ml->monster) = Monsters[HORSE];
@@ -1066,12 +1066,12 @@ void city_move(void)
     clearmsg();
     if (Current_Environment != E_CITY) {
         print3("This command only works in the city!");
-        setgamestatus(SKIP_MONSTERS);
+        State.setSkipMonsters();
     }
     else if (Player.status[IMMOBILE] > 0)
         print3("You can't even move!");
     else if (hostilemonstersnear()) {
-        setgamestatus(SKIP_MONSTERS);
+        State.setSkipMonsters();
         print3("You can't move this way with hostile monsters around!");
     }
     else if (Level->site[Player.x][Player.y].aux == NOCITYMOVE)
@@ -1120,13 +1120,16 @@ void frobgamestatus(void)
         num = (int) parsenum("Enter log2 of flag:");
         if (num > -1) {
             num = pow2(num);
+            /*
             if (num == CHEATED) {
                 mprint("Can't alter Wizard flag.");
                 return;
             }
+            
             if (response == 's') setgamestatus(num);
             else resetgamestatus(num);
             mprint("Done....");
+            */
         }
     }
 }

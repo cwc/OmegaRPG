@@ -120,7 +120,7 @@ int save_player(FILE *fd)
     ok &= (fwrite((char *)&Player,sizeof(Player),1,fd) > 0);
     ok &= (fprintf(fd,"%s\n",Player.name) >= 0);
     ok &= (fwrite((char *)CitySiteList,sizeof(CitySiteList),1,fd) > 0);
-    ok &= (fwrite((char *)&GameStatus,sizeof(long),1,fd) > 0);
+    ok &= (fwrite((char *)&State,sizeof(GameState),1,fd) > 0);
     ok &= (fwrite((char *)&Current_Environment,sizeof(int),1,fd) > 0);
     ok &= (fwrite((char *)&Last_Environment,sizeof(int),1,fd) > 0);
     ok &= (fwrite((char *)&Current_Dungeon,sizeof(int),1,fd) > 0);
@@ -492,7 +492,7 @@ int restore_game(char *savestr)
         fclose(fd);
         print3("Restoration complete.");
         ScreenOffset = -1000;	/* to force a redraw */
-        setgamestatus(SKIP_MONSTERS);
+        State.setSkipMonsters();
         change_to_game_perms();
         return(true);
     }
@@ -512,7 +512,7 @@ void restore_player(FILE *fd, int version)
     filescanstring(fd,Player.name);
 
 	fread((char *)CitySiteList,sizeof(CitySiteList),1,fd);
-    fread((char *)&GameStatus,sizeof(long),1,fd);
+    fread((char *)&State,sizeof(GameState),1,fd);
     fread((char *)&Current_Environment,sizeof(int),1,fd);
     fread((char *)&Last_Environment,sizeof(int),1,fd);
     fread((char *)&Current_Dungeon,sizeof(int),1,fd);
@@ -796,16 +796,16 @@ void restore_level(FILE *fd, int version)
     case E_HOVEL:
     case E_MANSION:
     case E_HOUSE:
-        load_house(Level->environment, false);
+        load_house(Level->environment, 0);
         break;
     case E_DLAIR:
-        load_dlair(gamestatusp(KILLED_DRAGONLORD), false);
+        load_dlair(State.hasKilledDragonlord(), 0);
         break;
     case E_STARPEAK:
-        load_speak(gamestatusp(KILLED_LAWBRINGER), false);
+        load_speak(State.hasKilledLawbringer(), 0);
         break;
     case E_MAGIC_ISLE:
-        load_misle(gamestatusp(KILLED_EATER), false);
+        load_misle(State.hasKilledEater(), 0);
         break;
     case E_TEMPLE:
         load_temple(Country[LastCountryLocX][LastCountryLocY].aux, false);

@@ -89,10 +89,10 @@ void enchant(int delta)
             else {
                 used = (Player.possessions[i]->used);
                 if (used) {
-                    setgamestatus(SUPPRESS_PRINTING);
+                    State.setSuppressPrinting( true );
                     Player.possessions[i]->used = false;
                     item_use(Player.possessions[i]);
-                    resetgamestatus(SUPPRESS_PRINTING);
+                    State.setSuppressPrinting( false );
                 }
                 print1("The item shines!");
                 morewait();
@@ -101,10 +101,10 @@ void enchant(int delta)
                     Player.possessions[i]->charge +=
                         ((delta+1) * (random_range(10) + 1));
                 if (used) {
-                    setgamestatus(SUPPRESS_PRINTING);
+                    State.setSuppressPrinting( true );
                     Player.possessions[i]->used = true;
                     item_use(Player.possessions[i]);
-                    resetgamestatus(SUPPRESS_PRINTING);
+                    State.setSuppressPrinting( false );
                 }
             }
         }
@@ -131,20 +131,20 @@ void bless(int blessing)
             morewait();
             used = (Player.possessions[index]->used);
             if (used) {
-                setgamestatus(SUPPRESS_PRINTING);
+                State.setSuppressPrinting( true );
                 Player.possessions[index]->used = false;
                 item_use(Player.possessions[index]);
-                resetgamestatus(SUPPRESS_PRINTING);
+                State.setSuppressPrinting( false );
             }
             Player.possessions[index]->blessing -= 2;
             if (Player.possessions[index]->blessing < 0)
                 Player.possessions[index]->plus =
                     abs(Player.possessions[index]->plus) - 1;
             if (used) {
-                setgamestatus(SUPPRESS_PRINTING);
+                State.setSuppressPrinting( true );
                 Player.possessions[index]->used = true;
                 item_use(Player.possessions[index]);
-                resetgamestatus(SUPPRESS_PRINTING);
+                State.setSuppressPrinting( false );
             }
         }
     }
@@ -157,10 +157,10 @@ void bless(int blessing)
         else if (index != ABORT) {
             used = Player.possessions[index]->isUsed();
             if (used) {
-                setgamestatus(SUPPRESS_PRINTING);
+                State.setSuppressPrinting( true );
                 Player.possessions[index]->used = false;
                 item_use(Player.possessions[index]);
-                resetgamestatus(SUPPRESS_PRINTING);
+                State.setSuppressPrinting( false );
             }
             print1("A pure white light surrounds the item... ");
             if (Player.possessions[index]->blessing < 0-(blessing+1)) {
@@ -185,10 +185,10 @@ void bless(int blessing)
                 morewait();
             }
             if (used && (Player.possessions[index] != NULL)) {
-                setgamestatus(SUPPRESS_PRINTING);
+                State.setSuppressPrinting( true );
                 Player.possessions[index]->used = true;
                 item_use(Player.possessions[index]);
-                resetgamestatus(SUPPRESS_PRINTING);
+                State.setSuppressPrinting( false );
             }
         }
     }
@@ -529,7 +529,7 @@ void identify(int blessing)
         index = getitem_prompt("Identify: ", NULL_ITEM);
         if (index == CASHVALUE) print3("Your money is really money.");
         else if (index == ABORT)
-            setgamestatus(SKIP_MONSTERS);
+            State.setSkipMonsters();
         else {
             if (Player.possessions[index]->objchar == FOOD)
                 Player.possessions[index]->known = 1;
@@ -644,7 +644,7 @@ void wish(int blessing)
     }
     else if (strcmp(wishstr,"Skill")==0) {
         print2("You feel more competent.");
-        if (gamestatusp(CHEATED))
+        if (State.isCheater())
             gain_experience(10000);
         else
             gain_experience(min(10000,Player.xp));
@@ -684,12 +684,12 @@ void wish(int blessing)
         /* Wish for Health when starving does some good. PGM */
     }
     else if (strcmp(wishstr,"Destruction")==0)
-        annihilate(gamestatusp(CHEATED));
+        annihilate(State.isCheater());
     else if (strcmp(wishstr,"Acquisition")==0)
-        acquire(gamestatusp(CHEATED));
+        acquire(State.isCheater());
     else if (strcmp(wishstr,"Summoning")==0)
-        summon(gamestatusp(CHEATED),-1);
-    else if (strcmp(wishstr,"Stats") == 0 && gamestatusp(CHEATED))
+        summon(State.isCheater(),-1);
+    else if (strcmp(wishstr,"Stats") == 0 && State.isCheater())
     {
         Player.str = Player.maxstr = Player.con = Player.maxcon =
                                          Player.agi = Player.maxagi = Player.dex = Player.maxdex =
@@ -724,7 +724,7 @@ void acquire(int blessing)
         newthing = ((Object*) checkmalloc(sizeof(Object)));
         /* DAG this assignment looks unneccessary */
         newthing->id = -1;
-        if (gamestatusp(CHEATED))
+        if (State.isCheater())
             print1("Acquire which kind of item: !?][}{)/=%%\\& ");
         else
             print1("Acquire which kind of item: !?][}{)/=%%\\ ");
@@ -819,7 +819,7 @@ void acquire(int blessing)
             else make_thing(newthing,id);
             break;
         case (ARTIFACT&0xff):
-            if (gamestatusp(CHEATED))
+            if (State.isCheater())
                 id = itemlist(ARTIFACTID,NUMARTIFACTS);
             else
                 id = -1;

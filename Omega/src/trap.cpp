@@ -19,7 +19,7 @@ void l_trap_siren(void)
     clearmsg();
     if ((Current_Environment == E_HOUSE) ||
             (Current_Environment == E_MANSION)) {
-        if (! gamestatusp(DESTROYED_ORDER)) {
+        if (! State.hasDestroyedOrder()) {
             print1("The city guard arrives!");
             print2("You are apprehended....");
             morewait();
@@ -50,7 +50,7 @@ void l_trap_dart(void)
 {
     Level->site[Player.x][Player.y].locchar = TRAP;
     lset(Player.x, Player.y, CHANGED);
-    if (gamestatusp(MOUNTED)) {
+    if (State.isMounted()) {
         mprint("A dart annoys your horse....");
     }
     else if (random_range(100) < Player.absorption)
@@ -70,12 +70,12 @@ void l_trap_pit(void)
 {
     Level->site[Player.x][Player.y].locchar = TRAP;
     lset(Player.x, Player.y, CHANGED);
-    if (gamestatusp(MOUNTED)) {
+    if (State.isMounted()) {
         mprint("Your horse stumbles into a pit and breaks a leg!");
         morewait();
         mprint("You are forced to put it out of its misery.");
         morewait();
-        resetgamestatus(MOUNTED);
+        State.setMounted(false);
         showflags();
     }
     else if (Player.itemweight < ((int) (Player.maxweight / 2)))
@@ -99,7 +99,7 @@ void l_trap_door(void)
     else {
         Level->site[Player.x][Player.y].locchar = TRAP;
         lset(Player.x, Player.y, CHANGED);
-        if (gamestatusp(MOUNTED)) {
+        if (State.isMounted()) {
             mprint("You and your horse fall through a trap door!");
             morewait();
             mprint("Your horse breaks its back. Snif.");
@@ -110,7 +110,7 @@ void l_trap_door(void)
                 p_damage(Level->depth*difficulty(),UNSTOPPABLE,"a rockslide");
             }
             change_level(Level->depth,Level->depth+1,false);
-            resetgamestatus(MOUNTED);
+            State.setMounted(false);
             showflags();
             roomcheck();
         }
@@ -135,7 +135,7 @@ void l_trap_snare(void)
 {
     Level->site[Player.x][Player.y].locchar = TRAP;
     lset(Player.x, Player.y, CHANGED);
-    if (gamestatusp(MOUNTED))
+    if (State.isMounted())
         mprint("Your horse steps out of a snare trap.");
     else if (random_range(100) < Player.agi)
         mprint("You agilely avoid a snare.");
@@ -152,10 +152,10 @@ void l_trap_blade(void)
     if (random_range(30) < Player.agi+Player.level)
         mprint("You duck under a scything blade!");
     else {
-        if (gamestatusp(MOUNTED)) {
+        if (State.isMounted()) {
             mprint("Your horse is struck by a scything blade and killed instantly.");
             morewait();
-            resetgamestatus(MOUNTED);
+            State.setMounted(false);
             showflags();
         }
         else {
@@ -170,10 +170,10 @@ void l_trap_blade(void)
 
 void l_trap_fire(void)
 {
-    if (gamestatusp(MOUNTED)) {
+    if (State.isMounted()) {
         mprint("Your horse is struck by a blast of fire and is charbroiled!");
         morewait();
-        resetgamestatus(MOUNTED);
+        State.setMounted(false);
         showflags();
     }
     else if (random_range(50) < Player.agi+Player.level)
@@ -204,10 +204,10 @@ void l_trap_disintegrate(void)
     lset(Player.x, Player.y, CHANGED);
     mprint("Oh, no! A disintegration trap!");
     morewait();
-    if (gamestatusp(MOUNTED)) {
+    if (State.isMounted()) {
         mprint("Your horse falls apart into its component atoms...");
         morewait();
-        resetgamestatus(MOUNTED);
+        State.setMounted(false);
         showflags();
     }
     disintegrate(Player.x,Player.y);
@@ -233,10 +233,10 @@ void l_trap_acid(void)
     if (Player.agi+Player.level < random_range(100)) {
         mprint("You are drenched by a spray of acid!");
         morewait();
-        if (gamestatusp(MOUNTED)) {
+        if (State.isMounted()) {
             mprint("Your horse dies unpleasantly.");
             morewait();
-            resetgamestatus(MOUNTED);
+            State.setMounted(false);
             showflags();
         }
         p_damage(random_range(difficulty()*5),ACID,"an acid trap");
@@ -258,7 +258,7 @@ void l_trap_abyss(void)
 {
     Level->site[Player.x][Player.y].locchar = ABYSS;
     lset(Player.x, Player.y, CHANGED);
-    if (gamestatusp(MOUNTED)) {
+    if (State.isMounted()) {
         mprint("You and your horse fall into the infinite abyss!");
         morewait();
         l_abyss();

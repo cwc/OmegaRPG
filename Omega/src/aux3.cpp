@@ -149,7 +149,7 @@ void outdoors_random_event(void)
         mprint("Due to the inclement weather conditions, you have become lost.");
         morewait();
         Precipitation+=random_range(12)+1;
-        setgamestatus(LOST);
+        State.setLost( true );
         break;
     case 1:
         mprint("You enter a field of brightly colored flowers...");
@@ -160,7 +160,7 @@ void outdoors_random_event(void)
         mprint("poppies...");
         morewait();
         print3("You become somewhat disoriented...");
-        setgamestatus(LOST);
+        State.setLost( true );
         break;
     case 2:
         mprint("You discover a sprig of athelas growing lonely in the wild.");
@@ -257,21 +257,21 @@ void outdoors_random_event(void)
             gain_item(ob);
         }
         else if (num < 80) {
-            if (gamestatusp(MOUNTED)) {
+            if (State.isMounted()) {
                 mprint("Your horse screams as he is transformed into an");
                 morewait();
                 mprint("imaginary unseen dead tortoise.");
                 morewait();
                 mprint("You are now on foot.");
                 morewait();
-                resetgamestatus(MOUNTED);
+                State.setMounted(false);
             }
             else {
                 mprint("You notice you are riding a horse. Odd. Very odd....");
                 morewait();
                 mprint("Now that's a horse of a different color!");
                 morewait();
-                setgamestatus(MOUNTED);
+                State.setMounted( true );
             }
         }
         else if (num < 90) {
@@ -312,8 +312,8 @@ void outdoors_random_event(void)
     case 11:
         mprint("You find a Traveller's Aid station with maps of the local area.");
         morewait();
-        if (gamestatusp(LOST)) {
-            resetgamestatus(LOST);
+        if (State.isLost()) {
+            State.setLost( false );
             mprint("You know where you are now.");
         }
         for(i=Player.x-5; i<Player.x+6; i++)
@@ -330,7 +330,7 @@ void outdoors_random_event(void)
         show_screen();
         break;
     case 12:
-        if (! gamestatusp(MOUNTED)) {
+        if (! State.isMounted()) {
             mprint("You develop blisters....");
             p_damage(1,UNSTOPPABLE,"blisters");
         }
@@ -423,7 +423,7 @@ void terrain_check(int takestime)
             break;
         }
     }
-    else if (gamestatusp(MOUNTED)) {
+    else if (State.isMounted()) {
         faster = 1;
         switch(random_range(32)) {
         case 0:
@@ -639,15 +639,15 @@ void terrain_check(int takestime)
         }
         break;
     case CITY:
-        if (gamestatusp(LOST)) {
-            resetgamestatus(LOST);
+        if (State.isLost()) {
+            State.setLost( false );
             mprint("Well, I guess you know where you are now....");
         }
         locprint("Outside Rampart, the city.");
         break;
     case VILLAGE:
-        if (gamestatusp(LOST)) {
-            resetgamestatus(LOST);
+        if (State.isLost()) {
+            State.setLost( false );
             mprint("The village guards let you know where you are....");
         }
         locprint("Outside a small village.");
@@ -1186,14 +1186,14 @@ void alert_guards(void)
             Level->site[40][60].p_locf = L_NO_OP; /* pacify_guards restores this */
     }
     if ((! foundguard) && (Current_Environment == E_CITY) &&
-            !gamestatusp(DESTROYED_ORDER)) {
-        suppress = gamestatusp(SUPPRESS_PRINTING);
-        resetgamestatus(SUPPRESS_PRINTING);
+            !State.hasDestroyedOrder()) {
+        suppress = State.hasSuppressPrinting();
+        State.setSuppressPrinting( false );
         print2("The last member of the Order of Paladins dies....");
         morewait();
         gain_experience(1000);
         Player.alignment -= 250;
-        if (! gamestatusp(KILLED_LAWBRINGER)) {
+        if (!State.hasKilledLawbringer()) {
             print1("A chime sounds from far away.... The sound grows stronger....");
             print2("Suddenly the great shadowy form of the LawBringer appears over");
             print3("the city. He points his finger at you....");
@@ -1223,7 +1223,7 @@ void alert_guards(void)
         }
     }
     if (suppress)
-        resetgamestatus(SUPPRESS_PRINTING);
+        State.setSuppressPrinting( false );
 }
 
 
@@ -1231,7 +1231,7 @@ void alert_guards(void)
 void destroy_order(void)
 {
     int i,j;
-    setgamestatus(DESTROYED_ORDER);
+    State.setDestroyedOrder();
     if (Level != City) print1("Zounds! A Serious Mistake!");
     else
         for(i=35; i<46; i++)

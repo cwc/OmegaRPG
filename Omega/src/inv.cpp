@@ -21,7 +21,7 @@ void drop_money(void)
         }
         else drop_at(Player.x,Player.y,money);
     }
-    else setgamestatus(SKIP_MONSTERS);
+    else State.setSkipMonsters();
 }
 
 
@@ -70,7 +70,7 @@ void pickup_at (int x, int y)
     pol ol;
     pol temp;
 
-    resetgamestatus(FAST_MOVE);
+    State.setFastMove(false);
 
     ol = Level->site[x][y].things;
     Level->site[x][y].things = 0;
@@ -184,7 +184,7 @@ void drop_at(int x, int y, Object* o)
             Level->site[x][y].things = tmp;
         }
         else if (Level->site[x][y].p_locf == L_VOID_STATION)
-            setgamestatus(PREPARED_VOID);
+            State.setPreparedVoid();
     }
 }
 
@@ -206,7 +206,7 @@ void p_drop_at(int x, int y, int n, Object* o)
             Level->site[x][y].things = tmp;
         }
         else if (Level->site[x][y].p_locf == L_VOID_STATION)
-            setgamestatus(PREPARED_VOID);
+            State.setPreparedVoid();
     }
 }
 
@@ -353,7 +353,7 @@ void give_money(Monster *m)
 
     cash = detach_money(0);
     if (cash == NULL)
-        setgamestatus(SKIP_MONSTERS);
+        State.setSkipMonsters();
     else givemonster(m,cash);
 }
 
@@ -376,7 +376,7 @@ void lawbringer_gets_gem(Monster* m, Object* o)
     Player.alignment += 200;
     Player.pow = Player.maxpow = Player.pow * 2;
     gain_experience(2000);
-    setgamestatus(GAVE_STARGEM);
+    State.setGivenStargem();
     /* WDT HACK!!!  Where else would this ever get freed?? */
     free_obj(o, true);
 }

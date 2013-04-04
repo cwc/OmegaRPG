@@ -1012,7 +1012,7 @@ void l_order(void)
     morewait();
     if ((Player.rank[ORDER]==PALADIN) &&
             (Player.level > Justiciarlevel) &&
-            gamestatusp(GAVE_STARGEM) &&
+            State.hasGivenStargem() &&
             Player.alignment > 300) {
         print1("You have succeeded in your quest!");
         morewait();
@@ -1074,7 +1074,7 @@ void l_order(void)
                 morewait();
                 Player.rank[ORDER] = GALLANT;
                 Player.guildxp[ORDER] = 1;
-                setgamestatus(MOUNTED);
+                State.setMounted( true );
                 newitem = ((Object*) checkmalloc(sizeof(Object)));
                 *newitem = Objects[OB_SPEAR]; /* spear */
                 newitem->blessing = 9;
@@ -1085,9 +1085,9 @@ void l_order(void)
         }
     } else {
         print1("'Welcome back, Paladin.'");
-        if (!gamestatusp(MOUNTED)) {
+        if (!State.isMounted()) {
             print2("You are given a new steed.");
-            setgamestatus(MOUNTED);
+            State.setMounted( true );
         }
         morewait();
         clearmsg();

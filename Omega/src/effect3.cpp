@@ -388,7 +388,7 @@ void disintegrate(int x, int y)
     }
     else {
         if (!view_los_p(Player.x, Player.y, x, y))
-            setgamestatus(SUPPRESS_PRINTING);
+            State.setSuppressPrinting( true );
         if ((target = Level->site[x][y].creature) != NULL) {
             if (target->uniqueness == COMMON) {
                 strcpy(Str1,"The ");
@@ -461,7 +461,7 @@ void disintegrate(int x, int y)
         }
         else mprint("The blast has no effect.");
         if (!view_los_p(Player.x, Player.y, x, y))
-            resetgamestatus(SUPPRESS_PRINTING);
+            State.setSuppressPrinting( false );
         else
             plotspot(x, y, true);
     }
@@ -572,7 +572,7 @@ void strategic_teleport(int blessing)
      * as well.  Seems to me that Hy Magic ought to allow it, and nothing
      * else (aside from the Star Gem, of course). */
     if ((Current_Environment == E_CIRCLE || Current_Environment == E_ASTRAL) &&
-            !gamestatusp(CHEATED))
+            !State.isCheater())
     {
         mprint("Some property of this eerie place interferes with the magic!\n");
         return;
@@ -604,7 +604,7 @@ void strategic_teleport(int blessing)
         menuprint("m: Temple of Destiny\n");
         menuprint("n: HellWell Volcano\n");
         menuprint("o: Ruined Palace\n");
-        if (gamestatusp(CHEATED))
+        if (State.isCheater())
             menuprint("z: Anywhere\n");
         menuprint("ANYTHING ELSE: Avoid entering a portal.");
         showmenu();
@@ -670,15 +670,15 @@ void strategic_teleport(int blessing)
             setPlayerXY( 51, 51 );
             break;
         default:
-            if (gamestatusp(CHEATED)) {
+            if (State.isCheater()) {
                 new_env = (int) parsenum("Enter environment number: ");
                 change_environment(new_env);
             }
         }
         xredraw();
-        if (gamestatusp(LOST)) {
+        if (State.isLost()) {
             print1("You know where you are now.");
-            resetgamestatus(LOST);
+            State.setLost( false );
             Precipitation = 0;
         }
     }
@@ -709,7 +709,7 @@ void hero(int blessing)
 void levitate(int blessing)
 {
     if (blessing > -1) {
-        if (gamestatusp(MOUNTED))
+        if (State.isMounted())
             mprint("You have a strange feeling of lightness in your saddle.");
         else {
             mprint("You start to float a few inches above the floor.");
@@ -809,16 +809,16 @@ void dispel(int blessing)
                     if ((o->used) && (o->blessing < 0)) {
                         if (blessing+1 + o->blessing >=0) {
                             o->used = false;
-                            setgamestatus(SUPPRESS_PRINTING);
+                            State.setSuppressPrinting( true );
                             item_use(o);
-                            resetgamestatus(SUPPRESS_PRINTING);
+                            State.setSuppressPrinting( false );
                             mprint("You hear a sighing sound from");
                             mprint(itemid(o));
                             o->blessing = 0;
                             o->used = true;
-                            setgamestatus(SUPPRESS_PRINTING);
+                            State.setSuppressPrinting( true );
                             item_use(o);
-                            resetgamestatus(SUPPRESS_PRINTING);
+                            State.setSuppressPrinting( false );
                         }
                         else {
                             mprint("You hear dark laughter from");

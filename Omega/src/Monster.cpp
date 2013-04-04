@@ -266,7 +266,7 @@ void Monster::m_pulse()
 
     if ((! m_statusp(this,AWAKE)) && (range <= this->wakeup)) {
         m_status_set(this,AWAKE);
-        resetgamestatus(FAST_MOVE);
+        State.setFastMove(false);
     }
 
     if (m_statusp(this,AWAKE)) {
@@ -290,7 +290,7 @@ void Monster::m_pulse()
                     (!STRIKE || (random_range(2) == 1)))
                 monster_move();
             else if (m_statusp(this,HOSTILE) && (range ==1)) {
-                resetgamestatus(FAST_MOVE);
+                State.setFastMove(false);
                 tacmonster();
             }
         }
@@ -510,7 +510,7 @@ void Monster::m_death()
                 /* just a tad complicated. Promote a new justiciar if any
                    guards are left in the city, otherwise Destroy the Order! */
                 Player.alignment -= 100;
-                if (! gamestatusp(DESTROYED_ORDER)) {
+                if (! State.hasDestroyedOrder()) {
                     curr = Level->site[this->x][this->y].things;
                     while (curr && curr->thing->id != OB_JUSTICIAR_BADGE) {
                         prev = curr;
@@ -580,31 +580,31 @@ void Monster::m_death()
                 alert_guards();
             break;
         case GOBLIN_KING:
-            if (! gamestatusp(ATTACKED_ORACLE)) {
+            if ( State.hasAttackedOracle() == false ) {
                 mprint("You seem to hear a woman's voice from far off:");
                 mprint("'Well done! Come to me now....'");
             }
-            setgamestatus(COMPLETED_CAVES);
+            State.setCompletedCaves( true );
             break; /* gob king */
         case GREAT_WYRM:
-            if (! gamestatusp(ATTACKED_ORACLE)) {
+            if (State.hasAttackedOracle() == false) {
                 mprint("A female voice sounds from just behind your ear:");
                 mprint("'Well fought! I have some new advice for you....'");
             }
-            setgamestatus(COMPLETED_SEWERS);
+            State.setCompletedSewers( true );
             break; /*grt worm */
         case EATER:
-            setgamestatus(KILLED_EATER);
+            State.setKilledEater();
             break;
         case LAWBRINGER:
-            setgamestatus(KILLED_LAWBRINGER);
+            State.setKilledLawbringer();
             break;
         case DRAGON_LORD:
-            setgamestatus(KILLED_DRAGONLORD);
+            State.setKilledDragonlord();
             break;
         case DEMON_EMP:
-            setgamestatus(COMPLETED_VOLCANO);
-            if (! gamestatusp(ATTACKED_ORACLE)) {
+            State.setCompletedVolcano();
+            if (State.hasAttackedOracle() == false) {
                 mprint("You feel a soft touch on your shoulder...");
                 mprint("You turn around but there is no one there!");
                 mprint("You turn back and see a note: 'See me soon.'");
@@ -612,7 +612,7 @@ void Monster::m_death()
             }
             break;
         case ELEM_MASTER:
-            if (! gamestatusp(ATTACKED_ORACLE)) {
+            if (State.hasAttackedOracle() == false) {
                 mprint("Words appear before you, traced in blue flame!");
                 mprint("'Return to the Prime Plane via the Circle of Sorcerors....'");
             }
@@ -638,7 +638,7 @@ void Monster::monster_strike()
         print1("The aegis of your deity protects you!");
     else {
         /* being attacked wakes you up/stops fast move */
-        resetgamestatus(FAST_MOVE);
+        State.setFastMove(false);
 
         /* It's lawful to wait to be attacked */
         if (this->wasAttackedByPlayer == false) Player.alignment++;
@@ -656,7 +656,7 @@ void Monster::monster_special()
     if (! player_on_sanctuary())
     {
         /* being attacked wakes you up/stops fast move */
-        resetgamestatus(FAST_MOVE);
+        State.setFastMove(false);
 
         monster_action(this->specialf);
     }
@@ -1086,9 +1086,9 @@ void Monster::m_trap_abyss()
         Level->site[x][y].p_locf = L_ABYSS;
         lset(x, y, CHANGED);
     }
-    setgamestatus(SUPPRESS_PRINTING);
+    State.setSuppressPrinting( true );
     m_vanish();
-    resetgamestatus(SUPPRESS_PRINTING);
+    State.setSuppressPrinting( false );
 }
 
 void Monster::m_trap_snare()

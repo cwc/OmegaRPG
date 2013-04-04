@@ -10,7 +10,7 @@ void l_condo(void)
     int i,done=false,over=false,weeksleep=false;
     char response;
 
-    if (! gamestatusp(SOLD_CONDO)) {
+    if (!State.hasPurchasedCondo()) {
         response = cinema_interact
                    ("rp","Rampart Arms. Weekly Condo Rentals and Purchases",
                     "Which are you interested in [r,p, or ESCAPE] ",
@@ -21,7 +21,7 @@ void l_condo(void)
                 if (Player.cash < 50000)
                     print3("No mortgages, buddy.");
                 else {
-                    setgamestatus(SOLD_CONDO);
+                    State.setPurchasedCondo( true );
                     Player.cash-=50000;
                     dataprint();
                     print2("You are the proud owner of a luxurious condo penthouse.");
@@ -247,7 +247,7 @@ void send_to_jail(void)
         print2("Your name is expunged from the records....");
         Player.rank[ORDER] = -1;
     }
-    else if (gamestatusp(DESTROYED_ORDER))
+    else if (State.hasDestroyedOrder())
         print1("The destruction of the Order of Paladins has negated the law!");
     else if ((Current_Environment != E_CITY) &&
              (Last_Environment != E_CITY))
@@ -259,12 +259,12 @@ void send_to_jail(void)
                 (Current_Environment == E_HOVEL)) &&
                 (Last_Environment == E_CITY))
         {
-            setgamestatus(SUPPRESS_PRINTING);
+            State.setSuppressPrinting( true );
             change_environment(E_CITY);
-            resetgamestatus(SUPPRESS_PRINTING);
+            State.setSuppressPrinting( false );
         }
         if (Current_Environment == E_CITY) {
-            if (gamestatusp(UNDEAD_GUARDS)) {
+            if (State.hasUndeadGuards()) {
                 print1("You are taken to a weirdly deserted chamber where an undead");
                 print2("Magistrate presides over a court of ghosts and haunts.");
                 morewait();
@@ -347,7 +347,7 @@ void send_to_jail(void)
 void l_adept(void)
 {
     print1("You see a giant shimmering gate in the form of an omega.");
-    if (! gamestatusp(ATTACKED_ORACLE)) {
+    if (State.hasAttackedOracle() == false) {
         if (Player.str+Player.con+Player.iq+Player.pow < 100)
             print2("A familiar female voice says: I would not advise this now....");
         else print2("A familiar female voice says: Go for it!");
@@ -657,7 +657,7 @@ void l_countryside(void)
 void l_oracle(void)
 {
     char response;
-    if (gamestatusp(ATTACKED_ORACLE) && (! gamestatusp(COMPLETED_ASTRAL))) {
+    if (State.hasAttackedOracle() && (State.hasCompletedAstral() == false)) {
         print1("You come before a blue crystal dais. You see a broken mirror.");
         print2("Look in the mirror? [yn] ");
         if (ynq2()=='y') {
@@ -681,25 +681,25 @@ void l_oracle(void)
             print1("The oracle doffs her cowl. Her eyes glitter with blue fire!");
             print2("Attack her? [yn] ");
             if (ynq2() == 'y') {
-                setgamestatus(ATTACKED_ORACLE);
+                State.setAttackedOracle( true );
                 print1("The oracle deftly avoids your attack.");
                 print2("She sneers at you and vanishes.");
             }
             else {
                 print2("She stares at you...and speaks:");
-                if (!gamestatusp(SPOKE_TO_DRUID)) {
+                if (State.hasSpokeToDruid() == false) {
                     print3("'The ArchDruid speaks wisdom in his forest shrine.'");
                 }
-                else if (!gamestatusp(COMPLETED_CAVES)) {
+                else if ( State.hasCompletedCaves() == false ) {
                     print3("'Thou mayest find aught of interest in the caves to the South.'");
                 }
-                else if (!gamestatusp(COMPLETED_SEWERS)) {
+                else if (State.hasCompletedSewers() == false) {
                     print3("'Turn thy attention to the abyssal depths of the city.'");
                 }
-                else if (!gamestatusp(COMPLETED_CASTLE)) {
+                else if (State.hasCompletedCastle() == false) {
                     print3("'Explorest thou the depths of the Castle of the ArchMage.'");
                 }
-                else if (!gamestatusp(COMPLETED_ASTRAL)) {
+                else if (State.hasCompletedAstral() == false) {
                     morewait();
                     print1("'Journey to the Astral Plane and meet the Gods' servants.'");
                     print2("The oracle holds out her hand. Do you take it? [yn] ");
@@ -717,10 +717,10 @@ void l_oracle(void)
                     }
                     else print3("You detect the hint of a sneer from the oracle.");
                 }
-                else if (!gamestatusp(COMPLETED_VOLCANO)) {
+                else if (State.hasCompletedVolcano() == false) {
                     print3("'The infernal maw may yield its secrets to thee now.'");
                 }
-                else if (!gamestatusp(COMPLETED_CHALLENGE)) {
+                else if (State.hasCompletedChallenge() == false) {
                     print3("'The challenge of adepthood yet awaits thee.'");
                 }
                 else {

@@ -7,7 +7,7 @@
 /* various miscellaneous location functions */
 void l_water(void)
 {
-    if (! gamestatusp(MOUNTED))  {
+    if (! State.isMounted())  {
         if ((Player.possessions[O_ARMOR] != NULL)) {
             print1("Your heavy armor drags you under the water!");
             morewait();
@@ -55,13 +55,13 @@ void l_water(void)
 
 void l_chaos(void)
 {
-    if (gamestatusp(MOUNTED)) {
+    if (State.isMounted()) {
         print1("Your steed tries to swim in the raw Chaos, but seems to");
         print2("be having some difficulties...");
         morewait();
         print1("probably because it's just turned into a chaffinch.");
         morewait();
-        resetgamestatus(MOUNTED);
+        State.setMounted(false);
     }
     if (! onewithchaos)
         print1("You are immersed in raw Chaos....");
@@ -137,9 +137,9 @@ void l_hedge(void)
 void l_lava(void)
 {
     print1("Very clever -- walking into a pool of lava...");
-    if (gamestatusp(MOUNTED)) {
+    if (State.isMounted()) {
         print2("Your horse is incinerated... You fall in too!");
-        resetgamestatus(MOUNTED);
+        State.setMounted(false);
     }
     morewait();
     if (strcmp(Player.name,"Saltheart Foamfollower")==0) {
@@ -158,9 +158,9 @@ void l_lava(void)
 void l_fire(void)
 {
     print1("You boldly stride through the curtain of fire...");
-    if (gamestatusp(MOUNTED)) {
+    if (State.isMounted()) {
         print2("Your horse is fried and so are you...");
-        resetgamestatus(MOUNTED);
+        State.setMounted(false);
     }
     p_damage(random_range(100),FLAME,"self-immolation");
 }
@@ -298,10 +298,10 @@ void l_magic_pool(void)
 {
     int possibilities=random_range(100);
     print1("This pool seems to be enchanted....");
-    if (gamestatusp(MOUNTED)) {
+    if (State.isMounted()) {
         if (random_range(2)) {
             print2("Your horse is polymorphed into a fig newton.");
-            resetgamestatus(MOUNTED);
+            State.setMounted(false);
         }
         else print2("Whatever it was, your horse enjoyed it....");
     }
@@ -466,7 +466,7 @@ void l_raise_portcullis(void)
 
 void l_arena_exit(void)
 {
-    resetgamestatus(ARENA_MODE);
+    State.setInArena( false );
 #if !defined(WIN32)
     free_level(Level);
 #endif
@@ -736,7 +736,7 @@ void l_void_station(void)
                 print2("Your disrupted essence merges with the megaflow.");
                 p_death("the Power of the Void");
             }
-            else if (! gamestatusp(PREPARED_VOID)) {
+            else if (!State.hasPreparedVoid()) {
                 print1("The hungry void swallows you whole!");
                 print2("Your being dissipates with a pathetic little sigh....");
                 p_death("the Emptyness of the Void");
@@ -754,7 +754,7 @@ void l_void_station(void)
                 clearmsg();
                 print1("You see Death raise his scythe to you in a salute.");
                 Player.rank[ADEPT] = 1;
-                setgamestatus(COMPLETED_CHALLENGE);
+                State.setCompletedChallenge( true );
                 FixedPoints = calc_points();
                 /* set so change_environment puts player in correct temple! */
                 Player.x = 49;
@@ -972,12 +972,12 @@ void l_enter_court(void)
 {
     print1("You have found a magical portal! Enter it? [yn] ");
     if (ynq1()=='y') {
-        if (! gamestatusp(COMPLETED_CASTLE)) {
-            if (! gamestatusp(ATTACKED_ORACLE)) {
+        if (State.hasCompletedCastle() == false) {
+            if (State.hasAttackedOracle() == false) {
                 print2("A dulcet voice says: 'Jolly good show!'");
                 morewait();
             }
-            setgamestatus(COMPLETED_CASTLE);
+            State.setCompletedCastle( true );
         }
         change_environment(E_COURT);
     }

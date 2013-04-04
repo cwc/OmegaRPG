@@ -14,16 +14,16 @@ void p_process(void)
 
     if (Player.status[BERSERK])
         if (goberserk()) {
-            setgamestatus(SKIP_PLAYER);
+            State.setSkipPlayer( true );
             drawvision(Player.x,Player.y);
         }
-    if (! gamestatusp(SKIP_PLAYER)) {
+    if (!State.hasSkipPlayer()) {
         if (searchval > 0) {
             searchval--;
-            if (searchval == 0) resetgamestatus(FAST_MOVE);
+            if (searchval == 0) State.setFastMove(false);
         }
         drawvision(Player.x,Player.y);
-        if (! gamestatusp(FAST_MOVE)) {
+        if (State.hasFastMove() == false) {
             searchval = 0;
             Cmd = mgetc();
             clear_if_necessary();
@@ -32,7 +32,7 @@ void p_process(void)
         switch (Cmd) {
         case ' ':
         case 13:
-            setgamestatus(SKIP_MONSTERS);
+            State.setSkipMonsters();
             break; /*no op on space or return*/
         case 6:
             abortshadowform();
@@ -49,32 +49,32 @@ void p_process(void)
             xredraw();
             break; /* ^i */
         case 11:
-            if (gamestatusp(CHEATED)) frobgamestatus();
+            if (State.isCheater()) frobgamestatus();
             break;
         case 12:
             xredraw();
-            setgamestatus(SKIP_MONSTERS);
+            State.setSkipMonsters();
             break; /* ^l */
 #if !defined(WIN32)
         case 16:
             bufferprint();
-            setgamestatus(SKIP_MONSTERS);
+            State.setSkipMonsters();
             break; /* ^p */
 #else
         case 15:
             bufferprint();
-            setgamestatus(SKIP_MONSTERS);
+            State.setSkipMonsters();
             break; /* ^o */
 #endif
         case 18:
             redraw();
-            setgamestatus(SKIP_MONSTERS);
+            State.setSkipMonsters();
             break; /* ^r */
         case 23:
-            if (gamestatusp(CHEATED)) drawscreen();
+            if (State.isCheater()) drawscreen();
             break; /* ^w */
         case 24: /* ^x */
-            if (gamestatusp(CHEATED) ||
+            if (State.isCheater() ||
                     Player.rank[ADEPT])
                 wish(1);
             Command_Duration = 5;
@@ -227,15 +227,15 @@ void p_process(void)
             Command_Duration = 5;
             break;
         case '#':
-            if (gamestatusp(CHEATED)) editstats();
+            if (State.isCheater()) editstats();
             break; /* RAC - char editor */
         case '/':
             charid();
-            setgamestatus(SKIP_MONSTERS);
+            State.setSkipMonsters();
             break;
         case '?':
             help();
-            setgamestatus(SKIP_MONSTERS);
+            State.setSkipMonsters();
             break;
         case '4':
         case 'h':
@@ -278,7 +278,7 @@ void p_process(void)
             Command_Duration = Player.speed*5/5;
             break;
         case '5':
-            setgamestatus(SKIP_MONSTERS); /* don't do anything; a dummy turn */
+            State.setSkipMonsters(); /* don't do anything; a dummy turn */
             Cmd = mgetc();
             while ((Cmd != ESCAPE) &&
                     ((Cmd < '1') || (Cmd > '9') || (Cmd=='5'))) {
@@ -286,61 +286,61 @@ void p_process(void)
                 Cmd = mgetc();
             }
             if (Cmd != ESCAPE) 
-                setgamestatus(FAST_MOVE);
+                State.setFastMove();
             else
                 clearmsg3();
             break;
         case 'H':
-            setgamestatus(FAST_MOVE);
+            State.setFastMove();
             Cmd = 'h';
             moveplayer(-1,0);
             Command_Duration = Player.speed*4/5;
             break;
         case 'J':
-            setgamestatus(FAST_MOVE);
+            State.setFastMove();
             Cmd = 'j';
             moveplayer(0,1);
             Command_Duration = Player.speed*4/5;
             break;
         case 'K':
-            setgamestatus(FAST_MOVE);
+            State.setFastMove();
             Cmd = 'k';
             moveplayer(0,-1);
             Command_Duration = Player.speed*4/5;
             break;
         case 'L':
-            setgamestatus(FAST_MOVE);
+            State.setFastMove();
             Cmd = 'l';
             moveplayer(1,0);
             Command_Duration = Player.speed*4/5;
             break;
         case 'B':
-            setgamestatus(FAST_MOVE);
+            State.setFastMove();
             Cmd = 'b';
             moveplayer(-1,1);
             Command_Duration = Player.speed*4/5;
             break;
         case 'N':
-            setgamestatus(FAST_MOVE);
+            State.setFastMove();
             Cmd = 'n';
             moveplayer(1,1);
             Command_Duration = Player.speed*4/5;
             break;
         case 'Y':
-            setgamestatus(FAST_MOVE);
+            State.setFastMove();
             Cmd = 'y';
             moveplayer(-1,-1);
             Command_Duration = Player.speed*4/5;
             break;
         case 'U':
-            setgamestatus(FAST_MOVE);
+            State.setFastMove();
             Cmd = 'u';
             moveplayer(1,-1);
             Command_Duration = Player.speed*4/5;
             break;
         default:
             commanderror();
-            setgamestatus(SKIP_MONSTERS);
+            State.setSkipMonsters();
             break;
         }
     }
@@ -386,10 +386,10 @@ void p_country_process(void)
             no_op = true;
             break; /* ^r */
         case 23:
-            if (gamestatusp(CHEATED)) drawscreen();
+            if (State.isCheater()) drawscreen();
             break; /* ^w */
         case 24:
-            if (gamestatusp(CHEATED) ||
+            if (State.isCheater() ||
                     Player.rank[ADEPT]) wish(1);
             break; /* ^x */
         case 'd':
@@ -443,7 +443,7 @@ void p_country_process(void)
             enter_site(Country[Player.x][Player.y].base_terrain_type);
             break;
         case '#':
-            if (gamestatusp(CHEATED)) editstats();
+            if (State.isCheater()) editstats();
             break; /* RAC - char editor */
         case '/':
             charid();

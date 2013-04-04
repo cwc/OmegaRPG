@@ -68,8 +68,14 @@
     <ClInclude Include="..\..\..\Omega\src\Object.h">
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Omega\src\Food.h">
+    <ClInclude Include="..\..\..\Omega\src\GameState.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Omega\src\Scroll.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Omega\src\Food.h">
+      <Filter>Header Files\Objects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -252,10 +258,16 @@
     <ClCompile Include="..\..\..\Omega\src\GarageDoorOpener.cpp">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Omega\src\Food.cpp">
+    <ClCompile Include="..\..\..\Omega\src\Object.cpp">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Omega\src\GameState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Omega\src\Object.cpp">
+    <ClCompile Include="..\..\..\Omega\src\Scroll.cpp">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Omega\src\Food.cpp">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
   </ItemGroup>

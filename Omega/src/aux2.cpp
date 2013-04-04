@@ -495,7 +495,7 @@ void gain_level(void)
     int gained=false;
     int hp_gain; /* FIXED! 12/30/98 */
 
-    if (gamestatusp(SUPPRESS_PRINTING))
+    if (State.hasSuppressPrinting())
         return;
     while (expval(Player.level+1) <= Player.xp) {
         if (!gained)
@@ -630,7 +630,7 @@ void p_drown(void)
                 bash_item();
                 break;
             case 'c':
-                setgamestatus(SUPPRESS_PRINTING);
+                State.setSuppressPrinting( true );
                 for(i=0; i<MAXPACK; i++) {
                     if (Player.pack[i] != NULL) {
                         if (Level->site[Player.x][Player.y].p_locf != L_WATER)
@@ -645,7 +645,7 @@ void p_drown(void)
                 if (Level->site[Player.x][Player.y].p_locf == L_WATER)
                     mprint("It sinks without a trace.");
                 Player.packptr = 0;
-                resetgamestatus(SUPPRESS_PRINTING);
+                State.setSuppressPrinting( false );
                 calc_melee();
                 break;
             }
@@ -790,7 +790,7 @@ void toggle_item_use(int on)
 {
     static int used[MAXITEMS];
     int i;
-    setgamestatus(SUPPRESS_PRINTING);
+    State.setSuppressPrinting( true );
     if (on)
         for(i=0; i<MAXITEMS; i++) {
             used[i] = false;
@@ -812,7 +812,7 @@ void toggle_item_use(int on)
         dataprint();
         timeprint();
     }
-    resetgamestatus(SUPPRESS_PRINTING);
+    State.setSuppressPrinting( false );
 }
 
 
@@ -868,13 +868,13 @@ void change_environment(char new_environment)
     Player.sy = -1; /* reset sanctuary if there was one */
 
     /* missing message if gets lost on site... */
-    if (gamestatusp(LOST))
+    if (State.isLost())
     {
-        resetgamestatus(LOST);	/* in case the player gets lost _on_ a site */
+        State.setLost( false );	/* in case the player gets lost _on_ a site */
         mprint("You know where you are now."); /* but didn't inform player... DAG */
     }
 
-    resetgamestatus(FAST_MOVE);
+    State.setFastMove(false);
 
     Last_Environment = Current_Environment;
     if (Last_Environment == E_COUNTRYSIDE)
@@ -912,7 +912,7 @@ void change_environment(char new_environment)
     {
     case E_ARENA:
         setPlayerXY(5, 7);
-        setgamestatus(ARENA_MODE);
+        State.setInArena( true );
         load_arena();
         ScreenOffset = 0;
         ScreenXOffset = 0;
@@ -1008,7 +1008,7 @@ void change_environment(char new_environment)
 
     case E_DLAIR:
         setPlayerXY(0, 8);
-        load_dlair(gamestatusp(KILLED_DRAGONLORD), true);
+        load_dlair(State.hasKilledDragonlord(), true);
         ScreenOffset = 0;
         ScreenXOffset = 0;
         show_screen();
@@ -1016,7 +1016,7 @@ void change_environment(char new_environment)
 
     case E_STARPEAK:
         setPlayerXY(2, 9);
-        load_speak(gamestatusp(KILLED_LAWBRINGER), true);
+        load_speak(State.hasKilledLawbringer(), true);
         ScreenOffset = 0;
         ScreenXOffset = 0;
         show_screen();
@@ -1024,7 +1024,7 @@ void change_environment(char new_environment)
 
     case E_MAGIC_ISLE:
         setPlayerXY(62, 14);
-        load_misle(gamestatusp(KILLED_EATER), true);
+        load_misle(State.hasKilledEater(), true);
         ScreenOffset = 0;
         ScreenXOffset = 0;
         show_screen();
@@ -1105,11 +1105,11 @@ void change_environment(char new_environment)
     case E_CAVES:
         print1("You enter a dark cleft in a hillside;");
         print2("You note signs of recent passage in the dirt nearby.");
-        if (gamestatusp(MOUNTED)) {
+        if (State.isMounted()) {
             morewait();
             print1("Seeing as you might not be coming back, you feel compelled");
             print2("to let your horse go, rather than keep him hobbled outside.");
-            resetgamestatus(MOUNTED);
+            State.setMounted(false);
             calc_melee();
         }
         MaxDungeonLevels = CAVELEVELS;
@@ -1123,11 +1123,11 @@ void change_environment(char new_environment)
         break;
     case E_VOLCANO:
         print1("You pass down through the glowing crater.");
-        if (gamestatusp(MOUNTED)) {
+        if (State.isMounted()) {
             morewait();
             print1("Seeing as you might not be coming back, you feel compelled");
             print2("to let your horse go, rather than keep him hobbled outside.");
-            resetgamestatus(MOUNTED);
+            State.setMounted(false);
             calc_melee();
         }
         MaxDungeonLevels = VOLCANOLEVELS;
@@ -1141,9 +1141,9 @@ void change_environment(char new_environment)
         break;
     case E_ASTRAL:
         print1("You are in a weird flickery maze.");
-        if (gamestatusp(MOUNTED)) {
+        if (State.isMounted()) {
             print2("Your horse doesn't seem to have made it....");
-            resetgamestatus(MOUNTED);
+            State.setMounted(false);
             calc_melee();
         }
         MaxDungeonLevels = ASTRALLEVELS;
@@ -1157,11 +1157,11 @@ void change_environment(char new_environment)
         break;
     case E_CASTLE:
         print1("You cross the drawbridge. Strange forms move beneath the water.");
-        if (gamestatusp(MOUNTED)) {
+        if (State.isMounted()) {
             morewait();
             print1("Seeing as you might not be coming back, you feel compelled");
             print2("to let your horse go, rather than keep him hobbled outside.");
-            resetgamestatus(MOUNTED);
+            State.setMounted(false);
         }
         MaxDungeonLevels = CASTLELEVELS;
         if (Current_Dungeon != E_CASTLE) {
@@ -1174,7 +1174,7 @@ void change_environment(char new_environment)
         break;
     case E_SEWERS:
         print1("You pry open a manhole and descend into the sewers below.");
-        if (gamestatusp(MOUNTED)) {
+        if (State.isMounted()) {
             print2("You horse waits patiently outside the sewer entrance....");
             dismount_steed();
         }
@@ -1228,11 +1228,11 @@ void change_environment(char new_environment)
         break;
     case E_PALACE:
         print1("You enter the dungeons of the ruined palace.");
-        if (gamestatusp(MOUNTED)) {
+        if (State.isMounted()) {
             morewait();
             print1("Seeing as you might not be coming back, you feel compelled");
             print2("to let your horse go, rather than keep him hobbled outside.");
-            resetgamestatus(MOUNTED);
+            State.setMounted(false);
         }
         MaxDungeonLevels = PALACELEVELS;
         if (Current_Dungeon != E_PALACE) {

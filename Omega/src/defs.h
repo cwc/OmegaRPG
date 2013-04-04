@@ -42,6 +42,7 @@ extern char* getlogin();
 #include "curses.h"
 #include "colors.h"
 
+#include "GameState.h"
 #include "Object.h"
 #include "Monster.h"
 #include "Village.h"
@@ -196,36 +197,6 @@ typedef int int32;
 #define CAVELEVELS 10
 #define VOLCANOLEVELS 20
 #define PALACELEVELS 14
-
-/* Overall Game Progress Vector Bits */
-/* Long had BETTER have at least 32 bits.... */
-#define SPOKE_TO_DRUID		0x1
-#define COMPLETED_CAVES		0x2
-#define COMPLETED_SEWERS	0x4
-#define COMPLETED_CASTLE	0x8
-#define COMPLETED_ASTRAL	0x10
-#define COMPLETED_VOLCANO	0x20
-#define KILLED_DRAGONLORD	0x40
-#define KILLED_EATER		0x80
-#define KILLED_LAWBRINGER	0x100
-#define COMPLETED_CHALLENGE	0x200
-#define SOLD_CONDO		0x400
-#define FAST_MOVE		0x800
-#define SKIP_PLAYER		0x1000
-#define SKIP_MONSTERS		0x2000
-#define MOUNTED			0x4000
-#define SUPPRESS_PRINTING	0x8000
-#define LOST			0x10000
-#define ARENA_MODE		0x20000
-#define CHEATED			0x40000
-#define BANK_BROKEN		0x80000
-#define CLUB_MEMBER		0x100000
-#define PREPARED_VOID		0x200000
-#define DESTROYED_ORDER		0x400000
-#define GAVE_STARGEM		0x800000
-#define ATTACKED_ORACLE		0x1000000
-#define UNDEAD_GUARDS		0x2000000
-/* 26 so far... */
 
 /* non-existant environments for the random number seeding routine */
 /* added 12/30/98 (DG) */
@@ -1567,21 +1538,6 @@ struct player {
     int packptr;
 };
 
-/*
-struct object {
-    int id,weight,plus,charge,dmg,hit,aux,number,fragility;
-    long basevalue;
-    unsigned char known,used;
-    int blessing;
-    unsigned char type,uniqueness;
-    int usef;
-    unsigned char level;
-    Symbol objchar;
-    char *objstr,*truename,*cursestr;
-};
-*/
-
-
 struct objectlist {
     Object *thing;
     struct objectlist *next;
@@ -1674,10 +1630,6 @@ typedef oltype *pol;
 #define m_status_set(m,s) ((m)->status |= (s))
 #define m_status_reset(m,s) ((m)->status &= ~(s))
 #define m_immunityp(m,s) (((m)->immunity&pow2(s))?1:0)
-
-#define gamestatusp(flag) ((GameStatus&(flag))?1:0)
-#define setgamestatus(flag) (GameStatus |= (flag))
-#define resetgamestatus(flag) (GameStatus &= ~(flag))
 
 #define optionp(o) ((Player.options&(o))?1:0)
 #define optionset(o) (Player.options |= (o))

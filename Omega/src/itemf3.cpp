@@ -93,7 +93,7 @@ void i_stargem(Object* o)
         }
         print1("You suddenly find yourself whisked away by some unknown force!");
         morewait();
-        setgamestatus(COMPLETED_ASTRAL);
+        State.setCompletedAstral();
         change_environment(E_COUNTRYSIDE);
         Player.x = 61;
         Player.y = 3;
@@ -163,9 +163,9 @@ void i_juggernaut(Object* o)
                         nprint1("Splat! ");
                     else
                         not_seen++;
-                    setgamestatus(SUPPRESS_PRINTING);
+                    State.setSuppressPrinting( true );
                     Level->site[x][y].creature->m_death();
-                    resetgamestatus(SUPPRESS_PRINTING);
+                    State.setSuppressPrinting( false );
                 }
                 plotspot(x, y, false);
                 omshowcursor(x, y);

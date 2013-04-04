@@ -16,6 +16,7 @@
     <ClInclude Include="..\..\..\Omega\src\defs.h" />
     <ClInclude Include="..\..\..\Omega\src\extern.h" />
     <ClInclude Include="..\..\..\Omega\src\Food.h" />
+    <ClInclude Include="..\..\..\Omega\src\GameState.h" />
     <ClInclude Include="..\..\..\Omega\src\GarageDoorOpener.h" />
     <ClInclude Include="..\..\..\Omega\src\glob.h" />
     <ClInclude Include="..\..\..\Omega\src\Grot.h" />
@@ -24,6 +25,7 @@
     <ClInclude Include="..\..\..\Omega\src\Object.h" />
     <ClInclude Include="..\..\..\Omega\src\objects.h" />
     <ClInclude Include="..\..\..\Omega\src\OmegaRPG.h" />
+    <ClInclude Include="..\..\..\Omega\src\Scroll.h" />
     <ClInclude Include="..\..\..\Omega\src\Thing.h" />
     <ClInclude Include="..\..\..\Omega\src\Village.h" />
   </ItemGroup>
@@ -50,6 +52,7 @@
     <ClCompile Include="..\..\..\Omega\src\etc.cpp" />
     <ClCompile Include="..\..\..\Omega\src\file.cpp" />
     <ClCompile Include="..\..\..\Omega\src\Food.cpp" />
+    <ClCompile Include="..\..\..\Omega\src\GameState.cpp" />
     <ClCompile Include="..\..\..\Omega\src\GarageDoorOpener.cpp" />
     <ClCompile Include="..\..\..\Omega\src\gen1.cpp" />
     <ClCompile Include="..\..\..\Omega\src\gen2.cpp" />
@@ -82,6 +85,7 @@
     <ClCompile Include="..\..\..\Omega\src\priest.cpp" />
     <ClCompile Include="..\..\..\Omega\src\save.cpp" />
     <ClCompile Include="..\..\..\Omega\src\scr.cpp" />
+    <ClCompile Include="..\..\..\Omega\src\Scroll.cpp" />
     <ClCompile Include="..\..\..\Omega\src\site1.cpp" />
     <ClCompile Include="..\..\..\Omega\src\site2.cpp" />
     <ClCompile Include="..\..\..\Omega\src\spell.cpp" />
@@ -121,6 +125,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <TargetName>omega</TargetName>
+    <OutDir>$(SolutionDir)\Debug\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir>

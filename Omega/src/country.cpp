@@ -125,7 +125,7 @@ void load_country(void)
 
 
 /* loads the dragon's lair into Level*/
-void load_dlair (int empty, int populate)
+void load_dlair (bool empty, int populate)
 {
     int i,j;
     char site;
@@ -270,7 +270,7 @@ void load_dlair (int empty, int populate)
 
 
 /* loads the star peak into Level*/
-void load_speak(int empty, int populate)
+void load_speak(bool empty, int populate)
 {
     int i,j,safe = Player.alignment > 0;
     char site;
@@ -386,7 +386,7 @@ void load_speak(int empty, int populate)
 }
 
 /* loads the magic isle into Level*/
-void load_misle(int empty, int populate)
+void load_misle(bool empty, int populate)
 {
     int i,j;
     char site;

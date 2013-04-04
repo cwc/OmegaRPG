@@ -215,15 +215,15 @@ void s_ritual(void)
 
     mprint("You begin your ritual....");
     mprint("You enter a deep trance. Time Passes...");
-    setgamestatus(SKIP_PLAYER);
+    State.setSkipPlayer( true );
     time_clock(false);
-    setgamestatus(SKIP_PLAYER);
+    State.setSkipPlayer( true );
     time_clock(false);
-    setgamestatus(SKIP_PLAYER);
+    State.setSkipPlayer( true );
     time_clock(false);
-    setgamestatus(SKIP_PLAYER);
+    State.setSkipPlayer( true );
     time_clock(false);
-    setgamestatus(SKIP_PLAYER);
+    State.setSkipPlayer( true );
     time_clock(false);
     if (RitualHour == hour())
         mprint("Your mental fatigue prevents from completing the ritual!");
@@ -232,15 +232,15 @@ void s_ritual(void)
     else {
         mprint("You charge the ritual with magical energy and focus your will.");
         mprint("Time Passes...");
-        setgamestatus(SKIP_PLAYER);
+        State.setSkipPlayer( true );
         time_clock(false);
-        setgamestatus(SKIP_PLAYER);
+        State.setSkipPlayer( true );
         time_clock(false);
-        setgamestatus(SKIP_PLAYER);
+        State.setSkipPlayer( true );
         time_clock(false);
-        setgamestatus(SKIP_PLAYER);
+        State.setSkipPlayer( true );
         time_clock(false);
-        setgamestatus(SKIP_PLAYER);
+        State.setSkipPlayer( true );
         time_clock(false);
         RitualHour = hour();
         /* set of random conditions for different ritual effects */

@@ -239,7 +239,7 @@ void Monster::m_sp_surprise()
                     break;
                 }
                 morewait();
-                setgamestatus(SKIP_PLAYER);
+                State.setSkipPlayer( true );
                 m_status_reset(this,M_INVISIBLE);
             }
             else {
@@ -309,7 +309,7 @@ void Monster::m_sp_dragonlord()
             if (! Player.status[IMMOBILE]) {
                 mprint("A gust of wind from the Dragonlord's wings knocks you down!");
                 p_damage(25,NORMAL_DAMAGE,"a gust of wind");
-                setgamestatus(SKIP_PLAYER);
+                State.setSkipPlayer( true );
                 Player.status[IMMOBILE]+=2;
             }
             else if (! Constriction) {

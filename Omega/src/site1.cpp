@@ -80,7 +80,7 @@ void l_club(void)
     char response;
 
     print1("Rampart Explorers' Club.");
-    if (! gamestatusp(CLUB_MEMBER)) {
+    if (!State.isExplorerClubMember()) {
         if (Player.level < 2) print3("Only reknowned adventurers need apply.");
         else {
             print2("Dues are 100Au. Pay it? [yn] ");
@@ -96,7 +96,7 @@ void l_club(void)
                     print2("you have explored, and vice versa.");
                     Spells[S_RETURN].known = true;
                     Player.cash -= 100;
-                    setgamestatus(CLUB_MEMBER);
+                    State.setExplorerClubMember();
                     dataprint();
                 }
             }

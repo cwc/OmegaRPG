@@ -97,7 +97,7 @@ void l_altar(void)
                         print1("A darkling glow envelopes your offering!");
                         print2("The glow slowly fades....");
                         morewait();
-                        setgamestatus(SUPPRESS_PRINTING);
+                        State.setSuppressPrinting( true );
                         if (Player.possessions[i]->used) {
                             Player.possessions[i]->used = false;
                             item_use(Player.possessions[i]);
@@ -108,7 +108,7 @@ void l_altar(void)
                         }
                         else Player.possessions[i]->blessing =
                                 -1 - abs(Player.possessions[i]->blessing);
-                        resetgamestatus(SUPPRESS_PRINTING);
+                        State.setSuppressPrinting( false );
                     }
                 }
                 else if (response == 'p') {

@@ -160,7 +160,7 @@ int player_on_sanctuary(void)
 /* x y is the proposed place to move to */
 int p_moveable(int x, int y)
 {
-    setgamestatus(SKIP_MONSTERS);
+    State.setSkipMonsters();
     if (! inbounds(x,y)) return (false);
     else if (Player.status[SHADOWFORM]) {
         switch(Level->site[x][y].p_locf) {
@@ -169,18 +169,18 @@ int p_moveable(int x, int y)
         case L_VOID:
             return cinema_confirm("That looks dangerous.") == 'y';
         default:
-            resetgamestatus(SKIP_MONSTERS);
+            State.setSkipMonsters(false);
             return(true);
         }
     }
     else if (loc_statusp(x,y,SECRET)) {
-        if (!gamestatusp(FAST_MOVE)) print3("Ouch!");
+        if (State.hasFastMove() == false) print3("Ouch!");
         return(false);
     }
     else if (Level->site[x][y].creature != NULL) {
-        if (! gamestatusp(FAST_MOVE)) {
+        if (State.hasFastMove() == false) {
             Level->site[x][y].creature->fight_monster();
-            resetgamestatus(SKIP_MONSTERS);
+            State.setSkipMonsters(false);
             return(false);
         }
         else return(false);
@@ -189,7 +189,7 @@ int p_moveable(int x, int y)
              (Level->site[x][y].locchar == STATUE) ||
              (Level->site[x][y].locchar == PORTCULLIS) ||
              (Level->site[x][y].locchar == CLOSED_DOOR) ||
-             (gamestatusp(FAST_MOVE) &&
+             (State.hasFastMove() &&
               ((Level->site[x][y].locchar == HEDGE) ||
                (Level->site[x][y].locchar == LAVA) ||
                (Level->site[x][y].locchar == ABYSS) ||
@@ -199,7 +199,7 @@ int p_moveable(int x, int y)
                (Level->site[x][y].locchar == WATER) ||
                (Level->site[x][y].locchar == LIFT) ||
                (Level->site[x][y].locchar == TRAP)))) {
-        if (! gamestatusp(FAST_MOVE)) print3("Ouch!");
+        if (State.hasFastMove() == false) print3("Ouch!");
         return(false);
     }
     else if (optionp(CONFIRM)) {
@@ -214,26 +214,26 @@ int p_moveable(int x, int y)
                 (Level->site[x][y].locchar == LIFT) ||
                 (Level->site[x][y].locchar == TRAP)) {
             /* horses WILL go into water... */
-            if (gamestatusp(MOUNTED)) {
+            if (State.isMounted()) {
                 if (Level->site[x][y].locchar != WATER ||
                         Level->site[x][y].p_locf != L_WATER) {
                     print1("You can't convince your steed to continue.");
-                    setgamestatus(SKIP_MONSTERS);
+                    State.setSkipMonsters();
                     return(false);
                 }
                 else return(true);
             }
-            else if (cinema_confirm("Look where you're about to step!") == 'y') resetgamestatus(SKIP_MONSTERS);
-            else setgamestatus(SKIP_MONSTERS);
-            return(!gamestatusp(SKIP_MONSTERS));
+            else if (cinema_confirm("Look where you're about to step!") == 'y') State.setSkipMonsters(false);
+            else State.setSkipMonsters();
+            return(State.hasSkipMonsters() == false);
         }
         else {
-            resetgamestatus(SKIP_MONSTERS);
+            State.setSkipMonsters(false);
             return(true);
         }
     }
     else {
-        resetgamestatus(SKIP_MONSTERS);
+        State.setSkipMonsters(false);
         return(true);
     }
 }
@@ -283,7 +283,7 @@ void searchat(int x, int y)
             lset(x, y, CHANGED);
             mprint("You find a trap!");
             drawvision(Player.x,Player.y);
-            resetgamestatus(FAST_MOVE);
+            State.setFastMove(false);
         }
     }
 }
@@ -328,7 +328,7 @@ void calc_melee(void)
 
     Player.speed = max(1,min(25,Player.speed));
 
-    if (gamestatusp(MOUNTED)) {
+    if (State.isMounted()) {
         Player.speed = 3;
         Player.hit += 10;
         Player.dmg += 10;
@@ -404,7 +404,7 @@ int damage_item(Object* o)
     if (o->id == OB_STARGEM) {
         print1("The Star Gem shatters into a million glistening shards....");
         if (Current_Environment == E_STARPEAK) {
-            if (! gamestatusp(KILLED_LAWBRINGER))
+            if (!State.hasKilledLawbringer())
                 print2("You hear an agonizing scream of anguish and despair.");
             morewait();
             print1("A raging torrent of energy escapes in an explosion of magic!");
@@ -484,9 +484,9 @@ int damage_item(Object* o)
 /* do dmg points of damage of type dtype, from source fromstring */
 void p_damage(int dmg, int dtype, char *fromstring)
 {
-    if (gamestatusp(FAST_MOVE)) {
+    if (State.hasFastMove()) {
         drawvision(Player.x,Player.y);
-        resetgamestatus(FAST_MOVE);
+        State.setFastMove(false);
     }
     if (! p_immune(dtype)) {
         if (dtype == NORMAL_DAMAGE) Player.hp -= max(1,(dmg-Player.absorption));
@@ -629,7 +629,7 @@ void describe_player(void)
         nprint1(levelname(Player.level));
     nprint1(" named ");
     nprint1(Player.name);
-    if (gamestatusp(MOUNTED))
+    if (State.isMounted())
         nprint1(" (riding a horse.)");
 }
 
@@ -719,15 +719,15 @@ void foodcheck(void)
         print3("You are ravenously hungry.");
     else if (Player.food == 3) {
         print3("You feel weak.");
-        if (gamestatusp(FAST_MOVE)) {
+        if (State.hasFastMove()) {
             drawvision(Player.x,Player.y);
-            resetgamestatus(FAST_MOVE);
+            State.setFastMove(false);
         }
     }
     else if (Player.food < 0) {
-        if (gamestatusp(FAST_MOVE)) {
+        if (State.hasFastMove()) {
             drawvision(Player.x,Player.y);
-            resetgamestatus(FAST_MOVE);
+            State.setFastMove(false);
         }
         print3("You're starving!");
         p_damage(-5*Player.food,UNSTOPPABLE,"starvation");

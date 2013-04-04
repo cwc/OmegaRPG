@@ -363,7 +363,7 @@ void erase_level(void)
 /* direct print to first msg line */
 void print1(const char *s)
 {
-    if (! gamestatusp(SUPPRESS_PRINTING)) {
+    if (! State.hasSuppressPrinting()) {
         buffercycle(s);
         wclear(Msg1w);
         wprintw(Msg1w,s);
@@ -374,7 +374,7 @@ void print1(const char *s)
 /* for run on-messages -- print1 clears first.... */
 void nprint1(char *s)
 {
-    if (! gamestatusp(SUPPRESS_PRINTING)) {
+    if (! State.hasSuppressPrinting()) {
         if (bufferappend(s)) {
             wprintw(Msg1w,s);
             wrefresh(Msg1w);
@@ -385,7 +385,7 @@ void nprint1(char *s)
 /* direct print to second msg line */
 void print2(char *s)
 {
-    if (! gamestatusp(SUPPRESS_PRINTING)) {
+    if (! State.hasSuppressPrinting()) {
         buffercycle(s);
         wclear(Msg2w);
         wprintw(Msg2w,s);
@@ -396,7 +396,7 @@ void print2(char *s)
 /* for run on-messages -- print2 clears first.... */
 void nprint2(char *s)
 {
-    if (! gamestatusp(SUPPRESS_PRINTING)) {
+    if (! State.hasSuppressPrinting()) {
         if (bufferappend(s)) {
             wprintw(Msg2w,s);
             wrefresh(Msg2w);
@@ -412,7 +412,7 @@ void nprint2(char *s)
  * things can use. */
 void print3 (char *s)
 {
-    if (!gamestatusp(SUPPRESS_PRINTING))
+    if (!State.hasSuppressPrinting())
     {
         buffercycle(s);
         erasemsg3();
@@ -425,7 +425,7 @@ void print3 (char *s)
 /* for run on-messages -- print3 clears first.... */
 void nprint3(char *s)
 {
-    if (!gamestatusp(SUPPRESS_PRINTING))
+    if (!State.hasSuppressPrinting())
     {
         if (bufferappend(s))
         {
@@ -443,7 +443,7 @@ it should morewait and clear window */
 void mprint(char *s)
 {
     int x,y;
-    if (! gamestatusp(SUPPRESS_PRINTING)) {
+    if (! State.hasSuppressPrinting()) {
         getyx(Msgw,y,x);
         if (x+strlen(s) >= ScreenWidth) {
             buffercycle(s);
@@ -880,7 +880,7 @@ void drawvision(int x, int y)
             drawmonsters(false); /* erase all monsters */
             drawmonsters(true);  /* draw those now visible */
         }
-        if ((! gamestatusp(FAST_MOVE)) || (! optionp(JUMPMOVE)))
+        if ((State.hasFastMove() == false) || (! optionp(JUMPMOVE)))
             omshowcursor(Player.x,Player.y);
         oldx = x;
         oldy = y;
@@ -1214,7 +1214,7 @@ void morewait(void)
 {
     int display=true;
     int c;
-    if (gamestatusp(SUPPRESS_PRINTING))
+    if (State.hasSuppressPrinting())
         return;
     do {
         wclear(Morew);
@@ -1718,7 +1718,7 @@ void showflags(void)
         wprintw(Flagw,"Diseased\n");
     else wprintw(Flagw,"Healthy\n");
 
-    if (gamestatusp(MOUNTED)) wprintw(Flagw,"Mounted\n");
+    if (State.isMounted()) wprintw(Flagw,"Mounted\n");
     else if (Player.status[LEVITATING]) wprintw(Flagw,"Levitating\n");
     else wprintw(Flagw,"Afoot\n");
 

@@ -12,8 +12,8 @@ void Monster::m_talk_druid()
 
     if (! m_statusp(this,HOSTILE)) {
         print1("The Archdruid raises a hand in greeting.");
-        if (! gamestatusp(SPOKE_TO_DRUID)) {
-            setgamestatus(SPOKE_TO_DRUID);
+        if (State.hasSpokeToDruid() == false) {
+            State.setSpokeToDruid( true );
             morewait();
             print1("The Archdruid congratulates you on reaching his sanctum.");
             print2("You feel competent.");
@@ -645,7 +645,7 @@ void Monster::m_talk_horse()
         mprint("The horse neighs angrily at you.");
     else if (m_statusp(this,HUNGRY))
         mprint("The horse noses curiously at your pack.");
-    else if (gamestatusp(MOUNTED))
+    else if (State.isMounted())
         mprint("The horse and your steed don't seem to get along.");
     else if (Current_Environment == Current_Dungeon)
         mprint("The horse shies; maybe he doesn't like the dungeon air....");
@@ -653,7 +653,7 @@ void Monster::m_talk_horse()
         mprint("The horse lets you pat his nose. Want to ride him? [yn] ");
         if (ynq()=='y') {
             this->m_remove();
-            setgamestatus(MOUNTED);
+            State.setMounted( true );
             calc_melee();
             mprint("You are now equitating!");
         }

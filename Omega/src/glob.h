@@ -46,8 +46,8 @@ extern struct player Player;
 /*extern int WIDTH;*/
 /* level x dimension */
 
-extern long GameStatus;
-/* Game Status bit vector */
+/* GameState object */
+extern GameState State;
 
 extern int ScreenLength;
 extern int ScreenWidth;
