@@ -1023,7 +1023,7 @@ void l_bank (void)
     mvwaddstr(Bankw, 2, 2, "         Welcome to The Bank of Rampart        ");
 
     /* bank working? or not? */
-    if (State.isBankBroken() == true)
+    if (State.getBankBroken() == true)
     {
         mvwaddstr(Bankw, 9, 2, "            Autoteller Out of Order            ");
         wrefresh(Bankw);
@@ -1107,7 +1107,7 @@ void l_bank (void)
         }
     }
 
-    if (State.isBankBroken() == false) clearmsg();
+    if (State.getBankBroken() == false) clearmsg();
 
     xredraw();
 }

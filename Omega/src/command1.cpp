@@ -17,13 +17,13 @@ void p_process(void)
             State.setSkipPlayer( true );
             drawvision(Player.x,Player.y);
         }
-    if (!State.hasSkipPlayer()) {
+    if (!State.getSkipPlayer()) {
         if (searchval > 0) {
             searchval--;
             if (searchval == 0) State.setFastMove(false);
         }
         drawvision(Player.x,Player.y);
-        if (State.hasFastMove() == false) {
+        if (State.getFastMove() == false) {
             searchval = 0;
             Cmd = mgetc();
             clear_if_necessary();
@@ -49,7 +49,7 @@ void p_process(void)
             xredraw();
             break; /* ^i */
         case 11:
-            if (State.isCheater()) frobgamestatus();
+            if (State.getCheater()) frobgamestatus();
             break;
         case 12:
             xredraw();
@@ -71,10 +71,10 @@ void p_process(void)
             State.setSkipMonsters();
             break; /* ^r */
         case 23:
-            if (State.isCheater()) drawscreen();
+            if (State.getCheater()) drawscreen();
             break; /* ^w */
         case 24: /* ^x */
-            if (State.isCheater() ||
+            if (State.getCheater() ||
                     Player.rank[ADEPT])
                 wish(1);
             Command_Duration = 5;
@@ -227,7 +227,7 @@ void p_process(void)
             Command_Duration = 5;
             break;
         case '#':
-            if (State.isCheater()) editstats();
+            if (State.getCheater()) editstats();
             break; /* RAC - char editor */
         case '/':
             charid();
@@ -386,10 +386,10 @@ void p_country_process(void)
             no_op = true;
             break; /* ^r */
         case 23:
-            if (State.isCheater()) drawscreen();
+            if (State.getCheater()) drawscreen();
             break; /* ^w */
         case 24:
-            if (State.isCheater() ||
+            if (State.getCheater() ||
                     Player.rank[ADEPT]) wish(1);
             break; /* ^x */
         case 'd':
@@ -443,7 +443,7 @@ void p_country_process(void)
             enter_site(Country[Player.x][Player.y].base_terrain_type);
             break;
         case '#':
-            if (State.isCheater()) editstats();
+            if (State.getCheater()) editstats();
             break; /* RAC - char editor */
         case '/':
             charid();

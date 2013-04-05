@@ -1012,7 +1012,7 @@ void l_order(void)
     morewait();
     if ((Player.rank[ORDER]==PALADIN) &&
             (Player.level > Justiciarlevel) &&
-            State.hasGivenStargem() &&
+            State.getGivenStargem() &&
             Player.alignment > 300) {
         print1("You have succeeded in your quest!");
         morewait();
@@ -1085,7 +1085,7 @@ void l_order(void)
         }
     } else {
         print1("'Welcome back, Paladin.'");
-        if (!State.isMounted()) {
+        if (!State.getMounted()) {
             print2("You are given a new steed.");
             State.setMounted( true );
         }

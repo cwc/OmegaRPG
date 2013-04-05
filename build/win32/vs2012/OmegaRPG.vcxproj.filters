@@ -270,5 +270,8 @@
     <ClCompile Include="..\..\..\Omega\src\Food.cpp">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Omega\src\wiz.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

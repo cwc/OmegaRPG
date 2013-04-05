@@ -4,6 +4,7 @@
 
 #pragma once
 
+//#include <map>
 
 class GameState
 {
@@ -12,6 +13,8 @@ private:
     /* gamestate bit vector */
     long _state;
 
+public:
+    
     /* static definitions */
     static const long SPOKE_TO_DRUID		= 0x1;
     static const long COMPLETED_CAVES		= 0x2;
@@ -40,121 +43,125 @@ private:
     static const long ATTACKED_ORACLE		= 0x1000000;
     static const long UNDEAD_GUARDS		    = 0x2000000;
 
+    GameState( void );
+    GameState( long );
+    ~GameState( void );
+
+    /* toggling option */
+    bool toggleGameStatus( long );
+
     /* internal methods for setting gamestate */
     void setGameStatus( long );
     void setGameStatus( bool, long );
     bool getGameStatus( long );
     void resetGameStatus( long );
-    bool toggleGameStatus( long );
 
-public:
-    GameState( void );
-    GameState( long );
-    ~GameState( void );
-        
     /* has the player spoken to the druid in the north forest */
-    bool hasSpokeToDruid();
+    bool getSpokeToDruid();
     void setSpokeToDruid( bool b = true );
 
     /* has the player defeated the goblin king in the caves */
-    bool hasCompletedCaves();
+    bool getCompletedCaves();
     void setCompletedCaves( bool b = true );
 
     /* has the player defeated the great wyrm in the sewers under rampart */
-    bool hasCompletedSewers();
+    bool getCompletedSewers();
     void setCompletedSewers( bool b = true );
 
     /* has the player entered the arch mages court */
-    bool hasCompletedCastle();
+    bool getCompletedCastle();
     void setCompletedCastle( bool b = true );
 
     /* has the player acquired and used the star gem */
-    bool hasCompletedAstral();
+    bool getCompletedAstral();
     void setCompletedAstral( bool b = true );
 
     /* has the player defeated the demon emperor */
-    bool hasCompletedVolcano();
+    bool getCompletedVolcano();
     void setCompletedVolcano( bool b = true );
 
     /* has the player defeated the Dragon Lord */
-    bool hasKilledDragonlord();
+    bool getKilledDragonlord();
     void setKilledDragonlord( bool b = true );
 
     /* has the player defeated the Eater of Magic */
-    bool hasKilledEater();
+    bool getKilledEater();
     void setKilledEater( bool b = true );
 
     /* has the player defeated the lawbringer */
-    bool hasKilledLawbringer();
+    bool getKilledLawbringer();
     void setKilledLawbringer( bool b = true );
 
     /* has the player defeated the challenge of omega */
-    bool hasCompletedChallenge();
+    bool getCompletedChallenge();
     void setCompletedChallenge( bool b = true );
 
     /* has the player purchased the condo */
-    bool hasPurchasedCondo();
+    bool getPurchasedCondo();
     void setPurchasedCondo( bool b = true );
 
     /* is the game in fastmove mode */
-    bool hasFastMove();
+    bool getFastMove();
     void setFastMove( bool b = true );
 
     /* is the player losing a turn */
-    bool hasSkipPlayer();
+    bool getSkipPlayer();
     void setSkipPlayer( bool b = true );
 
      /* are NPC's losing a turn */
-    bool hasSkipMonsters();
+    bool getSkipMonsters();
     void setSkipMonsters( bool b = true );
 
     /* is the player mounted */
-    bool isMounted();
+    bool getMounted();
     void setMounted( bool b = true );
 
     /* used when for whatever reason we do not want to print status messages */
-    bool hasSuppressPrinting();
+    bool getSuppressPrinting();
     void setSuppressPrinting( bool b = true );
 
     /* is the player lost in the wilderness */
-    bool isLost();
+    bool getLost();
     void setLost( bool b = true );
 
     /* toggled when the player is in the rampart arena */
-    bool isInArena();
+    bool getInArena();
     void setInArena( bool b = true );
 
     /* if the player has become a wizard */
-    bool isCheater();
+    bool getCheater();
     void setCheater( bool b = true );
 
     /* if the player has broken the ATM */
-    bool isBankBroken();
+    bool getBankBroken();
     void setBankBroken( bool b = true );
 
     /* if the player is a member of the explorers club */
-    bool isExplorerClubMember();
+    bool getExplorerClubMember();
     void setExplorerClubMember( bool b = true );
 
     /* has the player satisified the void's hunger? */
-    bool hasPreparedVoid();
+    bool getPreparedVoid();
     void setPreparedVoid( bool b = true );
 
     /* destroy the order if the justicar has been killed and all guards are dead */
-    bool hasDestroyedOrder();
+    bool getDestroyedOrder();
     void setDestroyedOrder( bool b = true );
 
     /* if the player has given the stargem to the lawbringer */
-    bool hasGivenStargem();
+    bool getGivenStargem();
     void setGivenStargem( bool b = true );
 
     /* set if the player chooses to attack the oracle after ringing the bell */ 
-    bool hasAttackedOracle();
+    bool getAttackedOracle();
     void setAttackedOracle( bool b = true );
 
     /* entire city is undead? this feature does not appear to have been implemented yet */
-    bool hasUndeadGuards();
+    bool getUndeadGuards();
     void setUndeadGuards( bool b = true );
+
+    /* returns a list of settable flags */
+    //std::map<const char*,long> getFlagList( void );
 
 };
 

@@ -447,15 +447,15 @@ long calc_points(void)
     int i;
     long points=0;
 
-    if (State.hasSpokeToDruid()) points += 50;
-    if (State.hasCompletedCaves()) points += 100;
-    if (State.hasCompletedSewers()) points += 200;
-    if (State.hasCompletedCastle()) points += 300;
-    if (State.hasCompletedAstral()) points += 400;
-    if (State.hasCompletedVolcano()) points += 500;
-    if (State.hasKilledDragonlord()) points += 100;
-    if (State.hasKilledEater()) points += 100;
-    if (State.hasKilledLawbringer()) points += 100;
+    if (State.getSpokeToDruid()) points += 50;
+    if (State.getCompletedCaves()) points += 100;
+    if (State.getCompletedSewers()) points += 200;
+    if (State.getCompletedCastle()) points += 300;
+    if (State.getCompletedAstral()) points += 400;
+    if (State.getCompletedVolcano()) points += 500;
+    if (State.getKilledDragonlord()) points += 100;
+    if (State.getKilledEater()) points += 100;
+    if (State.getKilledLawbringer()) points += 100;
 
     points += Player.xp/50;
 

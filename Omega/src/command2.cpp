@@ -173,7 +173,7 @@ void search(int *searchval)
     if (Player.status[AFRAID] > 0)
         print3("You are too terror-stricken to stop to search for anything.");
     else {
-        if (State.hasFastMove() == false) {
+        if (State.getFastMove() == false) {
             State.setFastMove();
             *searchval = Searchnum;
         }
@@ -492,7 +492,7 @@ void upstairs(void)
     else if (Level->site[Player.x][Player.y].p_locf == L_ESCALATOR)
         p_movefunction(Level->site[Player.x][Player.y].p_locf);
     else {
-        if (State.isMounted())
+        if (State.getMounted())
             print2("You manage to get your horse upstairs.");
         print1("You ascend a level.");
         if (Level->depth <= 1) {
@@ -515,7 +515,7 @@ void downstairs(void)
              Level->site[Player.x][Player.y].p_locf == L_ENTER_COURT)
         p_movefunction(Level->site[Player.x][Player.y].p_locf);
     else {
-        if (State.isMounted())
+        if (State.getMounted())
             print2("You manage to get your horse downstairs.");
         if (Current_Environment == Current_Dungeon) {
             print1("You descend a level.");
@@ -925,7 +925,7 @@ void save(int force)
     int pos, ok = true;
 
     clearmsg();
-    if (State.isInArena()) {
+    if (State.getInArena()) {
         if (force) {
             State.setInArena( false );
             change_environment(E_CITY);
@@ -1050,7 +1050,7 @@ void moveplayer(int dx, int dy)
         else if ((Player.maxweight < Player.itemweight) &&
                  random_range(2) &&
                  (! Player.status[LEVITATING])) {
-            if (State.isMounted()) {
+            if (State.getMounted()) {
                 print1("Your horse refuses to carry you and your pack another step!");
                 print2("Your steed bucks wildly and throws you off!");
                 p_damage(10,UNSTOPPABLE,"a cruelly abused horse");
@@ -1083,7 +1083,7 @@ void moveplayer(int dx, int dy)
             having effects from being on the Level, a kluge, but hey,... */
 
             if (Current_Environment != E_COUNTRYSIDE) {
-                if (State.hasFastMove())
+                if (State.getFastMove())
                     if ((Level->site[Player.x][Player.y].things != NULL) ||
                             (optionp(RUNSTOP) &&
                              loc_statusp(Player.x,Player.y,STOPS)))
@@ -1094,7 +1094,7 @@ void moveplayer(int dx, int dy)
             }
         }
     }
-    else if (State.hasFastMove()) {
+    else if (State.getFastMove()) {
         drawvision(Player.x,Player.y);
         State.setFastMove(false);
     }
@@ -1108,7 +1108,7 @@ void movepincountry(int dx, int dy)
     if ((Player.maxweight < Player.itemweight) &&
             random_range(2) &&
             (! Player.status[LEVITATING])) {
-        if (State.isMounted()) {
+        if (State.getMounted()) {
             print1("Your horse refuses to carry you and your pack another step!");
             print2("Your steed bucks wildly and throws you off!");
             p_damage(10,UNSTOPPABLE,"a cruelly abused horse");
@@ -1135,7 +1135,7 @@ void movepincountry(int dx, int dy)
         }
     }
     else {
-        if (State.isLost()) {
+        if (State.getLost()) {
             print3("Being lost, you strike out randomly....");
             morewait();
             dx = random_range(3)-1;
@@ -1147,7 +1147,7 @@ void movepincountry(int dx, int dy)
             else {
                 Player.x += dx;
                 Player.y += dy;
-                if ((! State.isMounted())&&(Player.possessions[O_BOOTS] != NULL)) {
+                if ((! State.getMounted())&&(Player.possessions[O_BOOTS] != NULL)) {
                     if (Player.possessions[O_BOOTS]->usef == I_BOOTS_7LEAGUE) {
                         takestime = false;
                         if (Player.possessions[O_BOOTS]->blessing < 0) {
@@ -1165,13 +1165,13 @@ void movepincountry(int dx, int dy)
                         }
                     }
                 }
-                if (State.isLost() && (Precipitation < 1) &&
+                if (State.getLost() && (Precipitation < 1) &&
                         c_statusp(Player.x, Player.y, SEEN)) {
                     print3("Ah! Now you know where you are!");
                     morewait();
                     State.setLost( false );
                 }
-                else if (State.isLost()) {
+                else if (State.getLost()) {
                     print3("You're still lost.");
                     morewait();
                 }

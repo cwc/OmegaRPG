@@ -27,6 +27,8 @@ WINDOW *Cinema;
 
 WINDOW *Showline[MAXITEMS];
 
+WINDOW *Wizlistw;
+
 #define SL3_LEN 160
 char screenLine3[SL3_LEN];
 
@@ -363,7 +365,7 @@ void erase_level(void)
 /* direct print to first msg line */
 void print1(const char *s)
 {
-    if (! State.hasSuppressPrinting()) {
+    if (! State.getSuppressPrinting()) {
         buffercycle(s);
         wclear(Msg1w);
         wprintw(Msg1w,s);
@@ -374,7 +376,7 @@ void print1(const char *s)
 /* for run on-messages -- print1 clears first.... */
 void nprint1(char *s)
 {
-    if (! State.hasSuppressPrinting()) {
+    if (! State.getSuppressPrinting()) {
         if (bufferappend(s)) {
             wprintw(Msg1w,s);
             wrefresh(Msg1w);
@@ -385,7 +387,7 @@ void nprint1(char *s)
 /* direct print to second msg line */
 void print2(char *s)
 {
-    if (! State.hasSuppressPrinting()) {
+    if (! State.getSuppressPrinting()) {
         buffercycle(s);
         wclear(Msg2w);
         wprintw(Msg2w,s);
@@ -396,7 +398,7 @@ void print2(char *s)
 /* for run on-messages -- print2 clears first.... */
 void nprint2(char *s)
 {
-    if (! State.hasSuppressPrinting()) {
+    if (! State.getSuppressPrinting()) {
         if (bufferappend(s)) {
             wprintw(Msg2w,s);
             wrefresh(Msg2w);
@@ -412,7 +414,7 @@ void nprint2(char *s)
  * things can use. */
 void print3 (char *s)
 {
-    if (!State.hasSuppressPrinting())
+    if (!State.getSuppressPrinting())
     {
         buffercycle(s);
         erasemsg3();
@@ -425,7 +427,7 @@ void print3 (char *s)
 /* for run on-messages -- print3 clears first.... */
 void nprint3(char *s)
 {
-    if (!State.hasSuppressPrinting())
+    if (!State.getSuppressPrinting())
     {
         if (bufferappend(s))
         {
@@ -443,7 +445,7 @@ it should morewait and clear window */
 void mprint(char *s)
 {
     int x,y;
-    if (! State.hasSuppressPrinting()) {
+    if (! State.getSuppressPrinting()) {
         getyx(Msgw,y,x);
         if (x+strlen(s) >= ScreenWidth) {
             buffercycle(s);
@@ -538,6 +540,10 @@ void initgraf(void)
     // Bank window
     Bankw = newwin( 20, 50, ( ScreenLength - 20 ) / 2 + 3, 7 );
     scrollok( Bankw, 0 );
+
+    // Wiz flag list window
+    Wizlistw = newwin( 20, 50, 3, 0 );
+    scrollok( Wizlistw, 0 );
 
     Locw = newwin(1,80,ScreenLength+3,0);
     scrollok(Locw, 0);
@@ -880,7 +886,7 @@ void drawvision(int x, int y)
             drawmonsters(false); /* erase all monsters */
             drawmonsters(true);  /* draw those now visible */
         }
-        if ((State.hasFastMove() == false) || (! optionp(JUMPMOVE)))
+        if ((State.getFastMove() == false) || (! optionp(JUMPMOVE)))
             omshowcursor(Player.x,Player.y);
         oldx = x;
         oldy = y;
@@ -1214,7 +1220,7 @@ void morewait(void)
 {
     int display=true;
     int c;
-    if (State.hasSuppressPrinting())
+    if (State.getSuppressPrinting())
         return;
     do {
         wclear(Morew);
@@ -1718,7 +1724,7 @@ void showflags(void)
         wprintw(Flagw,"Diseased\n");
     else wprintw(Flagw,"Healthy\n");
 
-    if (State.isMounted()) wprintw(Flagw,"Mounted\n");
+    if (State.getMounted()) wprintw(Flagw,"Mounted\n");
     else if (Player.status[LEVITATING]) wprintw(Flagw,"Levitating\n");
     else wprintw(Flagw,"Afoot\n");
 

@@ -510,7 +510,7 @@ void Monster::m_death()
                 /* just a tad complicated. Promote a new justiciar if any
                    guards are left in the city, otherwise Destroy the Order! */
                 Player.alignment -= 100;
-                if (! State.hasDestroyedOrder()) {
+                if (! State.getDestroyedOrder()) {
                     curr = Level->site[this->x][this->y].things;
                     while (curr && curr->thing->id != OB_JUSTICIAR_BADGE) {
                         prev = curr;
@@ -580,14 +580,14 @@ void Monster::m_death()
                 alert_guards();
             break;
         case GOBLIN_KING:
-            if ( State.hasAttackedOracle() == false ) {
+            if ( State.getAttackedOracle() == false ) {
                 mprint("You seem to hear a woman's voice from far off:");
                 mprint("'Well done! Come to me now....'");
             }
             State.setCompletedCaves( true );
             break; /* gob king */
         case GREAT_WYRM:
-            if (State.hasAttackedOracle() == false) {
+            if (State.getAttackedOracle() == false) {
                 mprint("A female voice sounds from just behind your ear:");
                 mprint("'Well fought! I have some new advice for you....'");
             }
@@ -604,7 +604,7 @@ void Monster::m_death()
             break;
         case DEMON_EMP:
             State.setCompletedVolcano();
-            if (State.hasAttackedOracle() == false) {
+            if (State.getAttackedOracle() == false) {
                 mprint("You feel a soft touch on your shoulder...");
                 mprint("You turn around but there is no one there!");
                 mprint("You turn back and see a note: 'See me soon.'");
@@ -612,7 +612,7 @@ void Monster::m_death()
             }
             break;
         case ELEM_MASTER:
-            if (State.hasAttackedOracle() == false) {
+            if (State.getAttackedOracle() == false) {
                 mprint("Words appear before you, traced in blue flame!");
                 mprint("'Return to the Prime Plane via the Circle of Sorcerors....'");
             }

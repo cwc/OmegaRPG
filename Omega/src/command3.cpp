@@ -349,7 +349,7 @@ die automatically.... */
 void nap(void)
 {
     static int naptime;
-    if (State.hasFastMove()) {
+    if (State.getFastMove()) {
         if (naptime-- < 1) {
             clearmsg();
             mprint("Yawn. You wake up.");
@@ -517,7 +517,7 @@ void charid(void)
 void wizard(void)
 {
     State.setSkipMonsters();
-    if (State.isCheater()) mprint("You're already in wizard mode!");
+    if (State.getCheater()) mprint("You're already in wizard mode!");
     else {
         clearmsg();
 		print1("You just asked to enter wizard mode.");
@@ -1038,7 +1038,7 @@ void hunt(Symbol terrain)
 void dismount_steed(void)
 {
     MonsterList* ml;
-    if (! State.isMounted())
+    if (! State.getMounted())
         print3("You're on foot already!");
     else if (Current_Environment == E_COUNTRYSIDE) {
         if (cinema_confirm("If you leave your steed here he will wander away!")=='y')
@@ -1103,33 +1103,6 @@ void city_move(void)
             drawvision(Player.x, Player.y);
             morewait();
             p_movefunction(Level->site[x][y].p_locf);
-        }
-    }
-}
-
-void frobgamestatus(void)
-{
-    char response;
-    long num;
-    mprint("Set or Reset or Forget it [s,r,ESCAPE]:");
-    do response = (char) mcigetc();
-    while ((response != 'r') && (response != 's') && (response != ESCAPE));
-    if (response == ESCAPE) {
-        clearmsg();
-    } else {
-        num = (int) parsenum("Enter log2 of flag:");
-        if (num > -1) {
-            num = pow2(num);
-            /*
-            if (num == CHEATED) {
-                mprint("Can't alter Wizard flag.");
-                return;
-            }
-            
-            if (response == 's') setgamestatus(num);
-            else resetgamestatus(num);
-            mprint("Done....");
-            */
         }
     }
 }

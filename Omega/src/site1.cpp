@@ -80,7 +80,7 @@ void l_club(void)
     char response;
 
     print1("Rampart Explorers' Club.");
-    if (!State.isExplorerClubMember()) {
+    if (!State.getExplorerClubMember()) {
         if (Player.level < 2) print3("Only reknowned adventurers need apply.");
         else {
             print2("Dues are 100Au. Pay it? [yn] ");

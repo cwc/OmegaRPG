@@ -257,7 +257,7 @@ void outdoors_random_event(void)
             gain_item(ob);
         }
         else if (num < 80) {
-            if (State.isMounted()) {
+            if (State.getMounted()) {
                 mprint("Your horse screams as he is transformed into an");
                 morewait();
                 mprint("imaginary unseen dead tortoise.");
@@ -312,7 +312,7 @@ void outdoors_random_event(void)
     case 11:
         mprint("You find a Traveller's Aid station with maps of the local area.");
         morewait();
-        if (State.isLost()) {
+        if (State.getLost()) {
             State.setLost( false );
             mprint("You know where you are now.");
         }
@@ -330,7 +330,7 @@ void outdoors_random_event(void)
         show_screen();
         break;
     case 12:
-        if (! State.isMounted()) {
+        if (! State.getMounted()) {
             mprint("You develop blisters....");
             p_damage(1,UNSTOPPABLE,"blisters");
         }
@@ -423,7 +423,7 @@ void terrain_check(int takestime)
             break;
         }
     }
-    else if (State.isMounted()) {
+    else if (State.getMounted()) {
         faster = 1;
         switch(random_range(32)) {
         case 0:
@@ -639,14 +639,14 @@ void terrain_check(int takestime)
         }
         break;
     case CITY:
-        if (State.isLost()) {
+        if (State.getLost()) {
             State.setLost( false );
             mprint("Well, I guess you know where you are now....");
         }
         locprint("Outside Rampart, the city.");
         break;
     case VILLAGE:
-        if (State.isLost()) {
+        if (State.getLost()) {
             State.setLost( false );
             mprint("The village guards let you know where you are....");
         }
@@ -1186,14 +1186,14 @@ void alert_guards(void)
             Level->site[40][60].p_locf = L_NO_OP; /* pacify_guards restores this */
     }
     if ((! foundguard) && (Current_Environment == E_CITY) &&
-            !State.hasDestroyedOrder()) {
-        suppress = State.hasSuppressPrinting();
+            !State.getDestroyedOrder()) {
+        suppress = State.getSuppressPrinting();
         State.setSuppressPrinting( false );
         print2("The last member of the Order of Paladins dies....");
         morewait();
         gain_experience(1000);
         Player.alignment -= 250;
-        if (!State.hasKilledLawbringer()) {
+        if (!State.getKilledLawbringer()) {
             print1("A chime sounds from far away.... The sound grows stronger....");
             print2("Suddenly the great shadowy form of the LawBringer appears over");
             print3("the city. He points his finger at you....");

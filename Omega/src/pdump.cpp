@@ -368,7 +368,7 @@ short dump_possessions( FILE *dumpfile )
     if ( !dump_pack( dumpfile ) )
         return false;
 
-    if ( State.hasPurchasedCondo() )
+    if ( State.getPurchasedCondo() )
     {
         if ( !dump_condo( dumpfile ) )
             return false;
@@ -863,7 +863,7 @@ short dump_options( FILE *dumpfile )
         if ( !dump( dumpfile, "\n-- Cheats --\n\n", false ) )
             return false;
 
-        if ( State.isCheater() )
+        if ( State.getCheater() )
         {
             if ( !dump( dumpfile, "Entered Wizard Mode\n", true ) )
                 return false;
@@ -906,7 +906,7 @@ short dump_basic( FILE *dumpfile )
         return false;
 
     curcol = sprintf( dump_buf, "Name      : %s\n", Player.name );
-    if ( State.isCheater() )
+    if ( State.getCheater() )
     {
         if ( 72 > strlen( dump_buf ) )
             cp = strrchr( dump_buf, '\n' );

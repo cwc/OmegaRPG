@@ -281,7 +281,7 @@ void save_hiscore_npc(int npc)
     char buffer[80];
     int i;
 
-    if (State.isCheater())
+    if (State.getCheater())
         return;
     lock_score_file();
     strcpy(Str1,Omegalib);
@@ -377,7 +377,7 @@ void checkhigh(char *descrip, int behavior)
 
     if (FixedPoints > 0) points = FixedPoints;
     else points = calc_points();
-    if (!State.isCheater()) {
+    if (!State.getCheater()) {
         if (Hiscore < points) {
             strcpy(Hiscorer, Player.name);
             strcpy(Hidescrip, descrip);
@@ -414,7 +414,7 @@ void extendlog(char *descrip, int lifestatus)
     FILE *fd;
     int npcbehavior;
 
-    if ((Player.level > 0) && (! State.isCheater())) {
+    if ((Player.level > 0) && (! State.getCheater())) {
         change_to_game_perms();
         npcbehavior=fixnpc(lifestatus);
         checkhigh(descrip,npcbehavior);

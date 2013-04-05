@@ -1,6 +1,5 @@
 
 #include "GameState.h"
-
 GameState State;
 
 GameState::GameState ( void )
@@ -37,7 +36,17 @@ void GameState::resetGameStatus( long l )
 
 bool GameState::getGameStatus( long l )
 {
-    return _state & l;
+    return (_state & l) > 0;
+}
+
+bool GameState::getSpokeToDruid()
+{
+    return(getGameStatus(SPOKE_TO_DRUID));
+}
+
+void GameState::setSpokeToDruid( bool b)
+{
+    setGameStatus(b, SPOKE_TO_DRUID);
 }
 
 bool GameState::toggleGameStatus( long l )
@@ -50,18 +59,7 @@ bool GameState::toggleGameStatus( long l )
     return true;
 }
 
-    
-bool GameState::hasSpokeToDruid()
-{
-    return(getGameStatus(SPOKE_TO_DRUID));
-}
-
-void GameState::setSpokeToDruid( bool b)
-{
-    setGameStatus(b, SPOKE_TO_DRUID);
-}
-
-bool GameState::hasCompletedCaves()
+bool GameState::getCompletedCaves()
 {
     return(getGameStatus(COMPLETED_CAVES));
 }
@@ -72,7 +70,7 @@ void GameState::setCompletedCaves( bool b )
 }
 
 
-bool GameState::hasCompletedSewers()
+bool GameState::getCompletedSewers()
 {
     return(getGameStatus(COMPLETED_SEWERS));
 }
@@ -82,7 +80,7 @@ void GameState::setCompletedSewers( bool b )
     setGameStatus(b, COMPLETED_SEWERS);
 }
 
-bool GameState::hasCompletedCastle()
+bool GameState::getCompletedCastle()
 {
     return(getGameStatus(COMPLETED_CASTLE));
 }
@@ -93,7 +91,7 @@ void GameState::setCompletedCastle( bool b )
 }
 
 
-bool GameState::hasCompletedAstral()
+bool GameState::getCompletedAstral()
 {
     return(getGameStatus(COMPLETED_ASTRAL));
 }
@@ -104,7 +102,7 @@ void GameState::setCompletedAstral( bool b )
 }
 
 
-bool GameState::hasCompletedVolcano()
+bool GameState::getCompletedVolcano()
 {
     return(getGameStatus(COMPLETED_VOLCANO));
 }
@@ -115,7 +113,7 @@ void GameState::setCompletedVolcano( bool b )
 }
 
 
-bool GameState::hasKilledDragonlord()
+bool GameState::getKilledDragonlord()
 {
     return(getGameStatus(KILLED_DRAGONLORD));
 }
@@ -126,7 +124,7 @@ void GameState::setKilledDragonlord( bool b )
 }
 
 
-bool GameState::hasKilledEater()
+bool GameState::getKilledEater()
 {
     return(getGameStatus(KILLED_EATER));
 }
@@ -137,7 +135,7 @@ void GameState::setKilledEater( bool b )
 }
 
 
-bool GameState::hasKilledLawbringer()
+bool GameState::getKilledLawbringer()
 {
     return(getGameStatus(KILLED_LAWBRINGER));
 }
@@ -148,7 +146,7 @@ void GameState::setKilledLawbringer( bool b )
 }
 
 
-bool GameState::hasCompletedChallenge()
+bool GameState::getCompletedChallenge()
 {
     return(getGameStatus(COMPLETED_CHALLENGE));
 }
@@ -159,7 +157,7 @@ void GameState::setCompletedChallenge( bool b )
 }
 
 
-bool GameState::hasPurchasedCondo()
+bool GameState::getPurchasedCondo()
 {
     return(getGameStatus(SOLD_CONDO));
 }
@@ -170,7 +168,7 @@ void GameState::setPurchasedCondo( bool b )
 }
 
 
-bool GameState::hasFastMove()
+bool GameState::getFastMove()
 {
     return(getGameStatus(FAST_MOVE));
 }
@@ -181,7 +179,7 @@ void GameState::setFastMove( bool b )
 }
 
 
-bool GameState::hasSkipPlayer()
+bool GameState::getSkipPlayer()
 {
     return(getGameStatus(SKIP_PLAYER));
 }
@@ -192,7 +190,7 @@ void GameState::setSkipPlayer( bool b )
 }
 
 
-bool GameState::hasSkipMonsters()
+bool GameState::getSkipMonsters()
 {
     return(getGameStatus(SKIP_MONSTERS));
 }
@@ -203,7 +201,7 @@ void GameState::setSkipMonsters( bool b )
 }
 
 
-bool GameState::isMounted()
+bool GameState::getMounted()
 {
     return(getGameStatus(MOUNTED));
 }
@@ -214,7 +212,7 @@ void GameState::setMounted( bool b )
 }
 
 
-bool GameState::hasSuppressPrinting()
+bool GameState::getSuppressPrinting()
 {
     return(getGameStatus(SUPPRESS_PRINTING));
 }
@@ -225,7 +223,7 @@ void GameState::setSuppressPrinting( bool b )
 }
 
 
-bool GameState::isLost()
+bool GameState::getLost()
 {
     return(getGameStatus(LOST));
 }
@@ -236,7 +234,7 @@ void GameState::setLost( bool b )
 }
 
 
-bool GameState::isInArena()
+bool GameState::getInArena()
 {
     return(getGameStatus(ARENA_MODE));
 }
@@ -247,7 +245,7 @@ void GameState::setInArena( bool b )
 }
 
 
-bool GameState::isCheater()
+bool GameState::getCheater()
 {
     return(getGameStatus(CHEATED));
 }
@@ -259,7 +257,7 @@ void GameState::setCheater( bool b )
 }
 
 
-bool GameState::isBankBroken()
+bool GameState::getBankBroken()
 {
     return(getGameStatus(BANK_BROKEN));
 }
@@ -270,7 +268,7 @@ void GameState::setBankBroken( bool b )
 }
 
 
-bool GameState::isExplorerClubMember()
+bool GameState::getExplorerClubMember()
 {
     return(getGameStatus(CLUB_MEMBER));
 }
@@ -281,7 +279,7 @@ void GameState::setExplorerClubMember( bool b )
 }
 
 
-bool GameState::hasPreparedVoid()
+bool GameState::getPreparedVoid()
 {
     return(getGameStatus(PREPARED_VOID));
 }
@@ -292,7 +290,7 @@ void GameState::setPreparedVoid( bool b )
 }
 
 
-bool GameState::hasDestroyedOrder()
+bool GameState::getDestroyedOrder()
 {
     return(getGameStatus(DESTROYED_ORDER));
 }
@@ -303,7 +301,7 @@ void GameState::setDestroyedOrder( bool b )
 }
 
 
-bool GameState::hasGivenStargem()
+bool GameState::getGivenStargem()
 {
     return(getGameStatus(GAVE_STARGEM));
 }
@@ -314,7 +312,7 @@ void GameState::setGivenStargem( bool b )
 }
 
 
-bool GameState::hasAttackedOracle()
+bool GameState::getAttackedOracle()
 {
     return(getGameStatus(ATTACKED_ORACLE));
 }
@@ -324,7 +322,7 @@ void GameState::setAttackedOracle( bool b )
     setGameStatus(b, ATTACKED_ORACLE);
 }
 
-bool GameState::hasUndeadGuards()
+bool GameState::getUndeadGuards()
 {
     return(getGameStatus(UNDEAD_GUARDS));
 }
@@ -333,4 +331,5 @@ void GameState::setUndeadGuards( bool b )
 {
     setGameStatus(b, UNDEAD_GUARDS);
 }
+
 

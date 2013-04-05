@@ -495,7 +495,7 @@ void gain_level(void)
     int gained=false;
     int hp_gain; /* FIXED! 12/30/98 */
 
-    if (State.hasSuppressPrinting())
+    if (State.getSuppressPrinting())
         return;
     while (expval(Player.level+1) <= Player.xp) {
         if (!gained)
@@ -868,7 +868,7 @@ void change_environment(char new_environment)
     Player.sy = -1; /* reset sanctuary if there was one */
 
     /* missing message if gets lost on site... */
-    if (State.isLost())
+    if (State.getLost())
     {
         State.setLost( false );	/* in case the player gets lost _on_ a site */
         mprint("You know where you are now."); /* but didn't inform player... DAG */
@@ -1008,7 +1008,7 @@ void change_environment(char new_environment)
 
     case E_DLAIR:
         setPlayerXY(0, 8);
-        load_dlair(State.hasKilledDragonlord(), true);
+        load_dlair(State.getKilledDragonlord(), true);
         ScreenOffset = 0;
         ScreenXOffset = 0;
         show_screen();
@@ -1016,7 +1016,7 @@ void change_environment(char new_environment)
 
     case E_STARPEAK:
         setPlayerXY(2, 9);
-        load_speak(State.hasKilledLawbringer(), true);
+        load_speak(State.getKilledLawbringer(), true);
         ScreenOffset = 0;
         ScreenXOffset = 0;
         show_screen();
@@ -1024,7 +1024,7 @@ void change_environment(char new_environment)
 
     case E_MAGIC_ISLE:
         setPlayerXY(62, 14);
-        load_misle(State.hasKilledEater(), true);
+        load_misle(State.getKilledEater(), true);
         ScreenOffset = 0;
         ScreenXOffset = 0;
         show_screen();
@@ -1105,7 +1105,7 @@ void change_environment(char new_environment)
     case E_CAVES:
         print1("You enter a dark cleft in a hillside;");
         print2("You note signs of recent passage in the dirt nearby.");
-        if (State.isMounted()) {
+        if (State.getMounted()) {
             morewait();
             print1("Seeing as you might not be coming back, you feel compelled");
             print2("to let your horse go, rather than keep him hobbled outside.");
@@ -1123,7 +1123,7 @@ void change_environment(char new_environment)
         break;
     case E_VOLCANO:
         print1("You pass down through the glowing crater.");
-        if (State.isMounted()) {
+        if (State.getMounted()) {
             morewait();
             print1("Seeing as you might not be coming back, you feel compelled");
             print2("to let your horse go, rather than keep him hobbled outside.");
@@ -1141,7 +1141,7 @@ void change_environment(char new_environment)
         break;
     case E_ASTRAL:
         print1("You are in a weird flickery maze.");
-        if (State.isMounted()) {
+        if (State.getMounted()) {
             print2("Your horse doesn't seem to have made it....");
             State.setMounted(false);
             calc_melee();
@@ -1157,7 +1157,7 @@ void change_environment(char new_environment)
         break;
     case E_CASTLE:
         print1("You cross the drawbridge. Strange forms move beneath the water.");
-        if (State.isMounted()) {
+        if (State.getMounted()) {
             morewait();
             print1("Seeing as you might not be coming back, you feel compelled");
             print2("to let your horse go, rather than keep him hobbled outside.");
@@ -1174,7 +1174,7 @@ void change_environment(char new_environment)
         break;
     case E_SEWERS:
         print1("You pry open a manhole and descend into the sewers below.");
-        if (State.isMounted()) {
+        if (State.getMounted()) {
             print2("You horse waits patiently outside the sewer entrance....");
             dismount_steed();
         }
@@ -1228,7 +1228,7 @@ void change_environment(char new_environment)
         break;
     case E_PALACE:
         print1("You enter the dungeons of the ruined palace.");
-        if (State.isMounted()) {
+        if (State.getMounted()) {
             morewait();
             print1("Seeing as you might not be coming back, you feel compelled");
             print2("to let your horse go, rather than keep him hobbled outside.");

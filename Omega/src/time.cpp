@@ -31,12 +31,12 @@ void time_clock(int reset)
     env = Current_Environment;
     while ((Tick == Player.click) && (Current_Environment != E_COUNTRYSIDE) &&
             Current_Environment == env) {
-        if (!State.hasSkipPlayer())
+        if (!State.getSkipPlayer())
             do {
                 State.setSkipMonsters(false);
                 if ((! Player.status[SLEPT])  &&
                         (Current_Environment != E_COUNTRYSIDE)) p_process();
-            } while (State.hasSkipMonsters() &&
+            } while (State.getSkipMonsters() &&
                      (Current_Environment != E_COUNTRYSIDE));
         else State.setSkipPlayer( false );
         Player.click = (Player.click + Command_Duration) % 60;

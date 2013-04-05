@@ -95,6 +95,7 @@
     <ClCompile Include="..\..\..\Omega\src\trap.cpp" />
     <ClCompile Include="..\..\..\Omega\src\util.cpp" />
     <ClCompile Include="..\..\..\Omega\src\Village.cpp" />
+    <ClCompile Include="..\..\..\Omega\src\wiz.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D144A6BB-1ED6-4993-9A52-8DA5C8F3AFCC}</ProjectGuid>

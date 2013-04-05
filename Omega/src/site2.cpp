@@ -10,7 +10,7 @@ void l_condo(void)
     int i,done=false,over=false,weeksleep=false;
     char response;
 
-    if (!State.hasPurchasedCondo()) {
+    if (!State.getPurchasedCondo()) {
         response = cinema_interact
                    ("rp","Rampart Arms. Weekly Condo Rentals and Purchases",
                     "Which are you interested in [r,p, or ESCAPE] ",
@@ -247,7 +247,7 @@ void send_to_jail(void)
         print2("Your name is expunged from the records....");
         Player.rank[ORDER] = -1;
     }
-    else if (State.hasDestroyedOrder())
+    else if (State.getDestroyedOrder())
         print1("The destruction of the Order of Paladins has negated the law!");
     else if ((Current_Environment != E_CITY) &&
              (Last_Environment != E_CITY))
@@ -264,7 +264,7 @@ void send_to_jail(void)
             State.setSuppressPrinting( false );
         }
         if (Current_Environment == E_CITY) {
-            if (State.hasUndeadGuards()) {
+            if (State.getUndeadGuards()) {
                 print1("You are taken to a weirdly deserted chamber where an undead");
                 print2("Magistrate presides over a court of ghosts and haunts.");
                 morewait();
@@ -347,7 +347,7 @@ void send_to_jail(void)
 void l_adept(void)
 {
     print1("You see a giant shimmering gate in the form of an omega.");
-    if (State.hasAttackedOracle() == false) {
+    if (State.getAttackedOracle() == false) {
         if (Player.str+Player.con+Player.iq+Player.pow < 100)
             print2("A familiar female voice says: I would not advise this now....");
         else print2("A familiar female voice says: Go for it!");
@@ -657,7 +657,7 @@ void l_countryside(void)
 void l_oracle(void)
 {
     char response;
-    if (State.hasAttackedOracle() && (State.hasCompletedAstral() == false)) {
+    if (State.getAttackedOracle() && (State.getCompletedAstral() == false)) {
         print1("You come before a blue crystal dais. You see a broken mirror.");
         print2("Look in the mirror? [yn] ");
         if (ynq2()=='y') {
@@ -687,19 +687,19 @@ void l_oracle(void)
             }
             else {
                 print2("She stares at you...and speaks:");
-                if (State.hasSpokeToDruid() == false) {
+                if (State.getSpokeToDruid() == false) {
                     print3("'The ArchDruid speaks wisdom in his forest shrine.'");
                 }
-                else if ( State.hasCompletedCaves() == false ) {
+                else if ( State.getCompletedCaves() == false ) {
                     print3("'Thou mayest find aught of interest in the caves to the South.'");
                 }
-                else if (State.hasCompletedSewers() == false) {
+                else if (State.getCompletedSewers() == false) {
                     print3("'Turn thy attention to the abyssal depths of the city.'");
                 }
-                else if (State.hasCompletedCastle() == false) {
+                else if (State.getCompletedCastle() == false) {
                     print3("'Explorest thou the depths of the Castle of the ArchMage.'");
                 }
-                else if (State.hasCompletedAstral() == false) {
+                else if (State.getCompletedAstral() == false) {
                     morewait();
                     print1("'Journey to the Astral Plane and meet the Gods' servants.'");
                     print2("The oracle holds out her hand. Do you take it? [yn] ");
@@ -717,10 +717,10 @@ void l_oracle(void)
                     }
                     else print3("You detect the hint of a sneer from the oracle.");
                 }
-                else if (State.hasCompletedVolcano() == false) {
+                else if (State.getCompletedVolcano() == false) {
                     print3("'The infernal maw may yield its secrets to thee now.'");
                 }
-                else if (State.hasCompletedChallenge() == false) {
+                else if (State.getCompletedChallenge() == false) {
                     print3("'The challenge of adepthood yet awaits thee.'");
                 }
                 else {

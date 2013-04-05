@@ -7,7 +7,7 @@
 /* various miscellaneous location functions */
 void l_water(void)
 {
-    if (! State.isMounted())  {
+    if (! State.getMounted())  {
         if ((Player.possessions[O_ARMOR] != NULL)) {
             print1("Your heavy armor drags you under the water!");
             morewait();
@@ -55,7 +55,7 @@ void l_water(void)
 
 void l_chaos(void)
 {
-    if (State.isMounted()) {
+    if (State.getMounted()) {
         print1("Your steed tries to swim in the raw Chaos, but seems to");
         print2("be having some difficulties...");
         morewait();
@@ -137,7 +137,7 @@ void l_hedge(void)
 void l_lava(void)
 {
     print1("Very clever -- walking into a pool of lava...");
-    if (State.isMounted()) {
+    if (State.getMounted()) {
         print2("Your horse is incinerated... You fall in too!");
         State.setMounted(false);
     }
@@ -158,7 +158,7 @@ void l_lava(void)
 void l_fire(void)
 {
     print1("You boldly stride through the curtain of fire...");
-    if (State.isMounted()) {
+    if (State.getMounted()) {
         print2("Your horse is fried and so are you...");
         State.setMounted(false);
     }
@@ -298,7 +298,7 @@ void l_magic_pool(void)
 {
     int possibilities=random_range(100);
     print1("This pool seems to be enchanted....");
-    if (State.isMounted()) {
+    if (State.getMounted()) {
         if (random_range(2)) {
             print2("Your horse is polymorphed into a fig newton.");
             State.setMounted(false);
@@ -736,7 +736,7 @@ void l_void_station(void)
                 print2("Your disrupted essence merges with the megaflow.");
                 p_death("the Power of the Void");
             }
-            else if (!State.hasPreparedVoid()) {
+            else if (!State.getPreparedVoid()) {
                 print1("The hungry void swallows you whole!");
                 print2("Your being dissipates with a pathetic little sigh....");
                 p_death("the Emptyness of the Void");
@@ -972,8 +972,8 @@ void l_enter_court(void)
 {
     print1("You have found a magical portal! Enter it? [yn] ");
     if (ynq1()=='y') {
-        if (State.hasCompletedCastle() == false) {
-            if (State.hasAttackedOracle() == false) {
+        if (State.getCompletedCastle() == false) {
+            if (State.getAttackedOracle() == false) {
                 print2("A dulcet voice says: 'Jolly good show!'");
                 morewait();
             }

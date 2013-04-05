@@ -572,7 +572,7 @@ void strategic_teleport(int blessing)
      * as well.  Seems to me that Hy Magic ought to allow it, and nothing
      * else (aside from the Star Gem, of course). */
     if ((Current_Environment == E_CIRCLE || Current_Environment == E_ASTRAL) &&
-            !State.isCheater())
+            !State.getCheater())
     {
         mprint("Some property of this eerie place interferes with the magic!\n");
         return;
@@ -604,7 +604,7 @@ void strategic_teleport(int blessing)
         menuprint("m: Temple of Destiny\n");
         menuprint("n: HellWell Volcano\n");
         menuprint("o: Ruined Palace\n");
-        if (State.isCheater())
+        if (State.getCheater())
             menuprint("z: Anywhere\n");
         menuprint("ANYTHING ELSE: Avoid entering a portal.");
         showmenu();
@@ -670,13 +670,13 @@ void strategic_teleport(int blessing)
             setPlayerXY( 51, 51 );
             break;
         default:
-            if (State.isCheater()) {
+            if (State.getCheater()) {
                 new_env = (int) parsenum("Enter environment number: ");
                 change_environment(new_env);
             }
         }
         xredraw();
-        if (State.isLost()) {
+        if (State.getLost()) {
             print1("You know where you are now.");
             State.setLost( false );
             Precipitation = 0;
@@ -709,7 +709,7 @@ void hero(int blessing)
 void levitate(int blessing)
 {
     if (blessing > -1) {
-        if (State.isMounted())
+        if (State.getMounted())
             mprint("You have a strange feeling of lightness in your saddle.");
         else {
             mprint("You start to float a few inches above the floor.");

@@ -8,7 +8,6 @@ definitions in the following section. */
 /*--------------------------USER DEFINITIONS--------------------------*/
 
 #ifdef WIN32
-#include <windows.h>
 #include <ShlObj.h>
 #include <malloc.h>
 

@@ -799,13 +799,13 @@ void restore_level(FILE *fd, int version)
         load_house(Level->environment, 0);
         break;
     case E_DLAIR:
-        load_dlair(State.hasKilledDragonlord(), 0);
+        load_dlair(State.getKilledDragonlord(), 0);
         break;
     case E_STARPEAK:
-        load_speak(State.hasKilledLawbringer(), 0);
+        load_speak(State.getKilledLawbringer(), 0);
         break;
     case E_MAGIC_ISLE:
-        load_misle(State.hasKilledEater(), 0);
+        load_misle(State.getKilledEater(), 0);
         break;
     case E_TEMPLE:
         load_temple(Country[LastCountryLocX][LastCountryLocY].aux, false);

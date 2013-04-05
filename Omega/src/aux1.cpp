@@ -174,11 +174,11 @@ int p_moveable(int x, int y)
         }
     }
     else if (loc_statusp(x,y,SECRET)) {
-        if (State.hasFastMove() == false) print3("Ouch!");
+        if (State.getFastMove() == false) print3("Ouch!");
         return(false);
     }
     else if (Level->site[x][y].creature != NULL) {
-        if (State.hasFastMove() == false) {
+        if (State.getFastMove() == false) {
             Level->site[x][y].creature->fight_monster();
             State.setSkipMonsters(false);
             return(false);
@@ -189,7 +189,7 @@ int p_moveable(int x, int y)
              (Level->site[x][y].locchar == STATUE) ||
              (Level->site[x][y].locchar == PORTCULLIS) ||
              (Level->site[x][y].locchar == CLOSED_DOOR) ||
-             (State.hasFastMove() &&
+             (State.getFastMove() &&
               ((Level->site[x][y].locchar == HEDGE) ||
                (Level->site[x][y].locchar == LAVA) ||
                (Level->site[x][y].locchar == ABYSS) ||
@@ -199,7 +199,7 @@ int p_moveable(int x, int y)
                (Level->site[x][y].locchar == WATER) ||
                (Level->site[x][y].locchar == LIFT) ||
                (Level->site[x][y].locchar == TRAP)))) {
-        if (State.hasFastMove() == false) print3("Ouch!");
+        if (State.getFastMove() == false) print3("Ouch!");
         return(false);
     }
     else if (optionp(CONFIRM)) {
@@ -214,7 +214,7 @@ int p_moveable(int x, int y)
                 (Level->site[x][y].locchar == LIFT) ||
                 (Level->site[x][y].locchar == TRAP)) {
             /* horses WILL go into water... */
-            if (State.isMounted()) {
+            if (State.getMounted()) {
                 if (Level->site[x][y].locchar != WATER ||
                         Level->site[x][y].p_locf != L_WATER) {
                     print1("You can't convince your steed to continue.");
@@ -225,7 +225,7 @@ int p_moveable(int x, int y)
             }
             else if (cinema_confirm("Look where you're about to step!") == 'y') State.setSkipMonsters(false);
             else State.setSkipMonsters();
-            return(State.hasSkipMonsters() == false);
+            return(State.getSkipMonsters() == false);
         }
         else {
             State.setSkipMonsters(false);
@@ -328,7 +328,7 @@ void calc_melee(void)
 
     Player.speed = max(1,min(25,Player.speed));
 
-    if (State.isMounted()) {
+    if (State.getMounted()) {
         Player.speed = 3;
         Player.hit += 10;
         Player.dmg += 10;
@@ -404,7 +404,7 @@ int damage_item(Object* o)
     if (o->id == OB_STARGEM) {
         print1("The Star Gem shatters into a million glistening shards....");
         if (Current_Environment == E_STARPEAK) {
-            if (!State.hasKilledLawbringer())
+            if (!State.getKilledLawbringer())
                 print2("You hear an agonizing scream of anguish and despair.");
             morewait();
             print1("A raging torrent of energy escapes in an explosion of magic!");
@@ -484,7 +484,7 @@ int damage_item(Object* o)
 /* do dmg points of damage of type dtype, from source fromstring */
 void p_damage(int dmg, int dtype, char *fromstring)
 {
-    if (State.hasFastMove()) {
+    if (State.getFastMove()) {
         drawvision(Player.x,Player.y);
         State.setFastMove(false);
     }
@@ -629,7 +629,7 @@ void describe_player(void)
         nprint1(levelname(Player.level));
     nprint1(" named ");
     nprint1(Player.name);
-    if (State.isMounted())
+    if (State.getMounted())
         nprint1(" (riding a horse.)");
 }
 
@@ -719,13 +719,13 @@ void foodcheck(void)
         print3("You are ravenously hungry.");
     else if (Player.food == 3) {
         print3("You feel weak.");
-        if (State.hasFastMove()) {
+        if (State.getFastMove()) {
             drawvision(Player.x,Player.y);
             State.setFastMove(false);
         }
     }
     else if (Player.food < 0) {
-        if (State.hasFastMove()) {
+        if (State.getFastMove()) {
             drawvision(Player.x,Player.y);
             State.setFastMove(false);
         }
