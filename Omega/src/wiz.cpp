@@ -321,7 +321,7 @@ char toggleFlag( void )
 void frobgamestatus(void)
 {
     char response;
-    long num;
+
     WINDOW *W = Wizlistw;
     mprint("List or toggle flag [l,t,ESCAPE]:");
     do response = (char) mcigetc();
