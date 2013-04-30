@@ -16,6 +16,12 @@ extern WINDOW *Bankw;
 
 #define NUM_NPC_ACCOUNTS 30
 
+enum BankResponse {
+	BankAbort,
+	BankNewCustomer,
+	BankExistingCustomer
+};
+
 char * npc_account_passwords [NUM_NPC_ACCOUNTS] =
 {
     "Duke",
@@ -241,7 +247,7 @@ static long input_amount (WINDOW *w, int line, int col)
 }
 
 /* see if the player wants to open a new account */
-static int bank_new_customer (WINDOW *w)
+static BankResponse bank_new_customer (WINDOW *w)
 {
     int response;
 
@@ -257,17 +263,17 @@ static int bank_new_customer (WINDOW *w)
         {
             waddstr(w, "yes");
             wrefresh(w);
-            return false; /* new customer == false */
+            return BankExistingCustomer; /* new customer == false */
         }
         else if ('N' == response)
         {
             waddstr(w, "no");
             wrefresh(w);
-            return true; /* new customer == true */
+            return BankNewCustomer; /* new customer == true */
         }
         else if (ESCAPE == response)
         {
-            return ABORT;
+            return BankAbort;
         }
     }
 }
@@ -1006,6 +1012,43 @@ static void bank_transaction (WINDOW *w, bank_account *account, Object* card)
     }
 }
 
+void access_bank() {
+	Object* card;
+    int abort;
+    bank_account *account;
+
+    while (1)
+    {
+        account = bank_password(Bankw, &card, &abort);
+
+        if (account)
+        {
+            int idx;
+
+            bank_transaction(Bankw, account, card);
+
+            if (card->blessing > 0)
+                mvwaddstr(Bankw, 4, 2, "            Come back anytime Pal!             ");
+            else if (card->blessing < 0)
+                mvwaddstr(Bankw, 4, 2, "  Don't bother coming back, you make me sick!  ");
+            else
+                mvwaddstr(Bankw, 4, 2, "  Thank you for choosing The Bank of Rampart!  ");
+
+            for (idx = 5; idx < 18; ++idx)
+                mvwaddstr(Bankw, idx, 2, blank_line);
+
+            wrefresh(Bankw);
+            sleep(3);
+            break;
+        }
+        else
+        {
+            if (abort) break;
+            if (police_are_hostile()) break;
+        }
+    }
+}
+
 /* the bank -- can be broken into (but you knew that, didn't you?) */
 void l_bank (void)
 {
@@ -1037,18 +1080,18 @@ void l_bank (void)
     }
     else
     {
-        int is_new_customer;
+        BankResponse response;
 
         /* first, bank asks if user has an account */
 
         cinema_blank();
         cinema_print_line(0, "The proximity sensor activates the autoteller as you approach.");
 
-        is_new_customer = bank_new_customer(Bankw);
+        response = bank_new_customer(Bankw);
 
         /* if user says no account, maybe he wants to open one */
 
-        if (true == is_new_customer)
+        if (response == BankNewCustomer)
         {
             Object* card;
             card = bank_open_account(Bankw);
@@ -1059,51 +1102,17 @@ void l_bank (void)
 
                 cinema_scene("The autoteller produces your new bank card...", 0, 0);
                 gain_item(card);
-                is_new_customer = false;
 
                 for (idx = 5; idx < 18; ++idx)
                     mvwaddstr(Bankw, idx, 2, blank_line);
 
                 touchwin(Bankw);
+
+				// User has created an account; direct them to it
+				access_bank();
             }
-        }
-
-        if (false == is_new_customer)
-        {
-            Object* card;
-            int abort;
-            bank_account *account;
-
-            while (1)
-            {
-                account = bank_password(Bankw, &card, &abort);
-
-                if (account)
-                {
-                    int idx;
-
-                    bank_transaction(Bankw, account, card);
-
-                    if (card->blessing > 0)
-                        mvwaddstr(Bankw, 4, 2, "            Come back anytime Pal!             ");
-                    else if (card->blessing < 0)
-                        mvwaddstr(Bankw, 4, 2, "  Don't bother coming back, you make me sick!  ");
-                    else
-                        mvwaddstr(Bankw, 4, 2, "  Thank you for choosing The Bank of Rampart!  ");
-
-                    for (idx = 5; idx < 18; ++idx)
-                        mvwaddstr(Bankw, idx, 2, blank_line);
-
-                    wrefresh(Bankw);
-                    sleep(3);
-                    break;
-                }
-                else
-                {
-                    if (abort) break;
-                    if (police_are_hostile()) break;
-                }
-            }
+        } else if (response == BankExistingCustomer) {
+            access_bank();
         }
     }
 
