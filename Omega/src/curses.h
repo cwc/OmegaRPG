@@ -1,5 +1,5 @@
 #ifdef WIN32
-#include "pdcurses.h"
+#include "../../lib/pdcurses.h"
 #else
 #include <curses.h>
 #endif
