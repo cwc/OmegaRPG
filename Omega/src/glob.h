@@ -96,7 +96,7 @@ extern int Last_Environment;
 extern int Dirs[2][9];
 /* 9 xy directions */
 
-extern char Cmd;
+extern int Cmd;
 /* last player command */
 
 extern int Command_Duration;

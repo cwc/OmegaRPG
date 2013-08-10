@@ -29,6 +29,7 @@ void p_process(void)
             clear_if_necessary();
         }
         Command_Duration = 0;
+
         switch (Cmd) {
         case ' ':
         case 13:
@@ -239,19 +240,31 @@ void p_process(void)
             break;
         case '4':
         case 'h':
+#ifdef KEY_LEFT
+        case KEY_LEFT:
+#endif
             moveplayer(-1,0);
             Command_Duration = Player.speed*5/5;
             break;
         case '2':
         case 'j':
+#ifdef KEY_DOWN
+        case KEY_DOWN:
+#endif
             moveplayer(0,1);
             Command_Duration = Player.speed*5/5;
             break;
+#ifdef KEY_UP
+        case KEY_UP:
+#endif
         case '8':
         case 'k':
             moveplayer(0,-1);
             Command_Duration = Player.speed*5/5;
             break;
+#ifdef KEY_RIGHT
+        case KEY_RIGHT:
+#endif
         case '6':
         case 'l':
             moveplayer(1,0);
@@ -291,24 +304,36 @@ void p_process(void)
                 clearmsg3();
             break;
         case 'H':
+#ifdef KEY_SLEFT
+        case KEY_SLEFT:
+#endif
             State.setFastMove();
             Cmd = 'h';
             moveplayer(-1,0);
             Command_Duration = Player.speed*4/5;
             break;
         case 'J':
+#ifdef KEY_SDOWN
+        case KEY_SDOWN:
+#endif
             State.setFastMove();
             Cmd = 'j';
             moveplayer(0,1);
             Command_Duration = Player.speed*4/5;
             break;
         case 'K':
+#ifdef KEY_SUP
+        case KEY_SUP:
+#endif
             State.setFastMove();
             Cmd = 'k';
             moveplayer(0,-1);
             Command_Duration = Player.speed*4/5;
             break;
         case 'L':
+#ifdef KEY_SRIGHT
+        case KEY_SRIGHT:
+#endif
             State.setFastMove();
             Cmd = 'l';
             moveplayer(1,0);
