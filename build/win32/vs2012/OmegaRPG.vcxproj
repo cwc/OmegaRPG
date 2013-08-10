@@ -141,6 +141,7 @@
       <DisableSpecificWarnings>4996;</DisableSpecificWarnings>
       <AdditionalIncludeDirectories>
       </AdditionalIncludeDirectories>
+      <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
