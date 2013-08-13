@@ -6,5 +6,6 @@ ipch
 *.user
 *.opensdf
 Debug
+Release
 .metadata
 omega.exe

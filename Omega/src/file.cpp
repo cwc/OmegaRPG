@@ -361,10 +361,11 @@ void save_hiscore_npc(int npc)
     }
     fclose(infile);
     fclose(outfile);
-    unlink(Str1);
 #if defined(WIN32)
+    _unlink(Str1);
     rename(Str2, Str1);
 #else
+    unlink(Str1);
     link(Str2, Str1);
     unlink(Str2);	/* renames, but sys-V doesn't have rename()... */
 #endif

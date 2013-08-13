@@ -190,23 +190,89 @@ void show_screen(void)
     }
 }
 
-char mgetc(void)
+// Ensure that curses provides the following key codes
+// Note: Some linux terminals do not provide key codes for all shifted arrow keys
+//       it depends on the type of terminal used.
+//       eg. xterm provides codes for all shifted keys, but kconsole does not support
+//           shifted-left arrow or shifted-right arrow (up and down do work though...)
+#ifndef CTL_UP
+#define CTL_UP 568
+#endif
+#ifndef CTL_DOWN
+#define CTL_DOWN 527
+#endif
+#ifndef CTL_LEFT
+#define CTL_LEFT 547
+#endif
+#ifndef CTL_RIGHT
+#define CTL_RIGHT 562
+#endif
+
+#ifndef KEY_SUP
+#define KEY_SUP 337
+#endif
+#ifndef KEY_SDOWN
+#define KEY_SDOWN 336
+#endif
+#ifndef KEY_LEFT
+#define KEY_SUP 393
+#endif
+#ifndef KEY_SRIGHT
+#define KEY_SDOWN 402
+#endif
+
+// Catch CTRL key sequences and remap to standard character key.
+int remapspecials(int c)
 {
-    return(wgetch(Msgw));
+	switch (c)
+	{
+	case CTL_LEFT:
+		while((c = wgetch(Msgw)) == CTL_LEFT);
+		if (c == CTL_UP) c = 'y';
+		if (c == CTL_DOWN) c = 'b';
+		break;
+	case CTL_RIGHT:
+		while((c = wgetch(Msgw)) == CTL_RIGHT);
+		if (c == CTL_UP) c = 'u';
+		if (c == CTL_DOWN) c = 'n';
+		break;
+	case CTL_UP:
+		while((c = wgetch(Msgw)) == CTL_UP);
+		if (c == CTL_LEFT) c = 'y';
+		if (c == CTL_RIGHT) c = 'u';
+		break;
+	case CTL_DOWN:
+		while((c = wgetch(Msgw)) == CTL_DOWN);
+		if (c == CTL_LEFT) c = 'b';
+		if (c == CTL_RIGHT) c = 'n';
+		break;
+	}
+
+	return c;
+}
+
+int mgetc(void)
+{
+	// get user input
+	int c = wgetch(Msgw);
+
+	// check & handle specials
+	c = remapspecials(c);
+
+	return c;
 }
 
 /* case insensitive mgetc -- sends uppercase to lowercase */
 int mcigetc(void)
 {
-    int c;
+	// get user input
+    int c = mgetc();
 
-#if defined(WIN32)
-    keypad(Msgw,true);
-#endif
-    c = wgetch(Msgw);
-    if ((c>=(int)'A') && (c<=(int)'Z'))
+	// convert user input to lowercase if required
+	if ((c>=(int)'A') && (c<=(int)'Z'))
         return(c+(int)('a'-'A'));
-    else return(c);
+    else 
+		return(c);
 }
 
 char menugetc(void)
@@ -575,6 +641,15 @@ void initgraf(void)
 
     clear();
     touchwin(stdscr);
+
+	// SL: Allow input of extended characters
+	keypad(Msgw, TRUE);
+	keypad(Menuw, TRUE);
+	keypad(Levelw, TRUE);
+	keypad(Msg1w, TRUE);
+	keypad(Msg2w, TRUE);
+	keypad(stdscr, TRUE);
+
     /*  omega_title();*/
     /*  clear();*/
     /*  touchwin(stdscr);*/

@@ -711,7 +711,7 @@ char *msgscanstring( void );
 Symbol getspot( int,int,int );
 char lgetc( void );
 char menugetc( void );
-char mgetc( void );
+int mgetc( void );
 void cinema_hide (void);
 void cinema_blank (void);
 void cinema_print_line (int line, char * text);
