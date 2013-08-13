@@ -190,6 +190,37 @@ void show_screen(void)
     }
 }
 
+// Ensure that curses provides the following key codes
+// Note: Some linux terminals do not provide key codes for all shifted arrow keys
+//       it depends on the type of terminal used.
+//       eg. xterm provides codes for all shifted keys, but kconsole does not support
+//           shifted-left arrow or shifted-right arrow (up and down do work though...)
+#ifndef CTL_UP
+#define KEY_CUP 568
+#endif
+#ifndef CTL_DOWN
+#define CTL_DOWN 527
+#endif
+#ifndef CTL_LEFT
+#define CTL_LEFT 547
+#endif
+#ifndef CTL_RIGHT
+#define CTL_RIGHT 562
+#endif
+
+#ifndef KEY_SUP
+#define KEY_SUP 337
+#endif
+#ifndef KEY_SDOWN
+#define KEY_SDOWN 336
+#endif
+#ifndef KEY_LEFT
+#define KEY_SUP 393
+#endif
+#ifndef KEY_SRIGHT
+#define KEY_SDOWN 402
+#endif
+
 // Catch CTRL key sequences and remap to standard character key.
 int remapspecials(int c)
 {
