@@ -190,6 +190,7 @@ void show_screen(void)
     }
 }
 
+// Catch CTRL key sequences and remap to standard character key.
 int remapspecials(int c)
 {
 	switch (c)
