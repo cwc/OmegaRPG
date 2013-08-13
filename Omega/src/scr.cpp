@@ -196,7 +196,7 @@ void show_screen(void)
 //       eg. xterm provides codes for all shifted keys, but kconsole does not support
 //           shifted-left arrow or shifted-right arrow (up and down do work though...)
 #ifndef CTL_UP
-#define KEY_CUP 568
+#define CTL_UP 568
 #endif
 #ifndef CTL_DOWN
 #define CTL_DOWN 527
