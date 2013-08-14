@@ -51,7 +51,7 @@ int Last_Environment= E_COUNTRYSIDE;  /* Which environment were we in */
 int Dirs[2][9]=                       /* 9 xy directions */
 { { 1,1,-1,-1,1,-1,0,0,0} , { 1,-1,1,-1,0,0,1,-1,0 } };
 
-char Cmd='s';                         /* last player command */
+int Cmd='s';                         /* last player command */
 int Command_Duration = 0;             /* how long does current command take */
 Monster *Arena_Monster=NULL;   /* Opponent in arena */
 int Arena_Opponent=0;                 /* case label of opponent in l_arena()*/
@@ -179,7 +179,11 @@ int game_restore(char *savefile)
         exit(1);
     }
     change_to_user_perms();
+#ifdef WIN32
+    _unlink(savefile);
+#else
     unlink(savefile);
+#endif
     change_to_game_perms();
     return(true);
 }
