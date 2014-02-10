@@ -24,6 +24,9 @@
     <Filter Include="Source Files\Objects">
       <UniqueIdentifier>{6eeec645-542c-43a6-9aa7-3d6960dcba65}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Objects\Food">
+      <UniqueIdentifier>{7d99a3c4-559f-4cc9-88f4-9226fcc8f1ff}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Omega\src\monsters.h">
@@ -56,25 +59,28 @@
     <ClInclude Include="..\..\..\Omega\src\Village.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Omega\src\Thing.h">
+    <ClInclude Include="..\..\..\Omega\src\GameState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Omega\src\Grot.h">
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Omega\src\GarageDoorOpener.h">
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Omega\src\Grot.h">
-      <Filter>Header Files\Objects</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\Omega\src\Object.h">
       <Filter>Header Files\Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Omega\src\GameState.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Omega\src\Scroll.h">
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Omega\src\Thing.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\Omega\src\Food.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Omega\src\LyzzardBucket.h">
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
   </ItemGroup>
@@ -267,11 +273,14 @@
     <ClCompile Include="..\..\..\Omega\src\Scroll.cpp">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Omega\src\Food.cpp">
-      <Filter>Source Files\Objects</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Omega\src\wiz.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Omega\src\Food.cpp">
+      <Filter>Source Files\Objects\Food</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Omega\src\LyzzardBucket.cpp">
+      <Filter>Header Files\Objects</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

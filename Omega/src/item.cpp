@@ -891,7 +891,7 @@ void item_use(Object* o)
 
         /* food functions */
     case I_FOOD:
-        i_food(o);
+        o->use();
         break;
     case I_LEMBAS:
         i_lembas(o);

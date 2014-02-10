@@ -20,6 +20,7 @@
     <ClInclude Include="..\..\..\Omega\src\GarageDoorOpener.h" />
     <ClInclude Include="..\..\..\Omega\src\glob.h" />
     <ClInclude Include="..\..\..\Omega\src\Grot.h" />
+    <ClInclude Include="..\..\..\Omega\src\LyzzardBucket.h" />
     <ClInclude Include="..\..\..\Omega\src\Monster.h" />
     <ClInclude Include="..\..\..\Omega\src\monsters.h" />
     <ClInclude Include="..\..\..\Omega\src\Object.h" />
@@ -67,6 +68,7 @@
     <ClCompile Include="..\..\..\Omega\src\itemf2.cpp" />
     <ClCompile Include="..\..\..\Omega\src\itemf3.cpp" />
     <ClCompile Include="..\..\..\Omega\src\lev.cpp" />
+    <ClCompile Include="..\..\..\Omega\src\LyzzardBucket.cpp" />
     <ClCompile Include="..\..\..\Omega\src\Main.cpp" />
     <ClCompile Include="..\..\..\Omega\src\map.cpp" />
     <ClCompile Include="..\..\..\Omega\src\Monster_mmelee.cpp" />

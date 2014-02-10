@@ -1,18 +1,7 @@
-
-#include "Food.h"
 #include "glob.h"
+#include "Food.h"
 
 Food::Food(void)
-{
-}
-
-
-Food::~Food(void)
-{
-}
-
-/* for now only initialize basic food object */
-void Food::initialize()
 {
 	weight = 20;
 	plus = charge = dmg = hit = fragility = blessing = 0;
@@ -27,17 +16,26 @@ void Food::initialize()
 	level = 0;
 	objchar = FOOD;
 	usef = I_FOOD;
-	objstr = "red and white striped bucket";
+	objstr = "food ration";
 	truename = "food ration";
 	cursestr = "food ration";
-
 }
 
+Food::~Food(void)
+{
+}
 
-/* Consume the food. Decreasing hunger and destroying
-   object is actually in command2.c/eat() */
+void Food::initialize()
+{
+}
+
+// Consume the food. Destroying object takes place in eat command: command2.c/eat()
 void Food::use()
 {
+	// Adjust player's hunger
+	Player.food = max(0, Player.food + aux);
+
+	// Print flavor message
     switch (random_range(6))
     {
     case 0:

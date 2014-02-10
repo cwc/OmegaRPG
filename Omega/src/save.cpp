@@ -328,7 +328,6 @@ int save_monsters(FILE *fd, MonsterList* ml)
     return ok;
 }
 
-
 /* Save o unless it's null, then save a special flag byte instead */
 /* Use other values of flag byte to indicate what strings are saved */
 int save_item(FILE *fd, Object* o)

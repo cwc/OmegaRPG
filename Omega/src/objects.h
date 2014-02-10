@@ -31,8 +31,12 @@ struct object
 
 */
 
+#pragma once
+
 #ifndef __OBJECTS_H__
 #define __OBJECTS_H__
+
+#include "LyzzardBucket.h"
 
 Object Objects[TOTALITEMS] = {
     Object(THINGID+0,10,0,0,0,0,0,1,10,50,0,0,0,0,COMMON,I_RAISE_PORTCULLIS,2,THING,"small grey box with red button","disposeable garage door opener","disposeable garage door opener"),
@@ -87,7 +91,6 @@ Object Objects[TOTALITEMS] = {
 
     Object( THINGID+25,10,0,0,0,0,99,1,3,30,0,0,0,0,COMMON,I_TRAP,0,THING,"powerful rune","manadrain-trap component","manadrain-trap component" ),
 
-    /*Object( 172,1,0,0,0,0,0,1,10,100,0,0,0,0,COMMON,I_PERM_KNOWLEDGE,0,RING,"?","ring of self-knowledge","ring of delusion" ),*/
     Object( THINGID+26,1,0,0,0,0,0,1,10,100,0,0,0,0,COMMON,I_PERM_KNOWLEDGE,0,THING,"small mirror","mirror of self-knowledge","mirror of delusion" ),
 
     Object( THINGID+27,2,0,0,0,0,0,1,10,1,0,0,0,0,COMMON,I_NO_OP,3,THING,"plastic card with black stripe","debit card","debit card"),
@@ -98,7 +101,8 @@ Object Objects[TOTALITEMS] = {
 
     Object( THINGID+30,2,0,0,0,0,0,1,10,1,0,0,0,0,COMMON,I_NO_OP,10,THING,"plastic card with square gold patch","smart card","smart card"),
 
-    Object( FOODID+0,20,0,0,0,0,8,1,0,2,0,0,0,0,COMMON,I_FOOD,0,FOOD,"red and white striped bucket","food ration","food ration" ),
+    //Object( FOODID+0,20,0,0,0,0,8,1,0,2,0,0,0,0,COMMON,I_FOOD,0,FOOD,"red and white striped bucket","food ration","food ration" ),
+	LyzzardBucket(),
 
     Object( FOODID+1,10,0,0,0,0,48,1,0,200,0,0,0,0,COMMON,I_LEMBAS,2,FOOD,"wafer of lembas","wafer of lembas","wafer of lembas" ),
 
