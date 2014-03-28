@@ -185,10 +185,22 @@ int p_moveable(int x, int y)
         }
         else return(false);
     }
+    else if (Level->site[x][y].locchar == CLOSED_DOOR) // Zop: move into door -> opens doors
+    {
+        if (Level->site[x][y].aux == LOCKED) {
+            print3("That door seems to be locked.");
+            return(false);
+        }
+        else {
+            Level->site[x][y].locchar = OPEN_DOOR;
+            lset(x, y, CHANGED);
+            State.setSkipMonsters(false);
+            return(false);
+        }
+    }
     else if ((Level->site[x][y].locchar == WALL) ||
              (Level->site[x][y].locchar == STATUE) ||
              (Level->site[x][y].locchar == PORTCULLIS) ||
-             (Level->site[x][y].locchar == CLOSED_DOOR) ||
              (State.getFastMove() &&
               ((Level->site[x][y].locchar == HEDGE) ||
                (Level->site[x][y].locchar == LAVA) ||
@@ -557,7 +569,7 @@ void setspot(int *x, int *y)
             break;
         }
     }
-    if (c==ESCAPE) { 
+    if (c==ESCAPE) {
         *x = *y = ABORT;
         clearmsg();
     }
