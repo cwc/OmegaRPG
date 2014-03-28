@@ -79,13 +79,8 @@ bool initplayer(void)
         fclose(fd);
     }
     change_to_game_perms();
-    if (! oldchar) {
-        optionset(RUNSTOP);
-        optionset(CONFIRM);
-        optionset(SHOW_COLOUR);
-        ret_value = initstats() ; /* RM 04-19-2000:loading patch */ /* DAG */
-    }
-    /* This gets executed when the player loads from .omegarc */
+
+    // Zop: initstats() can load a save file, so this block needs to precede the function
     /* DAG - put the code back in the same place, rather than duplicating */
     Searchnum = max(1,min(9,Searchnum));
     Player.hp = Player.maxhp = Player.maxcon;
@@ -94,6 +89,14 @@ bool initplayer(void)
     strcpy(Player.combatManeuvers,"CCBC");
     calc_melee();
     ScreenOffset = -1000;	/* to force a redraw */
+
+    if (! oldchar) {
+        optionset(RUNSTOP);
+        optionset(CONFIRM);
+        optionset(SHOW_COLOUR);
+        ret_value = initstats() ; /* RM 04-19-2000:loading patch */ /* DAG */
+    }
+
     return ret_value > 0; /* RM 04-19-2000: loading patch */ /* DAG */
 }
 
@@ -162,7 +165,7 @@ void save_omegarc(void)
     int i=VERSION;
     FILE *fd;
     change_to_user_perms();
-	
+
 	getOmegaRCPath();
 
 	fd = fopen(Str1,"w");
