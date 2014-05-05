@@ -518,18 +518,32 @@ void setspot(int *x, int *y)
     while ((c != '.') && (c != ESCAPE)) {
         c = lgetc();
         switch(c) {
+#ifdef KEY_LEFT
+        case KEY_LEFT:
+#endif
+        case (char)4:
+        case (char)KEY_ARROW_LEFT:
         case 'h':
         case '4':
             movecursor(x,y,-1,0);
             break;
+        case (char)2:
+        case (char)KEY_ARROW_DOWN:
         case 'j':
         case '2':
             movecursor(x,y,0,1);
             break;
+        case (char)8:
+        case (char)KEY_ARROW_UP:
         case 'k':
         case '8':
             movecursor(x,y,0,-1);
             break;
+#ifdef KEY_RIGHT
+        case KEY_RIGHT:
+#endif
+        case (char)6:
+        case (char)KEY_ARROW_RIGHT:
         case 'l':
         case '6':
             movecursor(x,y,1,0);

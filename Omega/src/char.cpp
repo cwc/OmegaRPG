@@ -83,6 +83,7 @@ bool initplayer(void)
         optionset(CONFIRM);
         optionset(SHOW_COLOUR);
         ret_value = initstats() ; /* RM 04-19-2000:loading patch */ /* DAG */
+		return ret_value > 0;
     }
     /* This gets executed when the player loads from .omegarc */
     /* DAG - put the code back in the same place, rather than duplicating */
