@@ -189,15 +189,6 @@ void map_close(map *m)
     free(m);
 }
 
-#if 0
-/* Using the mappings given in this map structure, build an Omega
- * level, using appropriate terrain. */
-void map_buildLevel(map *m, Level *lev)
-{
-
-}
-#endif
-
 char map_getSiteChar(map *m, int i, int j)
 {
     assert(i < m->width);

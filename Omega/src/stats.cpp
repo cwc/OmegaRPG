@@ -33,6 +33,8 @@ void editstats(void)
 #ifdef KEY_DOWN
         case KEY_DOWN:
 #endif
+	    case (char)KEY_ARROW_DOWN:
+	    case (char)KEY_ARROW_RIGHT:
             to = slot + 1;
             slot = move_slot(slot,to,NUMSTATS+1);
             break;
@@ -41,6 +43,8 @@ void editstats(void)
 #ifdef KEY_UP
         case KEY_UP:
 #endif
+	    case (char)KEY_ARROW_UP:
+	    case (char)KEY_ARROW_LEFT:
             to = slot - 1;
             if (to > 0)
                 slot = move_slot(slot,to, NUMSTATS+1);
@@ -111,4 +115,3 @@ void editstats(void)
 
     xredraw();
 }
-

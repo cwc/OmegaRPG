@@ -1,3 +1,4 @@
+#include <string>
 #include "glob.h"
 #include "Food.h"
 
@@ -35,26 +36,15 @@ void Food::use()
 	// Adjust player's hunger
 	Player.food = max(0, Player.food + aux);
 
-	// Print flavor message
-    switch (random_range(6))
-    {
-    case 0:
-        mprint("That tasted horrible!");
-        break;
-    case 1:
-        mprint("Yum!");
-        break;
-    case 2:
-        mprint("How nauseous!");
-        break;
-    case 3:
-        mprint("Can I have some more? Please?");
-        break;
-    case 4:
-        mprint("Your mouth feels like it is growing hair!");
-        break;
-    case 5:
-        mprint("Tastes like home cooking!");
-        break;
-    }
+	std::string comments[] = {
+		"That tasted horrible!",
+		"Yum!",
+		"How nauseous!",
+		"Can I have some more? Please?",
+		"Your mouth feels like it is growing hair!",
+		"Tastes like home cooking!",
+		"Appalling."
+	};
+
+	mprint((char*)comments[random_range(7)].c_str());
 }

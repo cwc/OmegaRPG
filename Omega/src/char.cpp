@@ -5,9 +5,8 @@
 #include "glob.h"
 
 #ifdef WIN32
-char* getlogin() {
-	DWORD size = 256;
-	char buf[256];
+char* getlogin(char* buf, int sizeOfBuf) {
+	DWORD size = sizeOfBuf;
 
 	if (!GetUserName(buf, &size)) {
 		return "pcuser";
@@ -23,10 +22,10 @@ bool initplayer(void)
     int i;
     int oldchar=false;
     FILE *fd;
-    char *lname;
+    char *lname = (char*)malloc(256 * sizeof(char));
     int ret_value = false;
 
-    lname = getlogin();
+    lname = getlogin(lname, 256);
 
 #if !defined(WIN32)
     // Get the login name if getlogin() failed

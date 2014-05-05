@@ -3,6 +3,7 @@
 /* functions having to do with player item inventory */
 
 #include "glob.h"
+#include "defs.h"
 
 static void inv_display_munge(void);
 static void inv_display_refresh(void);
@@ -1050,6 +1051,7 @@ void inventory_control(void)
         case 'j':
         case '>':
         case '2':
+		case (char)KEY_ARROW_DOWN:
 #if defined(KEY_DOWN)
         case KEY_DOWN:
 #endif
@@ -1061,6 +1063,7 @@ void inventory_control(void)
 #if defined(KEY_UP)
         case KEY_UP:
 #endif
+        case (char)KEY_ARROW_UP:
             slot = move_slot(slot,slot-1,MAXITEMS);
             break;
 #ifdef KEY_HOME

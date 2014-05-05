@@ -1,9 +1,13 @@
+#pragma once
 /* omega copyright (c) 1987,1988,1989 by Laurence Raphael Brothers */
 /* This file is the header file for all omega modules */
 /* defs.h */
 
 /* omega will NOT function unless the implementor sets the appropriate
 definitions in the following section. */
+
+#ifndef DEFS_INCLUDED  // include guard
+#define DEFS_INCLUDED
 
 /*--------------------------USER DEFINITIONS--------------------------*/
 
@@ -16,7 +20,7 @@ definitions in the following section. */
 #define sleep(x) Sleep((DWORD) (x * 1000))
 #define usleep(x) sleep(x / 1000000.0)
 
-extern char* getlogin();
+extern char* getlogin(char*, int maxLength);
 #else
 // These includes are not supported or supplanted in Windows
 #include <unistd.h>
@@ -1626,3 +1630,9 @@ typedef oltype *pol;
 #define optionset(o) (Player.options |= (o))
 #define optionreset(o) (Player.options &= ~(o))
 
+#define KEY_ARROW_UP 30
+#define KEY_ARROW_DOWN 31
+#define KEY_ARROW_RIGHT 16
+#define KEY_ARROW_LEFT 17
+
+#endif //DEFS_INCLUDED

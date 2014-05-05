@@ -170,7 +170,7 @@ void show_screen(void)
     else
     {
         show_screen_country(top, left, bottom, right);
-#if 0
+#if 0 // anyone remember why this is out? to prevent redrawing the screen every damn time?
         for (j=top; j<bottom; j++)
         {
             for (i=left; i<right; i++)
@@ -592,7 +592,7 @@ void initgraf(void)
         exit(0);
     }
     ScreenLength = LINES - 6;
-    ScreenWidth = 64; /* PGM */
+    ScreenWidth = 64;
     Msg1w = newwin(1,80,0,0);
     scrollok(Msg1w, 0);
     Msg2w = newwin(1,80,1,0);
@@ -862,7 +862,8 @@ int cinema_confirm (char * action_description)
         break;
     }
 
-    return cinema_interact("ynqYNQ", action_description, msg, NULL);
+	//const char *msg = m[random_range(4)].c_str();
+    return cinema_interact("ynqYNQ", action_description, (char*)msg, NULL);
 }
 
 int cinema_ynq (char *action_description)
@@ -1486,6 +1487,8 @@ int getnumber(int range)
 #ifdef KEY_UP
             case KEY_UP:
 #endif
+	        case (char)KEY_ARROW_UP:
+	        case (char)KEY_ARROW_LEFT:
                 if (value < range)
                     value++;
                 break;
@@ -1494,6 +1497,8 @@ int getnumber(int range)
 #ifdef KEY_DOWN
             case KEY_DOWN:
 #endif
+	        case (char)KEY_ARROW_DOWN:
+	        case (char)KEY_ARROW_RIGHT:
                 if (value > 1)
                     value--;
                 break;

@@ -489,15 +489,15 @@ void l_monastery(void)
             }
             else if (action == 'a') {
                 if (Player.rank[MONKS] > 0)
-                    print2("You are already initiated, Brother.");
+                    print2("You are already initiated, fellow monk.");
                 else if (Player.con < 13)
                     print2("Your body is too fragile to walk the Path, child.");
                 else if (Player.pow < 13)
                     print2("Your mind is too fragile to follow the Path, child.");
                 else if (Player.rank[COLLEGE] > 0)
-                    print2("The Collegium has corrupted your spirit, child.");
+                    print2("The Collegium has corrupted your spirit, mage.");
                 else if (Player.rank[CIRCLE] > 0)
-                    print2("The Circle has corrupted your spirit, child.");
+                    print2("The Circle has corrupted your spirit, sorceror.");
                 else {
                     if (Player.pow > 17) {
                         print2("Your spirit is strong. You may study the Path with us.");
@@ -506,19 +506,11 @@ void l_monastery(void)
                     }
                     else {
                         print1("A substantial cash sacrifice will cleanse your spirit.. ");
-                        print2("Donate your worldly goods? [yn] ");
+                        print2("Donate all your worldly cash? [yn] ");
                         if (ynq1() =='y') {
-                            if (Player.cash < 1000)
-                            {
-                                /* WDT HACK! I'd rather the monks have some other
-                                * criteria for joining. */
-                                print2("You have not much to give.");
-                            }
-                            else {
-                                Player.cash = 0;
-                                enrolled = true;
-                                dataprint();
-                            }
+                            Player.cash = 0;
+                            enrolled = true;
+                            dataprint();
                         }
                     }
                     if (enrolled) {
@@ -550,7 +542,7 @@ void l_monastery(void)
                     {
                         print1("You brought back the heart of the Eater of Magic!");
                         morewait();
-                        print1("The Heart is sent to the placed in the kitchen cauldron.");
+                        print1("The Heart is sent to be placed in the kitchen cauldron.");
                         print2("The Grandmaster steps down. You are the new Grandmaster.");
                         morewait();
                         clearmsg();
@@ -640,8 +632,8 @@ void l_monastery(void)
                     if (Player.guildxp[MONKS] < 3000)
                         print2("Seek more experience, Brother.");
                     else  {
-                        print1("A thousand steps on the path, Brother.");
-                        print2("You are now a Master.");
+                        print1("A thousand steps on the path, Master.");
+                        print2("You are now a Master monk.");
                         morewait();
                         clearmsg();
                         Studiesleft +=2;
@@ -733,7 +725,7 @@ void l_monastery(void)
                     toggle_item_use(false);
                     Player.food = 43;
                     print2("Your body and mind are whole.");
-                    if (random_range(2) == 1) {
+                    if (random_range(5) == 1) {
                         morewait();
                         print1("Extra whole!");
                         Player.maxhp += 1;

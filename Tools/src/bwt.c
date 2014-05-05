@@ -66,13 +66,13 @@ unsigned int BWT_Transform(unsigned char *buffer, unsigned int length)
     unsigned int *indices;
 
     BWT_length=length;
-    BWT_temporaryBuffer=malloc(2*length*sizeof(unsigned char));
+    BWT_temporaryBuffer = (unsigned char*)malloc(2*length*sizeof(unsigned char));
     if(BWT_temporaryBuffer==NULL)
     {
         printf( "Failure allocating memory in BWT_transform.\n" );
         exit( EXIT_FAILURE );
     }
-    indices=malloc(length*sizeof(unsigned int));
+    indices = (unsigned int*)malloc(length*sizeof(unsigned int));
     if(indices==NULL)
     {
         free( BWT_temporaryBuffer );
@@ -123,14 +123,14 @@ void BWT_Detransform( unsigned char *buffer, unsigned int length, unsigned int f
     unsigned char character;
 
 
-    runningCountArray = malloc( 256*sizeof( unsigned int ) ); /* Too big to put on stack */
+    runningCountArray = (unsigned int*)malloc( 256*sizeof( unsigned int ) ); /* Too big to put on stack */
     if( runningCountArray == NULL )
     {
         printf( "Failure allocating memory in BWT_Detransform.\n" );
         exit( EXIT_FAILURE );
     }
 
-    characterCountArray = malloc( 256*sizeof( unsigned int ) ); /* Too big to put on stack */
+    characterCountArray = (unsigned int*)malloc( 256*sizeof( unsigned int ) ); /* Too big to put on stack */
     if( characterCountArray == NULL )
     {
         free( runningCountArray );
@@ -138,7 +138,7 @@ void BWT_Detransform( unsigned char *buffer, unsigned int length, unsigned int f
         exit( EXIT_FAILURE );
     }
 
-    temporaryBuffer=malloc( length*sizeof( unsigned char ) );
+    temporaryBuffer = (unsigned char*)malloc( length*sizeof( unsigned char ) );
     if( temporaryBuffer == NULL )
     {
         free( runningCountArray );
@@ -147,7 +147,7 @@ void BWT_Detransform( unsigned char *buffer, unsigned int length, unsigned int f
         exit( EXIT_FAILURE );
     }
     memcpy( temporaryBuffer, buffer, length );
-    transpositionBuffer = malloc(length*sizeof(unsigned int));
+    transpositionBuffer = (unsigned int*)malloc(length*sizeof(unsigned int));
     if( transpositionBuffer == NULL )
     {
         free( runningCountArray );
@@ -188,6 +188,7 @@ void BWT_Detransform( unsigned char *buffer, unsigned int length, unsigned int f
     for ( i = 0 ; i < length ; i++ )
     {
         character = buffer[ i ];
+		// TODO transpositionBuffer could technically be null here
         transpositionBuffer[ characterCountArray[ character ] + runningCountArray[ character ] ] = i;
         characterCountArray[ character ]++;
     }

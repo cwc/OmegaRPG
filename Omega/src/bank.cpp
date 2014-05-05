@@ -1147,6 +1147,7 @@ int bank_random_account_number (void)
     int which;
     int num_accounts;
     bank_account *account;
+	assert(bank != NULL); // otherwise we dereference null; right behavior, create an account?
 
     num_accounts = 0;
     for (account = bank; account; account = account->next_account)
@@ -1167,5 +1168,6 @@ int bank_random_account_number (void)
         }
     }
 
+	assert(bank != NULL);
     return account->number;
 }
