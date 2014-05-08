@@ -78,13 +78,7 @@ bool initplayer(void)
         fclose(fd);
     }
     change_to_game_perms();
-    if (! oldchar) {
-        optionset(RUNSTOP);
-        optionset(CONFIRM);
-        optionset(SHOW_COLOUR);
-        ret_value = initstats() ; /* RM 04-19-2000:loading patch */ /* DAG */
-		return ret_value > 0;
-    }
+
     /* This gets executed when the player loads from .omegarc */
     /* DAG - put the code back in the same place, rather than duplicating */
     Searchnum = max(1,min(9,Searchnum));
@@ -94,7 +88,13 @@ bool initplayer(void)
     strcpy(Player.combatManeuvers,"CCBC");
     calc_melee();
     ScreenOffset = -1000;	/* to force a redraw */
-    return ret_value > 0; /* RM 04-19-2000: loading patch */ /* DAG */
+	if (! oldchar) {
+		optionset(RUNSTOP);
+		optionset(CONFIRM);
+		optionset(SHOW_COLOUR);
+		ret_value = initstats() ;
+    }
+    return ret_value > 0;
 }
 
 

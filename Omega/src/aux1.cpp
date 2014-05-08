@@ -527,25 +527,33 @@ void setspot(int *x, int *y)
         case '4':
             movecursor(x,y,-1,0);
             break;
+#ifdef KEY_DOWN
+        case KEY_DOWN:
+#endif
         case (char)2:
         case (char)KEY_ARROW_DOWN:
         case 'j':
         case '2':
             movecursor(x,y,0,1);
             break;
-        case (char)8:
+#ifdef KEY_UP
+        case KEY_UP:
+#endif
+        case (char)3:
         case (char)KEY_ARROW_UP:
         case 'k':
         case '8':
             movecursor(x,y,0,-1);
             break;
+
 #ifdef KEY_RIGHT
         case KEY_RIGHT:
 #endif
-        case (char)6:
+        case (char)5:
         case (char)KEY_ARROW_RIGHT:
-        case 'l':
         case '6':
+        case 'l':
+        case 'L':
             movecursor(x,y,1,0);
             break;
         case 'b':
@@ -585,18 +593,38 @@ int getdir(void)
     while (1) {
         mprint("Select direction [hjklyubn, ESCAPE to quit]: ");
         switch (mgetc()) {
+#ifdef KEY_LEFT
+        case KEY_LEFT:
+#endif
+        case (char)4:
+        case (char)KEY_ARROW_LEFT:
         case '4':
         case 'h':
         case 'H':
             return(5);
+#ifdef KEY_DOWN
+        case KEY_DOWN:
+#endif
+        case (char)2:
+        case (char)KEY_ARROW_DOWN:
         case '2':
         case 'j':
         case 'J':
             return(6);
+#ifdef KEY_UP
+        case KEY_UP:
+#endif
+        case (char)KEY_ARROW_UP:
+		case (char)8:
         case '8':
         case 'k':
         case 'K':
             return(7);
+#ifdef KEY_RIGHT
+        case KEY_RIGHT:
+#endif
+        case (char)6:
+        case (char)KEY_ARROW_RIGHT:
         case '6':
         case 'l':
         case 'L':

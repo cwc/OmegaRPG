@@ -1041,7 +1041,7 @@ int difficulty(void)
     if (Level != NULL) depth = Level->depth;
     switch(Current_Environment) {
     case E_COUNTRYSIDE:
-        return(7);
+        return(4);
     case E_CITY:
         return(3);
     case E_VILLAGE:

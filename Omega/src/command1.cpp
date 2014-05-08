@@ -483,18 +483,38 @@ void p_country_process(void)
             help();
             no_op = true;
             break;
+#ifdef KEY_LEFT
+        case KEY_LEFT:
+#endif
+        case (char)4:
+        case (char)KEY_ARROW_LEFT:
         case '4':
         case 'h':
             movepincountry(-1,0);
             break;
+#ifdef KEY_DOWN
+        case KEY_DOWN:
+#endif
+        case (char)2:
+        case (char)KEY_ARROW_DOWN:
         case '2':
         case 'j':
             movepincountry(0,1);
             break;
+#ifdef KEY_UP
+        case KEY_UP:
+#endif
+        case (char)KEY_ARROW_UP:
+		case (char)8:
         case '8':
         case 'k':
             movepincountry(0,-1);
             break;
+#ifdef KEY_RIGHT
+        case KEY_RIGHT:
+#endif
+        case (char)5:
+        case (char)KEY_ARROW_RIGHT:
         case '6':
         case 'l':
             movepincountry(1,0);

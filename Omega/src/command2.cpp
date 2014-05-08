@@ -152,6 +152,7 @@ void eat (void)
         }
         else
         {
+			if (obj->usef == I_FOOD) Player.food = max(0, Player.food+obj->aux);
             item_use(obj);
             dispose_lost_objects(1,obj);
             if (Current_Dungeon == E_COUNTRYSIDE)

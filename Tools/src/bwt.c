@@ -155,7 +155,7 @@ void BWT_Detransform( unsigned char *buffer, unsigned int length, unsigned int f
         free( temporaryBuffer );
     }
 
-    /* Calculate the running totals for characters fo the alphabet. */
+    /* Calculate the running totals for characters of the alphabet. */
 
     /* First initialize arrays */
     for( i = 0 ; i < 256 ; i++ )

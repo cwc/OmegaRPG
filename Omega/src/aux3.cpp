@@ -891,7 +891,7 @@ int parsecitysite()
         if (byte == BACKSPACE || byte == DELETE_CHAR) {
             if (pos > 0) {
                 prefix[--pos] = '\0';
-                byte = prefix[pos - 1];
+                byte = prefix[pos - 1];  // despite static analysis warning, I think this is safe. PGM
                 f = first;
                 while (f >= 0 && !strncmp(prefix, sitenames[f], pos)) {
                     if (CitySiteList[sitenums[f] - CITYSITEBASE][0])

@@ -604,6 +604,13 @@ int getitem_prompt (char * prompt, Symbol itype)
     selectstr[k-1] = ')';
     selectstr[k] = 0;
 
+	// I always ask to see this anyway.
+    for (i = 1; i < MAXITEMS; ++i)
+    {
+        if (item_is_selectable(itype, Player.possessions[i]))
+            display_inventory_slot(i, false);
+    }
+
     /* get input from the user */
     do
     {
@@ -1287,7 +1294,7 @@ int get_inventory_slot(void)
         if ( response == ESCAPE || response == '-' )
             return O_UP_IN_AIR;
         else response = key_to_index(response);
-    } while (response != O_UP_IN_AIR);
+    } while (response == O_UP_IN_AIR);
     return response;
 }
 

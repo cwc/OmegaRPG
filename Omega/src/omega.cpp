@@ -164,7 +164,10 @@ void initrand(int environment, int level)
     else if (environment == E_RESTORE)
         seed = store;
     else
+	{
+		assert(environment > 0 && environment <= E_MAX);
         seed = level_seed[environment] + 1000*level;
+	}
     SRANDFUNCTION(seed);
 }
 
@@ -179,11 +182,14 @@ int game_restore(char *savefile)
         exit(1);
     }
     change_to_user_perms();
+#ifdef NO_DEBUG_FILE_SCUM  // todo fixme hack for reloading while repro bugs
 #ifdef WIN32
     _unlink(savefile);
 #else
     unlink(savefile);
 #endif
+#endif //DEBUG_FILE_SCUM
+
     change_to_game_perms();
     return(true);
 }

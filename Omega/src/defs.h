@@ -239,7 +239,7 @@ typedef int int32;
 /* kind of arbitrary */
 #define MAXROOMS 48
 #define MAXCONNECTIONS 4
-#define STRING_LEN 100
+#define STRING_LEN 260 // 260 instead of 100 means we avoid path limit size warnings
 
 /* some random characters */
 #define ESCAPE 27

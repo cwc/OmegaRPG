@@ -114,6 +114,8 @@ void map_read(map *m, FILE *in, int subLevel)
     /* We now know that we're looking at the right map, and we know its size. */
     /* Read the encoding of the level into a buffer. */
     m->sites = (char*) malloc(size);
+	if (m->sites == NULL)
+		error("Unable to allocate memory to read the map. Sorry.");
     fread(m->sites,size,1,in);
 
     /* Decode the level. */
