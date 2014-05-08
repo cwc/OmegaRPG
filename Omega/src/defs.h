@@ -6,9 +6,6 @@
 /* omega will NOT function unless the implementor sets the appropriate
 definitions in the following section. */
 
-#ifndef DEFS_INCLUDED  // include guard
-#define DEFS_INCLUDED
-
 /*--------------------------USER DEFINITIONS--------------------------*/
 
 #ifdef WIN32
@@ -20,7 +17,7 @@ definitions in the following section. */
 #define sleep(x) Sleep((DWORD) (x * 1000))
 #define usleep(x) sleep(x / 1000000.0)
 
-extern char* getlogin(char*, int maxLength);
+extern char* getlogin();
 #else
 // These includes are not supported or supplanted in Windows
 #include <unistd.h>
@@ -239,7 +236,7 @@ typedef int int32;
 /* kind of arbitrary */
 #define MAXROOMS 48
 #define MAXCONNECTIONS 4
-#define STRING_LEN 260 // 260 instead of 100 means we avoid path limit size warnings
+#define STRING_LEN 100
 
 /* some random characters */
 #define ESCAPE 27
@@ -1634,5 +1631,3 @@ typedef oltype *pol;
 #define KEY_ARROW_DOWN 31
 #define KEY_ARROW_RIGHT 16
 #define KEY_ARROW_LEFT 17
-
-#endif //DEFS_INCLUDED
