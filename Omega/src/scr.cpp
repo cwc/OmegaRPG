@@ -909,9 +909,13 @@ void drawplayer(void)
 
         wmove(Levelw, screenmody(Player.y), screenmodx(Player.x));
 
-        if ((!Player.status[INVISIBLE]) || Player.status[TRUESIGHT])
-        {
-            if (optionp(SHOW_COLOUR)) wattrset(Levelw, CHARATTR(PLAYER));
+		// todo, put down something to show  the player where they are
+        //if ((!Player.status[INVISIBLE]) || Player.status[TRUESIGHT])
+        {			
+            if (optionp(SHOW_COLOUR))
+				wattrset(Levelw, CHARATTR(PLAYER));
+			if (Player.status[INVISIBLE])
+				wattrset(Levelw, CHARATTR(ALTAR));  // new color for invisible peeps
             waddch(Levelw, PLAYER & 0xff);
         }
     }

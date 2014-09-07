@@ -1155,7 +1155,6 @@ static void inv_display_refresh(void)
 
 /* same as inventory_control, but only uses msg window for i/o*/
 
-
 void top_inventory_control(void)
 {
     int slot = 0,done=false,usedmenu=false;
@@ -1442,7 +1441,7 @@ void switch_to_slot(int slot)
                 morewait();
                 if (oair->number > 1) pack_extra_items(oair);
             }
-            Player.possessions[O_UP_IN_AIR] = NULL;
+            Player.possessions[O_UP_IN_AIR] = NULL;  // why here again?
         }
 
         else if (take) {

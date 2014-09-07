@@ -1,36 +1,6 @@
 /* omega, (C) 1987,1988,1989 by Laurence Raphael Brothers */
 /* iinit.h */
 /* This file defines and initializes the Objects Array */
-
-/* the struct object from defs.h looks like:
-
-struct object
-{
-  int id;
-  int weight;
-  int plus;
-  int charge;
-  int dmg;
-  int hit;
-  int aux;
-  int number;
-  int fragility;
-  long basevalue;
-  unsigned char known;
-  unsigned char used;
-  int blessing;
-  unsigned char type;
-  unsigned char uniqueness;
-  int usef;
-  unsigned char level;
-  Symbol objchar;
-  char *objstr;
-  char *truename;
-  char *cursestr;
-};
-
-*/
-
 #pragma once
 
 #ifndef __OBJECTS_H__

@@ -837,7 +837,6 @@ char *countryid(Symbol terrain)
     return(Str1);
 }
 
-/* WDT: I removed a space which appeared after "sorcerors' guild ". */
 static char sitenames[][30] = {	/* alphabetical listing */
     "alchemist", "arena", "armorer", "bank", "brothel", "casino", "castle",
     "city gates", "collegium magii", "condo", "department of public works",

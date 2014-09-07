@@ -209,7 +209,7 @@ void s_fear(void)
    Eventually will be more interesting */
 void s_ritual(void)
 {
-    Object* symbol;
+    Object* symbol, *storedItem;
     int i,roomno;
     int x,y;
 
@@ -248,7 +248,12 @@ void s_ritual(void)
             mprint("Flowing waves of mystical light congeal all around you.");
             mprint("'Like wow, man! Colors!'");
             mprint("Appreciative citizens throw you spare change.");
-            Player.cash +=random_range(50);
+            Player.cash +=random_range(75);
+        }
+        if (Current_Environment == E_VILLAGE) {
+            mprint("You put on a magic show for the yokels.");
+            mprint("Appreciative yokels throw you spare change.");
+            Player.cash +=random_range(35);
         }
         else if ( (roomno=Level->site[Player.x][Player.y].roomnumber) >= ROOMBASE )
         {
@@ -267,13 +272,23 @@ void s_ritual(void)
                         lset(Player.x+Dirs[0][i], Player.y+Dirs[1][i], CHANGED);
                     }
                     break;
-                case RS_HAREM: /* harem */
-                case RS_BOUDOIR: /* boudoir */
+				case RS_BEDROOM2:
+					if (random_range(3) == 1)
+						break;
+                case RS_HAREM:
+                case RS_BOUDOIR:
                     mprint("A secret panel opens next to the bed....");
                     if (random_range(2))
                         summon(0,INCUBUS); /* succubus/incubus */
                     else summon(0,SATYR); /* satyr/nymph */
                     break;
+				case RS_STOREROOM: // TODO test new room support
+					storedItem = create_object(difficulty()+2);
+					print1("You notice a hidden object.");
+					print2(itemid(storedItem));
+					morewait();
+					gain_item(storedItem);
+					break;
                 case RS_SHRINE: /*shrine to high magic */
                     mprint("A storm of mana coaelesces around you.");
                     mprint("You are buffeted by bursts of random magic.");
@@ -346,7 +361,7 @@ void s_ritual(void)
                     break;
                 default:
                     mprint("Well, not much effect. Chalk it up to experience.");
-                    gain_experience(Player.level*5);
+                    gain_experience(Player.level*6);
                     break;
                 }
             }
@@ -358,20 +373,21 @@ void s_ritual(void)
                 mprint("The ritual seems to be generating some spell effect.");
                 RitualRoom = Level->site[Player.x][Player.y].roomnumber;
                 switch (RitualRoom) {
-                case RS_WALLSPACE:
-                    shadowform();
-                    break;
-                case RS_CORRIDOR:
-                    haste(0);
-                    break;
-                case RS_PONDS:
-                    breathe(0);
-                    break;
-                case RS_ADEPT:
-                    hero(1);
-                    break;
-                default:
-                    mprint("The ritual doesn't seem to produce any tangible results...");
+					case RS_WALLSPACE:
+						shadowform();
+						break;
+					case RS_CORRIDOR:
+						haste(0);
+						break;
+					case RS_PONDS:
+						breathe(0);
+						break;
+					case RS_ADEPT:
+						hero(1);
+						break;
+					default:
+						mprint("The ritual doesn't seem to produce any tangible results...");
+
                     gain_experience(Player.level*6);
                 }
             }

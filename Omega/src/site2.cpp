@@ -899,12 +899,11 @@ void l_charity(void)
         print3("'Pinchpurse!'");
     else {
         clearmsg();
-        //    print1("How much can you give? ");
         donation = parsenum("How much can you give?");
         if (donation < 1)
             print2("'Go stick your head in a pig.'");
         else if (donation > Player.cash)
-            print2("'I'm afraid you're charity is bigger than your purse!'");
+            print2("'I'm afraid your charity is bigger than your purse!'");
         else if (donation < max(100,Player.level*Player.level*100)) {
             print2("'Oh, can't you do better than that?'");
             print3("'Well, I guess we'll take it....'");

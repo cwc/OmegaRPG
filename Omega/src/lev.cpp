@@ -651,7 +651,7 @@ int difficulty(void)
     case E_VILLAGE:
         return(1);
     case E_TACTICAL_MAP:
-        return(7);
+        return(5);
     case E_SEWERS:
         return(depth/6)+3;
     case E_CASTLE:

@@ -66,7 +66,6 @@ void wish(int blessing)
         Player.status[DISEASED] = 0;
         Player.status[POISONED] = 0;
         Player.food = 43;
-        /* Wish for Health when starving does some good. PGM */
     }
     else if (strcmp(wishstr,"Destruction")==0)
         annihilate(State.getCheater());

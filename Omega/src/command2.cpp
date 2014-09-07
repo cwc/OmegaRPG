@@ -991,9 +991,10 @@ void save(int force)
 
         if (ok) {
             if (save_game(fname)) {
-                endgraf();
-                printf("Bye!\n");
-                exit(0);
+				// DEBUG todo fixme
+                //endgraf();
+                //printf("Bye!\n");
+                //exit(0);
             }
             else
                 print1("Internal error -- unable to save.");

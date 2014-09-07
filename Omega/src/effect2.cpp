@@ -586,28 +586,26 @@ void breathe(int blessing)
 void i_chaos(Object* o)
 {
     if (Player.alignment < 0) {
-        Player.alignment -= random_range(20);
         mprint("You feel deliciously chaotic!");
         gain_experience(abs(Player.alignment)*10);
     }
     else {
         mprint("You feel a sense of inner turmoil!");
     }
-    /* Potion of Chaos always makes player more chaotic. PGM */
+    /* Potion of Chaos always makes player more chaotic. */
     Player.alignment -= random_range(20);
 }
 
 void i_law(Object* o)
 {
     if (Player.alignment > 0) {
-        Player.alignment += random_range(20);
         mprint("You feel wonderfully lawful!");
         gain_experience(Player.alignment*10);
     }
     else {
         mprint("You feel a sense of inner constraint!");
     }
-    /* Potion of Law always makes player more lawful. PGM */
+    /* Potion of Law always makes player more lawful. */
     Player.alignment += random_range(20);
 }
 

@@ -174,7 +174,7 @@ typedef int int32;
 #define MAXPACK 26
 
 /* number of items in pawn shop. Should be <= 26 */
-#define PAWNITEMS 20 /* DG -- the more the merrier.  WDT -- I agree. */
+#define PAWNITEMS 25
 
 /* number of lines back strings are recalled */
 #define STRING_BUFFER_SIZE 25
@@ -188,7 +188,7 @@ typedef int int32;
 #define VERBOSE 2
 
 /* Arbitrary. Max of the levels in the dungeons */
-#define MAXLEVELS 21
+#define MAXLEVELS 80
 
 /* levels in each dungeon */
 #define ASTRALLEVELS 5
@@ -1314,7 +1314,7 @@ for example. */
 #define L_BROTHEL 33
 #define L_SEWER 34
 #define L_TOURIST 35
-#define L_MONASTERY 36 /* first available PGM */
+#define L_MONASTERY 36
 /* end of city sites */
 
 /* gap for a few more city sites, could be either list: 37, 38, 39, 40 */

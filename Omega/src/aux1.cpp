@@ -358,8 +358,7 @@ void calc_melee(void)
 
     if (Player.rank[MONKS] > 0)
     {
-        /* monks */
-        /* aren't monks just obscene? PGM */
+        /* monks, todo double check for balance */
         if (Player.possessions[O_WEAPON_HAND] == NULL) /*barehanded*/
         {
             /* all monks get a bonus in unarmed combat */

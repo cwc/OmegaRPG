@@ -561,7 +561,6 @@ void Monster::m_death()
                 break;
             case 16:
             	if (random_range(3)) {
-            		/* paraphrase of harlan ellison... ? PGM */
             		mprint("It doesn't rain this day, anywhere in the known universe.");
             	} else {
             		mprint("The universal equilibrium slides down a notch.");
