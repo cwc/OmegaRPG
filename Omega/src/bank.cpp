@@ -996,8 +996,9 @@ static void bank_transaction (WINDOW *w, bank_account *account, Object* card)
         {
             beep();
 
-            for (idx = 14; idx < 14; ++idx)
-                mvwaddstr(w, idx, 2, blank_line);
+			// this wasn't executed at all anyway, of course.
+            /*for (idx = 14; idx < 14; ++idx)
+               */ mvwaddstr(w, idx, 2, blank_line);
 
             if (card->blessing > 0)
                 mvwaddstr(w, 14, 2, "I'm trying, but I don't know what to do!");
@@ -1147,6 +1148,7 @@ int bank_random_account_number (void)
     int which;
     int num_accounts;
     bank_account *account;
+	assert(bank != NULL); // otherwise we dereference null; right behavior, create an account?
 
     num_accounts = 0;
     for (account = bank; account; account = account->next_account)
@@ -1167,5 +1169,6 @@ int bank_random_account_number (void)
         }
     }
 
+	assert(bank != NULL);
     return account->number;
 }

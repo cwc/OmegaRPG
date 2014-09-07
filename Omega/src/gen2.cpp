@@ -131,6 +131,8 @@ void make_general_map(char *terrain)
         }
 }
 
+// todo this is too flat and boring, even for a road
+// plus it's crazily deadly for enemies with distance weapons
 void make_plains(void)
 {
     make_general_map(".");
@@ -209,7 +211,7 @@ void make_swamp(void)
 
 /* builds a room. Then, for each successive room, sends off at least one
 corridor which is guaranteed to connect up to another room, thus guaranteeing
-fully connected level. */
+a fully connected level. */
 
 void room_level(void)
 {
@@ -276,7 +278,7 @@ void room_level(void)
 
 
         /* corridor which may not go anywhere */
-        if (random_range(2)) {
+        if (random_range(3)) {  // was 2, making it less likely because reasons
             findspace(&tx,&ty,i);
             if ((ty <= t) && (tx <= l+e)) {
                 fx = l+1+random_range(e-1);

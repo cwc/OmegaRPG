@@ -93,10 +93,7 @@ void fix_phantom(Monster* m)
         mprint("You hear a puff of displaced air....");
         findspace(&(m->x),&(m->y),-1);
         Level->site[m->x][m->y].creature = m;
-        m->m_death();
-
-        /* PGM: shouldn't this be
-         * m_remove? m_death causes an experience gain.*/
-
+		m->m_remove();
+        /* PGM: switched from m_death to m_remove; m_death causes an experience gain.*/
     }
 }

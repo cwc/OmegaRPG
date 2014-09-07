@@ -465,6 +465,7 @@ void l_casino(void)
 void l_commandant (void)
 {
     int num;
+	Object *food;
 
     print1("Commandant Sonder's Rampart-fried Lyzzard partes. Open 24 hrs.");
     print2("Buy a bucket! Only 5 Au. Make a purchase? [yn] ");
@@ -481,7 +482,8 @@ void l_commandant (void)
         else
         {
             Player.cash -= num*5;
-            LyzzardBucket* food = new LyzzardBucket();
+			food = (Object*)checkmalloc(sizeof(Object));
+           *food = Objects[OB_RATION]; /* food ration */
             food->number = num;
 
             if (1 == num)

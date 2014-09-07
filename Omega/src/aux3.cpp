@@ -837,7 +837,6 @@ char *countryid(Symbol terrain)
     return(Str1);
 }
 
-/* WDT: I removed a space which appeared after "sorcerors' guild ". */
 static char sitenames[][30] = {	/* alphabetical listing */
     "alchemist", "arena", "armorer", "bank", "brothel", "casino", "castle",
     "city gates", "collegium magii", "condo", "department of public works",
@@ -891,7 +890,7 @@ int parsecitysite()
         if (byte == BACKSPACE || byte == DELETE_CHAR) {
             if (pos > 0) {
                 prefix[--pos] = '\0';
-                byte = prefix[pos - 1];
+                byte = prefix[pos - 1];  // despite static analysis warning, I think this is safe. PGM
                 f = first;
                 while (f >= 0 && !strncmp(prefix, sitenames[f], pos)) {
                     if (CitySiteList[sitenums[f] - CITYSITEBASE][0])

@@ -114,6 +114,8 @@ void map_read(map *m, FILE *in, int subLevel)
     /* We now know that we're looking at the right map, and we know its size. */
     /* Read the encoding of the level into a buffer. */
     m->sites = (char*) malloc(size);
+	if (m->sites == NULL)
+		error("Unable to allocate memory to read the map. Sorry.");
     fread(m->sites,size,1,in);
 
     /* Decode the level. */
@@ -188,15 +190,6 @@ void map_close(map *m)
     free(m->sites);
     free(m);
 }
-
-#if 0
-/* Using the mappings given in this map structure, build an Omega
- * level, using appropriate terrain. */
-void map_buildLevel(map *m, Level *lev)
-{
-
-}
-#endif
 
 char map_getSiteChar(map *m, int i, int j)
 {

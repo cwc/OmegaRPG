@@ -5,9 +5,8 @@
 #include "glob.h"
 
 #ifdef WIN32
-char* getlogin() {
-	DWORD size = 256;
-	char buf[256];
+char* getlogin(char* buf, int sizeOfBuf) {
+	DWORD size = sizeOfBuf;
 
 	if (!GetUserName(buf, &size)) {
 		return "pcuser";
@@ -23,10 +22,10 @@ bool initplayer(void)
     int i;
     int oldchar=false;
     FILE *fd;
-    char *lname;
+    char *lname = (char*)malloc(256 * sizeof(char));
     int ret_value = false;
 
-    lname = getlogin();
+    lname = getlogin(lname, 256);
 
 #if !defined(WIN32)
     // Get the login name if getlogin() failed
@@ -79,12 +78,7 @@ bool initplayer(void)
         fclose(fd);
     }
     change_to_game_perms();
-    if (! oldchar) {
-        optionset(RUNSTOP);
-        optionset(CONFIRM);
-        optionset(SHOW_COLOUR);
-        ret_value = initstats() ; /* RM 04-19-2000:loading patch */ /* DAG */
-    }
+
     /* This gets executed when the player loads from .omegarc */
     /* DAG - put the code back in the same place, rather than duplicating */
     Searchnum = max(1,min(9,Searchnum));
@@ -94,7 +88,13 @@ bool initplayer(void)
     strcpy(Player.combatManeuvers,"CCBC");
     calc_melee();
     ScreenOffset = -1000;	/* to force a redraw */
-    return ret_value > 0; /* RM 04-19-2000: loading patch */ /* DAG */
+	if (! oldchar) {
+		optionset(RUNSTOP);
+		optionset(CONFIRM);
+		optionset(SHOW_COLOUR);
+		ret_value = initstats() ;
+    }
+    return ret_value > 0;
 }
 
 

@@ -358,8 +358,7 @@ void calc_melee(void)
 
     if (Player.rank[MONKS] > 0)
     {
-        /* monks */
-        /* aren't monks just obscene? PGM */
+        /* monks, todo double check for balance */
         if (Player.possessions[O_WEAPON_HAND] == NULL) /*barehanded*/
         {
             /* all monks get a bonus in unarmed combat */
@@ -518,20 +517,42 @@ void setspot(int *x, int *y)
     while ((c != '.') && (c != ESCAPE)) {
         c = lgetc();
         switch(c) {
+#ifdef KEY_LEFT
+        case KEY_LEFT:
+#endif
+        case (char)4:
+        case (char)KEY_ARROW_LEFT:
         case 'h':
         case '4':
             movecursor(x,y,-1,0);
             break;
+#ifdef KEY_DOWN
+        case KEY_DOWN:
+#endif
+        case (char)2:
+        case (char)KEY_ARROW_DOWN:
         case 'j':
         case '2':
             movecursor(x,y,0,1);
             break;
+#ifdef KEY_UP
+        case KEY_UP:
+#endif
+        case (char)3:
+        case (char)KEY_ARROW_UP:
         case 'k':
         case '8':
             movecursor(x,y,0,-1);
             break;
-        case 'l':
+
+#ifdef KEY_RIGHT
+        case KEY_RIGHT:
+#endif
+        case (char)5:
+        case (char)KEY_ARROW_RIGHT:
         case '6':
+        case 'l':
+        case 'L':
             movecursor(x,y,1,0);
             break;
         case 'b':
@@ -571,18 +592,38 @@ int getdir(void)
     while (1) {
         mprint("Select direction [hjklyubn, ESCAPE to quit]: ");
         switch (mgetc()) {
+#ifdef KEY_LEFT
+        case KEY_LEFT:
+#endif
+        case (char)4:
+        case (char)KEY_ARROW_LEFT:
         case '4':
         case 'h':
         case 'H':
             return(5);
+#ifdef KEY_DOWN
+        case KEY_DOWN:
+#endif
+        case (char)2:
+        case (char)KEY_ARROW_DOWN:
         case '2':
         case 'j':
         case 'J':
             return(6);
+#ifdef KEY_UP
+        case KEY_UP:
+#endif
+        case (char)KEY_ARROW_UP:
+		case (char)8:
         case '8':
         case 'k':
         case 'K':
             return(7);
+#ifdef KEY_RIGHT
+        case KEY_RIGHT:
+#endif
+        case (char)6:
+        case (char)KEY_ARROW_RIGHT:
         case '6':
         case 'l':
         case 'L':

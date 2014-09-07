@@ -6,6 +6,7 @@ which works everywhere but the countryside, and p_couyntry_process,
 which works.... */
 
 #include "glob.h"
+#include "defs.h"
 
 /* deal with a new player command in dungeon or city mode*/
 void p_process(void)
@@ -243,6 +244,7 @@ void p_process(void)
 #ifdef KEY_LEFT
         case KEY_LEFT:
 #endif
+        case (char)KEY_ARROW_LEFT:
             moveplayer(-1,0);
             Command_Duration = Player.speed*5/5;
             break;
@@ -251,12 +253,14 @@ void p_process(void)
 #ifdef KEY_DOWN
         case KEY_DOWN:
 #endif
+        case (char)KEY_ARROW_DOWN:
             moveplayer(0,1);
             Command_Duration = Player.speed*5/5;
             break;
 #ifdef KEY_UP
         case KEY_UP:
 #endif
+        case (char)KEY_ARROW_UP:
         case '8':
         case 'k':
             moveplayer(0,-1);
@@ -265,6 +269,7 @@ void p_process(void)
 #ifdef KEY_RIGHT
         case KEY_RIGHT:
 #endif
+        case (char)KEY_ARROW_RIGHT:
         case '6':
         case 'l':
             moveplayer(1,0);
@@ -478,18 +483,38 @@ void p_country_process(void)
             help();
             no_op = true;
             break;
+#ifdef KEY_LEFT
+        case KEY_LEFT:
+#endif
+        case (char)4:
+        case (char)KEY_ARROW_LEFT:
         case '4':
         case 'h':
             movepincountry(-1,0);
             break;
+#ifdef KEY_DOWN
+        case KEY_DOWN:
+#endif
+        case (char)2:
+        case (char)KEY_ARROW_DOWN:
         case '2':
         case 'j':
             movepincountry(0,1);
             break;
+#ifdef KEY_UP
+        case KEY_UP:
+#endif
+        case (char)KEY_ARROW_UP:
+		case (char)8:
         case '8':
         case 'k':
             movepincountry(0,-1);
             break;
+#ifdef KEY_RIGHT
+        case KEY_RIGHT:
+#endif
+        case (char)5:
+        case (char)KEY_ARROW_RIGHT:
         case '6':
         case 'l':
             movepincountry(1,0);

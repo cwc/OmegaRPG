@@ -1,0 +1,64 @@
+[*] Omega version 0.91 character dump [*]
+
+Name      : Patrick
+Level     : tourist [2]
+Alignment : Neutral, embodying the Cosmic Balance
+
+Str :     9 [9]           HP       :    -1 [28]          Hit     : 20
+Con :    13 [13]          Mana     :    33 [33]          Damage  : 26
+Dex :    16 [16]                                         Defense : 4
+Agi :    15 [15]          Exp      : 160                 Armor   : 2
+Int :    19 [19]          Carry    : 294                 Speed   : 1.25
+Pow :    11 [11]          Capacity : 1350
+
+Cash (carried/bank) : 99 / 192
+Current Point Total : 20
+Elapsed Game Time   : 1 days, 4 hours, 59 minutes
+
+[Verification: b5b4c7fe]
+
+-- Current Stati --
+
+(None)
+
+-- Current Immunities --
+
+Flame                     
+
+[Verification: 00000a83]
+
+-- Current Ranks --
+
+Collegium Magii: Novice                  Exp: 151
+Lowly Commoner                           
+
+[Verification: d84a4cf6]
+
+-- Possessions (Carried) --
+
+a) Ready hand     : (nothing)
+b) Weapon hand    : morning-star
+c) Left shoulder  : (nothing)
+d) Right shoulder : (nothing)
+e) Belt           : (nothing)
+f) Belt           : (nothing)
+g) Belt           : (nothing)
+h) Shield         : (nothing)
+i) Armor          : soft leather armor +0
+j) Boots          : (nothing)
+k) Cloak          : (nothing)
+l) Finger         : (nothing)
+m) Finger         : (nothing)
+n) Finger         : (nothing)
+o) Finger         : (nothing)
+
+[Verification: 66e49a37]
+
+-- Possessions (In Pack) --
+
+A) torch
+B) debit card
+C) messy red and white disk
+
+[Verification: e2b78ec9]
+

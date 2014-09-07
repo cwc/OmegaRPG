@@ -506,13 +506,6 @@ void l_void(void)
     while(Player.hp>0) {
         Time+=60;
         hourly_check();
-        /* WDT: GCC doesn't like usleep being included from unistd.h when it's
-         * checking for ANSI compliance.  That's the stupidest thing I've seen,
-         * but I wasn't offered a choice -- the man pages don't document any other
-         * options.
-         * Fortunately, this is a bad use of usleep, so commenting it out won't
-         * hurt the game, and might even help it. */
-        /*    usleep(250000);*/
     }
 }
 

@@ -788,6 +788,30 @@ void i_hero(Object* o)
     hero(o->blessing);
 }
 
+void i_food(Object* o)
+{
+    switch(random_range(6)) {
+    case 0:
+        mprint("That tasted horrible!");
+        break;
+    case 1:
+        mprint("Yum!");
+        break;
+    case 2:
+        mprint("How nauseous!");
+        break;
+    case 3:
+        mprint("Can I have some more? Please?");
+        break;
+    case 4:
+        mprint("Your mouth feels like it is growing hair!");
+        break;
+    case 5:
+        mprint("Tastes like home cooking!");
+        break;
+    }
+ }
+
 void i_perm_hero(Object* o)
 {
     if (o->known < 1) o->known = 1;

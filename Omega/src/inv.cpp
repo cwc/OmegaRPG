@@ -3,6 +3,7 @@
 /* functions having to do with player item inventory */
 
 #include "glob.h"
+#include "defs.h"
 
 static void inv_display_munge(void);
 static void inv_display_refresh(void);
@@ -603,6 +604,13 @@ int getitem_prompt (char * prompt, Symbol itype)
     selectstr[k-1] = ')';
     selectstr[k] = 0;
 
+	// I always ask to see this anyway.
+    for (i = 1; i < MAXITEMS; ++i)
+    {
+        if (item_is_selectable(itype, Player.possessions[i]))
+            display_inventory_slot(i, false);
+    }
+
     /* get input from the user */
     do
     {
@@ -1050,6 +1058,7 @@ void inventory_control(void)
         case 'j':
         case '>':
         case '2':
+		case (char)KEY_ARROW_DOWN:
 #if defined(KEY_DOWN)
         case KEY_DOWN:
 #endif
@@ -1061,6 +1070,7 @@ void inventory_control(void)
 #if defined(KEY_UP)
         case KEY_UP:
 #endif
+        case (char)KEY_ARROW_UP:
             slot = move_slot(slot,slot-1,MAXITEMS);
             break;
 #ifdef KEY_HOME
@@ -1144,7 +1154,6 @@ static void inv_display_refresh(void)
 
 
 /* same as inventory_control, but only uses msg window for i/o*/
-
 
 void top_inventory_control(void)
 {
@@ -1284,7 +1293,7 @@ int get_inventory_slot(void)
         if ( response == ESCAPE || response == '-' )
             return O_UP_IN_AIR;
         else response = key_to_index(response);
-    } while (response != O_UP_IN_AIR);
+    } while (response == O_UP_IN_AIR);
     return response;
 }
 
@@ -1432,7 +1441,7 @@ void switch_to_slot(int slot)
                 morewait();
                 if (oair->number > 1) pack_extra_items(oair);
             }
-            Player.possessions[O_UP_IN_AIR] = NULL;
+            Player.possessions[O_UP_IN_AIR] = NULL;  // why here again?
         }
 
         else if (take) {

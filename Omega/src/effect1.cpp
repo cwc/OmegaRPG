@@ -488,7 +488,7 @@ void mondet(int blessing)
 {
     MonsterList* ml;
     for (ml=Level->mlist; ml!=NULL; ml=ml->next)
-        if (ml->monster->hp > 0) /* FIXED 12/30/98 DG */
+        if (ml->monster->hp > 0)
         {
             if (blessing > -1)
                 plotmon(ml->monster);

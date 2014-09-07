@@ -151,7 +151,9 @@ int unpack(int num_args, char *args[])
     {
         /* Read the size of this level. */
         size = fgetshort(in);
-        code = malloc(size);
+        code = (char *)malloc((size_t)size);
+		if (code == NULL || code == 0)
+			error("Could not allocate memory for map reading.");
         fread(code,size,1,in);
 
         /* Decode the whole level. */
