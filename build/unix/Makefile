@@ -3,7 +3,7 @@ BUILD_DIR := obj
 CPP := g++
 LD := g++
 
-CFLAGS :=
+CFLAGS := -std=c++11
 LDFLAGS := -lcurses
 
 DATA_DIR := ../../data
