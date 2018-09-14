@@ -2,6 +2,7 @@
 /* save.c */
 
 #include "glob.h"
+#include "LyzzardBucket.h"
 
 /*Various functions for doing game saves and restores */
 /*The game remembers various player information, the city level,
@@ -696,6 +697,11 @@ Object* restore_item(FILE *fd, int version)
             }
             else
                 obj->cursestr = Objects[obj->id].cursestr;
+        }
+        if(obj->id == FOODID+0) {
+            Object *old = obj;
+            obj = new LyzzardBucket(obj);
+            free(old);
         }
     }
     return obj;

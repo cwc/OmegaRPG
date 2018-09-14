@@ -909,8 +909,12 @@ int ok_to_free(plv level)
 void free_obj( Object* obj, int flag )
 {
     if ( flag && (obj->id == CORPSEID) && (obj->level & ALLOC) )
-        free( obj->objstr );
-    free( (char *) obj );
+        free( (char *)obj->objstr );
+    if(obj->id == FOODID+0) {
+        delete obj;
+    } else {
+        free( (char *) obj );
+    }
 }
 
 Object* copy_obj ( Object* obj )
