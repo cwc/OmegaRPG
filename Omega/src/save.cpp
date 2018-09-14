@@ -701,6 +701,7 @@ Object* restore_item(FILE *fd, int version)
         if(obj->id == FOODID+0) {
             Object *old = obj;
             obj = new LyzzardBucket(obj);
+            free(old);
         }
     }
     return obj;
