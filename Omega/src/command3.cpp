@@ -595,7 +595,8 @@ void vault(void)
 void tacoptions(void)
 {
     int actionsleft,done,place;
-    char defatt, *attstr, *defstr; /* for the default setting */
+    char defatt; /* for the default setting */
+    const char *attstr, *defstr;
     int draw_again = 1;
 
     State.setSkipMonsters();

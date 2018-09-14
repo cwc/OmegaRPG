@@ -13,7 +13,7 @@ void display_stat_slot( int );
 /* omega.c functions */
 
 int main( int,char *[] );
-int game_restore( char * );
+int game_restore( const char * );
 void init_world( void );
 void inititem( int );
 void initrand( int, int );
@@ -26,7 +26,7 @@ void load_abyss( void );
 /* aux1.c functions */
 
 char *levelname( int );
-char *trapid( int );
+const char *trapid( int );
 int getdir( void );
 int goberserk( void );
 int p_country_moveable( int,int );
@@ -37,8 +37,8 @@ int damage_item( Object* );
 void describe_player( void );
 void foodcheck( void );
 void gain_experience( int );
-void p_damage( int,int,char * );
-void p_death( char * );
+void p_damage( int,int,const char * );
+void p_death( const char * );
 void roomcheck( void );
 void searchat( int,int );
 void setspot( int *,int * );
@@ -96,7 +96,7 @@ void terrain_check( int );
 /* bank.c functions */
 
 Object* bank_create_card (int, int);
-bank_account * bank_create_account (int, int, char *);
+bank_account * bank_create_account (int, int, const char *);
 bank_account * bank_index_password (char *);
 bank_account * bank_index_number (int);
 int bank_random_account_number (void);
@@ -257,7 +257,7 @@ void hide( int,int );
 void illuminate( int );
 void inflict_fear( int,int );
 void learnspell( int );
-void level_drain( int,char * );
+void level_drain( int, const char * );
 void level_return( void );
 void levitate( int );
 void p_poison( int );
@@ -282,8 +282,8 @@ void make_prime( int,int );
 /* etc.c functions */
 
 char *nameprint( void );
-char *slotstr( int );
-char *wordnum( int );
+const char *slotstr( int );
+const char *wordnum( int );
 void hint( void );
 void learnclericalspells( int,int );
 
@@ -291,7 +291,7 @@ void learnclericalspells( int,int );
 
 void lock_score_file( void );
 void unlock_score_file( void );
-FILE *checkfopen( char *,char * );
+FILE *checkfopen( const char *,const char * );
 int filecheck( void );
 int test_file_access( char *, char );
 void abyss_file( void );
@@ -336,7 +336,7 @@ void straggle_corridor( int,int,int,int,Symbol,char );
 /* gen2.c functions */
 
 void make_country_screen( Symbol );
-void make_general_map( char * );
+void make_general_map( const char * );
 void make_forest( void );
 void make_jungle( void );
 void make_mountains( void );
@@ -376,7 +376,7 @@ void do_inventory_control( void );
 int  key_to_index( signed char );
 signed char index_to_key( int );
 long get_money( long );
-char *cashstr( void );
+const char *cashstr( void );
 char *itemid( Object* );
 int baditem( int );
 int badobject( char );
@@ -386,7 +386,7 @@ int get_inventory_slot( void );
 int get_item_number( Object* );
 int get_to_pack( Object* );
 int getitem( Symbol );
-int getitem_prompt (char *, Symbol);
+int getitem_prompt (const char *, Symbol);
 int item_useable( Object*,int );
 int objequal( Object*, Object* );
 int slottable( Object*,int );
@@ -423,13 +423,13 @@ void top_inventory_control( void );
 /* item.c functions */
 
 void shuffle( int [], int );
-char *bootname( int );
-char *cloakname( int );
-char *grotname( void );
-char *potionname( int );
-char *ringname( int );
-char *scrollname( int );
-char *stickname( int );
+const char *bootname( int );
+const char *cloakname( int );
+const char *grotname( void );
+const char *potionname( int );
+const char *ringname( int );
+const char *scrollname( int );
+const char *stickname( int );
 int itemblessing( void );
 int itemcharge( void );
 int itemplus( void );
@@ -619,8 +619,8 @@ char random_loc( void );
 
 /* mon.c functions */
 
-char *mancorpse( void );
-char *angeltype( int,int );
+const char *mancorpse( void );
+const char *angeltype( int,int );
 void make_hiscore_npc(Monster*, int);
 void make_log_npc(Monster*);
 
@@ -686,7 +686,7 @@ void make_hp( Object* );
 /* save.c functions */
 
 int ok_outdated( int );
-int restore_game( char * );
+int restore_game( const char * );
 void restore_hiscore_npc( Monster*, int );
 Object* restore_item( FILE *, int );
 pol restore_itemlist( FILE *, int );
@@ -694,7 +694,7 @@ void restore_country( FILE *, int );
 void restore_level( FILE *, int );
 void restore_monsters( FILE *,plv, int );
 void restore_player( FILE *, int );
-int save_game( char * );
+int save_game( const char * );
 int save_country( FILE * );
 int save_item( FILE *, Object* );
 int save_itemlist( FILE *,pol );
@@ -706,7 +706,7 @@ int save_player( FILE * );
 
 void omega_title( void );
 int mcigetc( void );
-long parsenum( char *message );
+long parsenum( const char *message );
 char *msgscanstring( void );
 Symbol getspot( int,int,int );
 char lgetc( void );
@@ -714,14 +714,14 @@ char menugetc( void );
 int mgetc( void );
 void cinema_hide (void);
 void cinema_blank (void);
-void cinema_print_line (int line, char * text);
-int cinema_interact_line (int line, char * choices, char * text);
-int cinema_ynq_line (int line, char * prompt);
-int cinema_getnum_line (int line, char * prompt);
-int cinema_confirm(char *action_description);
-int cinema_ynq(char *action_description);
-int cinema_interact(char *choices, char *line1, char *line2, char *line3);
-void cinema_scene(char *line1, char *line2, char *line3);
+void cinema_print_line (int line, const char * text);
+int cinema_interact_line (int line, const char * choices, const char * text);
+int cinema_ynq_line (int line, const char * prompt);
+int cinema_getnum_line (int line, const char * prompt);
+int cinema_confirm(const char *action_description);
+int cinema_ynq(const char *action_description);
+int cinema_interact(const char *choices, const char *line1, const char *line2, const char *line3);
+void cinema_scene(const char *line1, const char *line2, const char *line3);
 int ynq( void );
 int ynq1( void );
 int ynq2( void );
@@ -732,7 +732,7 @@ int stillonblock( void );
 void blankoutspot( int,int );
 void blotspot( int,int );
 void buffercycle( const char * );
-int bufferappend( char * );
+int bufferappend( const char * );
 void bufferprint( void );
 void checkclear( void );
 void clear_if_necessary( void );
@@ -747,7 +747,7 @@ void comwinprint( void );
 void dataprint( void );
 void deathprint( void );
 void display_bigwin( void );
-void display_death( char * );
+void display_death( const char * );
 void display_inventory_slot( int,int );
 void display_option_slot( int );
 void display_options( void );
@@ -771,30 +771,30 @@ void hide_line( int );
 void initgraf( void );
 void levelrefresh( void );
 void lightspot( int,int );
-void locprint( char * );
+void locprint( const char * );
 void maddch( char );
 void menuaddch( char );
 void menuclear( void );
 void menulongprint( long );
 void menunumprint( int );
-void menuprint( char * );
+void menuprint( const char * );
 void menuspellprint( int );
 void showmenu( void );
 void mlongprint( long );
 void mnumprint( int );
 void morewait( void );
-void mprint( char * );
-void nprint1( char * );
-void nprint2( char * );
-void nprint3( char * );
+void mprint( const char * );
+void nprint1( const char * );
+void nprint2( const char * );
+void nprint3( const char * );
 void phaseprint( void );
 void bank_init( void );
 void plotchar( Symbol,int,int );
 void plotmon( Monster * );
 void plotspot( int,int,int );
 void print1( const char * );
-void print2( char * );
-void print3( char * );
+void print2( const char * );
+void print3( const char * );
 void putspot( int,int,Symbol );
 void redraw( void );
 void screencheck( int,int );
@@ -851,7 +851,7 @@ void l_tourist( void );
 
 /* spell.c functions */
 
-char *spellid( int );
+const char *spellid( int );
 int getspell( void );
 int spellparse( void );
 void cast_spell( int );
@@ -924,14 +924,14 @@ void l_trap_teleport( void );
 
 void setPlayerXY( int,int );
 long calc_points( void );
-char *getarticle( char * );
-char *month( void );
-char *ordinal( int );
-char *salloc( char * );
+const char *getarticle( const char * );
+const char *month( void );
+const char *ordinal( int );
+const char *salloc( const char * );
 char inversedir( int );
 void init_perms( void );
 int confirmation( void );
-char cryptkey( char* );
+char cryptkey( const char* );
 int day( void );
 int distance( int,int,int,int );
 int hitp( int,int );
@@ -954,7 +954,7 @@ int screenmodx( int );
 int showhour( void );
 int showminute( void );
 int strmem( char,char * );
-char *strjoin(char*,char*);
+char *strjoin(const char *, const char *);
 
 /* pdump.c functions */
 

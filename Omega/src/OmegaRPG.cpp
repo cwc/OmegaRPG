@@ -16,12 +16,12 @@ OmegaRPG::~OmegaRPG(void)
 {
 }
 
-char* OmegaRPG::SaveFilename()
+const char* OmegaRPG::SaveFilename()
 {
     return _saveFilename;
 }
 
-void OmegaRPG::SaveFilename(char* filename)
+void OmegaRPG::SaveFilename(const char* filename)
 {
     _saveFilename = filename;
     g_saveFileName = _saveFilename; // TODO Refactor out this global

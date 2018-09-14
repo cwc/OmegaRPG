@@ -4,7 +4,7 @@
 
 #include "glob.h"
 
-char *mancorpse(void)
+const char *mancorpse(void)
 {
     switch(random_range(20)) {
     case 0:
@@ -51,7 +51,7 @@ char *mancorpse(void)
     }
 }
 
-char *angeltype(int mid, int deity)
+const char *angeltype(int mid, int deity)
 {
     if (ANGEL == mid )
     {

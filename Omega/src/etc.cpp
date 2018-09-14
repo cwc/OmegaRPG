@@ -411,7 +411,7 @@ void learnclericalspells(int deity, int level)
 }
 
 /* for the use of the casino slot machine */
-char *slotstr(int num)
+const char *slotstr(int num)
 {
     switch(num) {
     case 0:
@@ -568,7 +568,7 @@ char *nameprint(void)
 
 
 /* returns english string equivalent of number */
-char *wordnum(int num)
+const char *wordnum(int num)
 {
     switch(num) {
     case 0:

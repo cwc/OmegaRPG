@@ -511,7 +511,7 @@ int nighttime(void)
     return((hour() > 20) || (hour() < 7));
 }
 
-char *getarticle(char *str)
+const char *getarticle(const char *str)
 {
     if ((str[0]=='a') || (str[0]=='A') ||
             (str[0]=='e') || (str[0]=='E') ||
@@ -529,7 +529,7 @@ int day(void)
     return ((Date % 30) + 1);
 }
 
-char *ordinal(int number)
+const char *ordinal(int number)
 {
     if ((number == 11) || (number == 12) || (number == 13)) return("th");
     else  switch(number % 10) {
@@ -544,7 +544,7 @@ char *ordinal(int number)
         }
 }
 
-char *month(void)
+const char *month(void)
 {
     switch((Date % 360) / 30) {
     case 0:
@@ -882,7 +882,7 @@ void calc_weight(void)
 }
 
 char joinString[256], temp[256];
-char *strjoin(char*one, char*two)
+char *strjoin(const char *one, const char *two)
 {
     assert(one != two);
     if (joinString == one) goto DirectJoin;
@@ -949,8 +949,8 @@ void free_mons_and_objs(MonsterList* mlist)
         /* DAG free the name & corpseString if allocated */
         if ( m_statusp( tmp->monster, ALLOC ) )
         {
-            free( tmp->monster->name );
-            free( tmp->monster->corpseString );
+            free( (char *)tmp->monster->name );
+            free( (char *)tmp->monster->corpseString );
         }
         free(tmp->monster);
         mlist = mlist->next;
@@ -1006,7 +1006,7 @@ void *checkmalloc(unsigned int bytes)
 }
 
 /* alloc just enough string space for str, strcpy, and return pointer */
-char *salloc(char *str)
+const char *salloc(const char *str)
 {
     char *s = (char*) checkmalloc((unsigned)(strlen(str)+1));
     strcpy(s,str);
@@ -1123,7 +1123,7 @@ int difficulty(void)
 }
 #endif
 
-char cryptkey(char *fname)
+char cryptkey(const char *fname)
 {
     int pos, key = 0;
 

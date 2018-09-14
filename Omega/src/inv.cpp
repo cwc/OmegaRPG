@@ -271,7 +271,7 @@ char *itemid(Object* obj)
     }
 }
 
-char *cashstr(void)
+const char *cashstr(void)
 {
     if (difficulty() < 3) return("copper pieces");
     else if (difficulty() < 5) return("silver pieces");
@@ -540,10 +540,10 @@ int getitem (Symbol itype)
     return getitem_prompt(0, itype);
 }
 
-int getitem_prompt (char * prompt, Symbol itype)
+int getitem_prompt (const char * prompt, Symbol itype)
 {
     char key;
-    char *line3;
+    const char *line3;
     char invstr[64];
     char selectstr[80];
     int i, k;
@@ -770,7 +770,7 @@ void use_pack_item(int response, int slot)
 int aux_display_pack(int start_item, int slot)
 {
     int i=start_item, items;
-    char *depth_string;
+    const char *depth_string;
 
     menuclear();
 #if 0

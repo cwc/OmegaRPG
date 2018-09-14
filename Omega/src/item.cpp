@@ -69,7 +69,7 @@ void make_corpse(Object* newObject, Monster* m)
         /* DAG we are keeping the corpseString here, can free name */
         /*     later, should track this in the object as well, as this */
         /*     is still a memory leak (though smaller than before)  */
-        free ( m->name );
+        free ( (char *)m->name );
         m->name = Monsters[m->id].name;
         m->corpseString = Monsters[m->id].corpseString;
         m_status_reset( m, ALLOC );
@@ -299,7 +299,7 @@ void shuffle(int ids[], int number)
 
 /* item name functions */
 
-char *scrollname(int id)
+const char *scrollname(int id)
 {
     switch(scroll_ids[id]) {
     case 0:
@@ -366,7 +366,7 @@ char *scrollname(int id)
     }
 }
 
-char *grotname(void)
+const char *grotname(void)
 {
     switch(random_range(21)) {
     case 0:
@@ -418,7 +418,7 @@ char *grotname(void)
 
 
 
-char *potionname(int id)
+const char *potionname(int id)
 {
     switch (potion_ids[id]) {
     case 0:
@@ -466,7 +466,7 @@ char *potionname(int id)
 }
 
 
-char *stickname(int id)
+const char *stickname(int id)
 {
     switch (stick_ids[id]) {
     case 0:
@@ -513,7 +513,7 @@ char *stickname(int id)
     }
 }
 
-char *ringname(int id)
+const char *ringname(int id)
 {
     switch (ring_ids[id]) {
     case 0:
@@ -563,7 +563,7 @@ char *ringname(int id)
 }
 
 
-char *cloakname(int id)
+const char *cloakname(int id)
 {
     switch (cloak_ids[id]) {
     case 0:
@@ -612,7 +612,7 @@ char *cloakname(int id)
     }
 }
 
-char *bootname(int id)
+const char *bootname(int id)
 {
     switch (boot_ids[id]) {
     case 0:

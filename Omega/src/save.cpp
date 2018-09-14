@@ -3,6 +3,7 @@
 
 #include "glob.h"
 #include "LyzzardBucket.h"
+#include <string.h>
 
 /*Various functions for doing game saves and restores */
 /*The game remembers various player information, the city level,
@@ -15,14 +16,15 @@ the country level, and the last or current dungeon level */
    The player, the city level, and the current dungeon level are saved.
 */
 
-char* g_saveFileName = NULL;
+const char* g_saveFileName = NULL;
 
-int save_game(char *savestr)
+int save_game(const char *saveFile)
 {
     FILE *fd;
     int i,writeok=true;
     plv current, save;
 
+    char *savestr = strdup(saveFile);
 #if !defined(WIN32)
     int slashpos;
 
@@ -266,7 +268,7 @@ int save_level(FILE *fd, plv level)
             }
             mask >>= 1;
             if (level->site[i][j].lstatus&SEEN)
-                mask |= (1<<(sizeof(long int)*8 - 1));
+                mask |= (1L<<(sizeof(long int)*8 - 1));
             run--;
         }
     if (run < 8*sizeof(long int))
@@ -406,7 +408,7 @@ int save_country(FILE *fd)
             }
             mask >>= 1;
             if (c_statusp(i, j, SEEN))
-                mask |= (1<<(sizeof(long int)*8 - 1));
+                mask |= (1L<<(sizeof(long int)*8 - 1));
             run--;
         }
     if (run < 8*sizeof(long int))
@@ -428,7 +430,7 @@ int ok_outdated(int version)
    check on validity of save file, etc.
    return true if game restored, false otherwise */
 
-int restore_game(char *savestr)
+int restore_game(const char *savestr)
 {
     int i,version;
     FILE *fd;
@@ -577,7 +579,7 @@ void restore_player(FILE *fd, int version)
         fread( (char *)(&(account->balance)), sizeof(long), 1, fd );
         fread( (char *)(&(account->number)), sizeof(long), 1, fd );
         filescanstring( fd, pw_buf );
-        account->password = salloc( pw_buf );
+        account->password = (char *)salloc( pw_buf );
         account->next_account = bank;
         bank = account;
     }

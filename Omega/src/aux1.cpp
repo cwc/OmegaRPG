@@ -494,7 +494,7 @@ int damage_item(Object* o)
 }
 
 /* do dmg points of damage of type dtype, from source fromstring */
-void p_damage(int dmg, int dtype, char *fromstring)
+void p_damage(int dmg, int dtype, const char *fromstring)
 {
     if (State.getFastMove()) {
         drawvision(Player.x,Player.y);
@@ -510,7 +510,7 @@ void p_damage(int dmg, int dtype, char *fromstring)
 }
 
 /* game over, you lose! */
-void p_death(char *fromstring)
+void p_death(const char *fromstring)
 {
     Player.hp = -1;
     print3("You died!");
@@ -681,7 +681,7 @@ int goberserk(void)
 }
 
 /* identifies a trap for examine() by its aux value */
-char *trapid(int trapno)
+const char *trapid(int trapno)
 {
     switch (trapno) {
     case L_TRAP_SIREN:

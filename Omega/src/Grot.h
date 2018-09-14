@@ -9,7 +9,7 @@
 class Grot : public Thing
 {
 private:    
-    char* nameGrot();
+    const char* nameGrot();
     void initialize();
 
 public:
