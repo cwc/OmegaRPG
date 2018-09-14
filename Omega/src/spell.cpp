@@ -460,7 +460,7 @@ int getspell(void)
 }
 
 
-char *spellid(int id)
+const char *spellid(int id)
 {
     switch(id) {
     case S_MON_DET:
@@ -831,7 +831,7 @@ void cast_spell(int spell)
 
 
 
-static char *spell_names[] = {		/* alphabetical listing */
+static const char *spell_names[] = {		/* alphabetical listing */
     "accuracy", "alertness", "apportation", "ball lightning", "blessing",
     "breathing", "clairvoyance", "curing", "desecration", "disintegrate",
     "dispelling", "disrupt", "enchantment", "energy drain", "fear", "firebolt",

@@ -22,7 +22,7 @@ enum BankResponse {
 	BankExistingCustomer
 };
 
-char * npc_account_passwords [NUM_NPC_ACCOUNTS] =
+const char * npc_account_passwords [NUM_NPC_ACCOUNTS] =
 {
     "Duke",
     "Duke Nukem",
@@ -91,12 +91,12 @@ int npc_account_balances [NUM_NPC_ACCOUNTS] =
 };
 
 static int account_num [NUM_NPC_ACCOUNTS];
-static char * blank_line = "                                               ";
+static const char * blank_line = "                                               ";
 static int account_number_next;
 static int account_number_incr;
 
 /* create a new bank account and add it to the bank */
-bank_account * bank_create_account (int player, int balance, char *password)
+bank_account * bank_create_account (int player, int balance, const char *password)
 {
     bank_account * new_account;
 
@@ -506,10 +506,10 @@ static void bank_break (WINDOW *w, Object* card)
 {
     int response;
     long total_balance;
-    char *cp;
+    const char *cp;
     bank_account *account;
 
-    static char *bb_garbage = "^@^@^@^@^@00AD1203BC0F0000FFFFFFFFF";
+    static const char *bb_garbage = "^@^@^@^@^@00AD1203BC0F0000FFFFFFFFF";
 
     if (card->blessing > 0)
     {

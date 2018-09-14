@@ -5,7 +5,7 @@
 
 #include "glob.h"
 
-FILE *checkfopen(char *filestring, char *optionstring)
+FILE *checkfopen(const char *filestring, const char *optionstring)
 {
     FILE *fd;
     char response;
@@ -477,13 +477,13 @@ int test_file_access(char *file_name, char mode)
 }
 #endif
 
-char *required_file_list[] =
+const char *required_file_list[] =
 {
     "maps.dat", "omega.hi", "omega.log", "motd.txt",
     "license.txt", NULL
 };
 
-char *optional_file_list[] =
+const char *optional_file_list[] =
 {
     "help1.txt", "help2.txt", "help3.txt", "help4.txt", "help5.txt",
     "help6.txt", "help7.txt", "help8.txt", "help9.txt", "help10.txt",

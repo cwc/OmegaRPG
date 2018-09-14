@@ -440,7 +440,7 @@ void print1(const char *s)
 }
 
 /* for run on-messages -- print1 clears first.... */
-void nprint1(char *s)
+void nprint1(const char *s)
 {
     if (! State.getSuppressPrinting()) {
         if (bufferappend(s)) {
@@ -451,7 +451,7 @@ void nprint1(char *s)
 }
 
 /* direct print to second msg line */
-void print2(char *s)
+void print2(const char *s)
 {
     if (! State.getSuppressPrinting()) {
         buffercycle(s);
@@ -462,7 +462,7 @@ void print2(char *s)
 }
 
 /* for run on-messages -- print2 clears first.... */
-void nprint2(char *s)
+void nprint2(const char *s)
 {
     if (! State.getSuppressPrinting()) {
         if (bufferappend(s)) {
@@ -478,7 +478,7 @@ void nprint2(char *s)
 /* WDT: it's also typically used for messages intended to persist a while.
  * Thus I'm having print3 save its input in a global variable which other
  * things can use. */
-void print3 (char *s)
+void print3 (const char *s)
 {
     if (!State.getSuppressPrinting())
     {
@@ -491,7 +491,7 @@ void print3 (char *s)
 }
 
 /* for run on-messages -- print3 clears first.... */
-void nprint3(char *s)
+void nprint3(const char *s)
 {
     if (!State.getSuppressPrinting())
     {
@@ -508,7 +508,7 @@ void nprint3(char *s)
 
 /* prints wherever cursor is in window, but checks to see if
 it should morewait and clear window */
-void mprint(char *s)
+void mprint(const char *s)
 {
     int x,y;
     if (! State.getSuppressPrinting()) {
@@ -658,7 +658,7 @@ void initgraf(void)
 
 /* cinema_display: pop up a window out of the way of the screen and fill it
  * with 3 lines of text.  The lines may be NULL pointers. */
-void cinema_display (char *line1, char *line2, char *line3)
+void cinema_display (const char *line1, const char *line2, const char *line3)
 {
     werase(Cinema);
 
@@ -743,7 +743,7 @@ static void cinema_blank_line (int line)
     wrefresh(Cinema);
 }
 
-void cinema_print_line (int line, char * text)
+void cinema_print_line (int line, const char * text)
 {
     mvwprintw(Cinema, line, 0, text);
     wrefresh(Cinema);
@@ -786,7 +786,7 @@ int cinema_getch (void)
  * Return Value:
  *   -1 if ESC was pressed; otherwise the character chosen.
  */
-int cinema_interact (char *choices, char *line1, char *line2, char *line3)
+int cinema_interact (const char *choices, const char *line1, const char *line2, const char *line3)
 {
     int response;
 
@@ -805,7 +805,7 @@ int cinema_interact (char *choices, char *line1, char *line2, char *line3)
     return response;
 }
 
-int cinema_interact_line (int line, char * choices, char * text)
+int cinema_interact_line (int line, const char * choices, const char * text)
 {
     int response;
 
@@ -824,12 +824,12 @@ int cinema_interact_line (int line, char * choices, char * text)
     return response;
 }
 
-int cinema_ynq_line (int line, char * prompt)
+int cinema_ynq_line (int line, const char * prompt)
 {
     return cinema_interact_line(line, "ynqYNQ", prompt);
 }
 
-int cinema_getnum_line (int line, char * prompt)
+int cinema_getnum_line (int line, const char * prompt)
 {
     int num;
 
@@ -842,9 +842,9 @@ int cinema_getnum_line (int line, char * prompt)
     return num;
 }
 
-int cinema_confirm (char * action_description)
+int cinema_confirm (const char * action_description)
 {
-    char *msg;
+    const char *msg;
 
     switch (random_range(4))
     {
@@ -865,12 +865,12 @@ int cinema_confirm (char * action_description)
     return cinema_interact("ynqYNQ", action_description, msg, NULL);
 }
 
-int cinema_ynq (char *action_description)
+int cinema_ynq (const char *action_description)
 {
     return cinema_interact("ynqYNQ", action_description, NULL, NULL);
 }
 
-void cinema_scene (char *line1, char *line2, char *line3)
+void cinema_scene (const char *line1, const char *line2, const char *line3)
 {
     cinema_display(line1, line2, line3);
     morewait();
@@ -1193,7 +1193,7 @@ void commanderror(void)
 
 void timeprint(void)
 {
-    static char * old_month = 0;
+    static const char * old_month = 0;
 
     /* WSS * HACK * This shouldn't be here at all but time is so screwed up */
     /* WSS * HACK * I don't know where else I can check for a new month reliably */
@@ -1348,7 +1348,7 @@ void menuspellprint(int i)
     wprintw(Menuw,"(%d)\n",Spells[i].powerdrain);
 }
 
-void menuprint(char *s)
+void menuprint(const char *s)
 {
     int x,y;
     getyx(Menuw,y,x);
@@ -1434,7 +1434,7 @@ char *msgscanstring(void)
 }
 
 
-void locprint(char *s)
+void locprint(const char *s)
 {
     wclear(Locw);
     wprintw(Locw,s);
@@ -1564,7 +1564,7 @@ static long input_number (WINDOW * w)
 /* reads a positive number up to 999999 */
 /* WDT: now asks for the number, and receives it through the cinema
  * interface.  Returns ABORT (-1) if aborted. */
-long parsenum (char *message)
+long parsenum (const char *message)
 {
     int number[8];
     int place = -1;
@@ -1620,7 +1620,7 @@ void maddch(char c)
 }
 
 
-void display_death(char *source)
+void display_death(const char *source)
 {
     clear();
     touchwin(stdscr);
@@ -2267,7 +2267,7 @@ void buffercycle(const char *s)
         bufferpos = 0;
 }
 
-int bufferappend(char *s)
+int bufferappend(const char *s)
 {
     int pos = bufferpos - 1;
 

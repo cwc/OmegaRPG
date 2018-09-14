@@ -12,8 +12,8 @@ public:
     OmegaRPG(void);
     ~OmegaRPG(void);
 
-    char* SaveFilename();
-    void SaveFilename(char* filename);
+    const char* SaveFilename();
+    void SaveFilename(const char* filename);
 
     bool Continuing();
     void Continuing(bool value);
@@ -30,7 +30,7 @@ public:
     void startGame();
 
 private:
-    char* _saveFilename;
+    const char* _saveFilename;
     bool _continuing;
     bool _scoresOnly;
     bool _showScores;

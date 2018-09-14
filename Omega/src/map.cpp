@@ -30,7 +30,7 @@ struct map_type
 #endif
 };
 
-void error(char *explanation, ...)
+void error(const char *explanation, ...)
 {
     va_list ap;
 

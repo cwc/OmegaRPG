@@ -15,7 +15,7 @@ Object::Object(int i)
 Object::Object( int tid, int tweight, int tplus, int tcharge, int tdmg, int thit, int taux, int tnumber, 
                int tfragility, long tbasevalue, unsigned char tknown, unsigned char tused, int tblessing, 
                unsigned char ttype, unsigned char tuniqueness, int tusef, unsigned char tlevel, unsigned long tobjchar, 
-               char* tobjstr, char* ttruename, char* tcursestr) : id ( tid ), weight ( tweight ), plus ( tplus ), 
+               const char* tobjstr, const char* ttruename, const char* tcursestr) : id ( tid ), weight ( tweight ), plus ( tplus ),
                charge ( tcharge ), dmg ( tdmg ), hit ( thit ), aux ( taux ), number ( tnumber ), 
                fragility ( tfragility ), basevalue ( tbasevalue ), known ( tknown ), used ( tused ), 
                blessing ( tblessing ), type ( ttype ), uniqueness ( tuniqueness ), usef( tusef ), level ( tlevel ),

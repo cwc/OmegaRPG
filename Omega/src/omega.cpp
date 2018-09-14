@@ -10,7 +10,7 @@
 
 /* most globals originate in omega.c */
 
-char* Omegalib;		/* contains the path to the library files */
+const char* Omegalib;		/* contains the path to the library files */
 
 #ifdef DEBUG
 FILE *DG_debug_log; /* debug log file pointer */
@@ -169,7 +169,7 @@ void initrand(int environment, int level)
 }
 
 
-int game_restore(char *savefile)
+int game_restore(const char *savefile)
 {
     int ok;
     ok = restore_game(savefile);

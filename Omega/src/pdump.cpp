@@ -3,25 +3,25 @@
 
 #include "glob.h"
 
-char *monk_rank_string(int rank);
-char *legion_rank_string( int rank );
-char *arena_rank_string( int rank );
-char *college_rank_string( int rank );
-char *nobility_rank_string( int rank );
-char *circle_rank_string( int rank );
-char *order_rank_string( int rank );
-char *thieves_rank_string( int rank );
-char *priesthood_rank_string( int rank, int patron );
-char *elapsed_time_string( long minutes );
-char *alignment_string( int alignment );
+const char *monk_rank_string(int rank);
+const char *legion_rank_string( int rank );
+const char *arena_rank_string( int rank );
+const char *college_rank_string( int rank );
+const char *nobility_rank_string( int rank );
+const char *circle_rank_string( int rank );
+const char *order_rank_string( int rank );
+const char *thieves_rank_string( int rank );
+const char *priesthood_rank_string( int rank, int patron );
+const char *elapsed_time_string( long minutes );
+const char *alignment_string( int alignment );
 int alignment_level_index( int alignment );
-short build_check( long *check, char *s );
-short dump( FILE *dumpfile, char *s, short do_check );
+short build_check( long *check, const char *s );
+short dump( FILE *dumpfile, const char *s, short do_check );
 short dump_basic( FILE *dumpfile );
 short dump_options( FILE *dumpfile );
 short dump_stati( FILE *dumpfile );
 short dump_immunities( FILE *dumpfile );
-short dump_in_columns( FILE *dumpfile, int col_width, char *s );
+short dump_in_columns( FILE *dumpfile, int col_width, const char *s );
 short end_dump_in_columns( FILE *dumpfile );
 short dump_ranks( FILE *dumpfile );
 char *fill_rank_field( char *buf );
@@ -33,14 +33,14 @@ short dump_possessions( FILE *dumpfile );
 void player_dump( void );
 
 long dumpcheck;
-char *why;
+const char *why;
 char dump_buf[ 100 ];
 char spaces[] = "                                             "
                 "                                             ";
 
 short do_dump_stat_imm = true;
 
-char *legion_ranks[ 6 ] =
+const char *legion_ranks[ 6 ] =
 {
     "",
     "Legionaire",
@@ -50,7 +50,7 @@ char *legion_ranks[ 6 ] =
     "Commandant of the Legion"
 };
 
-char *arena_ranks[ 6 ] =
+const char *arena_ranks[ 6 ] =
 {
     "Ex-gladiator",
     "Gladiator Trainee of the Arena",
@@ -60,7 +60,7 @@ char *arena_ranks[ 6 ] =
     "Gladiator Champion of the Arena"
 };
 
-char *college_ranks[ 6 ] =
+const char *college_ranks[ 6 ] =
 {
     "",
     "Collegium Magii: Novice",
@@ -70,7 +70,7 @@ char *college_ranks[ 6 ] =
     "Archmage of the Collegium Magii"
 };
 
-char *nobility_ranks[ 6 ] =
+const char *nobility_ranks[ 6 ] =
 {
     "Lowly Commoner",
     "Commoner",
@@ -80,7 +80,7 @@ char *nobility_ranks[ 6 ] =
     "Duke of Rampart"
 };
 
-char *circle_ranks[ 6 ] =
+const char *circle_ranks[ 6 ] =
 {
     "Former member of the Circle",
     "Member of the Circle of Initiates",
@@ -90,7 +90,7 @@ char *circle_ranks[ 6 ] =
     "Prime Sorceror of the Inner Circle"
 };
 
-char *order_ranks[ 6 ] =
+const char *order_ranks[ 6 ] =
 {
     "Washout from the Order of Paladins",
     "Gallant of the Order",
@@ -100,7 +100,7 @@ char *order_ranks[ 6 ] =
     "Justiciar of the Order of Paladins"
 };
 
-char *thieves_ranks[ 6 ] =
+const char *thieves_ranks[ 6 ] =
 {
     "",
     "Guild of Thieves: Candidate Member",
@@ -110,7 +110,7 @@ char *thieves_ranks[ 6 ] =
     "Guild of Thieves: Shadowlord"
 };
 
-char *priesthood_ranks[ 6 ] =
+const char *priesthood_ranks[ 6 ] =
 {
     "",
     "A lay devotee of ",
@@ -120,7 +120,7 @@ char *priesthood_ranks[ 6 ] =
     "The High Priest of "
 };
 
-char *patron_names[ 7 ] =
+const char *patron_names[ 7 ] =
 {
     "",
     "Odin",
@@ -131,7 +131,7 @@ char *patron_names[ 7 ] =
     "the Lords of Destiny"
 };
 
-char *monk_ranks[8] =
+const char *monk_ranks[8] =
 {
     "",
     "Monk Trainee",
@@ -530,7 +530,7 @@ short dump_ranks( FILE *dumpfile )
 
 int dump_col;
 
-short dump_in_columns( FILE *dumpfile, int col_width, char *s )
+short dump_in_columns( FILE *dumpfile, int col_width, const char *s )
 {
     int i, slen;
 
@@ -1011,13 +1011,11 @@ short dump_basic( FILE *dumpfile )
         return false;
 
     sprintf( dump_buf, "[Verification: %8.8lx]\n\n", dumpcheck );
-    if ( !dump( dumpfile, dump_buf, false ) )
-        return false;
+    return dump(dumpfile, dump_buf, false ) != 0;
 
-    return true;
 }
 
-short dump( FILE *dumpfile, char *s, short do_check )
+short dump( FILE *dumpfile, const char *s, short do_check )
 {
     if ( do_check )
     {
@@ -1035,10 +1033,10 @@ short dump( FILE *dumpfile, char *s, short do_check )
     return true;
 }
 
-short build_check( long *check, char *s )
+short build_check( long *check, const char *s )
 {
     int count = 0;
-    char *cp = s;
+    const char *cp = s;
 
     /* build checksum of all printing characters in s, while rotating */
     /* the partial checksum left one bit for each character added */
@@ -1091,7 +1089,7 @@ int alignment_level_index( int alignment )
         return 7;
 }
 
-char *alignment_level[ 8 ] =
+const char *alignment_level[ 8 ] =
 {
     "Neutral, embodying the Cosmic Balance",
     "Neutral, tending toward ",
@@ -1103,7 +1101,7 @@ char *alignment_level[ 8 ] =
     "The Ultimate Avatar of "
 };
 
-char *alignment_string( int alignment )
+const char *alignment_string( int alignment )
 {
     strcpy( Str3, alignment_level[ alignment_level_index( alignment ) ] );
 
@@ -1115,7 +1113,7 @@ char *alignment_string( int alignment )
     return Str3;
 }
 
-char *elapsed_time_string( long minutes )
+const char *elapsed_time_string( long minutes )
 {
     long hours, days, months, years;
 
@@ -1164,12 +1162,12 @@ char *elapsed_time_string( long minutes )
     return Str3;
 }
 
-char *legion_rank_string( int rank )
+const char *legion_rank_string( int rank )
 {
     return legion_ranks[ rank ];
 }
 
-char *arena_rank_string( int rank )
+const char *arena_rank_string( int rank )
 {
     if ( rank < 0 )
         return arena_ranks[ 0 ];
@@ -1177,17 +1175,17 @@ char *arena_rank_string( int rank )
         return arena_ranks[ rank ];
 }
 
-char *college_rank_string( int rank )
+const char *college_rank_string( int rank )
 {
     return college_ranks[ rank ];
 }
 
-char *nobility_rank_string( int rank )
+const char *nobility_rank_string( int rank )
 {
     return nobility_ranks[ rank ];
 }
 
-char *circle_rank_string( int rank )
+const char *circle_rank_string( int rank )
 {
     if ( rank < 0 )
         return circle_ranks[ 0 ];
@@ -1195,7 +1193,7 @@ char *circle_rank_string( int rank )
         return circle_ranks[ rank ];
 }
 
-char *order_rank_string( int rank )
+const char *order_rank_string( int rank )
 {
     if ( rank < 0 )
         return order_ranks[ 0 ];
@@ -1203,19 +1201,19 @@ char *order_rank_string( int rank )
         return order_ranks[ rank ];
 }
 
-char *thieves_rank_string( int rank )
+const char *thieves_rank_string( int rank )
 {
     return thieves_ranks[ rank ];
 }
 
-char *priesthood_rank_string( int rank, int patron )
+const char *priesthood_rank_string( int rank, int patron )
 {
     strcpy( Str3, priesthood_ranks[ rank ] );
     strcat( Str3, patron_names[ patron ] );
     return Str3;
 }
 
-char *monk_rank_string(int rank)
+const char *monk_rank_string(int rank)
 {
     return monk_ranks[rank];
 }

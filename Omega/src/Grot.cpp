@@ -8,7 +8,7 @@
 /* Creating this object without any parameters generates a random object */
 Grot::Grot(void)
 {
-    char *name = nameGrot();
+    const char *name = nameGrot();
     truename = cursestr = objstr = name;
     
 
@@ -36,7 +36,7 @@ void Grot::initialize()
 
 }
 
-char* Grot::nameGrot()
+const char * Grot::nameGrot()
 {
     switch(random_range(NUM_GROTS)) {
         case 0:

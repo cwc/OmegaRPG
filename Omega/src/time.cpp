@@ -70,8 +70,8 @@ void time_clock(int reset)
                 /* DAG free the name & corpseString if allocated */
                 if ( m_statusp( ml->monster, ALLOC ) )
                 {
-                    free( ml->monster->name );
-                    free( ml->monster->corpseString );
+                    free( (char *)ml->monster->name );
+                    free( (char *)ml->monster->corpseString );
                 }
                 free((char *) ml->monster);
                 free((char *) ml);

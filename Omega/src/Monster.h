@@ -40,8 +40,8 @@ typedef chtype Symbol;
 		long status;
 		long immunity;
 		Symbol symbol;
-		char* name;
-		char* corpseString;
+		const char* name;
+		const char* corpseString;
 		char* combatManeuvers;
 
 		void m_pulse();

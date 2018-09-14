@@ -484,10 +484,10 @@ void l_arena(void)
                 strcpy(Str1,Champion);
                 strcat(Str1,", the arena champion");
                 *Arena_Monster = Monsters[HISCORE_NPC];
-                Arena_Monster->name = salloc(Str1);
+                Arena_Monster->name = (char *)salloc(Str1);
                 strcpy(Str2,"The corpse of ");
                 strcat(Str2,Str1);
-                Arena_Monster->corpseString = salloc(Str2);
+                Arena_Monster->corpseString = (char *)salloc(Str2);
                 m_status_set( Arena_Monster, ALLOC );
                 Arena_Monster->level = 20;
                 Arena_Monster->hp = Championlevel*Championlevel*5;
@@ -518,10 +518,10 @@ void l_arena(void)
             strcpy(Str1,nameprint());
             strcat(Str1," the ");
             strcat(Str1,Arena_Monster->name);
-            Arena_Monster->name = salloc(Str1);
+            Arena_Monster->name = (char *)salloc(Str1);
             strcpy(Str2,"The corpse of ");
             strcat(Str2,Str1);
-            Arena_Monster->corpseString = salloc(Str2);
+            Arena_Monster->corpseString = (char *)salloc(Str2);
             m_status_set( Arena_Monster, ALLOC );
         }
         Arena_Monster->uniqueness = UNIQUE_MADE;

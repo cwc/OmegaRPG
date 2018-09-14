@@ -16,14 +16,14 @@ public:
     int usef;
     unsigned char level;
     unsigned long objchar;
-    char *objstr,*truename,*cursestr;
+    const char *objstr,*truename,*cursestr;
 
     /* Constructors */
     Object();
     Object(int);
     Object(int, int, int, int, int, int, int, int, int, long, 
         unsigned char, unsigned char, int, unsigned char, 
-        unsigned char, int, unsigned char, unsigned long, char*, char*, char*);
+        unsigned char, int, unsigned char, unsigned long, const char*, const char*, const char*);
 
     /* Methods */
     bool isCursed();

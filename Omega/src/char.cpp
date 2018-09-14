@@ -349,7 +349,7 @@ static int user_character_iq_test (void)
 static int user_character_undergraduate_exam (void)
 {
     int num = 0;
-    char * prompt = "Took Undergraduate entrance exams? [yn] ";
+    const char * prompt = "Took Undergraduate entrance exams? [yn] ";
 
     cinema_blank();
     if ('y' == cinema_ynq_line(0, prompt))
@@ -372,7 +372,7 @@ static int user_character_undergraduate_exam (void)
 static int user_character_graduate_exam (void)
 {
     int num = 0;
-    char * prompt = "Took Graduate entrance exams? [yn] ";
+    const char * prompt = "Took Graduate entrance exams? [yn] ";
 
     cinema_blank();
     if ('y' == cinema_ynq_line(0, prompt))

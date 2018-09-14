@@ -14,7 +14,7 @@
 
 #include "extern.h"
 
-extern char* g_saveFileName;
+extern const char* g_saveFileName;
 
 #ifdef DEBUG /* Added by DG, naturally. */
 /* Debug log file */
@@ -23,7 +23,7 @@ extern int DG_debug_flag;
 #endif
 
 /* This string holds the path to the library files */
-extern char *Omegalib;
+extern const char *Omegalib;
 
 /* one of each monster */
 extern Monster Monsters[NUMMONSTERS];
