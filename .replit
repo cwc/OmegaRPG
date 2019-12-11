@@ -1,0 +1,2 @@
+language = "cpp11"
+run = "cd ./build/unix && make && ./omega"

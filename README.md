@@ -4,6 +4,7 @@ Omega
 A text-based roguelike game
 
 [![Build Status](https://travis-ci.org/cwc/OmegaRPG.png)](https://travis-ci.org/cwc/OmegaRPG)
+[![Run on Repl.it](https://repl.it/badge/github/cwc/OmegaRPG)](https://repl.it/github/cwc/OmegaRPG)
 
 Building
 -----
