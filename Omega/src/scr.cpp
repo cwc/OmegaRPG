@@ -587,6 +587,10 @@ void initgraf(void)
     start_color();
     clrgen_init();
 
+#ifndef PDCURSES
+    set_escdelay(0);
+#endif
+
     if (LINES < 24 || COLS < 80) {
         printf("Minimum Screen Size: 24 Lines by 80 Columns.");
         exit(0);
