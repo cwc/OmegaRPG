@@ -542,7 +542,10 @@ void apport(int blessing)
     if (blessing > -1) {
         mprint("Apport from:");
         setspot(&x,&y);
-        if (Level->site[x][y].things != NULL) {
+        if(x < 0 || y < 0) {
+          mprint("Cancelled.");
+        }
+        else if (Level->site[x][y].things != NULL) {
             pickup_at(x,y);
             plotspot(x, y, true);
         }
