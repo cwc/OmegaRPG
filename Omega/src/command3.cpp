@@ -268,7 +268,11 @@ void fire(void)
         x1 = x2 = Player.x;
         y1 = y2 = Player.y;
         setspot(&x2,&y2);
-        if ((x2 == Player.x) && (y2 == Player.y))
+        if (x2 == ABORT || y2 == ABORT) {
+            State.setSkipMonsters();
+            mprint("Cancelled.");
+        }
+        else if ((x2 == Player.x) && (y2 == Player.y))
             mprint("You practice juggling for a moment or two.");
         else {
             do_object_los(obj->objchar,&x1,&y1,x2,y2);
