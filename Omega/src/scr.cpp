@@ -1408,13 +1408,14 @@ void draw_explosion(Symbol pyx, int x, int y)
 
 char *msgscanstring(void)
 {
-    static char instring[80],byte='x';
+    static char instring[80];
+    static int byte='x';
     int i=0;
 
     instring[0]=0;
     byte = mgetc();
     while (byte != '\n') {
-        if ((byte == 8) || (byte == 127)) { /* ^h or delete */
+        if (byte == DELETE_CHAR || byte == BACKSPACE || byte == KEY_BACKSPACE) { /* ^h or delete */
             if (i>0) {
                 i--;
                 dobackspace();
@@ -1538,7 +1539,7 @@ static long input_number (WINDOW * w)
         {
             return ABORT;
         }
-        else if (BACKSPACE == ch || DELETE_CHAR == ch)
+        else if (BACKSPACE == ch || DELETE_CHAR == ch || KEY_BACKSPACE == ch)
         {
             if (numlen > 0)
             {
@@ -1570,13 +1571,13 @@ long parsenum (const char *message)
     int place = -1;
     int i,x,y,mult=1;
     long num=0;
-    char byte=' ';
+    int byte=' ';
     int entering_digits = true;
 
     cinema_display(message, "enter a number or ESC: ", NULL);
     while (entering_digits) {
         byte = wgetch(Cinema);
-        if ((byte == BACKSPACE) || (byte == DELETE_CHAR)) {
+        if (byte == BACKSPACE || byte == DELETE_CHAR || byte == KEY_BACKSPACE) {
             if (place > -1) {
                 number[place] = 0;
                 place--;

@@ -711,6 +711,7 @@ void tacoptions(void)
             break;
         case BACKSPACE:
         case DELETE_CHAR:
+        case KEY_BACKSPACE:
             place = 0;
             actionsleft=maneuvers();
             draw_again = 1;

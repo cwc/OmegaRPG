@@ -181,7 +181,7 @@ static int input_password (WINDOW *w, int line, int col, char *buf, int allow_es
             *buf = ESCAPE;
             return 1;
         }
-        else if (KEY_LEFT == key || DELETE_CHAR == key || BACKSPACE == key)
+        else if (KEY_LEFT == key || DELETE_CHAR == key || BACKSPACE == key || KEY_BACKSPACE == key)
         {
             if (pwlen > 0)
             {
@@ -218,7 +218,7 @@ static long input_amount (WINDOW *w, int line, int col)
 
         if ('\n' == key) return sign * amount;
 
-        if (KEY_LEFT == key || DELETE_CHAR == key || BACKSPACE == key)
+        if (KEY_LEFT == key || DELETE_CHAR == key || BACKSPACE == key || KEY_BACKSPACE == key)
         {
             if (amountlen > 0)
             {
