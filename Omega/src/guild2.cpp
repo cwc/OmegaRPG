@@ -255,6 +255,7 @@ void l_thieves_guild(void)
                                         free((char *)Player.pack[i]);
                                         Player.pack[i] = NULL;
                                     }
+                                    calc_weight();
                                     dataprint();
                                 }
                                 else if (c=='q') break;
