@@ -716,6 +716,7 @@ void levitate(int blessing)
             mprint("You discover you can easily control your altitude...");
             mprint("(Note use of '@' command may be useful while levitating)");
             Player.status[LEVITATING] += random_range(5)+1+blessing;
+            showflags();
         }
     }
     else mprint("Nothing much happens.");
