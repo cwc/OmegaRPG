@@ -875,7 +875,8 @@ void showknownspells(int first, int last)
 int spellparse(void)
 {
     int first, last, pos;
-    char byte, prefix[80];
+    char prefix[80];
+    int byte;
     int found = 0;
     int f, l;
 
@@ -891,7 +892,7 @@ int spellparse(void)
     print2("");
     do {
         byte = mgetc();
-        if (byte == BACKSPACE || byte == DELETE_CHAR) {
+        if (byte == BACKSPACE || byte == DELETE_CHAR || byte == KEY_BACKSPACE) {
             if (pos > 0) {
                 prefix[--pos] = '\0';
                 byte = prefix[pos - 1];
