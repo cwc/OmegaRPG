@@ -14,7 +14,9 @@ void make_stairs(int fromlevel)
     int i,j;
     /* no stairway out of astral */
     if (Current_Environment != E_ASTRAL) {
-        findspace(&i,&j,-1);
+        do {
+            findspace(&i,&j,-1);
+        } while(Level->site[i][j].p_locf != L_NO_OP);
         Level->site[i][j].locchar = STAIRS_UP;
         Level->site[i][j].aux = Level->depth-1;
         lset(i,j,STOPS);
@@ -24,7 +26,9 @@ void make_stairs(int fromlevel)
         }
     }
     if (Level->depth < MaxDungeonLevels) {
-        findspace(&i,&j,-1);
+        do {
+            findspace(&i,&j,-1);
+        } while(Level->site[i][j].p_locf != L_NO_OP);
         Level->site[i][j].locchar = STAIRS_DOWN;
         Level->site[i][j].aux = Level->depth+1;
         lset(i,j,STOPS);
